@@ -6,3 +6,5 @@ Find a list of my 2024 code challenge.
 
 2. Navbar-001 - HTML,CSS,JS
 
+3. Responsive Nav and Sidebar
+
