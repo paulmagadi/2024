@@ -20,6 +20,7 @@ const toggleButton = document.querySelector('.toggle-button');
 
 toggleButton.addEventListener('click', () => {
     sidebar.classList.toggle('show');
+    sidebar.classList.toggle('animate');
 
 // Change button content based on sidebar visibility
     if (sidebar.classList.contains('show')) {
