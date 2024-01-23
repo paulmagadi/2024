@@ -68,12 +68,10 @@ nav li:first-child {
     top: 0;
     right: 0;
     width: 250px;
-    /* height: 100vh; */
     z-index: 999;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--background-color);
     backdrop-filter: blur(10px);
     box-shadow: -10px 0px 10px rgba(0, 0, 0, 0.1);
-    /* display: flex; */
     display: none;
     flex-direction: column;
     align-items: flex-start;
@@ -86,6 +84,7 @@ nav li:first-child {
 
 .navbar a {
     width: 100%;
+    border-bottom: 2px solid var(--white);
 }
 
 .menu-button {
@@ -237,31 +236,12 @@ span.password {
     display: none;
 }
 
-/* .toggle-button {
-    display: none;
-} */
-
 .side-bar {
     width: 18%;
     background-color: var(--main-color);
     position: fixed;
     height: 100vh;
 }
-
-/* .side-bar .close-bar {
-    font-size: 2rem;
-    margin: 0;
-    padding: 0 .5em;
-   float: right;
-}
-
-.side-bar .close-bar:hover,
-.side-bar .close-bar:focus  {
-    background-color: red;
-    color: black;
-    cursor: pointer;
-} */
-
 
 .side-bar a {
     border-bottom: 2px solid var(--white);
@@ -272,6 +252,10 @@ span.password {
     display: block;
 }
 
+.side-bar a:first-of-type {
+    border-top: 2px solid var(--white);
+}
+
 .side-bar a:hover {
     background-color: var(--white);
 }
@@ -280,7 +264,7 @@ span.password {
     display: block;
     z-index: 1000;
     position: sticky;
-    top: 4em;
+    top: 4.5em;
 }
 
 
@@ -290,12 +274,14 @@ span.password {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: sticky;
+        top: 2.5em;
+        background-color: var(--main-color);
+        padding: 0 1em 0 1em;
     }
 
     .toggle-button {
         display: flex;
-        position: sticky;
-        top: 2em;
     }
 
     .side-bar {
@@ -306,6 +292,25 @@ span.password {
     }
 }
 
+.body-container {
+    margin-left: 18.5%; 
+    margin-top: 2.5em;
+}
+
+.header {
+    background-image: url(images/banner.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    margin-bottom: .5em;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
 
 /* page content*/
 .container {
@@ -314,14 +319,12 @@ span.password {
     flex-wrap: wrap;
     align-items: center;
     background-color: #d8f9f8;
-    margin-left: 18.5%; 
-    margin-top: 2.5em;
 }
 
 .card {
     width: 24%;
     padding: .3em;
-    margin-top: 1em;
+    margin-bottom: 1em;
     box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
@@ -348,7 +351,9 @@ span.password {
 
 .card-btn {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
 }
 
 .card button {
@@ -376,10 +381,14 @@ span.password {
     }
 }
 @media (max-width: 700px) {
-    .container {
+    .body-container {
         margin-left: 0;
         padding: .5em;
         margin-top: 0;
+    }
+
+    .header {
+        height: 200px;
     }
 }
 
