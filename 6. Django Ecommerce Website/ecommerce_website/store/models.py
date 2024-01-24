@@ -18,7 +18,7 @@ class Product(models.Model):
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='uploads/products/')
     is_sale = models.BooleanField(default=False)
-    sale_prisce = models.DecimalField(default=0, decimal_places=2, max_digits=8)
+    sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=8, null=True, blank=True)
     in_stock = models.BooleanField(default=True)
     stock_quantity = models.IntegerField(default=1)
     discount = models.DecimalField(default=0, max_digits=9, decimal_places=2, null=True, blank=True)

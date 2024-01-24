@@ -81,20 +81,22 @@
 
         <!-- page content -->
         <div class="container">
-
+            
+            {% for product in products %}
             <div class="card">
                 <div class="image">
-                    <img src="/static/images/p1.png" alt="">
+                    <img src="{{ product.image.url }}" alt="">
                 </div>
                 <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
+                    <h5>{{ product.name }}</h5>
+                    <p>$ {{ product.price }}</p>
                     <div class="card-btn">
                         <button type="button">View</button>
                         <button type="button">Add to Cart</button>
                     </div>
                 </div>
             </div>
+            {% endfor %}
             <div class="card">
                 <div class="image">
                     <img src="/static/images/p2.png" alt="">
