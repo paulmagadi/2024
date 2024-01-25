@@ -1,1 +1,28 @@
-<h1>login</h1>
+    <!-- login form -->
+    <div id="modal" class="modal">
+        <div class="form-container modal-content animate">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div class="img">
+                    <span id="close" class="close">&times;</span>
+                    <img src="/static/images/avatar.png" alt="avatar" class="avatar" width="20%"> 
+                </div>
+                <div class="login-container">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Enter Username" name="username" id="username" autocomplete="username" required>
+
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+                    <button type="submit">Login</button>
+                    <label>  
+                        <input type="checkbox" checked="checked" name="remember">Remember me
+                    </label>
+                </div>
+                <div class="login-container">
+                    <button type="button" class="cancelbtn" id="cancelbtn">Cancel</button>
+                    <span class="password">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
+        </div>
+    </div>

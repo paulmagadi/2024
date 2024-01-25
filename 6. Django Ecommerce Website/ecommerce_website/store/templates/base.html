@@ -9,9 +9,14 @@
 </head>
 <body>
     
+    {% include 'navbar.html' %}
+    {% include 'sidebar.html' %}
+    
+    <div class="body-container">
     {% block content %}
         
     {% endblock content %}
+    </div>
 
     <script src="{% static 'js/main.js' %}"></script>
 </body>
