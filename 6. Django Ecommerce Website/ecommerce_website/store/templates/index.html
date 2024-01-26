@@ -8,161 +8,76 @@
 
 {% block content %}
  
-        <header>
-            <div class="header">
+<header>
+    <div class="header">
 
-                {% if messages %}
-                    
-                    {% for message in messages %}
-                        <h5>{{ message }}</h5>
-                    {% endfor %}
-                        
-                {% endif %}
+        <h1>Bella Online Shop</h1>
+    </div>
+</header>
 
-                <h1>Bella Online Shop</h1>
-            </div>
-        </header>
-
-        <!-- page content -->
-        <div class="container">
-            
-            {% for product in products %}
-            <div class="card">
-                <div class="image">
-                    <img src="{{ product.image.url }}" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>{{ product.name }}</h5>
-                    <p>$ {{ product.price }}</p>
-                    <div class="card-btn">
-                        <button type="button">View</button>
-                        <button type="button">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/p2.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/purse.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/p3.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/p7.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/p8.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/purse.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/saving-img.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/p1.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/p3.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/purse.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="image">
-                    <img src="/static/images/p7.png" alt="">
-                </div>
-                <div class="card-text">
-                    <h5>Name</h5>
-                    <p>$ 500</p>
-                    <button type="button">View</button>
-                    <button type="button">Add to Cart</button>
-                </div>
+<!-- page content -->
+<div class="container">
+    
+    {% for product in products %}
+    <div class="card">
+        <div class="image">
+            <img src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="card-text">
+            <h5>{{ product.name }}</h5>
+            <p>$ {{ product.price }}</p>
+            <div class="card-btn">
+                <button type="button">View</button>
+                <button type="button">Add to Cart</button>
             </div>
         </div>
+    </div>
+    {% endfor %}
+    <div class="card">
+        <div class="image">
+            <img src="/static/images/purse.png" alt="">
+        </div>
+        <div class="card-text">
+            <h5>Name</h5>
+            <p>$ 500</p>
+            <button type="button">View</button>
+            <button type="button">Add to Cart</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="image">
+            <img src="/static/images/saving-img.png" alt="">
+        </div>
+        <div class="card-text">
+            <h5>Name</h5>
+            <p>$ 500</p>
+            <button type="button">View</button>
+            <button type="button">Add to Cart</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="image">
+            <img src="/static/images/p1.png" alt="">
+        </div>
+        <div class="card-text">
+            <h5>Name</h5>
+            <p>$ 500</p>
+            <button type="button">View</button>
+            <button type="button">Add to Cart</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="image">
+            <img src="/static/images/p3.png" alt="">
+        </div>
+        <div class="card-text">
+            <h5>Name</h5>
+            <p>$ 500</p>
+            <button type="button">View</button>
+            <button type="button">Add to Cart</button>
+        </div>
+    </div>
+</div>
     <!-- footer -->
     <footer>
         <div class="footer">
