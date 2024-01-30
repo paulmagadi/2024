@@ -23,8 +23,8 @@
                     <li class="dropdown">
                         <a href="#" class="account-link">Account</a>
                         <div class="dropdown-content">
-                            <a href="#" class="login-button">Login</a>
-                            <a href="#" class="register-button">Register</a>
+                            <a href="#" class="login-button" id="login-button">Login</a>
+                            <a href="#" class="register-button" id="signup-button">Signup</a>
                         </div>
                     </li>
                 </ul>
@@ -34,6 +34,72 @@
             </div>
         </div>
     </nav>
+
+      <!-- login form -->
+    <div id="signin-form" class="modal">
+        <div class="form-container modal-content animate">
+            <form action="" method="post">
+                <div class="img">
+                    <span id="close" class="close">&times;</span>
+                    <img src="images/avatar.png" alt="avatar" class="avatar" width="20%"> 
+                </div>
+                <div class="login-container">
+                    <label for="username">Email</label>
+                    <input type="text" placeholder="Enter Email" name="username" id="username" autocomplete="username" required>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+                    <button type="submit">Login</button>
+                    <label>  
+                        <input type="checkbox" checked="checked" name="remember">Remember me
+                    </label>
+                </div>
+                <div class="login-container">
+                    <button type="button" class="cancelbtn" id="cancelbtn">Cancel</button>
+                    <span class="password">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+          <!-- Register form -->
+          <div id="signup-form" class="modal">
+            <div class="form-container modal-content animate">
+                <form action="" method="post">
+                    <div class="img">
+                        <span id="close-signup-form" class="close">&times;</span>
+                        <img src="images/avatar.png" alt="avatar" class="avatar" width="20%"> 
+                    </div>
+                    <div class="login-container">
+                        <label for="fname">First Name</label>
+                        <input type="text" placeholder="Enter First Name" name="fname" id="fname" autocomplete="fname" required>
+                        
+                        <label for="lname">Last Name</label>
+                        <input type="text" placeholder="Enter Last Name" name="lname" id="lname" autocomplete="lname" required>
+                        
+                        <label for="email">Email</label>
+                        <input type="email" placeholder="Enter Email" name="email" id="email" autocomplete="email" required>
+    
+                        <label for="password">Password</label>
+                        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+                        <label for="password">Repeat Password</label>
+                        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+    
+                        <button type="submit">Register</button>
+                        
+                    </div>
+                    <div class="login-container">
+                        <button type="button" class="cancelbtn" id="cancel-signup-button">Cancel</button>
+                        <span class="password">Already have accout? <a href="#">Login.</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+    
 
 <div class="container">
     
