@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  background-image: url(g15.svg);
+  background-image: url(images/g15.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -139,11 +139,12 @@ a {
   display: none;
   position: absolute;
   background-color: #fff;
-  min-width: 120px;
+  min-width: 150px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   z-index: 1;
   margin-left: -1em;
   margin-top: .5em;
+  border-radius: 5px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -155,6 +156,11 @@ a {
   padding: 12px 2em;
   text-decoration: none;
   display: block;
+  margin: 1em;
+}
+
+.dropdown-content .login-button {
+  background-color: rgb(208, 243, 243);
 }
 
 .dropdown-content a:hover {
