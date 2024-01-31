@@ -60,13 +60,22 @@ a {
 
 .cart {
   padding: .6em 2em;
+  position: relative;
+}
+
+.cart .cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  position: absolute;
+  top: 2px;
+  right: 15px;
 }
 
 .navbar-mobile .hide {
   display: none;
 }
-
-
 
 @media (max-width: 600px) {
   .navbar {
@@ -114,6 +123,20 @@ a {
   .navbar-mobile .hide {
     display: flex;
   }
+
+  .cart-mobile {
+    position: relative;
+  }
+  
+  .cart-mobile .cart-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 1px 4px;
+    position: absolute;
+    top: 2px;
+    right: 5px;
+  }
 }
 
 .container {
@@ -142,7 +165,7 @@ a {
   min-width: 150px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   z-index: 1;
-  margin-left: -1em;
+  margin-left: -1.5em;
   margin-top: .5em;
   border-radius: 5px;
 }
@@ -316,7 +339,7 @@ span.password {
   display: none;
 }
 
-.foot span {
+.foot .foot-menu {
   display: block;
 }
 
@@ -339,6 +362,21 @@ span.password {
 .foot li:hover {
   background-color: orange;
   cursor: pointer;
+}
+
+.foot .foot-cart {
+  position: relative;
+}
+
+.foot .cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 1px 4px;
+  position: absolute;
+  margin: 0;
+  top: 5px;
+  right: 15px;
 }
 
 @media (max-width: 600px) {
