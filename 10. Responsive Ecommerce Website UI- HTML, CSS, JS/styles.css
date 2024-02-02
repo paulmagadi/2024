@@ -411,6 +411,32 @@ span.password {
   cursor: pointer;
 }
 
+.product-card {
+  position: relative;
+}
+
+.sales-badge {
+  position: absolute; 
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white; 
+  padding: 0.5em;
+  border-radius: 0 0 0 5px; 
+}
+
+.new-product {
+  position: absolute; 
+  top: 0.4em; 
+  left: 0px; 
+  background-color: black;
+  color: white; 
+  padding: 0.5em;
+  transform: rotate(-45deg); 
+  transform-origin: center ; 
+  border-radius: 50%;
+}
+
 @media (max-width: 1100px) {
   .product-card {
     width: 24%;
