@@ -1,0 +1,31 @@
+.product-container {
+    display: flex;
+    gap: 2em;
+    border: 2px solid black;
+    justify-content: flex-start;
+}
+
+.product-image-card {
+    display: block;
+    border: 2px solid red;
+}
+
+.profile-image {
+    width: 100%;
+}
+
+.profile-images {
+    display: flex;
+}
+
+.product-images {
+    display: flex;
+}
+
+.imgs {
+    width: 23%;
+}
+
+/* .profile-information {
+    
+} */
