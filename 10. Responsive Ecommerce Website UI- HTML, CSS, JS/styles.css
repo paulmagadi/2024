@@ -391,12 +391,19 @@ span.password {
   border-radius: 0 0 5px 5px;
 }
 
-.card-text p {
+.card-text p strong {
   padding: .5em;
 }
 
 .card-text p strike {
   color: red;
+}
+
+.star {
+  color: rgb(255, 128, 0);
+  padding: 0;
+  margin: 0;
+  font-size: 1.6rem;
 }
 
 .card-btn {
