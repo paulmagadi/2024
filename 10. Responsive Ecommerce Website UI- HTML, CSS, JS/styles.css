@@ -15,6 +15,7 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   width: 100%;
+  object-fit: cover;
 }
 
 .body-container {
@@ -51,7 +52,7 @@ a {
   display: flex;
 }
 
-.navbar-links li{
+.navbar-links li {
   padding: .8em;
 }
 
@@ -368,7 +369,7 @@ span.password {
   flex-direction: column;
   justify-content: space-between;
   background-color: white;
-  margin-bottom: 1em;
+  margin-bottom: .5em;
   box-shadow: 0 2px 2px rgba(0,0,0,0.2);
   border-radius: 5px;
 }
@@ -381,6 +382,7 @@ span.password {
   max-width: 100%;
   max-height: 200px;
   border-radius: 5px 5px 0 0;
+  object-fit: cover;
 }
 
 .card-text {
@@ -393,6 +395,10 @@ span.password {
   padding: .5em;
 }
 
+.card-text p strike {
+  color: red;
+}
+
 .card-btn {
   display: flex;
   justify-content: space-around;
@@ -402,6 +408,11 @@ span.password {
   padding: .5em 1.5em;
   background-color: orange;
   border: none;
+}
+
+.card-btn a button:first-of-type {
+  border-radius: 0 5px 0 5px; 
+  box-shadow: 0 1px 0px 1px rgba(255, 255, 255, 0.4);
 }
 
 .card-btn button:first-of-type {
@@ -465,7 +476,9 @@ span.password {
 
 @media (max-width: 500px) {
   .product-card {
-    width: 100%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .product-image img{
