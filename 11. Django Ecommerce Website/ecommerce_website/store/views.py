@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import RegistrationForm
 from django.contrib import messages
 
-from .models import Product
+from .models import Product, Category
 from .forms import ProductForm
 
 # Home page.
@@ -20,6 +20,20 @@ def product(request, pk):
         'product': product,
     }
     return render(request, 'product.html', context)
+
+def category(request, f):
+    f = f.replace('-', ' ')
+    try:
+        category = Category.objects.get(name=f)
+        products = Product.objects.filter(category=category)
+        context = {
+            'products': products,
+            'category': category
+        }
+        return render(request, category.html, context)
+    except:
+        messages.success(request, ('Category does not exist!!!'))
+        return redirect('home')
 
 
 def add_product(request):
