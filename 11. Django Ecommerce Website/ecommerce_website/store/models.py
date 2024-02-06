@@ -22,7 +22,20 @@ class Product(models.Model):
     in_stock = models.BooleanField(default=True)
     stock_quantity = models.IntegerField(default=1)
     discount = models.DecimalField(default=0, max_digits=9, decimal_places=2, null=True, blank=True)
+    percentage_discount = models.DecimalField(default=0, max_digits=5, decimal_places=0, null=True, blank=True)
     is_new = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if self.is_sale and self.sale_price < self.price:
+            self.discount = round(self.price - self.sale_price, 2)
+            self.percentage_discount = round((self.discount / self.price) * 100)
+        else:
+            self.discount = 0
+            self.percentage_discount = 0
+        super().save(*args, **kwargs)
+
+
+
     
     
     def __str__(self):

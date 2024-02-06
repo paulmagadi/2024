@@ -19,6 +19,7 @@ const signinForm = document.getElementById("signin-form");
 const closeModal = document.getElementById("close");
 const cancel = document.getElementById("cancelbtn");
 
+
 loginFormButton.addEventListener("click", () => {
     signinForm.style.display = "block";
 })

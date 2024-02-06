@@ -11,8 +11,12 @@ def home(request):
         
     return render(request, 'index.html', {'products': products,})
 
-def product(request):
-    return render(request, 'product.html')
+def product(request, pk):
+    product = Product.objects.get(id=pk)
+    context = {
+        'product': product,
+    }
+    return render(request, 'product.html', context)
 
 
 # User Login    
