@@ -61,8 +61,8 @@ window.onclick = (event) =>{
 
 const currentYear = document.getElementById('current-year');
 
-const date = new Date();
-const newDate = date.getFullYear();
+let date = new Date();
+let newDate = date.getFullYear();
 
 currentYear.innerHTML = newDate;
 

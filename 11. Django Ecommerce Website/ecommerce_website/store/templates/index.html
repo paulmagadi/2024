@@ -8,9 +8,12 @@
         
     <!-- Container -->
         <!-- Header -->
+        {% include 'hero.html' %}
         <!-- Product Cart Container -->
         <div class="products-container">
             <!-- Product card -->
+            {% include 'product-card.html' %}
+
             <div class="product-card">
                 <div class="product-image">
                     <a href="product.html"><img src="/static/images/childrens-shoes1.jpg" alt="product" width="100%"></a>
@@ -19,7 +22,7 @@
                     <h4>Blue Canvas Shoes</h4>
                     <p>
                         <strong>
-                            <span id="price"><strike>$ 700</strike></span>
+                            <span id="price"><del>$ 700</del></span>
                             <span id="sale-price">$ 490</span>
                         </strong>
                     </p>

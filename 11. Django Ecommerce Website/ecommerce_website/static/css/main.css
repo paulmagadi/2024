@@ -56,6 +56,10 @@
   .navbar-links li {
     padding: .8em;
   }
+
+  .navbar-links .profile {
+    color: red;
+  }
   
   .navbar-links li:hover, .cart:hover {
     background-color: orange;
@@ -397,7 +401,7 @@
     padding: .5em;
   }
   
-  .card-text p strike {
+  .card-text p del {
     color: red;
   }
   
@@ -450,7 +454,8 @@
     background-color: red;
     color: white; 
     padding: 0.4em;
-    border-radius: 0 5px 0 10px;
+    border-radius: 0 5px 0 20px;
+    font-size: .9rem;
   }
   
   .new-product {
@@ -550,7 +555,8 @@
     .footer-column ul {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 2em;
     }
   
     .footer-end {

@@ -1,209 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Navigation Bar</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="product.css">
-</head>
-<body>
-    <div class="body-container">
-        <!-- Navigation bar -->
-        <nav>
-            <div class="navbar">
-                <div class="navbar-mobile">
-                    <a href="#" class="logo">SqCodes</a>
-                    <a href="#" class="hide cart-mobile"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg><span class="cart-count">0</span></a>
-                    <a href="#" class="hide toggle-button" id="toggler" style="font-size: 30px;">&#8801;</a>
-                </div>
-                <div class="navbar-links" id="navbar-links">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#">Products&#9652;</a></li>
-                        <li><a href="#">Category&#9662;</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="account-link">My Account&#9662</a>
-                            <div class="dropdown-content">
-                                <a href="#" class="login-button" id="login-button">Login</a>
-                                <hr>
-                                <a href="#" class="register-button" id="signup-button">Signup</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="cart">
-                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="24"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg><span class="cart-count">0</span></a>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Login form -->
-        <div id="signin-form" class="modal">
-            <div class="form-container modal-content animate">
-                <form action="" method="post">
-                    <div class="img">
-                        <span id="close" class="close">&times;</span>
-                        <img src="images/avatar.png" alt="avatar" class="avatar" width="20%"> 
-                    </div>
-                    <div class="login-container">
-                        <label for="username">Email</label>
-                        <input type="text" placeholder="Enter Email" name="username" id="username" autocomplete="username" required>
-                        
-                        <label for="password">Password</label>
-                        <input type="password" placeholder="Enter Password" name="password" id="password" required>
-
-                        <button type="submit">Login</button>
-                        <label>  
-                            <input type="checkbox" checked="checked" name="remember">Remember me
-                        </label>
-                    </div>
-                    <div class="login-container">
-                        <button type="button" class="cancelbtn" id="cancelbtn">Cancel</button>
-                        <span class="password">Forgot <a href="#">password?</a></span>
-                    </div>
-                </form>
-            </div>
-        </div>
+{% extends 'base.html' %}
 
 
-        <!-- Register form -->
-        <div id="signup-form" class="modal">
-            <div class="form-container modal-content animate">
-                <form action="" method="post">
-                    <div class="img">
-                        <span id="close-signup-form" class="close">&times;</span>
-                        <img src="images/avatar.png" alt="avatar" class="avatar" width="20%"> 
-                    </div>
-                    <div class="login-container">
-                        <label for="fname">First Name</label>
-                        <input type="text" placeholder="Enter First Name" name="fname" id="fname" autocomplete="fname" required>
-                        
-                        <label for="lname">Last Name</label>
-                        <input type="text" placeholder="Enter Last Name" name="lname" id="lname" autocomplete="lname" required>
-                        
-                        <label for="email">Email</label>
-                        <input type="email" placeholder="Enter Email" name="email" id="email" autocomplete="email" required>
+{% block title %}
+    Product
+{% endblock title %}
     
-                        <label for="password">Password</label>
-                        <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-                        <label for="password">Repeat Password</label>
-                        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+<!-- Container -->
+
+{% block content %}
     
-                        <button type="submit">Register</button>
-                        
-                    </div>
-                    <div class="login-container">
-                        <button type="button" class="cancelbtn" id="cancel-signup-button">Cancel</button>
-                        <span class="password">Already have accout? <a href="#">Login.</a></span>
-                    </div>
-                </form>
+    <!-- Product Cart Container -->
+    <div class="product-container">
+        <div class="product-image-card">
+            <div class="profile-image">
+                <img src="/static/images/childrens-shoes1.jpg" alt="Product" width="100%">
+            </div>
+            <div class="product-images">
+                <div class="image"><img src="/static/images/childrens-shoes1.jpg" alt="Product" width="100%"></div>
+                <div class="image"><img src="/static/images/childrens-shoes1.jpg" alt="Product" width="100%"></div>
+                <div class="image"><img src="/static/images/childrens-shoes1.jpg" alt="Product" width="100%"></div>
+                <div class="image"><img src="/static/images/childrens-shoes1.jpg" alt="Product" width="100%"></div>
             </div>
         </div>
+        <div class="product-information">
+            <h3>LEVI'S WOMEN'S XL TRUCKER JACKET</h3> 
+            <h4>Price: <del>$170</del>&nbsp; $140</h4>
+            <p>Lorem,  dolor eveniet alias eos ullam nesciunt voluptatum.</p>
+            <p>Lorem ipsum dolor  delectus, maxime inventore optio fuga nisi?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis repellat odit dolor incidunt quaerat quo saepe unde asperiores, consectetur eum esse, quam, impedit dolores vel ea. Iste, suscipit, nesciunt laboriosam cum officia magnam dolores pariatur qui labore totam eum a eveniet ullam optio expedita et possimus maxime saepe sunt quidem.</p>
 
-        <!-- Container -->
-        <div class="container">
-            <!-- Product Cart Container -->
-            <div class="product-container">
-                <div class="product-image-card">
-                    <div class="profile-image">
-                        <img src="images/products/sandals-587185_1280.jpg" alt="Product" width="100%">
-                    </div>
-                    <div class="product-images">
-                        <div class="image"><img src="images/products/p16.png" alt="Product" width="100%"></div>
-                        <div class="image"><img src="images/products/p16.png" alt="Product" width="100%"></div>
-                        <div class="image"><img src="images/products/p16.png" alt="Product" width="100%"></div>
-                        <div class="image"><img src="images/products/p16.png" alt="Product" width="100%"></div>
-                    </div>
-                </div>
-                <div class="product-information">
-                    <h3>LEVI'S WOMEN'S XL TRUCKER JACKET</h3> 
-                    <h4>Price: <strike>$170</strike> $140</h4>
-                    <p>Lorem,  dolor eveniet alias eos ullam nesciunt voluptatum.</p>
-                    <p>Lorem ipsum dolor  delectus, maxime inventore optio fuga nisi?</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis repellat odit dolor incidunt quaerat quo saepe unde asperiores, consectetur eum esse, quam, impedit dolores vel ea. Iste, suscipit, nesciunt laboriosam cum officia magnam dolores pariatur qui labore totam eum a eveniet ullam optio expedita et possimus maxime saepe sunt quidem.</p>
+            <div class="sizes">
+                <p>Size:</p>
+                <select name="Size" id="size" class="size-option">
+                    <option value="xxl">XXL</option>
+                    <option value="xl">XL</option>
+                    <option value="medium">Medium</option>
+                    <option value="small">Small</option>
+                </select>
+            </div>
 
-                    <div class="sizes">
-                        <p>Size:</p>
-                        <select name="Size" id="size" class="size-option">
-                            <option value="xxl">XXL</option>
-                            <option value="xl">XL</option>
-                            <option value="medium">Medium</option>
-                            <option value="small">Small</option>
-                        </select>
-                    </div>
-
-                    <div class="quantity">
-                        <input type="number" value="1" min="1">
-                        <button>Add to Cart</button>
-                    </div>
-                </div>
+            <div class="quantity">
+                <input type="number" value="1" min="1">
+                <button>Add to Cart</button>
             </div>
         </div>
+    </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            <div class="footer-column-container">
-                <div class="footer-column">
-                    <h5>Useful Links</h5>
-                    <ul>
-                        <li><a href="#"><span>&gt;</span> Home</a></li>
-                        <li><a href="#"><span>&lt;</span> About</a></li>
-                        <li><a href="#"><span>&gt;</span> Enquire</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Products</h5>
-                    <ul>
-                        <li><a href="#"><span>&gt;</span> On Sale</a></li>
-                        <li><a href="#"><span>&gt;</span> New Products</a></li>
-                        <li><a href="#"><span>&gt;</span> Coming Soon</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Category</h5>
-                    <ul>
-                        <li><a href="#"><span>&gt;</span> New</a></li>
-                        <li><a href="#"><span>&gt;</span> Ex UK</a></li>
-                        <li><a href="#"><span>&gt;</span> Kenya</a></li>
-                        <li><a href="#"><span>&gt;</span> New</a></li>
-                        <li><a href="#"><span>&gt;</span> Ex UK</a></li>
-                        <li><a href="#"><span>&gt;</span> Kenya</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h5>Contact Us</h5>
-                    <ul>
-                        <li><a href="#"><span>&gt;</span> +254 700110011</a></li>
-                        <li><a href="#"><span>&gt;</span> sqcodes@ecom.com</a></li>
-                        <li><a href="#"><span>&gt;</span> sqcodeske</a></li>
-                        <li><a href="#"><span>&gt;</span> +254 700110011</a></li>
-                        <li><a href="#"><span>&gt;</span> sqcodes@ecom.com</a></li>
-                        <li><a href="#"><span>&gt;</span> sqcodeske</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="footer-end">
-                <p>&copy;Sqcodes | <span id="current-year"></span>. All Rights Reserved.</p>
-            </div>
-        </div> <!-- Footer end-->
-
-        <!-- Fixed footer-menu bar for mobile devices -->
-        <div class="foot">
-            <ul>
-                <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg><span class="foot-menu">Menu</span></a></li>
-                <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg><span class="foot-menu">Home</span></a></li>
-                <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m260-520 220-360 220 360H260ZM700-80q-75 0-127.5-52.5T520-260q0-75 52.5-127.5T700-440q75 0 127.5 52.5T880-260q0 75-52.5 127.5T700-80Zm-580-20v-320h320v320H120Zm580-60q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm-500-20h160v-160H200v160Zm202-420h156l-78-126-78 126Zm78 0ZM360-340Zm340 80Z"/></svg><span class="foot-menu">Category</span></a></li>
-                <li class="foot-cart"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z"/></svg><span class="cart-count">0</span><span class="foot-menu">Cart</span></a></li>
-            </ul>
-        </div>
-
-    </div> <!-- Body-Container end -->
-
-    <script src="script.js"></script>
-</body>
-</html>
+{% endblock content %}
