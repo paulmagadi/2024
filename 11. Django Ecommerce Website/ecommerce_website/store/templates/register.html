@@ -1,7 +1,8 @@
 <!-- Register form -->
 <div id="signup-form" class="modal">
     <div class="form-container modal-content animate">
-        <form action="" method="post">
+        <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
             <div class="img">
                 <span id="close-signup-form" class="close">&times;</span>
                 <img src="/static/images/avatar.png" alt="avatar" class="avatar" width="20%"> 

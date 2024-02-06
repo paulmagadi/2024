@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect
 
 from django.contrib.auth import authenticate, login, logout
+from .forms import RegistrationForm
 from django.contrib import messages
 
 from .models import Product
+from .forms import ProductForm
 
-# Create your views here.
+# Home page.
 def home(request):
     products = Product.objects.all()
         
     return render(request, 'index.html', {'products': products,})
 
+# Product page
 def product(request, pk):
     product = Product.objects.get(id=pk)
     context = {
@@ -19,6 +22,16 @@ def product(request, pk):
     return render(request, 'product.html', context)
 
 
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return render(request, 'upload.html')
+    else:
+        form = ProductForm()
+    return render(request, 'upload.html', {'form': form})
+    
 # User Login    
 def user_login(request):
     if request.method == "POST":
@@ -40,3 +53,14 @@ def user_logout(request):
     logout(request)
     messages.success(request, ('You have been logged out!!!'))
     return redirect('home')
+
+# user Registration
+def register_user(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = RegistrationForm()
+    return render(request, 'index.html', {'form': form})
