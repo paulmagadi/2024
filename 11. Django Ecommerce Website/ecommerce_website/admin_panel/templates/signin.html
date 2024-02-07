@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="{% static 'css/admin/style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Login Form</h2>
+        <form action="{% url 'signin' %}" method="POST">
+            {% csrf_token %}
+            <div class="img">
+                <img src="/static/images/avatar.png" alt="avatar" class="avatar" width="20%"> 
+            </div>
+            <div class="input-container">
+                <label for="username">Username</label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+
+                <button type="submit">Login</button>
+                <label>  
+                    <input type="checkbox" checked="checked" name="remember">Remember me
+                </label>
+            </div>
+            <div class="signin-actions">
+                <p> Have no Account?
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                    <span class="password">Forgot <a href="#">password?</a></span>
+                </p>
+                
+            </div>
+        </form>
+    </div>
+</body>
+</html>
