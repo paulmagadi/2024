@@ -12,6 +12,7 @@
 {% block content %}
     
     <!-- Product Cart Container -->
+ 
     <div class="product-container">
         <div class="product-image-card">
             <div class="profile-image">
@@ -25,11 +26,16 @@
             </div>
         </div>
         <div class="product-information">
-            <h3>LEVI'S WOMEN'S XL TRUCKER JACKET</h3> 
-            <h4>Price: <del>$170</del>&nbsp; $140</h4>
-            <p>Lorem,  dolor eveniet alias eos ullam nesciunt voluptatum.</p>
-            <p>Lorem ipsum dolor  delectus, maxime inventore optio fuga nisi?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis repellat odit dolor incidunt quaerat quo saepe unde asperiores, consectetur eum esse, quam, impedit dolores vel ea. Iste, suscipit, nesciunt laboriosam cum officia magnam dolores pariatur qui labore totam eum a eveniet ullam optio expedita et possimus maxime saepe sunt quidem.</p>
+            
+            {% if product.is_sale %}
+            <h3>{{ product.name }}</h3> 
+            <h4>Price: <del>${{ product.price }}</del>&nbsp; ${{ product.sale_price }}</h4>
+            <p>{{ product.description }}</p>
+            {% else %}
+            <h3>{{ product.name }}</h3> 
+            <h4>Price: ${{ product.price }}</h4>
+            <p>{{ product.description }}</p>
+            {% endif %}
 
             <div class="sizes">
                 <p>Size:</p>

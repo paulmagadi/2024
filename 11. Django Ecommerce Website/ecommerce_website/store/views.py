@@ -20,7 +20,7 @@ def product(request, pk):
         'product': product,
     }
     return render(request, 'product.html', context)
-
+# Category
 def category(request, f):
     f = f.replace('-', ' ')
     try:
@@ -30,12 +30,17 @@ def category(request, f):
             'products': products,
             'category': category
         }
-        return render(request, category.html, context)
+        return render(request, 'category.html', context)
     except:
         messages.success(request, ('Category does not exist!!!'))
         return redirect('home')
 
+# All Categories
+def all_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'all_categories.html', {'categories': categories})
 
+# Add product
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST or None, request.FILES or None)

@@ -1,0 +1,6 @@
+<h2>All Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li><a href="{% url 'category' category.name %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>

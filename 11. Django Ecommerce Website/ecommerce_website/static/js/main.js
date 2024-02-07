@@ -51,12 +51,12 @@ cancelSignup.addEventListener("click", () => {
 })
 
 // close the login and signup form when a user clicks outside the forms
-window.onclick = (event) =>{
-    if (event.target == signupForm || event.target == signinForm) {
-        signupForm.style.display = "none";
-        signinForm.style.display = "none";
-    }
-}
+// window.onclick = (event) =>{
+//     if (event.target == signupForm || event.target == signinForm) {
+//         signupForm.style.display = "none";
+//         signinForm.style.display = "none";
+//     }
+// }
 
 // Footer
 
