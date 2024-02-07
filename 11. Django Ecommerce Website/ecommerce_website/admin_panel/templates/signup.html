@@ -10,37 +10,43 @@
 <body>
 
 <div class="form-container">
-    <h2>Signup Form</h2>
+    <h2 class="form-heading">Sign Up</h2>
     <form action="{% url 'signup' %}" method="POST">
         {% csrf_token %}
         <div class="img">
             <img src="/static/images/avatar.png" alt="avatar" class="avatar" width="20%"> 
         </div>
         <div class="input-container">
-            <label for="fname">First Name</label>
-            <input type="text" placeholder="Enter First Name" name="fname" id="fname" autocomplete="fname" required>
             
-            <label for="lname">Last Name</label>
-            <input type="text" placeholder="Enter Last Name" name="lname" id="lname" autocomplete="lname" required>
-            
-            <label for="email">Email</label>
-            <input type="email" placeholder="Enter Email" name="email" id="email" autocomplete="email" required>
-
-            <label for="password">Password</label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <label for="password">Repeat Password</label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            {% for field in form %}
+                {{field.label}}
+                <div class="form-input"> {{field}}</div>
+            {% endfor %}
+                
 
             <button type="submit">Signup</button>
             
         </div>
         <div class="signup-actions">
-            <a href="{% url 'signin' %}"><button type="button" class="cancelbtn" id="cancel-signup-button">Cancel</button></a>
-            <span class="password">Already have accout? <a href="{% url 'signin' %}">Sign in.</a></span>
+            <span>Already have accout? <a href="{% url 'signin' %}">Sign in.</a></span>
         </div>
     </form>
 </div>
+
+
+<script>
+    let formFields = document.getElementsByTagName('input');
+    formFields[1].placeholder = 'Enter First Name';
+    formFields[2].placeholder = 'Enter Last Name';
+    formFields[3].placeholder = 'Enter Username';
+    formFields[4].placeholder = 'Enter  Email Addres';
+    formFields[5].placeholder = 'Enter Password';
+    formFields[6].placeholder = 'Re-enter Password';
+
+    for (let field in formFields) {
+        formFields[field].className += ' form-input'
+    }
+</script>
 </body>
 </html>
 

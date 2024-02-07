@@ -8,8 +8,12 @@ body {
 }
 
 .form-container {
-    width: 50%;
-    margin: 0 auto;
+    width: 30%;
+    margin: 1em auto;
+}
+
+.form-heading {
+    text-align: center;
 }
 
 .signin-actions, .signup-actions, .input-container {
@@ -22,7 +26,7 @@ form {
 
 input[type=text], input[type=password], input[type=email] {
     width: 100%;
-    padding: 1em 1.1em;
+    padding: .7em 1.1em;
     margin: .5em 0;
     display: inline-block;
     border: 1px splid #c1c1c1;
@@ -30,8 +34,8 @@ input[type=text], input[type=password], input[type=email] {
 }
 
 button {
-    color: white;
-    background-color: #04aa6d;
+    color: rgb(0, 0, 0);
+    background-color: orange;
     margin: .2em 0;
     padding: 1.25em 1.5em;
     border: none;
@@ -44,11 +48,6 @@ button:hover {
     opacity: 0.8;
 }
 
-.cancelbtn {
-    width: auto;
-    padding: .8em 1em;
-    background-color: #f44339;
-}
 
 .img {
     text-align: center;
@@ -60,6 +59,11 @@ img.avatar {
 
 span.password {
     float: right;
+}
+
+.signup-actions {
+    text-align: center;
+    padding: 1em;
 }
 
 /* break point */

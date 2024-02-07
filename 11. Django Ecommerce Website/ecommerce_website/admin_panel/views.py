@@ -1,13 +1,26 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
 from django.contrib import messages
 
 # Create your views here.
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-def admin_signin(request):
-    return render(request, 'signin.html')
+#register
+def admin_signup(request):
+    form = CreateUserForm()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('signin')
+    context = {'form': form}
+    return render(request, 'signup.html', context)
+    
+    
+    
 
 # User Login    
 def admin_signin(request):
@@ -31,5 +44,3 @@ def admin_signout(request):
     messages.success(request, ('You have been logged out!!!'))
     return redirect('signin')
 
-def admin_signup(request):
-    return render(request, 'signup.html')
