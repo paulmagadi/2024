@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegistrationForm
+from .forms import CreateUserForm
 from django.contrib import messages
 
 from .models import Product, Category
@@ -75,11 +75,11 @@ def user_logout(request):
 
 # user Registration
 def register_user(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+    form = CreateUserForm()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
     else:
-        form = RegistrationForm()
-    return render(request, 'index.html', {'form': form})
+        return render(request, 'home.html')
