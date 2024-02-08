@@ -10,12 +10,35 @@
         <!-- Header -->
         {% include 'store/hero.html' %}
         <!-- Product Cart Container -->
-        <div class="products-container">
-            <!-- Product card -->
-            {% include 'store/product-card.html' %}
-            
-         </div> <!-- Product card container end -->
+        <div class="container-all">
+            <div class="section-title"><h1>Products</h1></div>
+            <section>
+                <div class="products-container">
+                    <!-- Product card -->
+                    {% include 'store/product-card.html' %}
+                </div> <!-- Product card container end -->    
+            </section>
+
+            <div class="section-title"><h1>Sale</h1></div>
+            <section>
+                <div class="products-container">
+                    
+                    {% for product in sale %}
+                        {% include 'store/include/card.html' %} 
+                    {% endfor %}
+                </div>
+            </section>
+
+            <div class="section-title"><h1>New</h1></div>
+            <section>
+                <div class="products-container">
+                    
+                    {% for product in new %}
+                        {% include 'store/include/card.html' %} 
+                    {% endfor %}
+                </div>
+            </section>
         
-            
+        </div>
 {% endblock content %}
     

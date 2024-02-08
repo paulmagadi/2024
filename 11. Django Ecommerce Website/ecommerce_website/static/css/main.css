@@ -360,6 +360,11 @@
       font-size: 3rem
     }
   }
+
+  .section-title {
+    text-align: center;
+    background-color: white;
+  }
   
   .products-container {
     display: flex;

@@ -2,22 +2,16 @@
 {% load static %}
 
 {% block title %}
-    sale
+    New
 {% endblock title %}
 
 
 {% block content %}
-    
-<div class="products-container">
     
 {% for product in products %}
 {% include 'store/include/card.html' %}
 
 
 {% endfor %}
-</div>
 
 {% endblock content %}
-    
-
-    

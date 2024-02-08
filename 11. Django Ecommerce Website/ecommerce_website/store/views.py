@@ -6,12 +6,25 @@ from django.contrib import messages
 
 from .models import Product, Category
 
+import random
+
 
 
 # Home page.
 def home(request):
-    products = Product.objects.all()
-    return render(request, 'store/index.html', {'products': products,})
+    all_products= list(Product.objects.all())
+    sale = Product.objects.filter(is_sale=True)
+    new = Product.objects.filter(is_new=True)
+    random.shuffle(all_products)
+    
+    num_products_to_display = 15
+    products = all_products[:num_products_to_display]
+    context = {
+        'products': products,
+        'sale': sale,
+        'new': new
+    }
+    return render(request, 'store/index.html', context)
 
 # Product page
 def product(request, pk):
@@ -41,8 +54,12 @@ def all_categories(request):
     return render(request, 'store/all_categories.html', {'categories': categories})
 
 def on_sale(request):
-    products = Product.objects.filter(is_sale=True)
+    products = Product.objects.filter(is_sale=True).distinct()
     return render(request, 'store/pages/on_sale.html', {'products': products})
+
+def new_product(request):
+    products = Product.objects.filter(is_new=True).distinct()
+    return render(request, 'store/pages/new.html', {'products': products})
 
     
     

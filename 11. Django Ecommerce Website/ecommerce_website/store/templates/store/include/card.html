@@ -1,0 +1,47 @@
+
+<div class="product-card">
+    <div class="product-image">
+        <a href="{% url 'product' product.id %}"><img src="{{ product.image.url }}" alt="product" width="100%"></a>
+    </div>
+    <div class="card-text">
+        <h4>{{ product.name }}</h4>
+        {% if product.is_sale %}
+        <p>
+            <strong>
+                <span id="price"><del>$ {{ product.price }}</del></span> &nbsp;
+                <span id="sale-price">$ {{product.sale_price }}</span>
+            </strong>
+        </p>
+        <p class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <div class="price-bar" style="width: 100%;">
+            <div class="discount-section" style="width: {{ product.percentage_discount }}%;"></div>
+        </div>
+        <p>{{ product.percentage_discount }}% off</p>
+
+        {% else %}
+        <p>
+            <strong>
+                <span id="price">$ {{ product.price }}</span> 
+            </strong>
+        </p>
+        <p class="star">&#9734;&#9734;&#9734;&#9734;&#9734;</p>
+        {% endif %} 
+        <div class="card-btn">
+            <a href="{% url 'product' product.id %}"><button type="button">View</button></a>
+            <button type="button">Add to Cart</button>
+        </div>
+    </div>
+    {% if product.is_sale %}
+    <div class="sales-badge">
+        <p>Sale</p>
+        <p id="percentage-discount">- {{ product.percentage_discount }}%</p>
+    </div>
+    {% else %}
+    {% endif %}
+
+    {% if product.is_new %}
+    <div class="new-product">New</div>
+    {% else %}
+    {% endif %}
+        
+</div>
