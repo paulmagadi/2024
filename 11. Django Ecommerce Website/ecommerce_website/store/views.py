@@ -7,6 +7,7 @@ from django.contrib import messages
 from .models import Product, Category
 
 
+
 # Home page.
 def home(request):
     products = Product.objects.all()

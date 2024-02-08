@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from .forms import CreateUserForm
 from django.contrib import messages
 
@@ -47,7 +47,7 @@ def admin_signout(request):
     messages.success(request, ('You have been logged out!!!'))
     return redirect('signin')
 
-
+@login_required
 # Add product
 def add_product(request):
     if request.method == 'POST':
