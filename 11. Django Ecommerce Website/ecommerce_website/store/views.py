@@ -13,12 +13,18 @@ import random
 # Home page.
 def home(request):
     all_products= list(Product.objects.all())
-    sale = Product.objects.filter(is_sale=True)
-    new = Product.objects.filter(is_new=True)
+    on_sale = list(Product.objects.filter(is_sale=True))
+    new_products = list(Product.objects.filter(is_new=True))
+    
     random.shuffle(all_products)
+    random.shuffle(on_sale)
+    random.shuffle(new_products)
     
     num_products_to_display = 15
+    to_display = 5
     products = all_products[:num_products_to_display]
+    sale = on_sale[:to_display]
+    new = new_products[:to_display]
     context = {
         'products': products,
         'sale': sale,
