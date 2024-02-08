@@ -1,0 +1,7 @@
+{% if user.is_authenticated %}
+    {% include 'crm/home.html' %}
+{% else %}
+    {% include 'crm/signin.html' %}
+{% endif %}
+
+

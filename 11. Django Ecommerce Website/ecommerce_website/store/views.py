@@ -65,5 +65,11 @@ def user_logout(request):
 
 # user Registration
 def register_user(request):
-    forms = CreateUserForm()
-    return render(request, 'register.html', {'forms': forms})
+    form = CreateUserForm()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('home')
+            
+    return render(request, 'register.html', {'form': form})

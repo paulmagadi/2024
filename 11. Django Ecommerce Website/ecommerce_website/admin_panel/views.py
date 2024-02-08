@@ -9,7 +9,7 @@ from .forms import ProductForm
 
 # Create your views here.
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'crm/dashboard.html')
 
 #register
 def admin_signup(request):
@@ -20,7 +20,7 @@ def admin_signup(request):
             form.save()
             return redirect('signin')
     context = {'form': form}
-    return render(request, 'signup.html', context)
+    return render(request, 'crm/signup.html', context)
     
     
     
@@ -39,7 +39,7 @@ def admin_signin(request):
                 messages.success(request, ('Error Logging in. Try again!!!'))
                 return redirect('signin')
     else:
-        return render(request, 'signin.html')
+        return render(request, 'crm/signin.html')
     
 # User Logout  
 def admin_signout(request):
@@ -54,7 +54,7 @@ def add_product(request):
         form = ProductForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            return render(request, 'add_product.html')
+            return render(request, 'crm/add_product.html')
     else:
         form = ProductForm()
-    return render(request, 'add_product.html', {'form': form})
+    return render(request, 'crm/add_product.html', {'form': form})
