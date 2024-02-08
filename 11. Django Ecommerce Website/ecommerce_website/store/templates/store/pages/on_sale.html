@@ -1,0 +1,18 @@
+{% extends 'store/base.html' %}
+
+
+{% block title %}
+    Sale
+{% endblock title %}
+
+
+{% block content %}
+
+
+{% for product in products %}
+    {% include 'store/product-card.html' %}
+{% endfor %}
+    
+    
+{% endblock content %}
+    

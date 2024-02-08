@@ -11,8 +11,7 @@ from .models import Product, Category
 # Home page.
 def home(request):
     products = Product.objects.all()
-        
-    return render(request, 'index.html', {'products': products,})
+    return render(request, 'store/index.html', {'products': products,})
 
 # Product page
 def product(request, pk):
@@ -20,7 +19,7 @@ def product(request, pk):
     context = {
         'product': product,
     }
-    return render(request, 'product.html', context)
+    return render(request, 'store/product.html', context)
 # Category
 def category(request, f):
     f = f.replace('-', ' ')
@@ -31,7 +30,7 @@ def category(request, f):
             'products': products,
             'category': category
         }
-        return render(request, 'category.html', context)
+        return render(request, 'store/category.html', context)
     except:
         messages.success(request, ('Category does not exist!!!'))
         return redirect('home')
@@ -39,8 +38,17 @@ def category(request, f):
 # All Categories
 def all_categories(request):
     categories = Category.objects.all()
-    return render(request, 'all_categories.html', {'categories': categories})
+    return render(request, 'store/all_categories.html', {'categories': categories})
 
+def on_sale(request):
+    products = Product.objects.filter(is_sale=True)
+    return render(request, 'store/pages/on_sale.html', {'products': products})
+
+    
+    
+    
+    
+    
     
 # User Login    
 def user_login(request):
@@ -56,7 +64,7 @@ def user_login(request):
                 messages.success(request, ('Error Logging in. Try again!!!'))
                 return redirect('home')
     else:
-        return render(request, 'login.html')
+        return render(request, 'store/login.html')
     
 # User Logout  
 def user_logout(request):
@@ -73,4 +81,4 @@ def register_user(request):
             form.save()
             return redirect('home')
             
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'store/register.html', {'form': form})
