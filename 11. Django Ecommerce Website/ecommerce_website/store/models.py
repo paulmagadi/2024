@@ -24,6 +24,7 @@ class Product(models.Model):
     discount = models.DecimalField(default=0, max_digits=9, decimal_places=2, null=True, blank=True)
     percentage_discount = models.DecimalField(default=0, max_digits=5, decimal_places=0, null=True, blank=True)
     is_new = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if self.is_sale and self.sale_price < self.price:
