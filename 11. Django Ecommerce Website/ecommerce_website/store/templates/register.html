@@ -1,35 +1,40 @@
-<!-- Register form -->
-<div id="signup-form" class="modal">
-    <div class="form-container modal-content animate">
-        <form action="{% url 'register' %}" method="POST">
-            {% csrf_token %}
-            <div class="img">
-                <span id="close-signup-form" class="close">&times;</span>
-                <img src="/static/images/avatar.png" alt="avatar" class="avatar" width="20%"> 
-            </div>
-            <div class="login-container">
-                <label for="fname">First Name</label>
-                <input type="text" placeholder="Enter First Name" name="fname" id="fname" autocomplete="fname" required>
-                
-                <label for="lname">Last Name</label>
-                <input type="text" placeholder="Enter Last Name" name="lname" id="lname" autocomplete="lname" required>
-                
-                <label for="email">Email</label>
-                <input type="email" placeholder="Enter Email" name="email" id="email" autocomplete="email" required>
-
-                <label for="password">Password</label>
-                <input type="password" placeholder="Enter Password" name="password" required>
-
-                <label for="password">Repeat Password</label>
-                <input type="password" placeholder="Enter Password" name="password" required>
-
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <!-- Register form -->
+<div class="body-container">
+    <div class="container">
+        <div class="form-container">
+            <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                <div class="img">
+                    <img src="/static/images/avatar.png" alt="avatar" class="avatar" width="20%"> 
+                </div>
+                <div class="login-container">
+                    
+                    {% for field in forms %}
+                    {{field.label}}
+                    <div class="form-input"> {{field}}</div>
+                    {% endfor %}
+                    
                 <button type="submit">Register</button>
-                
-            </div>
-            <div class="login-container">
-                <button type="button" class="cancelbtn" id="cancel-signup-button">Cancel</button>
-                <span class="password">Already have accout? <a href="#">Login.</a></span>
-            </div>
-        </form>
+                    
+                </div>
+                <div class="login-container">
+                    <a href="{% url 'home' %}"><button type="button" class="cancelbtn" id="cancel-signup-button">Cancel</button></a>
+                    <span class="password">Already have accout? <a href="{% url 'home' %}">Login.</a></span>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+</body>
+</html>

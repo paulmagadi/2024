@@ -5,7 +5,7 @@ from .forms import CreateUserForm
 from django.contrib import messages
 
 from .models import Product, Category
-from .forms import ProductForm
+
 
 # Home page.
 def home(request):
@@ -40,16 +40,6 @@ def all_categories(request):
     categories = Category.objects.all()
     return render(request, 'all_categories.html', {'categories': categories})
 
-# Add product
-def add_product(request):
-    if request.method == 'POST':
-        form = ProductForm(request.POST or None, request.FILES or None)
-        if form.is_valid():
-            form.save()
-            return render(request, 'upload.html')
-    else:
-        form = ProductForm()
-    return render(request, 'upload.html', {'form': form})
     
 # User Login    
 def user_login(request):
@@ -75,11 +65,5 @@ def user_logout(request):
 
 # user Registration
 def register_user(request):
-    form = CreateUserForm()
-    if request.method == "POST":
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        return render(request, 'home.html')
+    forms = CreateUserForm()
+    return render(request, 'register.html', {'forms': forms})

@@ -26,7 +26,7 @@
                         {% else %}
                         <a href="#" class="login-button" id="login-button">Login</a>
                         <hr>
-                        <a href="#" class="register-button" id="signup-button">Register</a>
+                        <a href="{% url 'register' %}" class="register-button" >Register</a>
                         {% endif %}
                     </div>
                 </li>
@@ -39,6 +39,5 @@
 </nav>
 
 {% include 'login.html' %}
-{% include 'register.html' %}
 
 

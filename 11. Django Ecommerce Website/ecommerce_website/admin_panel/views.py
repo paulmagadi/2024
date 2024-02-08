@@ -4,6 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
 
+from .forms import ProductForm
+
+
 # Create your views here.
 def dashboard(request):
     return render(request, 'dashboard.html')
@@ -44,3 +47,14 @@ def admin_signout(request):
     messages.success(request, ('You have been logged out!!!'))
     return redirect('signin')
 
+
+# Add product
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return render(request, 'add_product.html')
+    else:
+        form = ProductForm()
+    return render(request, 'add_product.html', {'form': form})
