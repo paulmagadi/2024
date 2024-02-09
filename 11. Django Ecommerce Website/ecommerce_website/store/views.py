@@ -15,20 +15,24 @@ def home(request):
     all_products= list(Product.objects.all())
     on_sale = list(Product.objects.filter(is_sale=True))
     new_products = list(Product.objects.filter(is_new=True))
+    is_featured = list(Product.objects.filter(is_featured=True))
     
     random.shuffle(all_products)
     random.shuffle(on_sale)
     random.shuffle(new_products)
+    random.shuffle(is_featured)
     
     num_products_to_display = 15
     to_display = 5
     products = all_products[:num_products_to_display]
     sale = on_sale[:to_display]
     new = new_products[:to_display]
+    featured = is_featured[:to_display]
     context = {
         'products': products,
         'sale': sale,
-        'new': new
+        'new': new,
+        'featured': featured,
     }
     return render(request, 'store/index.html', context)
 
@@ -66,6 +70,10 @@ def on_sale(request):
 def new_product(request):
     products = Product.objects.filter(is_new=True).distinct()
     return render(request, 'store/pages/new.html', {'products': products})
+
+def featured(request):
+    products = Product.objects.filter(is_featured=True).distinct()
+    return render(request, 'store/pages/featured.html', {'products': products})
 
     
     

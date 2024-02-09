@@ -40,6 +40,16 @@
             {% endfor %}
         </div>
     </section>
+
+    <div class="section-title"><h1><a href="{% url 'featured' %}">Featured Products</a></h1></div>
+    <section>
+        <div class="products-container">
+            <!-- Render featured products -->
+            {% for product in featured %}
+                {% include 'store/include/card.html' %} 
+            {% endfor %}
+        </div>
+    </section>
 </div>
 
 {% endblock content %}
