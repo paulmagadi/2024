@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/main.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/product.css' %}"> 
 </head>
@@ -22,5 +23,31 @@
         
 
     <script src="{% static 'js/main.js' %}"></script>     
+    
+
+    <script>
+        $(document).on('click', '.add-to-cart', function(e){
+    e.preventDefault();
+    var product_id = $(this).data('product-id');
+    var product_qty = $('#qty-cart option:selected').text(); // Assuming you have a quantity dropdown
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart_add" %}',
+        data: {
+            product_id: product_id,
+            product_qty: product_qty,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+        success: function(json){
+            $('#cart_quantity').text(json.qty);
+        },
+        error: function(xhr, errmsg, err){
+            console.log(xhr.status + ": " + xhr.responseText);
+        }
+    });
+});
+
+    </script>
 </body>
 </html>
