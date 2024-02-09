@@ -1,6 +1,7 @@
 from .cart import Cart
 
-# This will allow our cart work on all pages
+#Create context processor to allow our cart work on all pages
 
 def cart(request):
+    #Return the default data from our Cart
     return {'cart': Cart(request)}

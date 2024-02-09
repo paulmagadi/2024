@@ -10,6 +10,21 @@
 {% block content %}
 <h1>Your Cart</h1>
 
+{% if cart_products %}
+
+{% for product in cart_products %}
+<div class="products-container">
+    <img src="{{ product.image.url }}" alt="" width="10%">
+    <p>{{product.name}}</p>
+    <p>$ {{product.price}}</p>
+</div>
+    
+{% endfor %}
+    
+    
+{% endif %}
+    
+    
 
 {% endblock content %}
     
