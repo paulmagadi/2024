@@ -58,14 +58,36 @@ cancelSignup.addEventListener("click", () => {
 //     }
 // }
 
-// Footer
 
-// const currentYear = document.getElementById('current-year');
 
-// let date = new Date();
-// let newDate = date.getFullYear();
+$(document).ready(function() {
+    $('#add-to-cart').click(function() {
+        var productId = $(this).val();
 
-// currentYear.innerHTML = newDate;
+        // Send an AJAX POST request to add the product to the cart
+        $.ajax({
+            type: 'POST',
+            url: '{% url "add_to_cart" %}',
+            data: {
+                'product_id': productId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                // Handle success response
+                alert('Product added to cart!');
+                // Update cart count in the DOM
+                $('#cart_quantity').text(response.cart_count);
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                // Handle error response
+                alert('Failed to add product to cart. Please try again.');
+            }
+        });
+    });
+});
+
+
+
 
 
 
