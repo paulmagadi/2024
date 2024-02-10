@@ -47,6 +47,16 @@
                 </select>
             </div>
 
+            <div class="info">
+                <p style="color: red;">
+                    {% if stock_quantity >= 5 %}
+                        We have {{ stock_quantity }} items available
+                    {% else %}
+                        Only {{ stock_quantity }} item{% if stock_quantity != 1 %}s{% endif %} left
+                    {% endif %}
+                </p>
+                
+            </div>
             <div class="quantity">
                 <!-- <input type="number" value="1" min="1"> -->
                 
