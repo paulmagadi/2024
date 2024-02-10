@@ -58,8 +58,14 @@ cancelSignup.addEventListener("click", () => {
 //     }
 // }
 
+// Footer
 
+// const currentYear = document.getElementById('current-year');
 
+// let date = new Date();
+// let newDate = date.getFullYear();
+
+// currentYear.innerHTML = newDate;
 
 
 
