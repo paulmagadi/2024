@@ -1,0 +1,209 @@
+*  {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color: orange;
+    --white-color: white;
+    --black-color: black;
+}
+
+html {
+font-size: 16px;
+}
+
+body {
+min-height: 100vh;
+width: 100%;
+}
+
+a {
+text-decoration: none;
+}
+
+.container {
+min-height: 100vh;
+background-color: orange;
+width: 95%;
+margin: 3em auto;
+margin-bottom: 2em;
+padding: .5em;
+}
+
+
+
+.section-title {
+    text-align: center;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.product-card {
+    width: 19%;
+    padding: .3em;
+    margin-bottom: 1em;
+    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1);
+    background-color: var(--white-color);
+}
+
+.product-card img:hover {
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    height: 10rem;
+    text-align: center;
+    
+}
+.image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-text {
+    text-align: center;
+    background-color: #c9d1d1;
+}
+
+.card-btn {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+}
+
+.card button {
+    color: black;
+    background-color: var(--main-color);
+    padding: .5em 1.5em;
+    border: none;
+    cursor: pointer;
+    border: none;
+}
+
+.card button:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 1000px) {
+    .card {
+        width: 32%;
+        margin: .5em auto 0 auto;
+    }
+}
+@media (max-width: 780px) {
+    .card {
+        width: 49%;
+    }
+}
+@media (max-width: 700px) {
+    .body-container {
+        margin-left: 0;
+        padding: .5em;
+        margin-top: 0;
+    }
+
+    .header {
+        height: 200px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        margin: 3em 0 .5em 0;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+.footer {
+    text-align: center;
+    background-color: white;
+  }
+  
+  /* Fixed footer for mobile devices */
+  
+  .foot {
+    background-color: white;
+    font-size: 1rem;
+    color: black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: none;
+  }
+  
+  .foot .foot-menu {
+    display: block;
+  }
+  
+  .foot a {
+    color: black;
+  }
+  
+  .foot ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .foot li {
+    padding: .5em 1.5em;
+    text-align: center;
+  }
+  
+  .foot li:hover {
+    background-color: orange;
+    cursor: pointer;
+  }
+  
+  .foot .foot-cart {
+    position: relative;
+  }
+  
+  .foot .cart-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 1px 4px;
+    position: absolute;
+    margin: 0;
+    top: 5px;
+    right: 15px;
+  }
+  
+  @media (max-width: 600px) {
+    .foot {
+      display: block;
+    }
+  }
+  
