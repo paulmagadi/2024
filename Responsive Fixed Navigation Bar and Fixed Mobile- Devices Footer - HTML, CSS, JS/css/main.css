@@ -65,18 +65,20 @@ header .hero-header{
 .section-title {
     text-align: center;
     background-color: var(--white-color);
+    padding: .5em;
 }
 
 .product-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 
 .product-card {
-    width: 19.5%;
+    width: 19.6%;
     padding: .3em;
-    margin: 0 auto 1em auto;
+    margin: .5em 0;
     box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1);
     background-color: var(--white-color);
 }
