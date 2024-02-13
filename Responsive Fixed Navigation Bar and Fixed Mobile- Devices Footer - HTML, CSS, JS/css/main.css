@@ -184,7 +184,13 @@ header .hero-header{
 }
 
 
+.hideme {
+    display: none !important;
+}
 
+.hideme.showme {
+    display: flex;
+}
 
 
 
