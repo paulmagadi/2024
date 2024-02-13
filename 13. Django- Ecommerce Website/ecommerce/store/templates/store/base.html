@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
+    <div class="body-container">
     {% include 'store/navbar.html' %}
+    
     {% block content %}
         
     {% endblock content %}
+    {% include 'store/footer.html' %}
+    </div>
 
     <script src="{% static 'js/navbar.js' %}"></script>
         

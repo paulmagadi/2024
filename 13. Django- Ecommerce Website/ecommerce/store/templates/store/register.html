@@ -1,14 +1,14 @@
 {% extends 'store/base.html' %}
-
+{% load static %}
 
 {% block content %}
     <!-- Register form -->
-
+<div class="container">
     <div class="form-container">
         <form action="" method="post" class="register-form">
             <div class="img">
                 <span id="close-signup-form" class="close"><a href="{% url 'home' %}">&times;</a></span>
-                <img src="images/avatar.png" alt="avatar" class="avatar" width="20%"> 
+                <img src="{% static 'images/avatar.png' %}" alt="avatar" class="avatar" width="20%"> 
             </div>
             <div class="login-container">
                 <label for="fname">First Name</label>
@@ -35,5 +35,6 @@
             </div>
         </form>
     </div>
+</div>
 {% endblock content %}
     

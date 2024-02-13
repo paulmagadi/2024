@@ -1,14 +1,16 @@
 {% extends 'store/base.html' %}
+{% load static %}
 
 
 {% block content %}
     <!-- login form -->
-
+    
+<div class="container">
     <div class="form-container">
-        <form action="" method="post" class="login-form">
+        <form action="{% url 'login' %}" method="POST" class="login-form">
             <div class="img">
                 <span id="close" class="close"><a href="{% url 'home' %}">&times;</a></span>
-                <img src="images/avatar.png" alt="avatar" class="avatar" width="20%"> 
+                <img src="{% static 'images/avatar.png' %}" alt="avatar" class="avatar" width="20%"> 
             </div>
             <div class="login-container">
                 <label for="username">Email</label>
@@ -31,5 +33,6 @@
             </div>
         </form>
     </div>
+</div>
 {% endblock content %}
     

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from store import views
 
 # Create your views here.
 def cart(request):
