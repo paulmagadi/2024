@@ -1,24 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
    
 </head>
 <body>
     <div class="cart-container">
         <table>
             <div class="continue-shopping">
-                <a href="index.html"><button>&larr; Continue Shopping</button></a>
+                <a href="url 'home'"><button>&larr; Continue Shopping</button></a>
             </div>
             <hr>
             <thead>
                 <tr>
                     <th>Items: <strong>5</strong></th>
                     <th>Total: <strong>$ 500</strong></th>
-                    <th class="checkout"><a href="checkout.html"><button type="button">Checkout</button></a></th>
+                    <th class="checkout"><a href="{% url 'checkout' %}"><button type="button">Checkout</button></a></th>
                 </tr>
             </thead>
         </table>
