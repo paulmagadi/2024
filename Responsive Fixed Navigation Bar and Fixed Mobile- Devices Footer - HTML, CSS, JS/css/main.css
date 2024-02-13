@@ -98,6 +98,7 @@ header .hero-header{
     height: auto;
     max-width: 100%;
     max-height: 100%;
+    max-width: 300px;
 }
 
 .product-information {
