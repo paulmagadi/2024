@@ -1,43 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Navigation Bar</title>
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/login.css">
-</head>
-<body>
+{% extends 'store/base.html' %}
 
-      <!-- login form -->
 
-        <div class="form-container">
-            <form action="" method="post" class="login-form">
-                <div class="img">
-                    <span id="close" class="close"><a href="index.html">&times;</a></span>
-                    <img src="images/avatar.png" alt="avatar" class="avatar" width="20%"> 
-                </div>
-                <div class="login-container">
-                    <label for="username">Email</label>
-                    <input type="text" placeholder="Enter Email" name="username" id="username" autocomplete="username" required>
-                    
-                    <label for="password">Password</label>
-                    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+{% block content %}
+    <!-- login form -->
 
-                    <button type="submit">Login</button>
-                    <label>  
-                        <input type="checkbox" checked="checked" name="remember">Remember me
-                    </label>
-                </div>
-                <div class="login-container">
-                    <button type="button" class="cancelbtn" id="cancelbtn"><a href="index.html">Cancel</a></button>
-                    <span class="password">No account <a href="register.html">Register?</a></span>
+    <div class="form-container">
+        <form action="" method="post" class="login-form">
+            <div class="img">
+                <span id="close" class="close"><a href="{% url 'home' %}">&times;</a></span>
+                <img src="images/avatar.png" alt="avatar" class="avatar" width="20%"> 
+            </div>
+            <div class="login-container">
+                <label for="username">Email</label>
+                <input type="text" placeholder="Enter Email" name="username" id="username" autocomplete="username" required>
+                
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+                <button type="submit">Login</button>
+                <label>  
+                    <input type="checkbox" checked="checked" name="remember">Remember me
+                </label>
+            </div>
+            <div class="login-container">
+                <button type="button" class="cancelbtn" id="cancelbtn"><a href="{% url 'home' %}">Cancel</a></button>
+                <p class="password">No account <a href="{% url 'register' %}">Register?</a>
                     <span class="password">Forgot <a href="">password?</a></span>
-                </div>
-            </form>
-        </div>
-
-
-
-</body>
-</html>
+                </p>
+                
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+    
