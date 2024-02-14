@@ -54,11 +54,13 @@
             </div>
 
             <div class="info">
-                <p style="color: red;">
-
-                    We have 5 items left
+                {% if stock_quantity >= 5 %}
+                <p style="color: green;">We have {{ stock_quantity }} items available</p>
+                {% else %}
+                <p style="color: red;">Only {{ stock_quantity }} item{% if stock_quantity != 1 %}s{% endif %} left!!!</p>
+                {% endif %}
                     
-                </p>
+                
                 
             </div>
             <div class="quantity">
