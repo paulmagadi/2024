@@ -13,30 +13,36 @@
     <div class="product-container">
 
         {% include 'store/navbar.html' %}
-    
+        
+            
+  
+        
         <div class="product-image-card">
             <div class="continue-shopping">
                 <a href="{% url 'home' %}"><button>&larr; Back to Home</button></a>
             </div>
 
             <div class="profile-image">
-                <img src="/static/images/apples-805124.jpg" alt="Product" width="100%">
+                <img src="{{product.image.url}}" alt="Product" width="100%">
             </div>
             <div class="product-images">
-                <div class="image"><img src="/static/images/apples-805124.jpg" alt="Product" width="100%"></div>
-                <div class="image"><img src="/static/images/apples-805124.jpg" alt="Product" width="100%"></div>
-                <div class="image"><img src="/static/images/apples-805124.jpg" alt="Product" width="100%"></div>
-                <div class="image"><img src="/static/images/apples-805124.jpg" alt="Product" width="100%"></div>
+                <div class="image"><img src="{{product.image.url}}" alt="Product" width="100%"></div>
+                <div class="image"><img src="{{product.image.url}}" alt="Product" width="100%"></div>
+                <div class="image"><img src="{{product.image.url}}" alt="Product" width="100%"></div>
+                <div class="image"><img src="{{product.image.url}}" alt="Product" width="100%"></div>
                 
             </div>
         </div>
         <div class="product-information">
-            <h3>Product 1</h3>
-            <h4><del>Price: $ 50.00</del> &nbsp; $ 40.00</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio sit at reiciendis sed quisquam excepturi ex inventore adipisci quasi laboriosam. Laudantium accusamus, vitae, quisquam temporibus sed autem itaque voluptatem ipsa quasi consectetur eaque tempora harum maiores vel reprehenderit odit nobis in laborum at dolores! Rem blanditiis dolore alias velit perspiciatis!</p>
+            <h3>{{ product.name }}</h3>
             
-           
-
+            {% if product.is_sale %}
+            <h4><del>Price: $ {{ product.price }}</del> &nbsp; $ {{ product.sale_price }}</h4>
+            {% else %}
+            <h4>Price: $ {{ product.price }}</h4>
+            {% endif %}
+                
+            <p>{{ product.description }}</p>
             <div class="sizes">
                 <p>Size:</p>
                 <select name="Size" id="size" class="size-option">
@@ -64,9 +70,6 @@
         </div>
     </div>
 
-
-  
-     
 </body>
 </html>
 

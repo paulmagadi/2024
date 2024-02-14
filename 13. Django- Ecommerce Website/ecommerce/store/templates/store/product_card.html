@@ -1,6 +1,6 @@
 
     <div class="product-card">
-        <a href="{% url 'product' %}">
+        <a href="{% url 'product' product.id %}">
         <div class="product-image">
             <img src="{{ product.image.url }}" alt="">
         </div></a>
@@ -9,7 +9,7 @@
             <p>$ {{ product.price }}</p>
         </div>
         <div class="card-buttons">
-            <a href="{% url 'product' %}"><button type="button" id="product-view">View</button></a>
+            <a href="{% url 'product' product.id %}"><button type="button" id="product-view">View</button></a>
             <a href="#"><button type="button" id="add-cart">Add to Cart</button></a>
         </div>
     </div>

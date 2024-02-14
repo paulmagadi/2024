@@ -34,8 +34,18 @@ def home(request):
     }
     return render(request, 'store/home.html', context)
 
-def product(request):
-    return render(request, 'store/product.html')
+
+# Product page
+def product(request, pk):
+    product = Product.objects.get(id=pk)
+    stock_quantity = product.stock_quantity
+    quantity_list = list(range(1, stock_quantity + 1))
+    context = {
+        'product': product,
+        'stock_quantity': stock_quantity,
+        'quantity_list': quantity_list,
+    }
+    return render(request, 'store/product.html', context)
 
 def user_register(request):
     return render(request, 'store/register.html')
@@ -52,17 +62,7 @@ def user_logout(request):
 
 
 
-# Product page
-# def product(request, pk):
-#     product = Product.objects.get(id=pk)
-#     stock_quantity = product.stock_quantity
-#     quantity_list = list(range(1, stock_quantity + 1))
-#     context = {
-#         'product': product,
-#         'stock_quantity': stock_quantity,
-#         'quantity_list': quantity_list,
-#     }
-#     return render(request, 'store/product.html', context)
+
 
 
 # # Category
