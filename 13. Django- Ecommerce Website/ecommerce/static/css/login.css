@@ -15,7 +15,7 @@
   padding: 1em;
 }
   
-form {
+.authenticate form {
   background-color: #c9d1d1;
   width: 50%;
   margin: 0 auto;
@@ -25,7 +25,7 @@ form {
 }
 
 
-form button {
+.authenticate form button {
   background-color: orange;
   padding: .5em 1em;
   border: none;
@@ -34,48 +34,48 @@ form button {
   width: 100%;
 }
 
-form button:hover {
+.authenticate form button:hover {
   opacity: 0.8;
 }
   
-.cancelbtn {
+.authenticate .cancelbtn {
   width: auto;
   padding: .5em 1em;
   background-color: #f44339;
 }
 
-form .img {
+.authenticate form .img {
   text-align: center;
   margin-top: 1em;
 }
 
-img.avatar {
+.authenticate img.avatar {
   border-radius: 50%;
 }
 
-span.password {
+.authenticate span.password {
   float: right;
   padding-top: 1em;
 }
   
-.close {
+.authenticate .close {
   position: absolute;
   right: 1em;
 }
 
-.close a {
+.authenticate .close a {
   color: #000;
   font-size: 2rem;
   font-weight: bold;
 }
 
-.close a:hover,
-.close a:focus {
+.authenticate .close a:hover,
+.authenticate .close a:focus {
   color: #f44339;
   cursor: pointer;
 }
 
-input[type=text], input[type=password], input[type=email] {
+.authenticate input[type=text], input[type=password], input[type=email] {
   width: 100%;
   padding: .5em .6em;
   margin: .5em 0;
@@ -100,21 +100,21 @@ input[type=text], input[type=password], input[type=email] {
 
 @media  screen and (max-width: 600px) {
 
-  form {
+  .authenticate form {
     width: 100%;
     padding: .5em;
   }
 
-  span.password {
+  .authenticate span.password {
       display: block;
       float: none;
   }
 
-  .cancelbtn {
+  .authenticate .cancelbtn {
       width: 100%;
   }
 
-  .form-container {
+  .authenticate .form-container {
       width: 100%;
   }
 }

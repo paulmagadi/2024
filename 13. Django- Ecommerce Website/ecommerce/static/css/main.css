@@ -24,6 +24,10 @@ a {
 text-decoration: none;
 }
 
+button {
+    cursor: pointer;
+}
+
 .container {
     min-height: 100vh;
     background-color: orange;

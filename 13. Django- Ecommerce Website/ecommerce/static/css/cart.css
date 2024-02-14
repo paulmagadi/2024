@@ -1,6 +1,7 @@
 .cart-container {
     width: 80%;
     margin: 0 auto;
+    background-color: white;
 }
 
 table {
@@ -53,6 +54,17 @@ table .checkout {
 
 .cart-item-quantity p span{
     display: block;
+}
+
+.cart-container button {
+    cursor: pointer;
+    padding: .5em;
+    background-color: orange;
+    border: none;
+}
+
+.continue-shopping button{
+    margin: .7em;
 }
 
 
