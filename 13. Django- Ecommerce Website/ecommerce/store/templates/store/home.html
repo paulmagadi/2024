@@ -17,21 +17,41 @@
 
     <section>
         <h3 class="section-title">Products</h3>
-        {% include 'store/product_card.html' %}
-    </section>
-    <section>
-        <h3 class="section-title">Products on Sale</h3>
-        {% include 'store/product_card.html' %}
-    </section>
-    <section>
-        <h3 class="section-title">New Products</h3>
-        {% include 'store/product_card.html' %}
-    </section>
-    <section>
-        <h3 class="section-title">Featured Products</h3>
-        {% include 'store/product_card.html' %}
+        <div class= "product-container">
+        {% for product in products %}
+            {% include 'store/product_card.html' %}
+        {% endfor %}
+    </div>
     </section>
 
+    <section>
+        <!-- Render products on sale -->
+        <h3 class="section-title">Products on Sale</h3>
+        <div class= "product-container">
+        {% for product in sale %}
+            {% include 'store/product_card.html' %} 
+        {% endfor %}
+    </div>
+    </section>
+
+    <section>
+        <h3 class="section-title">New Products</h3>
+        <div class= "product-container">
+        <!-- Render new products -->
+        {% for product in new %}
+            {% include 'store/product_card.html' %} 
+        {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <h3 class="section-title">Featured Products</h3>
+        <div class= "product-container">
+        {% for product in featured %}
+            {% include 'store/product_card.html' %}
+        {% endfor %}
+        </div>
+    </section>
 
 </div>
 
