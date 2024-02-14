@@ -1,18 +1,21 @@
 <div class= "product-container">
 
+{% for product in products %}
+    
     <div class="product-card">
         <a href="{% url 'product' %}">
         <div class="product-image">
-            <img src="/static/images/apples-805124.jpg" alt="">
+            <img src="{{ product.image.url }}" alt="">
         </div></a>
         <div class="product-information">
-            <p>Product 1</p>
-            <p>$ 300</p>
+            <p>{{ product.name }}</p>
+            <p>$ {{ product.price }}</p>
         </div>
         <div class="card-buttons">
             <a href="{% url 'product' %}"><button type="button" id="product-view">View</button></a>
             <a href="#"><button type="button" id="add-cart">Add to Cart</button></a>
         </div>
     </div>
+{% endfor %}
 
 </div>
