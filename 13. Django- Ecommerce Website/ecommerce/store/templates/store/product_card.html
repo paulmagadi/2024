@@ -1,4 +1,8 @@
 
+{% if product.in_stock and product.stock_quantity is not 0 %}
+    
+
+    
     <div class="product-card">
         <a href="{% url 'product' product.id %}">
         <div class="product-image">
@@ -13,3 +17,6 @@
             <a href="#"><button type="button" id="add-cart">Add to Cart</button></a>
         </div>
     </div>
+{% else %}
+
+{% endif %}

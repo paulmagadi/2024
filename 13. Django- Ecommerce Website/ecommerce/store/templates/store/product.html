@@ -37,7 +37,7 @@
             <h3>{{ product.name }}</h3>
             
             {% if product.is_sale %}
-            <h4><del>Price: $ {{ product.price }}</del> &nbsp; $ {{ product.sale_price }}</h4>
+            <h4>Price: <del> $ {{ product.price }}</del> &nbsp; $ {{ product.sale_price }}</h4>
             {% else %}
             <h4>Price: $ {{ product.price }}</h4>
             {% endif %}
