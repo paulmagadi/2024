@@ -9,8 +9,8 @@
 {% block content %}
 <div class="container">
     {% include 'store/header.html' %}
+    <h3 class="section-title">Featured Products</h3>
     <div class= "product-container">   
-        <h1>Featured Products</h1>
         {% for product in products %}
             {% include 'store/product_card.html' %} 
         {% endfor %}
