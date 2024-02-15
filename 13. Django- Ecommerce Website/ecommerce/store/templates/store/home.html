@@ -22,7 +22,7 @@
 
     <section>
         <!-- Render products on sale -->
-        <h3 class="section-title">Products on Sale</h3>
+        <h3 class="section-title"><a href="{% url 'sale_products' %}"></a>Products on Sale</h3>
         <div class= "product-container">
         {% for product in sale %}
             {% include 'store/product_card.html' %} 
