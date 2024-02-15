@@ -7,10 +7,11 @@
     
 
 {% block content %}
-    
-{% for product in products %}
-{% include 'store/product_card.html' %} 
-{% endfor %}
-        
+{% include 'store/header.html' %}
+<div class= "product-container">   
+    {% for product in products %}
+        {% include 'store/product_card.html' %} 
+    {% endfor %}
+</div>
 {% endblock content %}
     
