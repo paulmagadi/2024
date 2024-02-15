@@ -22,7 +22,7 @@
 
     <section>
         <!-- Render products on sale -->
-        <h3 class="section-title"><a href="{% url 'sale_products' %}"></a>Products on Sale</h3>
+        <h3 class="section-title"><a href="{% url 'sale' %}">Products on Sale</a></h3>
         <div class= "product-container">
         {% for product in sale %}
             {% include 'store/product_card.html' %} 
@@ -31,7 +31,7 @@
     </section>
 
     <section>
-        <h3 class="section-title">New Products</h3>
+        <h3 class="section-title"><a href="{% url 'new_products' %}">New Products</a></h3>
         <div class= "product-container">
         <!-- Render new products -->
         {% for product in new %}
@@ -41,7 +41,7 @@
     </section>
 
     <section>
-        <h3 class="section-title">Featured Products</h3>
+        <h3 class="section-title"><a href="{% url 'featured' %}">Featured Products</a></h3>
         <div class= "product-container">
         {% for product in featured %}
             {% include 'store/product_card.html' %}

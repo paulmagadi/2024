@@ -87,7 +87,7 @@ def user_logout(request):
 
 def sale_products(request):
     products = Product.objects.filter(is_sale=True).distinct()
-    return render(request, 'store/pages/on_sale.html', {'products': products})
+    return render(request, 'store/sections/sale.html', {'products': products})
 
 def new_products(request):
     products = Product.objects.filter(is_new=True).distinct()
@@ -95,7 +95,7 @@ def new_products(request):
 
 def featured_products(request):
     products = Product.objects.filter(is_featured=True).distinct()
-    return render(request, 'store/pages/featured.html', {'products': products})
+    return render(request, 'store/sections/featured.html', {'products': products})
 
     
     
