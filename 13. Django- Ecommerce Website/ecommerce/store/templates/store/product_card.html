@@ -14,7 +14,7 @@
         </div>
         <div class="card-buttons">
             <a href="{% url 'product' product.id %}"><button type="button" id="product-view">View</button></a>
-            <a href="#"><button type="button" id="add-cart">Add to Cart</button></a>
+            <a href="#"><button type="button" data-product="{{product.id}}" data-action="add" class="add-cart" id="add-cart">Add to Cart</button></a>
         </div>
     </div>
 {% else %}
