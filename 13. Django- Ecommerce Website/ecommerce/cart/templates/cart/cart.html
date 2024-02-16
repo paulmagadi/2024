@@ -23,24 +23,30 @@
                     </tr>
                 </thead>
             </table>
-
+            
+                        
             <div class="cart-elements-container">
                 <div class="cart-element-header">
                     <div class="cart-item-image"></div>
                     <div class="cart-item-name"><strong>Item</strong></div>
+                    <div class="cart-item-price"><strong>Price</strong></div>
                     <div class="cart-item-quantity"><strong>Quantity</strong></div>
                     <div class="cart-item-total"><strong>Total</strong></div>
                 </div>
                 <hr>
+                {% for item in items %}  
                 <div class="cart-element">
-                    <div class="cart-item-image"><img src="{% static 'images/apples-805124.jpg' %}" alt="" width="20%"></div>
-                    <div class="cart-item-name">Product 1</div>
-                    <div class="cart-item-quantity">3 
+                    <div class="cart-item-image"><img src="{{item.product.imageURL}}" alt="" width="20%"></div>
+                    <div class="cart-item-name">{{item.product.name}}</div>
+                    <div class="cart-item-price">$ {{item.product.price}}</div>
+                    <div class="cart-item-quantity">{{item.quantity}} 
                         <p><span>&#9652</span><span>&#9662</span></p>
                     </div>
-                    <div class="cart-item-total">$ 30</div>
+                    <div class="cart-item-total">$ {{item.get_total}}</div>
                 </div>
+                {% endfor %}
             </div>
+            
         </div>
     </div>
 {% endblock content %}

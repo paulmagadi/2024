@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 
 # Create your models here.
@@ -25,6 +26,7 @@ class Product(models.Model):
     percentage_discount = models.DecimalField(default=0, max_digits=5, decimal_places=0, null=True, blank=True)
     is_new = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
+    
 
     def save(self, *args, **kwargs):
         if self.is_sale and self.sale_price < self.price:
@@ -38,25 +40,72 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+    
+    
+
+    
 class Customer(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=250, null=True)
+    # first_name = models.CharField(max_length=100)
+    # last_name = models.CharField(max_length=100)
     email = models.EmailField()
-    phone_number = models.CharField(max_length=15)
-    address = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='profiles/customers/')
+    # phone_number = models.CharField(max_length=15)
+    # address = models.CharField(max_length=255)
+    # image = models.ImageField(upload_to='profiles/customers/')
     
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return self.name
+        # return f"{self.first_name} {self.last_name}"
     
 class Order(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     date = models.DateField(default=datetime.datetime.today)
     status = models.BooleanField(default=False)
+    transaction_id = models.CharField(max_length=200, null=True)
+    
+    @property
+    def get_cart_total(self):
+        total = self.product.price * self.quantity
+        return total
+    
+    
     
     def __str__(self):
-        return self.product
+        return str(self.id)
+        
+    
+class OrderItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
+    Order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    quantity = models.IntegerField(default=1)
+    date = models.DateField(default=datetime.datetime.today)
+    
+    @property
+    def get_total(self):
+        total = self.product.price * self.quantity
+        return total
+    
+    
+class ShippingAddress(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=200, null=True)
+    phone_number = models.CharField(max_length=200, null=True)
+    date = models.DateField(default=datetime.datetime.today)
+    
+    def __str__(self):
+        return self.address
+    
+    class Meta:
+        verbose_name_plural = 'Shipping Addresses'
     
     
