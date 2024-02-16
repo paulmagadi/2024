@@ -30,7 +30,7 @@ button {
 
 .container {
     min-height: 100vh;
-    background-color: orange;
+    background-color: #17696a;
     width: 95%;
     margin: 3em auto;
     margin-bottom: 2em;
@@ -99,10 +99,7 @@ header .hero-header{
 
 .product-image img {
     width: 100%;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    max-width: 300px;
+    max-height: 200px;
 }
 
 .product-information {

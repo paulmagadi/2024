@@ -20,7 +20,7 @@ def home(request):
     random.shuffle(new_products)
     random.shuffle(is_featured)
     
-    num_products_to_display = 15
+    num_products_to_display = 5
     to_display = 5 #Display upto 5 products for all other sections
     products = all_products[:num_products_to_display]
     sale = on_sale[:to_display]
