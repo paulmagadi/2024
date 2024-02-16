@@ -16,7 +16,7 @@ for(let i = 0; i < updateButtons.length; i++) {
 }
 
 function updateUserOrder(productId, action){
-    console.log('user is logged in, sending dta...')
+    console.log('user is logged in, sending data...')
 
     let url = '/update_cart/'
 
@@ -34,6 +34,6 @@ function updateUserOrder(productId, action){
 
     .then((data) => {
         console.log('data:', data)
-        location.reload
+        location.reload()
     })
 }
