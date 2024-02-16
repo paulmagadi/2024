@@ -39,17 +39,19 @@
                     <hr>
                     <h4>Order Summary</h4>
                     <hr>
-                    <div class="cart-element">
-                        <div class="cart-item-image"><img src="{% static 'images/apples-805124.jpg' %}" alt="" width="20%"></div>
-                        <div class="cart-item-name">Product 1</div>
-                        <div class="cart-item-quantity">3 
-                            <p><span>&#9652</span><span>&#9662</span></p>
-                        </div>
-                        <div class="cart-item-total">$ 30</div>
-                    </div>
                     
-                    <p>Items: 1</p>
-                    <p>Amount: $30</p>
+                    {% for item in items %}
+                    <div class="cart-element">
+                        <div class="checkout-cart-item-image"><img src="{{item.product.imageURL}}" alt="" width="20%"></div>
+                        <div class="checkout-cart-item-name">{{item.product.name}}</div>
+                        <div class="checkout-cart-item-price">${{item.product.price}}</div>
+                        <div class="checkout-cart-item-quantity">x {{item.quantity}}</div>
+                        
+                    </div>
+                    {% endfor %}
+                    
+                    <h5>Items: {{order.get_cart_items}}</h5>
+                    <h5>Amount: ${{order.get_cart_total}}</h5>
                     
                 </div>
             </div>

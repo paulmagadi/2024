@@ -29,4 +29,4 @@ def checkout(request):
         'items': items, 
         'order': order,
     }    
-    return render(request, 'cart/checkout.html')
+    return render(request, 'cart/checkout.html', context)

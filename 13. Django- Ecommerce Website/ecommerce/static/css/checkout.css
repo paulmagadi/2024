@@ -44,6 +44,18 @@
 }
 
 
+.checkout-cart-item-image, .checkout-cart-item-name{
+    flex: 25%;
+}
+
+.checkout-cart-item-name{
+    flex: 35%;
+}
+
+.checkout-cart-item-price, .checkout-cart-item-quantity {
+    flex: 20%;
+}
+
 @media (max-width: 600px) {
     .checkout-container {
         width: 100%;
