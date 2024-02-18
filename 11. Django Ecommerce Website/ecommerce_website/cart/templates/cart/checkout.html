@@ -1,0 +1,61 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+    Checkout
+{% endblock title %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="checkout-container">
+            <div class="customer-information">
+                <div class="user-information">
+                    <form action="">
+                        <input type="text" placeholder="Name" name="name">
+                        <input type="email" placeholder="Email" name="email">
+                    </form>
+                </div>
+    
+                <div class="shipping-information">
+                    <hr>
+                    <p>Shipping Information</p>
+                    <form action="">
+                        <input type="text" placeholder="Address">
+                        <input type="text" placeholder="City">
+                        <input type="text" placeholder="State">
+                        <input type="text" placeholder="Phone Number">
+                        <input type="submit" value="Continue">
+                    </form>
+                </div>
+    
+            </div>
+            <div class="order-summary">
+                <div class="back-to-cart">
+                    <a href="{% url 'cart' %}"><button>&larr; Back to Cart</button></a>
+                </div>
+                
+                <div class="cart-elements-container">
+                    <hr>
+                    <h4>Order Summary</h4>
+                    <hr>
+                    
+                    {% for item in items %}
+                    <div class="cart-element">
+                        <div class="checkout-cart-item-image"><img src="{{item.product.imageURL}}" alt="" width="20%"></div>
+                        <div class="checkout-cart-item-name">{{item.product.name}}</div>
+                        <div class="checkout-cart-item-price">${{item.product.price}}</div>
+                        <div class="checkout-cart-item-quantity">x {{item.quantity}}</div>
+                        
+                    </div>
+                    {% endfor %}
+                    
+                    <h5>Items: {{order.get_cart_items}}</h5>
+                    <h5>Amount: ${{order.get_cart_total}}</h5>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    
