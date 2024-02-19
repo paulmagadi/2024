@@ -4,6 +4,16 @@ from store.models import *
 from django.http import JsonResponse
 
 # Create your views here.
+def cart(request):
+    cart = Cart(request)
+    cart_products = cart.get_products
+    context = {
+        'cart_products': cart_products
+    }
+    return render(request, 'cart.html', context)
+    
+    
+    
 def cart_add(request):
     cart = Cart(request)
     if request.POST.get('action') == 'post':
@@ -13,3 +23,6 @@ def cart_add(request):
         cart_quantity = cart.__len__()
         response = JsonResponse({'qty': cart_quantity})
         return response
+    
+    
+
