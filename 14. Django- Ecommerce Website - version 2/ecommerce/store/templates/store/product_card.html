@@ -1,0 +1,22 @@
+
+{% if product.in_stock and product.stock_quantity is not 0 %}
+    
+
+    
+    <div class="product-card">
+        <a href="{% url 'product' product.id %}">
+        <div class="product-image">
+            <img src="{{ product.imageURL }}" alt="">
+        </div></a>
+        <div class="product-information">
+            <p>{{ product.name }}</p>
+            <p>$ {{ product.price }}</p>
+        </div>
+        <div class="card-buttons">
+            <a href="{% url 'product' product.id %}"><button type="button" id="product-view">View</button></a>
+            <a href="#"><button type="button" data-product="{{product.id}}" data-action="add" class="add-cart" id="add-cart">Add to Cart</button></a>
+        </div>
+    </div>
+{% else %}
+
+{% endif %}

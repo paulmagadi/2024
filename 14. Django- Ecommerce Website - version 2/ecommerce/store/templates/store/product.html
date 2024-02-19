@@ -1,0 +1,66 @@
+{% extends 'store/base.html' %}
+
+
+{% block title %}
+    {{ product.name }}
+{% endblock title %}
+    
+
+{% block content %}
+    <div class="container">
+        {% include 'store/header.html' %}
+
+        <div class="product-page-container">
+            <div class="product-page-image-card">
+                <div class="continue-shopping">
+                    <a href="{% url 'home' %}"><button>&larr; Back to Home</button></a>
+                </div>
+    
+                <div class="product-page-image">
+                    <img src="{{product.imageURL}}" alt="Product" width="100%">
+                </div>
+                <div class="product-page-images">
+                    <div class="image"><img src="{{product.imageURL}}" alt="Product" width="100%"></div>
+                    <div class="image"><img src="{{product.imageURL}}" alt="Product" width="100%"></div>
+                    <div class="image"><img src="{{product.imageURL}}" alt="Product" width="100%"></div>
+                    <div class="image"><img src="{{product.imageURL}}" alt="Product" width="100%"></div>
+                    
+                </div>
+            </div>
+            <div class="product-page-information">
+                <h3>{{ product.name }}</h3>
+                
+                {% if product.is_sale %}
+                <h4>Price: <del> $ {{ product.price }}</del> &nbsp; $ {{ product.sale_price }}</h4>
+                {% else %}
+                <h4>Price: $ {{ product.price }}</h4>
+                {% endif %}
+                    
+                <p>{{ product.description }}</p>
+                <div class="sizes">
+                    <p>Size:</p>
+                    <select name="Size" id="size" class="size-option">
+                        <option value="xxl">XXL</option>
+                        <option value="xl">XL</option>
+                        <option value="medium">Medium</option>
+                        <option value="small">Small</option>
+                    </select>
+                </div>
+    
+                <div class="info">
+                    {% if stock_quantity >= 5 %}
+                    <p style="color: green;">We have {{ stock_quantity }} items available</p>
+                    {% else %}
+                    <p style="color: red;">Only {{ stock_quantity }} item{% if stock_quantity != 1 %}s{% endif %} left!!!</p>
+                    {% endif %} 
+                </div>
+                <div class="quantity">
+                    <input type="number" value="1" min="1">
+                    
+                    <button type="button" id="add-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    

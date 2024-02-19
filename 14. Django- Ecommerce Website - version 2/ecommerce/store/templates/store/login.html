@@ -1,0 +1,38 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- login form -->
+    
+<div class="container">
+    <div class="form-container authenticate">
+        <form action="{% url 'login' %}" method="POST" class="login-form">
+            <div class="img">
+                <span id="close" class="close"><a href="{% url 'home' %}">&times;</a></span>
+                <img src="{% static 'images/avatar.png' %}" alt="avatar" class="avatar" width="20%"> 
+            </div>
+            <div class="login-container">
+                <label for="username">Email</label>
+                <input type="text" placeholder="Enter Email" name="username" id="username" autocomplete="username" required>
+                
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+                <button type="submit">Login</button>
+                <label>  
+                    <input type="checkbox" checked="checked" name="remember">Remember me
+                </label>
+            </div>
+            <div class="login-container">
+                <button type="button" class="cancelbtn" id="cancelbtn"><a href="{% url 'home' %}">Cancel</a></button>
+                <p class="password">No account <a href="{% url 'register' %}">Register?</a>
+                    <span class="password">Forgot <a href="">password?</a></span>
+                </p>
+                
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+    
