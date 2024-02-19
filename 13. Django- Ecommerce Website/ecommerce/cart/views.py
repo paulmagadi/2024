@@ -10,7 +10,7 @@ def cart(request):
     context = {
         'cart_products': cart_products
     }
-    return render(request, 'cart.html', context)
+    return render(request, 'cart/cart.html', context)
     
     
     
@@ -23,6 +23,10 @@ def cart_add(request):
         cart_quantity = cart.__len__()
         response = JsonResponse({'qty': cart_quantity})
         return response
+    
+
+def checkout(request):
+    return render(request, 'cart/checkout.html')
     
     
 
