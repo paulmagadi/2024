@@ -1,11 +1,13 @@
 
-$(document).on('click', '.add-cart', function(e){
+addCart = document.getElementsByClassName('add-cart')
+
+$(document).on('click', 'addCart', function(e){
     e.preventDefault();
     $.ajax({
         type: 'POST',
         url : '{% url "cart_add" %}',
         data: {
-            product_id : $('.add-cart').val(),
+            product_id : $('addCart').val(),
             csrfmiddlewaretoken: '{{ csrf_token }}',
             action: 'post'
         },
