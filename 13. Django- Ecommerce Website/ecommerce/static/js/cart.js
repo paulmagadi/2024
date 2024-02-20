@@ -1,24 +1,35 @@
+$(document).ready(function() {
+    $(document).on('click', '.add-cart', function(e){
+        e.preventDefault();
+        var product_id = $(this).val(); // Retrieve product ID from the button's value attribute
+        var product_qty;
 
-addCart = document.getElementsByClassName('add-cart')
-
-$(document).on('click', 'addCart', function(e){
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url : '{% url "cart_add" %}',
-        data: {
-            product_id : $('addCart').val(),
-            csrfmiddlewaretoken: '{{ csrf_token }}',
-            action: 'post'
-        },
-
-        success: function(json){
-            document.getElementsByClassName('cart-quantity').textcontent = json.qty
-        },
-
-        error: function(xhr, errmsg, err){
-            
+        // Check if the quantity input field exists
+        if ($('.quantity input').length) {
+            // If quantity input exists, use its value
+            product_qty = $('.quantity input').val();
+        } else {
+            // Otherwise, default quantity to one
+            product_qty = 1;
         }
 
+        $.ajax({
+            type: 'POST',
+            url : cartAddUrl,
+            data: {
+                product_id : product_id,
+                product_qty: product_qty,
+                csrfmiddlewaretoken: csrfToken,
+                action: 'post'
+            },
+
+            success: function(json){
+                $('.cart-quantity').text(json.qty);
+            },
+
+            error: function(xhr, errmsg, err){
+                // Handle error
+            }
+        });
     });
-})
+});

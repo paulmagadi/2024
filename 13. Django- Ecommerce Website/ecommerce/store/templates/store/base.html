@@ -28,8 +28,14 @@
 
     
     <script src="{% static 'js/navbar.js' %}"></script>
-    <script src="{% static 'js/cart.js' %}"></script>
 
+    
+    <script>
+        var cartAddUrl = "{% url 'cart_add' %}";
+        var cartQuantity = "{{ cart_quantity }}";
+        var csrfToken = "{{ csrf_token }}";
+    </script>
+    <script src="{% static 'js/cart.js' %}"></script>
     
     
 </body>
