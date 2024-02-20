@@ -1,15 +1,12 @@
 $(document).ready(function() {
     $(document).on('click', '.add-cart', function(e){
         e.preventDefault();
-        var product_id = $(this).val(); // Retrieve product ID from the button's value attribute
+        var product_id = $(this).val(); 
         var product_qty;
-
-        // Check if the quantity input field exists
         if ($('.quantity input').length) {
-            // If quantity input exists, use its value
+            
             product_qty = $('.quantity input').val();
         } else {
-            // Otherwise, default quantity to one
             product_qty = 1;
         }
 
