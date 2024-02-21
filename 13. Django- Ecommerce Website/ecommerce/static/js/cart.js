@@ -4,7 +4,6 @@ $(document).ready(function() {
         var product_id = $(this).val(); 
         var product_qty;
         if ($('.quantity input').length) {
-            
             product_qty = $('.quantity input').val();
         } else {
             product_qty = 1;
