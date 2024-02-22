@@ -1,0 +1,14 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}
+    Ecom
+{% endblock title %}
+    
+
+{% block content %}
+    <h1>Home</h1>
+    <a href="{% url 'checkout' %}">checkout</a>
+    <a href="{% url 'cart' %}">cart</a>
+{% endblock content %}
+    
