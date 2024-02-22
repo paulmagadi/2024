@@ -5,8 +5,8 @@
 }
 
 :root {
-  
-    --main-color: rgb(255, 137, 2);
+    --background-color: rgb(17, 99, 90);
+    --main-color: orange;
     --white-color: white;
     --black-color: black;
     --grey-color: #c9d1d1;
@@ -27,7 +27,7 @@ text-decoration: none;
 
 .container {
     min-height: 100vh;
-    background-color: rgb(17, 99, 90);
+    background-color: var(--background-color);
     width: 95%;
     margin: 3em auto;
     margin-bottom: 2em;
