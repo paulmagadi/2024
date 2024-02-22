@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+
+    
+    <div class="product-page-container">
+    
+        <div class="product-image-card">
+            <div class="continue-shopping">
+                <a href="index.html"><button>&larr; Back to Home</button></a>
+            </div>
+
+            <div class="product-profile-image">
+                <img src="images/apples-805124.jpg" alt="Product" width="100%">
+            </div>
+            <div class="product-images">
+                <div class="image"><img src="images/apples-805124.jpg" alt="Product" width="100%"></div>
+                <div class="image"><img src="images/apples-805124.jpg" alt="Product" width="100%"></div>
+                <div class="image"><img src="images/apples-805124.jpg" alt="Product" width="100%"></div>
+                <div class="image"><img src="images/apples-805124.jpg" alt="Product" width="100%"></div>
+                <!-- <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>
+                <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>
+                <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>
+                <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div> -->
+            </div>
+        </div>
+        <div class="product-page-information">
+            <h3>Product 1</h3>
+            <h4>Price: <del>$ 50.00</del> &nbsp; $ 40.00</h4>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio sit at reiciendis sed quisquam excepturi ex inventore adipisci quasi laboriosam. Laudantium accusamus, vitae, quisquam temporibus sed autem itaque voluptatem ipsa quasi consectetur eaque tempora harum maiores vel reprehenderit odit nobis in laborum at dolores! Rem blanditiis dolore alias velit perspiciatis!</p>
+            
+            <!-- {% if product.is_sale %}
+            <h3>{{ product.name }}</h3> 
+            <h4>Price: <del>${{ product.price }}</del>&nbsp; ${{ product.sale_price }}</h4>
+            <p>{{ product.description }}</p>
+            {% else %}
+            <h3>{{ product.name }}</h3> 
+            <h4>Price: ${{ product.price }}</h4>
+            <p>{{ product.description }}</p>
+            {% endif %} -->
+
+            <div class="sizes">
+                <p>Size:</p>
+                <select name="Size" id="size" class="size-option">
+                    <option value="xxl">XXL</option>
+                    <option value="xl">XL</option>
+                    <option value="medium">Medium</option>
+                    <option value="small">Small</option>
+                </select>
+            </div>
+
+            <div class="info">
+                <p style="color: red;">
+
+                    We have 5 items left
+                    <!-- {% if stock_quantity >= 5 %}
+                        We have {{ stock_quantity }} items available
+                    {% else %}
+                        Only {{ stock_quantity }} item{% if stock_quantity != 1 %}s{% endif %} left
+                    {% endif %} -->
+                </p>
+                
+            </div>
+            <div class="quantity">
+                <input type="number" value="1" min="1">
+                
+                <!-- <select id="qty-cart">
+                    {% for quantity in quantity_list %}
+                        <option value="{{ quantity }}">{{ quantity }}</option>
+                    {% endfor %}
+                </select> -->
+                <button type="button" id="add-cart">Add to Cart</button>
+                <!-- <button type="button" value="{{ product.id }}" id="add-cart">Add to Cart</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        $(document).on('click', '#add-cart', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "cart_add" %}',
+                data: {
+                    product_id: $('#add-cart').val(),
+                    product_qty: $('#qty-cart option:selected').text(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+
+                success: function(json){
+                    // console.log(json)
+                    document.getElementById("cart_quantity").textContent = json.qty
+                    document.getElementById("cart_qty").textContent = json.qty
+                },
+
+                error: function(xhr, errmsg, err){
+
+                }
+            });
+        })
+    </script>
+</body>
+</html>
+
