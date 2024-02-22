@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        header .hero-header{
+header .hero-header{
     background-image: url(banner.jpg);
     background-position: center;
     background-repeat: no-repeat;
@@ -33,13 +25,3 @@
     font-size: 3rem
     }
 }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="hero-header">
-            <h1>bellaDIAMONDS</h1>
-        </div>
-    </header>
-</body>
-</html>

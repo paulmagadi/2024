@@ -8,5 +8,51 @@
 
 
 {% block content %}
-    <h1>Checkout</h1>
+<div class="checkout-container">
+    <div class="customer-information">
+        <div class="user-information">
+            <form action="">
+                <input type="text" placeholder="Name" name="name">
+                <input type="email" placeholder="Email" name="email">
+            </form>
+        </div>
+
+        <div class="shipping-information">
+            <hr>
+            <p>Shipping Information</p>
+            <form action="">
+                <input type="text" placeholder="Address">
+                <input type="text" placeholder="City">
+                <input type="text" placeholder="State">
+                <input type="text" placeholder="Phone Number">
+                <hr>
+                <input type="submit" value="Continue">
+            </form>
+        </div>
+
+    </div>
+    <div class="order-summary">
+        <div class="back-to-cart">
+            <a href="{% url 'cart' %}"><button>&larr; Back to Cart</button></a>
+        </div>
+        
+        <div class="cart-elements-container">
+            <hr>
+            <h4>Order Summary</h4>
+            <hr>
+            <div class="cart-element">
+                <div class="cart-item-image"><img src="images/apples-805124.jpg" alt="" width="20%"></div>
+                <div class="cart-item-name">Product 1</div>
+                <div class="cart-item-quantity">3 
+                    <p><span>&#9652</span><span>&#9662</span></p>
+                </div>
+                <div class="cart-item-total">$ 30</div>
+            </div>
+            
+            <p>Items: 1</p>
+            <p>Amount: $30</p>
+            
+        </div>
+    </div>
+</div>
 {% endblock content %}
