@@ -61,6 +61,10 @@ header .hero-header{
     }
 }
 
+button {
+  background-color: var(--main-color);
+  border: none;
+}
 
 .section-title {
     text-align: center;

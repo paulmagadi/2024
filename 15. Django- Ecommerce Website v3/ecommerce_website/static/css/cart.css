@@ -1,6 +1,7 @@
 .cart-container {
     width: 80%;
     margin: 0 auto;
+    background-color: aliceblue;
 }
 
 table {
@@ -53,6 +54,10 @@ table .checkout {
 
 .cart-item-quantity p span{
     display: block;
+}
+
+.cart-container button {
+    padding: .5em 1em;
 }
 
 
