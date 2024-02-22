@@ -8,8 +8,34 @@
 
 {% block content %}
     {% include 'store/include/hero.html' %}
-    {% include 'store/card.html' %}
-    <a href="{% url 'checkout' %}">checkout</a>
-    <a href="{% url 'cart' %}">cart</a>
+    <section>
+        <h3 class="section-title">Products</h3>
+        <div class= "product-container">
+            {% include 'store/card.html' %}
+            {% include 'store/card.html' %}
+            {% include 'store/card.html' %}
+            {% include 'store/card.html' %}
+            {% include 'store/card.html' %}
+        </div>
+    </section>
+
+    <section>
+        <h3 class="section-title">New Products</h3>
+        <div class= "product-container">
+            {% include 'store/card.html' %}
+        </div>
+    </section>
+    <section>
+        <h3 class="section-title">Products on Sale</h3>
+        <div class= "product-container">
+            {% include 'store/card.html' %}
+        </div>
+    </section>
+    <section>
+        <h3 class="section-title">Featured Products</h3>
+        <div class= "product-container">
+            {% include 'store/card.html' %}
+        </div>
+    </section>
 {% endblock content %}
     
