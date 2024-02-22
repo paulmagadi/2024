@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="{% static 'css/product.css' %}">
 </head>
 <body>
-    
+    {% include 'store/include/navbar.html' %}
     {% block content %}
         
     {% endblock content %}
+    {% include 'store/include/footer.html' %}
         
 </body>
 </html>
