@@ -26,7 +26,6 @@ text-decoration: none;
 }
 
 .container {
-    min-height: 100vh;
     background-color: var(--background-color);
     width: 95%;
     margin: 3em auto;
