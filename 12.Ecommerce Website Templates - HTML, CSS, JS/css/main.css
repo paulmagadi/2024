@@ -5,7 +5,8 @@
 }
 
 :root {
-    --main-color: orange;
+  
+    --main-color: rgb(255, 137, 2);
     --white-color: white;
     --black-color: black;
     --grey-color: #c9d1d1;
@@ -26,7 +27,7 @@ text-decoration: none;
 
 .container {
     min-height: 100vh;
-    background-color: orange;
+    background-color: rgb(17, 99, 90);
     width: 95%;
     margin: 3em auto;
     margin-bottom: 2em;
@@ -194,24 +195,67 @@ header .hero-header{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* Footer */
-.footer {
-    text-align: center;
-    background-color: white;
+  /* Footer */
+  .footer {
+    background-color: rgb(0, 0, 0);
+    color: orange;
   }
   
+  .footer-column-container {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+    padding: .5em;
+  }
+  
+  
+  .footer-column h5 {
+    border-bottom: 2px solid white;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+  }
+  
+  .footer-column li {
+    padding: .5em 0;
+  }
+  
+  .footer-column li a {
+    color: white;
+  }
+  
+  .footer-column li a span {
+    color: orange;
+    font-size: .7rem;
+  }
+  
+  .footer-end {
+    text-align: center;
+    padding: 2em;
+  }
+  
+  @media (max-width: 600px) {
+    .footer-column-container {
+      display: block;
+    }
+    
+    .footer-column {
+      margin-bottom: 1em;
+    }
+  
+    .footer-column ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 2em;
+    }
+  
+    .footer-end {
+      padding-bottom: 8em;
+    }
+  }
   /* Fixed footer for mobile devices */
   
   .foot {

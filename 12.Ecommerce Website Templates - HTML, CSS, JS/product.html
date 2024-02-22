@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <div class="container">
+
     
-    <div class="product-container">
+    <div class="product-page-container">
     
         <div class="product-image-card">
             <div class="continue-shopping">
                 <a href="index.html"><button>&larr; Back to Home</button></a>
             </div>
 
-            <div class="profile-image">
+            <div class="product-profile-image">
                 <img src="images/apples-805124.jpg" alt="Product" width="100%">
             </div>
             <div class="product-images">
@@ -29,9 +32,9 @@
                 <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div> -->
             </div>
         </div>
-        <div class="product-information">
+        <div class="product-page-information">
             <h3>Product 1</h3>
-            <h4><del>Price: $ 50.00</del> &nbsp; $ 40.00</h4>
+            <h4>Price: <del>$ 50.00</del> &nbsp; $ 40.00</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio sit at reiciendis sed quisquam excepturi ex inventore adipisci quasi laboriosam. Laudantium accusamus, vitae, quisquam temporibus sed autem itaque voluptatem ipsa quasi consectetur eaque tempora harum maiores vel reprehenderit odit nobis in laborum at dolores! Rem blanditiis dolore alias velit perspiciatis!</p>
             
             <!-- {% if product.is_sale %}
@@ -79,6 +82,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
     <script>

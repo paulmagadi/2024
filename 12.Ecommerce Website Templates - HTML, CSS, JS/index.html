@@ -168,7 +168,54 @@
 </div>
 
 <div class="footer">
-    <h1>Footer</h1>
+    <div class="footer-column-container">
+        <div class="footer-column">
+            <h5>Useful Links</h5>
+            <ul>
+                <li><a href="#"><span>&gt;</span> Home</a></li>
+                <li><a href="#"><span>&lt;</span> About</a></li>
+                <li><a href="#"><span>&gt;</span> Enquire</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h5>Products</h5>
+            <ul>
+                <li><a href="{% url 'sale' %}"><span>&gt;</span> On Sale</a></li>
+                <li><a href="{% url 'new' %}"><span>&gt;</span> New Products</a></li>
+                <li><a href="#"><span>&gt;</span> Coming Soon</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h5>Category</h5>
+            <ul>
+                <li><a href="{% url 'new' %}"><span>&gt;</span> New</a></li>
+                <li><a href="#"><span>&gt;</span> Ex UK</a></li>
+                <li><a href="#"><span>&gt;</span> Kenya</a></li>
+                <li><a href="#"><span>&gt;</span> New</a></li>
+                <li><a href="#"><span>&gt;</span> Ex UK</a></li>
+                <li><a href="#"><span>&gt;</span> Kenya</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h5>Contact Us</h5>
+            <ul>
+                <li><a href="#"><span>&gt;</span> +254 700110011</a></li>
+                <li><a href="#"><span>&gt;</span> sqcodes@ecom.com</a></li>
+                <li><a href="#"><span>&gt;</span> sqcodeske</a></li>
+                <li><a href="#"><span>&gt;</span> +254 700110011</a></li>
+                <li><a href="#"><span>&gt;</span> sqcodes@ecom.com</a></li>
+                <li><a href="#"><span>&gt;</span> sqcodes.ke</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="footer-end">
+        <!-- <p>&copy;Sqcodes | <span id="current-year">2023</span>. All Rights Reserved.</p> -->
+        <p>&copy;Sqcodes | <span>{% now "Y" %}</span>. All Rights Reserved.</p>
+
+    </div>
 </div>
 
 <!-- Fixed footer for mobile devices -->
