@@ -6,6 +6,11 @@
     background-color: aliceblue;
 }
 
+.continue-shopping button{
+  padding: .5em 1em;
+  border-radius: 5px;
+}
+
 .product-image-card {
   display: block;
   width: 40%;

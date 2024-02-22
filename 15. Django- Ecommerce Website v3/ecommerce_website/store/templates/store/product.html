@@ -1,5 +1,5 @@
 {% extends 'store/base.html' %}
-
+{% load static %}
 
 {% block title %}
     product
@@ -15,13 +15,13 @@
         </div>
 
         <div class="product-profile-image">
-            <img src="images/apples-805124.jpg" alt="Product" width="100%">
+            <img src="{% static 'images/computer.jpg' %}" alt="Product" width="100%">
         </div>
         <div class="product-images">
-            <div class="image"><img src="images/apples-805124.jpg" alt="Product" width="100%"></div>
-            <div class="image"><img src="images/apples-805124.jpg" alt="Product" width="100%"></div>
-            <div class="image"><img src="images/apples-805124.jpg" alt="Product" width="100%"></div>
-            <div class="image"><img src="images/apples-805124.jpg" alt="Product" width="100%"></div>
+            <div class="image"><img src="static 'images/computer.jpg' " alt="Product" width="100%"></div>
+            <div class="image"><img src="{% static 'images/computer.jpg' %}" alt="Product" width="100%"></div>
+            <div class="image"><img src="{% static 'images/computer.jpg' %}" alt="Product" width="100%"></div>
+            <div class="image"><img src="{% static 'images/computer.jpg' %}" alt="Product" width="100%"></div>
             <!-- <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>
             <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>
             <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>

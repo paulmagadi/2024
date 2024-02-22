@@ -7,6 +7,7 @@
     
 
 {% block content %}
+    {% include 'store/include/hero.html' %}
     {% include 'store/card.html' %}
     <a href="{% url 'checkout' %}">checkout</a>
     <a href="{% url 'cart' %}">cart</a>
