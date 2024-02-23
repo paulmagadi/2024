@@ -11,29 +11,21 @@
     
     <div class="product-image-card">
         <div class="continue-shopping">
-            <a href="index.html"><button>&larr; Back to Home</button></a>
+            <a href="{% url 'home' %}"><button>&larr; Back to Home</button></a>
         </div>
 
         <div class="product-profile-image">
-            <img src="{% static 'images/computer.jpg' %}" alt="Product" width="100%">
+            <img src="{{product.imageURL}}" alt="Product" width="100%">
         </div>
         <div class="product-images">
-            <div class="image"><img src="static 'images/computer.jpg' " alt="Product" width="100%"></div>
-            <div class="image"><img src="{% static 'images/computer.jpg' %}" alt="Product" width="100%"></div>
-            <div class="image"><img src="{% static 'images/computer.jpg' %}" alt="Product" width="100%"></div>
-            <div class="image"><img src="{% static 'images/computer.jpg' %}" alt="Product" width="100%"></div>
-            <!-- <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>
-            <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>
-            <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div>
-            <div class="image"><img src="{{ product.image.url }}" alt="Product" width="100%"></div> -->
+            <div class="image"><img src="{{ product.imageURL }}" alt="Product" width="100%"></div>
+            <div class="image"><img src="{{ product.imageURL }}" alt="Product" width="100%"></div>
+            <div class="image"><img src="{{ product.imageURL }}" alt="Product" width="100%"></div>
+            <div class="image"><img src="{{ product.imageURL }}" alt="Product" width="100%"></div> 
         </div>
     </div>
     <div class="product-page-information">
-        <h3>Product 1</h3>
-        <h4>Price: <del>$ 50.00</del> &nbsp; $ 40.00</h4>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio sit at reiciendis sed quisquam excepturi ex inventore adipisci quasi laboriosam. Laudantium accusamus, vitae, quisquam temporibus sed autem itaque voluptatem ipsa quasi consectetur eaque tempora harum maiores vel reprehenderit odit nobis in laborum at dolores! Rem blanditiis dolore alias velit perspiciatis!</p>
-        
-        <!-- {% if product.is_sale %}
+        {% if product.is_sale %}
         <h3>{{ product.name }}</h3> 
         <h4>Price: <del>${{ product.price }}</del>&nbsp; ${{ product.sale_price }}</h4>
         <p>{{ product.description }}</p>
@@ -41,7 +33,7 @@
         <h3>{{ product.name }}</h3> 
         <h4>Price: ${{ product.price }}</h4>
         <p>{{ product.description }}</p>
-        {% endif %} -->
+        {% endif %}
 
         <div class="sizes">
             <p>Size:</p>
@@ -55,13 +47,11 @@
 
         <div class="info">
             <p style="color: red;">
-
-                We have 5 items left
-                <!-- {% if stock_quantity >= 5 %}
+                {% if stock_quantity >= 5 %}
                     We have {{ stock_quantity }} items available
                 {% else %}
                     Only {{ stock_quantity }} item{% if stock_quantity != 1 %}s{% endif %} left
-                {% endif %} -->
+                {% endif %}
             </p>
             
         </div>
@@ -73,8 +63,7 @@
                     <option value="{{ quantity }}">{{ quantity }}</option>
                 {% endfor %}
             </select> -->
-            <button type="button" id="add-cart">Add to Cart</button>
-            <!-- <button type="button" value="{{ product.id }}" id="add-cart">Add to Cart</button> -->
+            <button type="button" value="{{ product.id }}" id="add-cart">Add to Cart</button>
         </div>
     </div>
 </div>

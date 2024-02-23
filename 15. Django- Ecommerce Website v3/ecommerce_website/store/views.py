@@ -17,9 +17,11 @@ def home(request):
 
 
 def product(request, pk):
-    product = Product.objects.filter(id=pk)
+    product = Product.objects.get(id=pk)
+    stock_quantity = product.stock_quantity
     context = {
-        'product': product
+        'product': product,
+        'stock_quantity': stock_quantity
     }
     return render(request, 'store/product.html', context)
 
