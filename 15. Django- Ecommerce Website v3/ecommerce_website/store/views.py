@@ -4,8 +4,14 @@ from .models import Product
 
 def home(request):
     products = Product.objects.all()
+    sale_products = products.filter(is_sale=True)
+    new_products = products.filter(is_new=True)
+    featured_products = products.filter(is_featured=True)
     context = {
-        'products': products
+        'products': products,
+        'sale_products': sale_products,
+        'new_products': new_products,
+        'featured_products': featured_products,
     }
     return render(request, 'store/home.html', context)
 

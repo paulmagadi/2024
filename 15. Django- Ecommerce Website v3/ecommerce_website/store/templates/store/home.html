@@ -21,19 +21,25 @@
     <section>
         <h3 class="section-title">New Products</h3>
         <div class= "product-container">
-            {% include 'store/card.html' %}
+            {% for product in new_products %}
+            {% include 'store/include/product_card.html' %}
+            {% endfor %}
         </div>
     </section>
     <section>
         <h3 class="section-title">Products on Sale</h3>
         <div class= "product-container">
-            {% include 'store/card.html' %}
+            {% for product in sale_products %}
+            {% include 'store/include/product_card.html' %}
+            {% endfor %}
         </div>
     </section>
     <section>
         <h3 class="section-title">Featured Products</h3>
         <div class= "product-container">
-            {% include 'store/card.html' %}
+            {% for product in featured_products %}
+            {% include 'store/include/product_card.html' %}
+            {% endfor %}
         </div>
     </section>
 {% endblock content %}
