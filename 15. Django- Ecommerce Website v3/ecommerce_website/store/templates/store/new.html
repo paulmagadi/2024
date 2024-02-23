@@ -2,10 +2,18 @@
 
 
 {% block title %}
-    new
+    New
 {% endblock title %}
     
 
 {% block content %}
-    <h1>new</h1>
+{% include 'store/include/hero.html' %}
+<section>
+    <h3 class="section-title">New Products</h3>
+    <div class= "product-container">
+        {% for product in products %}
+        {% include 'store/include/product_card.html' %}
+        {% endfor %}
+    </div>
+</section>
 {% endblock content %}

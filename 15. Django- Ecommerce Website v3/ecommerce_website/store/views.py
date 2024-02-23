@@ -31,15 +31,19 @@ def category(request):
 
 
 def sale(request):
-    return render(request, 'store/sale.html')
+    products = Product.objects.filter(is_sale=True)
+    return render(request, 'store/sale.html', {'products': products})
 
 
 def new(request):
-    return render(request, 'store/new.html')
+    products = Product.objects.filter(is_new=True)
+    return render(request, 'store/new.html', {'products': products})
+    
 
 
 def featured(request):
-    return render(request, 'store/featured.html')
+    products = Product.objects.filter(is_featured=True)
+    return render(request, 'store/featured.html', {'products': products})
 
 
 def offers(request):

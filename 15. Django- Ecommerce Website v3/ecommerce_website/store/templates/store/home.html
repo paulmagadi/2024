@@ -9,7 +9,7 @@
 {% block content %}
     {% include 'store/include/hero.html' %}
     <section>
-        <h3 class="section-title">Products</h3>
+        <h3 class="section-title"><a href="{% url 'home' %}">Products</h3></a>
         <div class= "product-container">
             
             {% for product in products %}
@@ -19,7 +19,7 @@
     </section>
 
     <section>
-        <h3 class="section-title">New Products</h3>
+        <h3 class="section-title"><a href="{% url 'new' %}">New Products</h3></a>
         <div class= "product-container">
             {% for product in new_products %}
             {% include 'store/include/product_card.html' %}
@@ -27,7 +27,7 @@
         </div>
     </section>
     <section>
-        <h3 class="section-title">Products on Sale</h3>
+        <h3 class="section-title"><a href="{% url 'sale' %}">Products on Sale</h3></a>
         <div class= "product-container">
             {% for product in sale_products %}
             {% include 'store/include/product_card.html' %}
@@ -35,7 +35,7 @@
         </div>
     </section>
     <section>
-        <h3 class="section-title">Featured Products</h3>
+        <h3 class="section-title"><a href="{% url 'featured' %}">Featured Products</h3></a>
         <div class= "product-container">
             {% for product in featured_products %}
             {% include 'store/include/product_card.html' %}
