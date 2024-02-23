@@ -11,11 +11,10 @@
     <section>
         <h3 class="section-title">Products</h3>
         <div class= "product-container">
-            {% include 'store/card.html' %}
-            {% include 'store/card.html' %}
-            {% include 'store/card.html' %}
-            {% include 'store/card.html' %}
-            {% include 'store/card.html' %}
+            
+            {% for product in products %}
+            {% include 'store/include/product_card.html' %}
+            {% endfor %}
         </div>
     </section>
 
