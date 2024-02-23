@@ -1,7 +1,7 @@
 
 <div class="product-card">
     <div class="product-image">
-        <a href="{% url 'product' product.id %}"><img src="{{ product.image.url }}" alt="product" width="100%"></a>
+        <a href="{% url 'product' product.id %}"><img src="{{ product.imageURL }}" alt="product" width="100%"></a>
     </div>
     <div class="card-text">
         <h4>{{ product.name }}</h4>

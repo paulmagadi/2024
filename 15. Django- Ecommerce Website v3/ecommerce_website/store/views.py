@@ -10,8 +10,12 @@ def home(request):
     return render(request, 'store/home.html', context)
 
 
-def product(request):
-    return render(request, 'store/product.html')
+def product(request, pk):
+    product = Product.objects.filter(id=pk)
+    context = {
+        'product': product
+    }
+    return render(request, 'store/product.html', context)
 
 
 def category(request):
