@@ -27,6 +27,7 @@
     {% include 'store/include/footer.html' %}
     </div>
 
+    
 
     <script>
         $(document).on('click', '.add-to-cart', function(e){
@@ -39,9 +40,13 @@
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                     action: 'post'
                 },
+
                 success: function(json){
-                    document.getElementsByClassName('cart-quantity').textContent = json.qty
-                },
+                $('.cart-quantity').text(json.qty);
+            },
+                // success: function(json){
+                //     document.getElementsByClassName('cart-quantity').textContent = json.qty
+                // },
             })
 
         })
