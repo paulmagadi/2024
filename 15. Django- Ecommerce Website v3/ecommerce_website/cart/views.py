@@ -7,3 +7,12 @@ def cart(request):
 
 def checkout(request):
     return render(request, 'cart/checkout.html')
+
+def cart_add(request):
+    pass
+
+def cart_delete(request):
+    pass
+
+def cart_update(request):
+    pass
