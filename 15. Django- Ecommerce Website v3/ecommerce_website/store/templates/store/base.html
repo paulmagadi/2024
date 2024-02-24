@@ -29,28 +29,28 @@
 
     
 
-    <script>
-        $(document).on('click', '.add-to-cart', function(e){
-            e.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '{% url "cart_add" %}',
-                data: {
-                    product_id: $('.add-to-cart').val(),
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                    action: 'post'
-                },
+   <script>
+    $(document).on('click', '.add-to-cart', function(e){
+    e.preventDefault();
+    var productId = $(this).val(); // Get the value of the clicked button (which is the product ID)
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart_add" %}',
+        data: {
+            product_id: productId,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+        success: function(json){
+            $('.cart-quantity').text(json.qty);
+        },
+        error: function(xhr, errmsg, err){
+            // Handle error
+        }
+    });
+});
 
-                success: function(json){
-                $('.cart-quantity').text(json.qty);
-            },
-                // success: function(json){
-                //     document.getElementsByClassName('cart-quantity').textContent = json.qty
-                // },
-            })
-
-        })
-    </script>
+   </script>
         
 </body>
 </html>
