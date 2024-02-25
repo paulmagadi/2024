@@ -1,7 +1,7 @@
 /* login and registratin forms */
 .form-container {
     width: 50%;
-    margin: 0 auto;
+    margin: 0 50%;
     position: relative;
   }
   
@@ -56,23 +56,6 @@
     padding-top: 1em;
   }
   
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: #000;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .modal-content {
-   background-color: #f1f1f1;
-   position: relative; 
-  }
   
   .close {
     position: absolute;
@@ -113,5 +96,6 @@
   
     .form-container {
         width: 100%;
+        margin: 0;
     }
   }
