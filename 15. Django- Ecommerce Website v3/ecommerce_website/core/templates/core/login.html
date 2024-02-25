@@ -11,6 +11,7 @@
 
     <div class="form-container">
     <form action="" method="post" class="login-form">
+        {% csrf_token %}
         <div class="img">
             <span id="close" class="close"><a href="{% url 'home' %}">&times;</a></span>
             <img src="{% static 'images/avatar.png' %}" alt="avatar" class="avatar" width="20%"> 
