@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+# from .forms import CreateUserForm
+from django.contrib import messages
 
 
 def register_user(request):
