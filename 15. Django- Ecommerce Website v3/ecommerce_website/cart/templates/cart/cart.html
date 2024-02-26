@@ -33,12 +33,17 @@
         </div>
         <hr>
         <div class="cart-element">
-            <div class="cart-item-image"><img src="images/apples-805124.jpg" alt="" width="20%"></div>
-            <div class="cart-item-name">Product 1</div>
+            
+            {% for item in cart_items %}
+            <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="20%"></div>
+            <div class="cart-item-name">{{item.name}}</div>
             <div class="cart-item-quantity">3 
                 <p><span>&#9652</span><span>&#9662</span></p>
             </div>
-            <div class="cart-item-total">$ 30</div>
+            <div class="cart-item-total">$ {{item.price}}</div>
+            {% endfor %}
+                
+            
         </div>
 
         
