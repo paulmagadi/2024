@@ -4,7 +4,11 @@
             <div class="navbar-mobile">
                 <a href="{% url 'home' %}" class="logo">SqCodes</a>
                 <li class="dropdown hide">
-                    <a href="#" class="dropdown account-link ">My Account&#9662</a>
+                    {% if user.is_authenticated %}
+                        <a href="#" class="account-link">{{ user.first_name }} {{ user.last_name }}&#9662</a>
+                        {% else %}
+                        <a href="#" class="account-link">My Account&#9662</a>
+                        {% endif %}
                     <div class="dropdown-content">
                         
                         {% if user.is_authenticated %}
@@ -25,7 +29,11 @@
                     <li><a href="#">Products&#9662;</a></li>
                     <li><a href="#">Category&#9662;</a></li>
                     <li class="dropdown hide-on-mobile">
+                        {% if user.is_authenticated %}
+                        <a href="#" class="account-link">{{ user.first_name }} {{ user.last_name }}&#9662</a>
+                        {% else %}
                         <a href="#" class="account-link">My Account&#9662</a>
+                        {% endif %}
                         <div class="dropdown-content">
                             {% if user.is_authenticated %}
                             <a href="{% url 'logout' %}" class="login-button" id="login-button">Logout</a>
