@@ -38,7 +38,9 @@
             {% for item in cart_items %}
             <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="20%"></div>
             <div class="cart-item-name">{{item.name}}</div>
-            <div class="cart-item-quantity">3 
+            <div class="cart-item-quantity">
+                
+               {{ quantity }}
                 <p><span>&#9652</span><span>&#9662</span></p>
             </div>
             <div class="cart-item-total">$ {{item.price}}</div>

@@ -13,16 +13,14 @@ class Cart():
         
         
     # Add product to session
-    def add(self, product, quantity):
+    def add(self, product):
         product_id = str(product.id)
-        product_qty = str(quantity)
         
         # If the product with the product id is in the session, pass else add it to the session
         if product_id in self.cart:
             pass
         else:
-            # self.cart[product_id] = {'price': str(product.price)}
-            self.cart[product_id] = int(product_qty)
+            self.cart[product_id] = {'price': str(product.price)}
         self.session.modified = True
         
         
@@ -35,7 +33,3 @@ class Cart():
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
         return products
-    
-    def get_quants(self):
-        cart_quantities = self.cart
-        return cart_quantities
