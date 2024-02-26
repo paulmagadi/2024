@@ -24,7 +24,7 @@
     </table>
 
     <div class="cart-elements-container">
-
+        {% if items %}
         <div class="cart-element-header">
             <div class="cart-item-image"></div>
             <div class="cart-item-name"><strong>Item</strong></div>
@@ -32,8 +32,9 @@
             <div class="cart-item-total"><strong>Total</strong></div>
         </div>
         <hr>
+
+        
         <div class="cart-element">
-            
             {% for item in cart_items %}
             <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="20%"></div>
             <div class="cart-item-name">{{item.name}}</div>
@@ -42,13 +43,14 @@
             </div>
             <div class="cart-item-total">$ {{item.price}}</div>
             {% endfor %}
-                
-            
         </div>
-
-        
-
-        
+        {% else %}
+        <div class="cart-element">
+            <br><br><br><br><br><br><br><br><br>
+            <h1>Nothing in your cart... <a href="{% url 'home' %}">Continue Shopping</a></h1>
+        </div>
+        {% endif %}
+   
     </div>
 </div>
 {% endblock content %}
