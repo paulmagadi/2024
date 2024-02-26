@@ -14,6 +14,7 @@
             <a href="{% url 'home' %}"><button>&larr; Continue Shopping</button></a>
         </div>
         <hr>
+        {% if cart_items %}
         <thead>
             <tr>
                 <th>Items: <strong>5</strong></th>
@@ -24,7 +25,6 @@
     </table>
 
     <div class="cart-elements-container">
-        {% if items %}
         <div class="cart-element-header">
             <div class="cart-item-image"></div>
             <div class="cart-item-name"><strong>Item</strong></div>
