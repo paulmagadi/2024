@@ -40,8 +40,18 @@
             <div class="cart-item-name">{{item.name}}</div>
             <div class="cart-item-quantity">
                 
-               {{ quantity }}
-                <p><span>&#9652</span><span>&#9662</span></p>
+              
+               
+               {% for key, value in cart_quantities.items %}
+                    
+                    {% if key == product.id|slugify %}
+                        {{ value }}
+                    {% endif %}
+                        
+               {% endfor %}
+                
+
+                <!-- <p><span>&#9652</span><span>&#9662</span></p> -->
             </div>
             <div class="cart-item-total">$ {{item.price}}</div>
             {% endfor %}

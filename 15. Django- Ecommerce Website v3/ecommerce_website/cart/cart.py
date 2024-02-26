@@ -35,3 +35,8 @@ class Cart():
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
         return products
+    
+    def get_quants(self):
+        cart_quantities = self.cart
+        return cart_quantities
+    
