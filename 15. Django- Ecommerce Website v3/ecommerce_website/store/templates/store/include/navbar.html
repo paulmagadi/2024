@@ -4,7 +4,7 @@
             <div class="navbar-mobile">
                 <a href="{% url 'home' %}" class="logo">SqCodes</a>
                 <li class="dropdown hide">
-                    {% if user.is_authenticated %}
+                        {% if user.is_authenticated %}
                         <a href="#" class="account-link">{{ user.first_name }} {{ user.last_name }}&#9662</a>
                         {% else %}
                         <a href="#" class="account-link">My Account&#9662</a>
