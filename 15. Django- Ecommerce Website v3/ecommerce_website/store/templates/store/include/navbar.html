@@ -4,7 +4,7 @@
             <div class="navbar-mobile">
                 <a href="{% url 'home' %}" class="logo">SqCodes</a>
                 {% if user.is_authenticated and user.is_staff %}
-                <a href="#">Dashboard</a>
+                <a href="{% url 'admin_dashboard' %}">Dashboard</a>
                 {% endif %}
                 <li class="dropdown hide">
                         {% if user.is_authenticated %}
