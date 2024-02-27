@@ -17,13 +17,7 @@
         {% if cart_items %}
         <thead>
             <tr>
-                <th>Items: <strong>
-                    {% for key, value in cart_quantities.items %}
-                        {% with x as {{value}} %}
-                            x++
-                        {% endwith %}
-                    {% endfor %}
-                </strong></th>
+                <th>Items: <strong>{{ total_quantity }}</strong></th>
                 <th>Total: <strong>$ 500</strong></th>
                 <th class="checkout"><a href="{% url 'checkout' %}"><button type="button">Checkout</button></a></th>
             </tr>
@@ -37,6 +31,7 @@
             <div class="cart-item-image"></div>
             <div class="cart-item-name"><strong>Item</strong></div>
             <div class="cart-item-quantity"><strong>Quantity</strong></div>
+            <div class="cart-item-price"><strong>Price</strong></div>
             <div class="cart-item-total"><strong>Total</strong></div>
         </div>
         <hr>
@@ -59,6 +54,7 @@
                 
                 <!-- <p><span>&#9652</span><span>&#9662</span></p> -->
             </div>
+            <div class="cart-item-price">$ {{item.price}}</div>
             <div class="cart-item-total">$ {{item.price}}</div>
             {% endfor %}
             {% else %}

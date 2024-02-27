@@ -5,14 +5,21 @@ from django.http import JsonResponse
 
 # Create your views here.
 def cart(request):
-    cart = Cart(request)
-    cart_items = cart.get_prods
-    cart_quantities = cart.get_quants
+    cart_instance = Cart(request)  # Instantiate the Cart class
+    cart_items = cart_instance.get_prods() 
+    cart_quantities = cart_instance.get_quants()
+    
+    
+    
+    total_quantity = sum(cart_quantities.values())
+
     context = {
         'cart_items': cart_items,
         'cart_quantities': cart_quantities,
+        'total_quantity': total_quantity,
     }
     return render(request, 'cart/cart.html', context)
+
 
 
 def checkout(request):
