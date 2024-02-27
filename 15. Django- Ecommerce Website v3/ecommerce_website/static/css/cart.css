@@ -55,11 +55,11 @@ table .checkout {
 
 
 .cart-item-image, .cart-item-name{
-    flex: 30%;
+    flex: 25%;
 }
 
-.cart-item-quantity, .cart-item-total{
-    flex: 20%;
+.cart-item-quantity, .cart-item-price, .cart-item-total{
+    flex: 15%;
 }
 
 .cart-item-quantity p {

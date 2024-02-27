@@ -8,9 +8,6 @@ def cart(request):
     cart_instance = Cart(request)  # Instantiate the Cart class
     cart_items = cart_instance.get_prods() 
     cart_quantities = cart_instance.get_quants()
-    
-    
-    
     total_quantity = sum(cart_quantities.values())
 
     context = {
