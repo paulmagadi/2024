@@ -9,12 +9,12 @@
     padding: 1em;
   }
   
-  form {
-    border: 2px solid rgba(189, 255, 255, 0.9);
-    background-color: rgba(189, 255, 255, 0.9);
+  .form-container form {
+    border: 2px solid aliceblue;
+    background-color: aliceblue;
   }
   
-  input[type=text], input[type=password], input[type=email] {
+  .form-container input[type=text], input[type=password], input[type=email] {
     width: 100%;
     padding: .5em .6em;
     margin: .5em 0;
@@ -23,7 +23,7 @@
     box-sizing: border-box;
   }
   
-  form button {
+  .form-container form button {
     background-color: orange;
     padding: .5em 1em;
     border: none;
@@ -32,32 +32,32 @@
     width: 100%;
   }
   
-  form button:hover {
+  .form-container form button:hover {
     opacity: 0.8;
   }
   
-  .cancelbtn {
+  .form-container .cancelbtn {
     width: auto;
     padding: .5em 1em;
     background-color: #f44339;
   }
   
-  .img {
+  .form-container .img {
     text-align: center;
     margin-top: 1.5em;
   }
   
-  img.avatar {
+  .form-container img.avatar {
     border-radius: 50%;
   }
   
-  span.password {
+  .form-container span.password {
     float: right;
     padding-top: 1em;
   }
   
   
-  .close {
+  .form-container .close {
     position: absolute;
     right: 1em;
     color: #000;
@@ -65,8 +65,8 @@
     font-weight: bold;
   }
   
-  .close:hover,
-  .close:focus {
+  .form-container .close:hover,
+  .form-container .close:focus {
     color: #f44339;
     cursor: pointer;
   }
@@ -85,16 +85,16 @@
   
   
   @media  screen and (max-width: 700px) {
-    span.password {
+    .form-container span.password {
         display: block;
         float: none;
     }
   
-    .cancelbtn {
+    .form-container .cancelbtn {
         width: 100%;
     }
   
-    .form-container {
+    .form-container .form-container {
         width: 100%;
         margin: 0;
     }

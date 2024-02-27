@@ -18,8 +18,10 @@ def cart(request):
 def checkout(request):
     cart = Cart(request)
     cart_items = cart.get_prods
+    cart_quantities = cart.get_quants
     context = {
         'cart_items': cart_items,
+        'cart_quantities': cart_quantities,
     }
     return render(request, 'cart/checkout.html', context)
 

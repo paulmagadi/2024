@@ -17,14 +17,22 @@
         {% if cart_items %}
         <thead>
             <tr>
-                <th>Items: <strong>5</strong></th>
+                <th>Items: <strong>
+                    {% for key, value in cart_quantities.items %}
+                        {% with x as {{value}} %}
+                            x++
+                        {% endwith %}
+                    {% endfor %}
+                </strong></th>
                 <th>Total: <strong>$ 500</strong></th>
                 <th class="checkout"><a href="{% url 'checkout' %}"><button type="button">Checkout</button></a></th>
             </tr>
         </thead>
+        {% endif %}
     </table>
 
     <div class="cart-elements-container">
+        {% if cart_items %}
         <div class="cart-element-header">
             <div class="cart-item-image"></div>
             <div class="cart-item-name"><strong>Item</strong></div>
@@ -33,35 +41,32 @@
         </div>
         <hr>
 
-        
+        {% endif %}
         <div class="cart-element">
+            {% if cart_items %}
             {% for item in cart_items %}
             <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="20%"></div>
             <div class="cart-item-name">{{item.name}}</div>
-            <div class="cart-item-quantity">
-                
-              
+            <div class="cart-item-quantity">  
                
                {% for key, value in cart_quantities.items %}
                     
-                    {% if key == product.id|slugify %}
+                    {% if key == item.id|slugify %}
                         {{ value }}
                     {% endif %}
                         
                {% endfor %}
                 
-
                 <!-- <p><span>&#9652</span><span>&#9662</span></p> -->
             </div>
             <div class="cart-item-total">$ {{item.price}}</div>
             {% endfor %}
-        </div>
-        {% else %}
-        <div class="cart-element">
-            <br><br><br><br><br><br><br><br><br>
+            {% else %}
+            <br><br><br><br><br><br>
             <h1>Nothing in your cart... <a href="{% url 'home' %}">Continue Shopping</a></h1>
+            {% endif %}
         </div>
-        {% endif %}
+        
    
     </div>
 </div>

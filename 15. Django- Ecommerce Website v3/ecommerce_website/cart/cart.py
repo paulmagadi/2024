@@ -26,6 +26,9 @@ class Cart():
         self.session.modified = True
         
         
+        
+        
+        
     # Define the cart length(for updating cart count)
     def __len__(self):
         return len(self.cart)
@@ -40,3 +43,6 @@ class Cart():
         cart_quantities = self.cart
         return cart_quantities
     
+    
+    
+        

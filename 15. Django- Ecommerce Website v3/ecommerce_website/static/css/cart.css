@@ -1,14 +1,28 @@
 .cart-container {
-    width: 80%;
-    margin: 0 auto;
+    width: 60%;
+    margin: 0 40%;
     background-color: aliceblue;
 }
+
+
+.cart-container .continue-shopping {
+    padding-bottom: .5em;
+}
+
+.cart-container .continue-shopping button {
+    padding-bottom: .8em 1em;
+}
+
+.cart-container .checkout button {
+    padding: .5em 1em;
+}
+
 
 table {
     width: 100%;
     text-align: left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
-    padding: 1em 2em;
+    padding: .5em 2em;
     margin-bottom: 2em;
 }
 
@@ -56,9 +70,7 @@ table .checkout {
     display: block;
 }
 
-.cart-container button {
-    padding: .5em 1em;
-}
+
 
 
 @media (max-width: 600px) {
