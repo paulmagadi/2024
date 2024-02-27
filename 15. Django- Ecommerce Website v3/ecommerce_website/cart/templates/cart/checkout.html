@@ -25,22 +25,15 @@
                 <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="20%"></div>
                 <div class="cart-item-name">{{ item.name }}</div>
                 <div class="cart-item-quantity">
-                    <p>x
-                        {% for key, value in cart_quantities.items %}
-                    
-                        {% if key == item.id|slugify %}
-                            {{ value }}
-                        {% endif %}
-                            
-                        {% endfor %}</p>
+                    <p>x {{ item.quantity }}</p>
                 </div>
-                <div class="cart-item-total">$ 30 </div>
+                <div class="cart-item-total">$ {{item.total_price}}</div>
                 {% endfor %}
                 
             </div>
             
-            <p>Items: 1</p>
-            <p>Amount: $30</p>
+            <p>Items: {{ total_quantity }}</p>
+            <p>Amount: ${{ order_total }}</p>
             
         </div>
     </div>
