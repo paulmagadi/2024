@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .cart import Cart
 from store.models import Product
 from django.http import JsonResponse
+
+
 
 # Create your views here.
 def cart(request):
@@ -20,7 +23,7 @@ def cart(request):
     return render(request, 'cart/cart.html', context)
 
 
-
+@login_required
 def checkout(request):
     cart_instance = Cart(request)  
     cart_items = cart_instance.get_prods() 
