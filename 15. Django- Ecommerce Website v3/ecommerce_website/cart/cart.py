@@ -39,9 +39,19 @@ class Cart():
         products = Product.objects.filter(id__in=product_ids)
         return products
     
+    # def get_quants(self):
+    #     cart_quantities = self.cart
+    #     return cart_quantities
+    
     def get_quants(self):
-        cart_quantities = self.cart
-        return cart_quantities
+        return self.cart
+    
+    def total_price(self):
+        total = 0
+        for product_id, quantity in self.cart.items():
+            product = Product.objects.get(id=product_id)
+            total += product.price * quantity
+        return total
     
     
     
