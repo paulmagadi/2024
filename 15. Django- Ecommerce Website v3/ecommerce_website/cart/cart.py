@@ -34,10 +34,22 @@ class Cart():
         return len(self.cart)
     
     # Lookup items in the cart
+    # def get_prods(self):
+    #     product_ids = self.cart.keys()
+    #     products = Product.objects.filter(id__in=product_ids)
+    #     return products
+    
     def get_prods(self):
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
+        
+        # Add total price for each product based on quantity
+        for product in products:
+            product.quantity = self.cart[str(product.id)]  # Add quantity to product object
+            product.total_price = product.price * product.quantity  # Calculate total price for the product
+        
         return products
+
     
     # def get_quants(self):
     #     cart_quantities = self.cart
