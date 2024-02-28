@@ -23,18 +23,19 @@ def register_user(request):
 
 def login_user(request):
     if request.method == "POST":
-        username = request.POST["username"]
+        email = request.POST["email"]  # Assuming the email field is named "email" in your login form
         password = request.POST["password"]
-        user = authenticate(username=username, password=password)
+        user = authenticate(username=email, password=password)  # Use email as the username
         if user is not None:
             login(request, user)
-            messages.success(request, ('Login sucess!'))
+            messages.success(request, ('Login successful!'))
             return redirect('home')
         else:
-            messages.success(request, ('Error Logging in. Try again!!!'))
+            messages.error(request, ('Error logging in. Please try again.'))
             return redirect('login')
     else:
         return render(request, 'core/login.html')
+
 
 # User Logout  
 def logout_user(request):
