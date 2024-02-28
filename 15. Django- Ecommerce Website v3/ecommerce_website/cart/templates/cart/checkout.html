@@ -22,11 +22,13 @@
             <div class="cart-element">
                 
                 {% for item in cart_items %}
-                <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="20%"></div>
+                <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="60%"></div>
                 <div class="cart-item-name">{{ item.name }}</div>
+                <div class="cart-item-price">x</div>
                 <div class="cart-item-quantity">
-                    <p>x {{ item.quantity }}</p>
+                    <p> {{ item.quantity }}</p>
                 </div>
+                
                 <div class="cart-item-total">$ {{item.total_price}}</div>
                 {% endfor %}
                 
@@ -56,7 +58,7 @@
                 <input type="text" placeholder="State">
                 <input type="text" placeholder="Phone Number">
                 
-                <input type="submit" value="Continue">
+                <input type="submit" value="Continue" style="cursor: pointer;">
             </form>
         </div>
 

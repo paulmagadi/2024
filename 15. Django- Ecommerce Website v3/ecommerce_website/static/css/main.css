@@ -23,6 +23,7 @@ width: 100%;
 
 a {
 text-decoration: none;
+cursor: pointer;
 }
 
 .container {
@@ -64,6 +65,7 @@ header .hero-header{
 button {
   background-color: var(--main-color);
   border: none;
+  cursor: pointer;
 }
 
 .section-title {

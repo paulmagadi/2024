@@ -5,12 +5,10 @@
 }
 
 
-.cart-container .continue-shopping {
-    padding-bottom: .5em;
-}
+
 
 .cart-container .continue-shopping button {
-    padding-bottom: .8em 1em;
+    padding: .8em 1em;
 }
 
 .cart-container .checkout button {
@@ -24,13 +22,13 @@ table {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
     padding: .5em 2em;
     margin-bottom: 2em;
+    background-color: black;
+    color: white;
 }
 
 table .checkout {
     text-align: right;
 }
-
-
 
 .cart-elements-container {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 6px 0 rgba(0, 0, 0, 0.2);
@@ -41,24 +39,32 @@ table .checkout {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: baseline;
+    text-align: center;
 }
 
 .cart-element-header {
     padding: .5em 0;
 }
 
-.cart-element{
+.cart-element {
+    padding-bottom: 1em;
+}
+
+.cart-element div {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: .3em;
 }
 
-
-
-.cart-item-image, .cart-item-name{
-    flex: 25%;
+.cart-item-image {
+    flex: 20%;
 }
 
-.cart-item-quantity, .cart-item-price, .cart-item-total{
+.cart-item-name {
+    flex: 30%;
+}
+
+.cart-item-quantity, .cart-item-price, .cart-item-total {
     flex: 15%;
 }
 
@@ -66,7 +72,7 @@ table .checkout {
     display: inline-block;
 }
 
-.cart-item-quantity p span{
+.cart-item-quantity p span {
     display: block;
 }
 

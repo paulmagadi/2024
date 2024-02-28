@@ -2,7 +2,7 @@
     <nav>
         <div class="navbar">
             <div class="navbar-mobile">
-                <a href="{% url 'home' %}" class="logo">SqCodes</a>
+                <a href="{% url 'home' %}" class="logo">Bells</a>
                 {% if user.is_authenticated and user.is_staff %}
                 <a href="{% url 'admin_dashboard' %}">Dashboard</a>
                 {% endif %}

@@ -40,7 +40,7 @@
         <div class="cart-element">
             {% if cart_items %}
             {% for item in cart_items %}
-            <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="20%"></div>
+            <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
             <div class="cart-item-name">{{item.name}}</div>
             <div class="cart-item-quantity">  
                 {{ item.quantity }}
