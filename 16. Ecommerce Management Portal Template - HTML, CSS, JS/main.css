@@ -23,7 +23,7 @@ a {
 text-decoration: none;
 }
 
-.container {
+.admin-dashboard .container {
 min-height: 100vh;
 width: 100%;
 margin: 3em 0;
@@ -68,11 +68,23 @@ position: relative;
 
 
 @media (max-width: 600px) {
-    .container {
+  .admin-dashboard .container {
         width: 100%;
         margin: 3em 0 .5em 0;
         
-    }
+  }
+
+  .admin-dashboard .side-bar {
+    display: none;
+  }
+
+  .admin-dashboard .container .content {
+    width: 100%;
+    margin-left: 0;
+    display: block;
+  }
+
+
 }
 
 
@@ -96,6 +108,7 @@ position: relative;
 .footer {
     text-align: center;
     background-color: white;
+    margin-left: 20%;
   }
   
   /* Fixed footer for mobile devices */
@@ -153,6 +166,14 @@ position: relative;
   }
   
   @media (max-width: 600px) {
+
+    .admin-dashboard .footer {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 4em;
+      border: 2px solid blue;
+    }
+
     .foot {
       display: block;
     }
