@@ -41,10 +41,18 @@ position: relative;
   top: 2.8em; 
   z-index: 100;
   float: left;
+  display: block;
 }
 
 .admin-dashboard .container .side-bar .menu-item {
   padding: 1em;
+  border-bottom: 1px solid rgb(254, 254, 254);
+  display: flex;
+  align-items: center;
+}
+
+.admin-dashboard .container .side-bar a {
+  margin-left: .5em;
 }
 
 
@@ -67,6 +75,7 @@ position: relative;
   flex: 20%;
   padding: 1em;
   background-color: rgb(195, 205, 201);
+  
 }
 
 
