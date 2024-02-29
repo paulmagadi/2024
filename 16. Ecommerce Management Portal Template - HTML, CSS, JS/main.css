@@ -29,7 +29,6 @@ width: 100%;
 margin: 3em 0;
 margin-bottom: 2em;
 padding: .5em;
-position: relative;
 }
 
 
@@ -41,7 +40,6 @@ position: relative;
   top: 2.8em; 
   z-index: 100;
   float: left;
-  display: block;
 }
 
 .admin-dashboard .container .side-bar .menu-item {
@@ -81,8 +79,8 @@ position: relative;
 
 @media (max-width: 600px) {
   .admin-dashboard .container {
-        width: 100%;
-        margin: 3em 0 .5em 0;
+    width: 100%;
+    margin: 3em 0 .5em 0;
         
   }
 
@@ -135,6 +133,7 @@ position: relative;
     right: 0;
     width: 100%;
     display: none;
+    z-index: 1000;
   }
   
   .foot .foot-menu {
