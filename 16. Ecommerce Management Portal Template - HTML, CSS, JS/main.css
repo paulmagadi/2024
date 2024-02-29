@@ -26,23 +26,30 @@ text-decoration: none;
 .container {
 min-height: 100vh;
 background-color: orange;
-width: 95%;
+width: 100%;
 margin: 3em auto;
 margin-bottom: 2em;
 padding: .5em;
+position: relative;
 }
 .content {
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 .admin-dashboard .container .content {
   display: flex;
   width: 100%;
+  
 }
 
-.admin-dashboard .container .content .side-bar{
+.admin-dashboard .container .content .side-bar {
+  min-height: 100vh;
   flex: 15%;
   border: 2px solid blue;
+  background-color: aquamarine;
+  position: sticky;
+  top: 6em; 
+  z-index: 100;
 }
 
 .admin-dashboard .container .content .main-content{

@@ -11,7 +11,9 @@
     left: 0;
     right: 0;
     width: 100%;
-  }
+    z-index: 1000; /* Ensure the navbar appears above other content */
+}
+  
   
   .navbar a {
     color: black;
