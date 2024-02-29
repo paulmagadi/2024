@@ -36,34 +36,37 @@ position: relative;
 .admin-dashboard .container .side-bar {
   min-height: 100vh;
   width: 20%;
-  border: 2px solid blue;
-  background-color: aquamarine;
+  background-color: rgb(195, 205, 201);
   position: fixed;
   top: 2.8em; 
   z-index: 100;
   float: left;
 }
 
+.admin-dashboard .container .side-bar .menu-item {
+  padding: 1em;
+}
+
+
 .admin-dashboard .container .content {
   display: flex;
   width: 80%;
   justify-content: space-between;
   min-height: 100vh;
-  border: 2px solid blue;
   margin-left: 20%;
 }
 
 
 
 .admin-dashboard .container .content .main-content{
-  border: 2px solid blue;
   flex: 60%;
+  padding: 1em;
 }
 
 .admin-dashboard .container .content .side-right{
-  
-  border: 2px solid blue;
   flex: 20%;
+  padding: 1em;
+  background-color: rgb(195, 205, 201);
 }
 
 
