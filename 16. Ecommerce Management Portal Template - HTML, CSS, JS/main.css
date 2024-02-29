@@ -26,8 +26,7 @@ text-decoration: none;
 .admin-dashboard .container {
 min-height: 100vh;
 width: 100%;
-margin: 3em 0;
-margin-bottom: 2em;
+margin-bottom: 0;
 padding: .5em;
 }
 
@@ -35,9 +34,11 @@ padding: .5em;
 .admin-dashboard .container .side-bar {
   min-height: 100vh;
   width: 20%;
+  margin-top: 2em;
   background-color: rgb(195, 205, 201);
-  position: fixed;
-  top: 2.8em; 
+  position: sticky;
+  position: -webkit-sticky;
+  top: 2em; 
   z-index: 100;
   float: left;
 }
@@ -57,8 +58,9 @@ padding: .5em;
 .admin-dashboard .container .content {
   display: flex;
   width: 80%;
+  margin-top: 3em;
   justify-content: space-between;
-  min-height: 100vh;
+  min-height: 1600px;
   margin-left: 20%;
 }
 
@@ -118,8 +120,8 @@ padding: .5em;
 /* Footer */
 .footer {
     text-align: center;
-    background-color: white;
-    margin-left: 20%;
+    background-color: rgb(62, 180, 133);
+    margin-left: 22%;
   }
   
   /* Fixed footer for mobile devices */
@@ -183,7 +185,6 @@ padding: .5em;
       width: 100%;
       margin-left: 0;
       margin-bottom: 4em;
-      border: 2px solid blue;
     }
 
     .foot {
