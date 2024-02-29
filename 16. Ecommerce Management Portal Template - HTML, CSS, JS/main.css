@@ -31,29 +31,28 @@ margin: 3em auto;
 margin-bottom: 2em;
 padding: .5em;
 }
-
-
-@media (max-width: 1000px) {
-    .card {
-        width: 32%;
-        margin: .5em auto 0 auto;
-    }
+.content {
+  min-height: 100vh;
 }
-@media (max-width: 780px) {
-    .card {
-        width: 49%;
-    }
-}
-@media (max-width: 700px) {
-    .body-container {
-        margin-left: 0;
-        padding: .5em;
-        margin-top: 0;
-    }
 
-    .header {
-        height: 200px;
-    }
+.admin-dashboard .container .content {
+  display: flex;
+  width: 100%;
+}
+
+.admin-dashboard .container .content .side-bar{
+  flex: 15%;
+  border: 2px solid blue;
+}
+
+.admin-dashboard .container .content .main-content{
+  flex: 55%;
+  border: 2px solid blue;
+}
+
+.admin-dashboard .container .content .side-right{
+  flex: 23%;
+  border: 2px solid blue;
 }
 
 
