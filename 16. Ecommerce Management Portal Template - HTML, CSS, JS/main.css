@@ -159,7 +159,7 @@ padding: 0 .5em;
 
 @media (max-width: 798px) {
   .admin-dashboard .container {
-    background-color: var(--main-color);
+    background-color: var(--white-color);
   }
 
   .admin-dashboard .container .content {
@@ -167,15 +167,29 @@ padding: 0 .5em;
     margin-left: 0;
     display: block;
     margin-left: 17%;
+    
   }
 
   .admin-dashboard .container .content .main-content {
     background-color: var(--black-color);
     color: var(--white-color);
+    background-color: var(--main-color);
+    color: var(--black-color);
   }
 
   .admin-dashboard .container .content .side-right {
-    background-color: var(--black-color);
+    background-color: var(--main-color);
+    color: var(--black-color);
+  }
+
+  .admin-dashboard .container .content .side-right .updates{
+    background-color: var(--white-color);
+    color: var(--black-color);
+  }
+
+  .admin-dashboard .container .content .side-right .orders {
+    background-color: var(--white-color);
+    color: var(--black-color);
   }
 }
 
