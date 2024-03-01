@@ -135,15 +135,14 @@ padding: 0 .5em;
 }
 
 
-
 .admin-dashboard .container .content .side-right .cancelled_orders {
   border: 1px solid white;
-  margin: 1em 0;
+  margin: .5em 0;
 }
 
 .admin-dashboard .container .content .side-right .cancelled_orders .cancelled_order {
   padding: .5em;
-
+}
 
 @media (max-width: 798px) {
   .admin-dashboard .container {
@@ -239,4 +238,3 @@ padding: 0 .5em;
     display: block;
   }
 }
-  
