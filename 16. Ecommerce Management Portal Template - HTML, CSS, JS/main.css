@@ -82,12 +82,16 @@ padding: 0 .5em;
 }
 
 .admin-dashboard .content .main-content .leading .lead {
-  height: 10rem;
   width: 32.5%;
   background-color: var(--white-color);
   border-radius: 5px;
   box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);
   padding: .5em;
+}
+
+.admin-dashboard .content .main-content .leading .lead svg {
+  height: 3em;
+  width: 3em;
 }
 
 .admin-dashboard .main-content .orders table {
@@ -142,6 +146,15 @@ padding: 0 .5em;
 
 .admin-dashboard .container .content .side-right .cancelled_orders .cancelled_order {
   padding: .5em;
+}
+
+.admin-dashboard .container .content .side-right .socials {
+  padding: .3em 0;
+  font-size: 1.2rem;
+}
+
+.admin-dashboard .container .content .side-right .socials span {
+  padding-right: .8em;
 }
 
 @media (max-width: 798px) {
