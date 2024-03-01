@@ -105,7 +105,7 @@ padding: 0 .5em;
   border-bottom: 1px none;
 }
 
-.admin-dashboard .main-content .orders tr:hover {
+.admin-dashboard .main-content .orders td:hover {
   background-color: var(--black-color);
   color: var(--white-color);
   cursor: pointer;
@@ -113,7 +113,7 @@ padding: 0 .5em;
 
 .admin-dashboard .main-content .orders table th,
 .admin-dashboard .main-content .orders table td  {
-  padding: .5em;
+  padding: 1em .5em;
   text-align: left;
 }
 
