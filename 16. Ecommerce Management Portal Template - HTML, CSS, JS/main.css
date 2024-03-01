@@ -163,9 +163,10 @@ padding: 0 .5em;
   }
 
   .admin-dashboard .container .content {
-    width: 100%;
+    width: 83%;
     margin-left: 0;
     display: block;
+    margin-left: 17%;
   }
 
   .admin-dashboard .container .content .main-content {
