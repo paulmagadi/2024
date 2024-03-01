@@ -182,7 +182,6 @@ padding: 0 .5em;
 @media (max-width: 600px) {
   .admin-dashboard .container {
     width: 100%;
-    margin: 3em 0 .5em 0;
     padding: 0;
         
   }
@@ -190,6 +189,29 @@ padding: 0 .5em;
   .admin-dashboard .side-bar {
     display: none;
   }
+
+  .admin-dashboard .container .content {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .admin-dashboard .container .content .main-content,
+  .admin-dashboard .container .content .side-right {
+    background-color: var(--main-color);
+    color: black;
+  }
+
+  .admin-dashboard .container .content .side-right .updates {
+    background-color: var(--black-color);
+    color: var(--white-color);
+  }
+
+  .admin-dashboard .container .content .side-right .cancelled_orders {
+    background-color: var(--black-color);
+    color: var(--white-color);
+  }
+  
 
 }
 
