@@ -1,7 +1,7 @@
 <nav>
     <div class="navbar">
         <div class="navbar-mobile">
-            <a href="index.html" class="logo">Bells</a>
+            <a href="{% url 'home' %}" class="logo">Bells</a>
             <li class=" hide">
                 <a href="#" class="dropdown account-link ">My Account</a>
 
@@ -12,7 +12,7 @@
         </div>
         <div class="navbar-links" id="navbar-links">
             <ul>
-                <li><a href="#">Store</a></li>
+                <li><a href="{% url 'home' %}">Store</a></li>
                 <li><a href="#">Orders</a></li>
                 <li><a href="#">Inventory</a></li>
                 <li><a href="#">Customers</a></li>
@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="cart">
-            <a href="#" class="login-button" id="login-button">Logout</a>
+            <a href="{% url 'logout' %}" class="login-button" id="login-button">Logout</a>
         </div>
     </div>
 </nav>
