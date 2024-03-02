@@ -29,6 +29,7 @@
                     <li><a href="#">Orders</a></li>
                     <li><a href="#">Inventory</a></li>
                     <li><a href="#">Customers</a></li>
+                    <li><a href="#">Sales</a></li>
                     <li class="dropdown hide-on-mobile">
                         <a href="#" class="account-link">My Account</a>
                     </li>
@@ -57,6 +58,8 @@
 
         <div class="menu-item"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M560-520h280v-200H560v200Zm140-50-100-70v-40l100 70 100-70v40l-100 70ZM80-120q-33 0-56.5-23.5T0-200v-560q0-33 23.5-56.5T80-840h800q33 0 56.5 23.5T960-760v560q0 33-23.5 56.5T880-120H80Zm556-80h244v-560H80v560h4q42-75 116-117.5T360-360q86 0 160 42.5T636-200ZM360-400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM182-200h356q-34-38-80.5-59T360-280q-51 0-97 21t-81 59Zm178-280q-17 0-28.5-11.5T320-520q0-17 11.5-28.5T360-560q17 0 28.5 11.5T400-520q0 17-11.5 28.5T360-480Zm120 0Z"/></svg> <a href="#"> Messages</a></div>
 
+        <div class="menu-item"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M160-720v-80h640v80H160Zm0 560v-240h-40v-80l40-200h640l40 200v80h-40v240h-80v-240H560v240H160Zm80-80h240v-160H240v160Zm-38-240h556-556Zm0 0h556l-24-120H226l-24 120Z"/></svg> <a href="#"> Sales </a></div>
+
         <div class="menu-item"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M160-720v-80h640v80H160Zm0 560v-240h-40v-80l40-200h640l40 200v80h-40v240h-80v-240H560v240H160Zm80-80h240v-160H240v160Zm-38-240h556-556Zm0 0h556l-24-120H226l-24 120Z"/></svg> <a href="#"> Store </a></div>
 
     </div>
@@ -65,19 +68,25 @@
         <div class="main-content">
             <div class="leading">
                 <div class="lead">
-                    <h1>Add Product</h1>
+                    <h5>Add Products</h5>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
                 </div>
                 <div class="lead">
-                    <h1>hello</h1>
+                    <h5>All Orders</h5>
                 </div>
                 <div class="lead">
-                    <h1>hello</h1>
+                    <h5>New Orders</h5>
+                </div>
+                <div class="lead">
+                    <h5>New Customers</h5>
+                </div>
+                <div class="lead">
+                    <h5>All Products</h5>
                 </div>
             </div>
             <section>
             <div class="orders">
-                <h1>Recent Orders</h1>
+                <h4>Recent Orders</h4>
                 <table>
                     <thead>
                         <tr>
@@ -94,35 +103,35 @@
                             <td>sk0001</td>
                             <td>John</td>
                             <td>1 Jan, 2023</td>
-                            <td>Aproved</td>
+                            <td>Pending</td>
+                            <td>View</td>
+                        </tr>
+                        <tr>
+                            <td>#sk0002</td>
+                            <td>John</td>
+                            <td>1 Jan, 2023</td>
+                            <td>Approved</td>
+                            <td>View</td>
+                        </tr>
+                        <tr>
+                            <td>SK0001</td>
+                            <td>John</td>
+                            <td>1 Jan, 2023</td>
+                            <td>Cancelled</td>
                             <td>View</td>
                         </tr>
                         <tr>
                             <td>sk0001</td>
                             <td>John</td>
                             <td>1 Jan, 2023</td>
-                            <td>Aproved</td>
+                            <td>Approved</td>
                             <td>View</td>
                         </tr>
                         <tr>
                             <td>sk0001</td>
                             <td>John</td>
                             <td>1 Jan, 2023</td>
-                            <td>Aproved</td>
-                            <td>View</td>
-                        </tr>
-                        <tr>
-                            <td>sk0001</td>
-                            <td>John</td>
-                            <td>1 Jan, 2023</td>
-                            <td>Aproved</td>
-                            <td>View</td>
-                        </tr>
-                        <tr>
-                            <td>sk0001</td>
-                            <td>John</td>
-                            <td>1 Jan, 2023</td>
-                            <td>Aproved</td>
+                            <td>Dispatched</td>
                             <td>View</td>
                         </tr>
                         <tr>
@@ -150,7 +159,7 @@
             <!-- <div class="callender">
                 <iframe src="https://calendar.google.com/calendar/embed?height=209&wkst=1&ctz=Africa%2FNairobi&bgcolor=%23F6BF26&showTitle=0&showPrint=0&showTabs=0&src=ODdlMjA0MDk4YjQxODgzMzJkOGViMjkyNjkwMzQzNWRlNDM0NDYwNDc3NDIzMjMyMThmYTI2YzNjOWU3MzAxYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4ua2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23A79B8E&color=%230B8043" style="border:solid 1px #777" width="320" height="209" frameborder="0" scrolling="no"></iframe>
             </div> -->
-            <h1>Recent Updates</h1>
+            <h4>Recent Updates</h4>
             <div class="updates">
                 <div class="update">
                     <p>Hello. Am Jane...</p>
@@ -168,7 +177,7 @@
                     <p>Hello. Am Jane...</p>
                 </div>
             </div>
-            <h1>Cancelled Order</h1>
+            <h4>Cancelled Order</h4>
             <div class="cancelled_orders">
                 <div class="cancelled_order">
                     <p>Hello. Am Jane...</p>
@@ -198,7 +207,12 @@
     </div>
 
     <div class="footer">
-        <h1>Footer</h1>
+        <span><i class="fa-brands fa-facebook"></i></span>
+        <span><i class="fa-brands fa-x-twitter"></i></span>
+        <span><i class="fa-brands fa-instagram"></i></span>
+        <span><i class="fa-brands fa-tiktok"></i></span>
+        <span><i class="fa-brands fa-whatsapp"></i></span>
+        <span><i class="fa-brands fa-youtube"></i></span>
     </div>
 
 </div>

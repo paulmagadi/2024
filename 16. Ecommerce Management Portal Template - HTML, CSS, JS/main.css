@@ -79,13 +79,14 @@ padding: 0 .5em;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 1em;
 }
 
 .admin-dashboard .content .main-content .leading .lead {
-  width: 32.5%;
+  width: 19.5%;
   background-color: var(--white-color);
-  border-radius: 5px;
-  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+  box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.4);
   padding: .5em;
 }
 
@@ -94,11 +95,16 @@ padding: 0 .5em;
   width: 3em;
 }
 
+.admin-dashboard .main-content .orders {
+  padding-bottom: 1em;
+}
+
 .admin-dashboard .main-content .orders table {
   background-color: var(--white-color);
   width: 100%;
   border-collapse: collapse;
   border-radius: 5px;
+  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);
 }
 
 .admin-dashboard .main-content .orders table tr {
@@ -126,11 +132,12 @@ padding: 0 .5em;
   flex: 17%;
   padding: 1em;
   background-color: rgb(0, 0, 0);
-  color: var(--white-color);
+  color: var(--main-color);
 }
 
 .admin-dashboard .container .content .side-right .updates {
-  border: 1px solid white;
+  background-color: var(--white-color);
+  color: var(--black-color);
   margin: .5em 0;
 }
 
@@ -140,7 +147,8 @@ padding: 0 .5em;
 
 
 .admin-dashboard .container .content .side-right .cancelled_orders {
-  border: 1px solid white;
+  background-color: var(--white-color);
+  color: var(--black-color);
   margin: .5em 0;
 }
 
@@ -191,6 +199,10 @@ padding: 0 .5em;
     background-color: var(--white-color);
     color: var(--black-color);
   }
+
+  .admin-dashboard .container .content .side-right .socials {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -199,6 +211,10 @@ padding: 0 .5em;
     padding: 0;
     margin-top: 3em;
         
+  }
+
+  .admin-dashboard .content .main-content .leading {
+    padding-top: .5em;
   }
 
   .admin-dashboard .side-bar {
@@ -215,6 +231,7 @@ padding: 0 .5em;
   .admin-dashboard .container .content .side-right {
     background-color: var(--main-color);
     color: black;
+    padding:0 .2em;
   }
 
   .admin-dashboard .container .content .side-right .updates {
@@ -284,7 +301,6 @@ padding: 0 .5em;
     margin-left: 0;
     margin-bottom: 4em;
     padding: .5em;
-    border: 2px solid red;
   }
 
   .admin-dashboard .foot {
