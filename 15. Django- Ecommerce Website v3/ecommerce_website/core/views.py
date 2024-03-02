@@ -5,6 +5,7 @@ from .forms import RegistrationForm
 from django.contrib.auth.models import User
 
 
+
 def register_user(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -29,7 +30,10 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, ('Login successful!'))
-            return redirect('home')
+            if 'cart' in request.session:
+                return redirect('checkout')  # Redirect to checkout if cart exists
+            else:
+                return redirect('home')  
         else:
             messages.error(request, ('Error logging in. Please try again.'))
             return redirect('login')
