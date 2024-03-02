@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'core',
     'store',
     'cart',
+    'admin_portal',
 ]
 
 MIDDLEWARE = [
