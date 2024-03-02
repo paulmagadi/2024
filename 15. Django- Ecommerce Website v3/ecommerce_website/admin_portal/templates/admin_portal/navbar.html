@@ -3,7 +3,7 @@
         <div class="navbar-mobile">
             <a href="{% url 'home' %}" class="logo">Bells</a>
             <li class=" hide">
-                <a href="#" class="dropdown account-link ">My Account</a>
+                <a href="#" class="dropdown account-link ">{{ user.first_name }}</a>
 
             </li>
             <a href="#" class="cart-mobile hide" id="login-button">Logout</a>
@@ -18,7 +18,7 @@
                 <li><a href="#">Customers</a></li>
                 <li><a href="#">Sales</a></li>
                 <li class="dropdown hide-on-mobile">
-                    <a href="#" class="account-link">My Account</a>
+                    <a href="#" class="account-link">{{ user.first_name }} {{ user.last_name }}</a>
                 </li>
             </ul>
         </div>
