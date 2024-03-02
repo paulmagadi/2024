@@ -30,12 +30,14 @@ def checkout(request):
     cart_quantities = cart_instance.get_quants()
     total_quantity = sum(cart_quantities.values())
     order_total = cart_instance.order_total()
+    products = Product.objects.all()
 
     context = {
         'cart_items': cart_items,
         'cart_quantities': cart_quantities,
         'total_quantity': total_quantity,
-        'order_total': order_total
+        'order_total': order_total,
+        'products': products,
     }
     return render(request, 'cart/checkout.html', context)
 

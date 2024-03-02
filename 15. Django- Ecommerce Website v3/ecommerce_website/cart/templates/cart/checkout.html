@@ -8,6 +8,7 @@
 
 
 {% block content %}
+{% if cart_items %}
 <div class="checkout-container">
     
     <div class="order-summary">
@@ -18,7 +19,7 @@
         <div class="cart-elements-container">
             
             <h1>Order Summary</h1>
-            <hr>
+            <hr> 
             <div class="cart-element">
                 
                 {% for item in cart_items %}
@@ -61,7 +62,20 @@
                 <input type="submit" value="Continue" style="cursor: pointer;">
             </form>
         </div>
-
+        
     </div>
 </div>
+
+{% else %}
+        <h1>You have no items in Your cart... <a href="{% url 'home' %}">Continue shopping</a></h1>
+        {% endif %}
+        <section>
+            <h3 class="section-title"><a href="{% url 'home' %}">Products</h3></a>
+            <div class= "product-container">
+                
+                {% for product in products %}
+                {% include 'store/include/product_card.html' %}
+                {% endfor %}
+            </div>
+        </section>
 {% endblock content %}
