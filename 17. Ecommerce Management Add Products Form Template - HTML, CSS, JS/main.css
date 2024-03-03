@@ -147,25 +147,6 @@ padding: 0 .5em;
     background-color: var(--main-color);
     color: var(--black-color);
   }
-
-  .admin-dashboard .container .content .side-right {
-    background-color: var(--main-color);
-    color: var(--black-color);
-  }
-
-  .admin-dashboard .container .content .side-right .updates{
-    background-color: var(--white-color);
-    color: var(--black-color);
-  }
-
-  .admin-dashboard .container .content .side-right .cancelled_orders {
-    background-color: var(--white-color);
-    color: var(--black-color);
-  }
-
-  .admin-dashboard .container .content .side-right .socials {
-    display: none;
-  }
 }
 
 @media (max-width: 600px) {
@@ -190,23 +171,11 @@ padding: 0 .5em;
     margin: 0;
   }
 
-  .admin-dashboard .container .content .main-content,
-  .admin-dashboard .container .content .side-right {
+  .admin-dashboard .container .content .main-content {
     background-color: var(--main-color);
     color: black;
     padding:0 .2em;
   }
-
-  .admin-dashboard .container .content .side-right .updates {
-    background-color: var(--black-color);
-    color: var(--white-color);
-  }
-
-  .admin-dashboard .container .content .side-right .cancelled_orders {
-    background-color: var(--black-color);
-    color: var(--white-color);
-  }
-  
 
 }
 
