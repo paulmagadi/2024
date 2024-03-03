@@ -128,43 +128,6 @@ padding: 0 .5em;
 }
 
 
-.admin-dashboard .container .content .side-right {
-  flex: 17%;
-  padding: 1em;
-  background-color: rgb(0, 0, 0);
-  color: var(--main-color);
-}
-
-.admin-dashboard .container .content .side-right .updates {
-  background-color: var(--white-color);
-  color: var(--black-color);
-  margin: .5em 0;
-}
-
-.admin-dashboard .container .content .side-right .updates .update {
-  padding: .5em;
-}
-
-
-.admin-dashboard .container .content .side-right .cancelled_orders {
-  background-color: var(--white-color);
-  color: var(--black-color);
-  margin: .5em 0;
-}
-
-.admin-dashboard .container .content .side-right .cancelled_orders .cancelled_order {
-  padding: .5em;
-}
-
-.admin-dashboard .container .content .side-right .socials {
-  padding: .3em 0;
-  font-size: 1.2rem;
-}
-
-.admin-dashboard .container .content .side-right .socials span {
-  padding-right: .8em;
-}
-
 @media (max-width: 798px) {
   .admin-dashboard .container {
     background-color: var(--white-color);
