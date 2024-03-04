@@ -52,7 +52,7 @@ def offers(request):
 
 def search(request):
     query = request.GET.get('query')
-    products = Product.objects.filter(Q(name__contains=query) | Q(description__contains=query))
+    products = Product.objects.filter(Q(name__contains=query) | Q(description__contains=query) | Q(category__name__icontains=query))
     context = {
         'query': query,
         'products': products,
