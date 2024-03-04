@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Product
+from django.db.models import Q
 
 def home(request):
     products = Product.objects.all()
@@ -47,3 +48,13 @@ def featured(request):
 
 def offers(request):
     return render(request, 'store/offers.html')
+
+
+def search(request):
+    query = request.GET.get('query)')
+    products = Product.objects.filter(Q(name__contains=query) | Q(description__contains=query))
+    context = {
+        'query': query,
+        'products': products,
+    }
+    return render(request, 'store/search.html', context)

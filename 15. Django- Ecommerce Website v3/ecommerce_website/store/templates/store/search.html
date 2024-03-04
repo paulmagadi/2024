@@ -1,0 +1,16 @@
+{% extends 'store/base.html' %}
+
+
+{% block title %}
+    search
+{% endblock title %}
+{% include 'store/include/hero.html' %}
+<section>
+    <h3 class="section-title"><a href="{% url 'home' %}">Products</h3></a>
+    <div class= "product-container">
+        
+        {% for product in products %}
+        {% include 'store/include/product_card.html' %}
+        {% endfor %}
+    </div>
+</section>
