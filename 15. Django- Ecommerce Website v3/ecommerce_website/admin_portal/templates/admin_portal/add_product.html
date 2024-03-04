@@ -52,9 +52,54 @@
 
         <section>
             <div class="product_form">
-                <form action="" method="POST">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name"><br>
                     
-                </form>
+                    <label for="price">Price:</label><br>
+                    <input type="text" id="price" name="price"><br>
+                    
+                    <label for="category">Category:</label><br>
+                    <select id="category" name="category">
+                      {% for category in categories %}
+                      <option value="{{ category.id }}">{{ category.name }}</option>
+                      {% endfor %}
+                    </select><br>
+                    
+                    <label for="description">Description:</label><br>
+                    <textarea id="description" name="description"></textarea><br>
+                    
+                    <label for="image">Image:</label><br>
+                    <input type="file" id="image" name="image"><br>
+                    
+                    <label for="is_sale">On Sale:</label>
+                    <input type="checkbox" id="is_sale" name="is_sale"><br>
+                    
+                    <label for="sale_price">Sale Price:</label><br>
+                    <input type="text" id="sale_price" name="sale_price"><br>
+                    
+                    <label for="in_stock">In Stock:</label>
+                    <input type="checkbox" id="in_stock" name="in_stock" checked><br>
+                    
+                    <label for="stock_quantity">Stock Quantity:</label><br>
+                    <input type="number" id="stock_quantity" name="stock_quantity" value="1"><br>
+                    
+                    <label for="discount">Discount:</label><br>
+                    <input type="text" id="discount" name="discount"><br>
+                    
+                    <label for="percentage_discount">Percentage Discount:</label><br>
+                    <input type="number" id="percentage_discount" name="percentage_discount"><br>
+                    
+                    <label for="is_new">New Product:</label>
+                    <input type="checkbox" id="is_new" name="is_new"><br>
+                    
+                    <label for="is_featured">Featured Product:</label>
+                    <input type="checkbox" id="is_featured" name="is_featured"><br>
+                    
+                    <input type="submit" value="Submit">
+                  </form>
+                  
             </div>
 
         </section>
