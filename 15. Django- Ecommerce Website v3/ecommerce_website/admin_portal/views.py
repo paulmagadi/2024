@@ -17,3 +17,7 @@ def admin_or_staff_required(view_func):
 @admin_or_staff_required
 def admin_portal(request):
     return render(request, 'admin_portal/admin_portal.html')
+
+@admin_or_staff_required
+def add_product(request):
+    return render(request, 'admin_portal/add_product.html')
