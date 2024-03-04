@@ -33,6 +33,9 @@ def admin_portal(request):
 
 def add_product(request):
     products = Product.objects.all()
+    products_count = products.count()
+    new_products_count = products.filter(is_new=True).count()
+    out_of_stck_count = products.filter(in_stock=False).count
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
         if form.is_valid():
@@ -41,6 +44,9 @@ def add_product(request):
     else:
         form = ProductModelForm()
     context = {
-        'form': form, 'products': products
+        'form': form, 'products': products,
+        'products_count': products_count,
+        'new_products_count': new_products_count,
+        'out_of_stck_count': out_of_stck_count,
     }
     return render(request, 'admin_portal/add_product.html', context)
