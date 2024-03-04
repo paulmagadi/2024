@@ -20,7 +20,11 @@ def admin_or_staff_required(view_func):
 # Usage example:
 @admin_or_staff_required
 def admin_portal(request):
-    return render(request, 'admin_portal/admin_portal.html')
+    products = Product.objects.all()
+    context = {
+        'products':products
+    }
+    return render(request, 'admin_portal/admin_portal.html', context)
 
 @admin_or_staff_required
 # def add_product(request):
@@ -29,6 +33,7 @@ def admin_portal(request):
 
 def add_product(request):
     products = Product.objects.all()
+    new_products = Product.objects.filter(is_new=True)
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
         if form.is_valid():
@@ -36,4 +41,7 @@ def add_product(request):
             return redirect('add_product')
     else:
         form = ProductModelForm()
-    return render(request, 'admin_portal/add_product.html', {'form': form, 'products': products})
+    context = {
+        'new_products ': new_products,'form': form, 'products': products
+    }
+    return render(request, 'admin_portal/add_product.html', context)
