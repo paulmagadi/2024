@@ -32,7 +32,7 @@ def add_product(request):
         form = ProductModelForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('admin_portal')
+            return redirect('add_product')
     else:
         form = ProductModelForm()
     return render(request, 'admin_portal/add_product.html', {'form': form})
