@@ -4,6 +4,9 @@
 {% block title %}
     search
 {% endblock title %}
+
+
+{% block content %}
 {% include 'store/include/hero.html' %}
 <section>
     <h3 class="section-title"><a href="{% url 'home' %}">Products</h3></a>
@@ -14,3 +17,5 @@
         {% endfor %}
     </div>
 </section>
+{% endblock content %}
+    
