@@ -28,6 +28,7 @@ def admin_portal(request):
 
 
 def add_product(request):
+    products = Product.objects.all()
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
         if form.is_valid():
@@ -35,4 +36,4 @@ def add_product(request):
             return redirect('add_product')
     else:
         form = ProductModelForm()
-    return render(request, 'admin_portal/add_product.html', {'form': form})
+    return render(request, 'admin_portal/add_product.html', {'form': form, 'products': products})
