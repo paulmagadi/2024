@@ -29,6 +29,12 @@ class Product(models.Model):
     
 
     def save(self, *args, **kwargs):
+        
+        if self.stock_quantity == 0:
+            self.in_stock = False
+        else:
+            self.in_stock = True
+            
         if self.is_sale and self.sale_price < self.price:
             self.discount = round(self.price - self.sale_price, 2)
             self.percentage_discount = round((self.discount / self.price) * 100)
