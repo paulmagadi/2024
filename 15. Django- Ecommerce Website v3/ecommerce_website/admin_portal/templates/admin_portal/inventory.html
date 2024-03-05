@@ -63,6 +63,7 @@
                             <th>Name</th>
                             <th>Price</th>
                             <th>view</th>
+                            <th>List</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -70,10 +71,13 @@
                         
                         {% for product in products %}
                         <tr>
-                            <td><img src="{{product.imageURL}}" alt="" width="30px"></td>
+                            <td><img src="{{product.imageURL}}" alt="" width="30%"></td>
                             <td>{{ product.name }}</td>
-                            <td>{{ Product.price}}</td>
+                            <td>{{ product.price }}</td>
                             <td><a href="{% url 'product' product.id %}">Edit</a></td>
+                            <td><form action="" method="post">
+                                <input type="checkbox">
+                            </form></td>
                             <td>Delete</td>
                         </tr>
                         {% endfor %}
