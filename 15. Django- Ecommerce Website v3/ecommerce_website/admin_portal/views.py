@@ -44,7 +44,8 @@ def add_product(request):
     else:
         form = ProductModelForm()
     context = {
-        'form': form, 'products': products,
+        'form': form, 
+        'products': products,
         'products_count': products_count,
         'new_products_count': new_products_count,
         'out_of_stck_count': out_of_stck_count,
@@ -67,8 +68,16 @@ def inventory(request):
 
 
 def product_inventory(request, pk):
-    products = Product.objects.get(id=pk)
+    product = Product.objects.get(id=pk)
+    if request.method == 'POST':
+        form = ProductModelForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_inventory')  # Assuming this is the URL for adding a product
+    else:
+        form = ProductModelForm(instance=product)  # Pass the product instance to the form
     context = {
-        'products': products,
+        'product': product,
+        'form': form,
     }
     return render(request, 'admin_portal/product_inventory.html', context)
