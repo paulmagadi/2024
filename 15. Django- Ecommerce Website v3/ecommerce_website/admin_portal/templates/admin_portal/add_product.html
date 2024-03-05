@@ -58,7 +58,7 @@
             <div class="product_form">
                 <form method="POST" action="" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form }}
                     <input type="submit" value="Submit">
                   </form>
                   
@@ -66,15 +66,11 @@
             </div>
 
         </section>
-
-        <section>
-
-        </section>
         </div>
 
     </div>
 
-    {% include 'admin_portal/footer.html' %}
+    
 
 </div>
 

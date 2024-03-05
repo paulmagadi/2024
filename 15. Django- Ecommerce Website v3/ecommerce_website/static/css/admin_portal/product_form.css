@@ -1,0 +1,19 @@
+.product_form {
+    background-color: rgb(12, 85, 17);
+    color: white;
+    padding: 1em;
+}
+
+.product_form form {
+    margin: 1em;
+}
+
+.product_form form input,
+.product_form form label {
+    padding: .5em;
+    display: block;
+}
+
+.product_form form input {
+    width: 50%;
+}

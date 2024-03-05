@@ -24,12 +24,22 @@
                 <span id="price">$ {{ product.price }}</span> 
             </strong>
         </p>
+        {% if product.in_stock %}
         <p class="star">&#9734;&#9734;&#9734;&#9734;&#9734;</p>
+        {% else %}
+        <h3 style="color: red;">Out of stock!!!</h3>
+        {% endif %} 
         {% endif %} 
         <div class="card-btn">
             <a href="{% url 'product' product.id %}"><button type="button">View</button></a>
-                
+            
+            {% if product.in_stock %}
             <button type="button" value="{{ product.id }}" class="add-to-cart">Add to Cart</button>
+            {% else %}
+            <button type="button" value="{{ product.id }}" class="add-to-cart" disabled>Add to Cart <title>Out of stock</title></button>
+            {% endif %}
+                
+            
 
         </div>
     </div>

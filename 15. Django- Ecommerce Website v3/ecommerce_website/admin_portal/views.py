@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from store.models import Product
-from .forms import ProductModelForm
+from .forms import ProductModelForm, CategoryModelForm
 
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
@@ -50,3 +50,10 @@ def add_product(request):
         'out_of_stck_count': out_of_stck_count,
     }
     return render(request, 'admin_portal/add_product.html', context)
+
+def add_category(request):
+    form = CategoryModelForm(request.POST)
+    context = {
+        'form': form
+    }
+    pass
