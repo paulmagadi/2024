@@ -73,7 +73,7 @@ def product_inventory(request, pk):
         form = ProductModelForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('product_inventory')  # Assuming this is the URL for adding a product
+            return redirect('inventory')  # Assuming this is the URL for adding a product
     else:
         form = ProductModelForm(instance=product)  # Pass the product instance to the form
     context = {
