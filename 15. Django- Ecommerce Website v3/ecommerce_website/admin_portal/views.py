@@ -57,3 +57,10 @@ def add_category(request):
         'form': form
     }
     pass
+
+def inventory(request):
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, 'admin_portal/inventory.html', context)
