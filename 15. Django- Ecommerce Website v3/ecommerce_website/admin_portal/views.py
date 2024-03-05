@@ -64,3 +64,11 @@ def inventory(request):
         'products': products,
     }
     return render(request, 'admin_portal/inventory.html', context)
+
+
+def product_inventory(request, pk):
+    products = Product.objects.get(id=pk)
+    context = {
+        'products': products,
+    }
+    return render(request, 'admin_portal/product_inventory.html', context)
