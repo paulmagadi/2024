@@ -62,8 +62,7 @@
                             <th></th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>view</th>
-                            <th>List</th>
+                            <th>Listed</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -74,12 +73,14 @@
                             <td><img src="{{product.imageURL}}" alt="" width="30%"></td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.price }}</td>
-                            <td><a href="{% url 'product' product.id %}">Edit</a></td>
-                            <td><form action="{% url 'add_product' %}" method="post">
-                                {% csrf_token %}
-                                {{form}}
-                            </form></td>
-                            <td>Delete</td>
+                            
+                            {% if product.is_listed %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
+                                
+                            <td>View</td>
                         </tr>
                         {% endfor %}
                             

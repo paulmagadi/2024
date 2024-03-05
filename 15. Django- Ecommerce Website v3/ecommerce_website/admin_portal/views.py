@@ -60,9 +60,9 @@ def add_category(request):
 
 def inventory(request):
     products = Product.objects.all()
-    
+    form = ListedModelForm(request.POST)
     if request.method == 'POST':
-        form = ListedModelForm(request.POST, request.FILES)
+        form = ListedModelForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('inventory')
