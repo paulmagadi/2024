@@ -75,8 +75,9 @@
                             <td>{{ product.name }}</td>
                             <td>{{ product.price }}</td>
                             <td><a href="{% url 'product' product.id %}">Edit</a></td>
-                            <td><form action="" method="post">
-                                <input type="checkbox">
+                            <td><form action="{% url 'add_product' %}" method="post">
+                                {% csrf_token %}
+                                {{form}}
                             </form></td>
                             <td>Delete</td>
                         </tr>

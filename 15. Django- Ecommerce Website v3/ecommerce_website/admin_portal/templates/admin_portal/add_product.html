@@ -56,7 +56,7 @@
 
         <section>
             <div class="product_form">
-                <form method="POST" action="" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form }}
                     <input type="submit" value="Submit">
