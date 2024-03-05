@@ -14,6 +14,12 @@
     border-bottom: 1px solid black;
 }
 
+.inventory table  th,
+.inventory table  td {
+    width: 20%;
+    padding: .5em;
+}
+
 .inventory table  th:first-of-type,
 .inventory table  td:first-of-type {
     width: 20%;
