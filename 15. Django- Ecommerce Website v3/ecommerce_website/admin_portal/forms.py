@@ -7,12 +7,6 @@ class ProductModelForm(forms.ModelForm):
         model = Product
         fields = ['name', 'price', 'category', 'description', 'image', 'is_sale', 'sale_price', 'in_stock', 'stock_quantity', 'is_new', 'is_featured', 'is_listed']
 
-class ListedModelForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ['is_listed']
- 
-
 class CategoryModelForm(forms.ModelForm):
     class Meta:
         model = Category

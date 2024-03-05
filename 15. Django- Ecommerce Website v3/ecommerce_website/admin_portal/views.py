@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from store.models import Product
-from .forms import ProductModelForm, CategoryModelForm, ListedModelForm
+from .forms import ProductModelForm, CategoryModelForm
 
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
@@ -60,14 +60,7 @@ def add_category(request):
 
 def inventory(request):
     products = Product.objects.all()
-    form = ListedModelForm(request.POST)
-    if request.method == 'POST':
-        form = ListedModelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('inventory')
     context = {
         'products': products,
-        'form': form,
     }
     return render(request, 'admin_portal/inventory.html', context)
