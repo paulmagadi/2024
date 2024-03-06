@@ -35,7 +35,8 @@ def add_product(request):
     products = Product.objects.all()
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
-    out_of_stck_count = products.filter(in_stock=False).count
+    out_of_stock_count = products.filter(in_stock=False).count()
+    is_listed_count = products.filter(is_listed=True).count()
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
         if form.is_valid():
@@ -48,7 +49,8 @@ def add_product(request):
         'products': products,
         'products_count': products_count,
         'new_products_count': new_products_count,
-        'out_of_stck_count': out_of_stck_count,
+        'out_of_stock_count': out_of_stock_count,
+        'is_listed_count': is_listed_count,
     }
     return render(request, 'admin_portal/add_product.html', context)
 
@@ -63,19 +65,26 @@ def inventory(request):
     products = Product.objects.all()
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
-    out_of_stck_count = products.filter(in_stock=False).count
+    out_of_stock_count = products.filter(in_stock=False).count
+    is_listed_count = products.filter(is_listed=True).count
     
     context = {
         'products': products,
         'products_count': products_count,
         'new_products_count': new_products_count,
-        'out_of_stck_count': out_of_stck_count,
+        'out_of_stock_count': out_of_stock_count,
+        'is_listed_count': is_listed_count,
         }
     return render(request, 'admin_portal/inventory.html', context)
 
 
 def product_inventory(request, pk):
+    products = Product.objects.all()
     product = get_object_or_404(Product, id=pk)
+    products_count = products.count()
+    new_products_count = products.filter(is_new=True).count()
+    out_of_stock_count = products.filter(in_stock=False).count
+    is_listed_count = products.filter(is_listed=True).count
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
@@ -83,8 +92,13 @@ def product_inventory(request, pk):
             return redirect('inventory')  
     else:
         form = ProductModelForm(instance=product) 
+        
     context = {
         'product': product,
         'form': form,
+        'products_count': products_count,
+        'new_products_count': new_products_count,
+        'out_of_stock_count': out_of_stock_count,
+        'is_listed_count': is_listed_count
     }
     return render(request, 'admin_portal/product_inventory.html', context)
