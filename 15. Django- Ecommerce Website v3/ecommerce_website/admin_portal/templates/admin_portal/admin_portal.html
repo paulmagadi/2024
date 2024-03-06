@@ -129,9 +129,9 @@
                     </thead>
                     <tbody>
                         
-                        {% for product in products %}
+                        {% for product in new_products %}
                         
-                        {% if product.new_products %}
+                        {% if product.new_product %}
                         <tr>
                             <td><img src="{{product.imageURL}}" alt="" width="30%"></td>
                             <td>{{ product.name }}</td>

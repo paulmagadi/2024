@@ -30,14 +30,12 @@ class Product(models.Model):
     is_listed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
     
+
     @property
-    def new_products(self):
+    def new_product(self):
         threshold_date = timezone.now() - timezone.timedelta(days=7)
-        return self.created_at >= threshold_date
-
-    def __str__(self):
-        return self.name
-
+        new = self.created_at >= threshold_date
+        return new
 
     def save(self, *args, **kwargs):
         

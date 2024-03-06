@@ -4,6 +4,7 @@ from .forms import ProductModelForm, CategoryModelForm
 
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
+from django.utils import timezone
 
 
 
@@ -21,8 +22,11 @@ def admin_or_staff_required(view_func):
 @admin_or_staff_required
 def admin_portal(request):
     products = Product.objects.all()
+    new_products = products.order_by('-created_at')[:2] 
+
     context = {
-        'products':products
+        'products':products,
+        'new_products': new_products
     }
     return render(request, 'admin_portal/admin_portal.html', context)
 
@@ -61,20 +65,20 @@ def add_category(request):
     }
     pass
 
+
 def inventory(request):
     products = Product.objects.all()
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
-    out_of_stock_count = products.filter(in_stock=False).count
-    is_listed_count = products.filter(is_listed=True).count
-    
+    out_of_stock_count = products.filter(in_stock=False).count()  
+    is_listed_count = products.filter(is_listed=True).count()  
     context = {
         'products': products,
         'products_count': products_count,
         'new_products_count': new_products_count,
         'out_of_stock_count': out_of_stock_count,
         'is_listed_count': is_listed_count,
-        }
+    }
     return render(request, 'admin_portal/inventory.html', context)
 
 
