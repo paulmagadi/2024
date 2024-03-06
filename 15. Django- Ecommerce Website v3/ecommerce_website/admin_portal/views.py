@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product
 from .forms import ProductModelForm, CategoryModelForm
 
@@ -68,14 +68,14 @@ def inventory(request):
 
 
 def product_inventory(request, pk):
-    product = Product.objects.get(id=pk)
+    product = get_object_or_404(Product, id=pk)
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('inventory')  # Assuming this is the URL for adding a product
+            return redirect('inventory')  
     else:
-        form = ProductModelForm(instance=product)  # Pass the product instance to the form
+        form = ProductModelForm(instance=product) 
     context = {
         'product': product,
         'form': form,
