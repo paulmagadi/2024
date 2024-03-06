@@ -61,9 +61,16 @@ def add_category(request):
 
 def inventory(request):
     products = Product.objects.all()
+    products_count = products.count()
+    new_products_count = products.filter(is_new=True).count()
+    out_of_stck_count = products.filter(in_stock=False).count
+    
     context = {
         'products': products,
-    }
+        'products_count': products_count,
+        'new_products_count': new_products_count,
+        'out_of_stck_count': out_of_stck_count,
+        }
     return render(request, 'admin_portal/inventory.html', context)
 
 
