@@ -112,51 +112,6 @@
                 </table>
             </div>
         </section>
-
-        <section>
-            <h4 class="admin-main-headings">New Products</h4>
-            <div class="inventory">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Listed</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        {% for product in products %}
-                        <tr>
-                            <td><img src="{{product.imageURL}}" alt="" width="30%"></td>
-                            <td>{{ product.name }}</td>
-                            <td>{{ product.price }}</td>
-                            <td>{{ product.stock_quantity }}</td>
-                            {% if product.is_listed %}
-                            <td>Yes</td>
-                            {% else %}
-                            <td>No</td>
-                            {% endif %}
-                                
-                            <td><a href="{% url 'product_inventory' product.id %}">Update</a></td>
-                        </tr>
-                        {% endfor %}
-                            
-                        
-                    </tbody>
-                </table>
-                  
-                  
-            </div>
-
-        </section>
-
-        <section>
-
-        </section>
         </div>
 
         <div class="side-right">
