@@ -31,10 +31,6 @@ def admin_portal(request):
     return render(request, 'admin_portal/admin_portal.html', context)
 
 @admin_or_staff_required
-# def add_product(request):
-#     return render(request, 'admin_portal/add_product.html')
-
-
 def add_product(request):
     products = Product.objects.all()
     products_count = products.count()
