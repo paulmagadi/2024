@@ -22,7 +22,7 @@ def admin_or_staff_required(view_func):
 @admin_or_staff_required
 def admin_portal(request):
     products = Product.objects.all()
-    new_products = products.order_by('-created_at')[:2] 
+    new_products = products.order_by('-created_at')[:10] 
 
     context = {
         'products':products,
