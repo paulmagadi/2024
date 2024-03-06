@@ -58,7 +58,7 @@
         <section>
             <h1 class="product-inventory-headings">UPDATE PRODUCT DETAILS</h1>
             <div class="product_form">
-                
+                <a href="{% url 'inventory' %}" style="color: white;">&larr; Back to List</a>
                 <form method="POST" action="{% url 'product_inventory' product.id %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form}}

@@ -3,6 +3,14 @@
 
 }
 
+.inventory-headings {
+    text-align: center;
+    background-color: black;
+    color: rgb(255, 255, 255);
+    padding: .5em 0;
+    margin-bottom: .5em;
+}
+
 .inventory table {
     width: 100%;
     text-align: left;
