@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.utils import timezone
 
 # Create your models here.
 class Category(models.Model):
@@ -27,8 +28,16 @@ class Product(models.Model):
     is_new = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
     is_listed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(default=timezone.now)
     
-    
+    @property
+    def new_products(self):
+        threshold_date = timezone.now() - timezone.timedelta(days=7)
+        return self.created_at >= threshold_date
+
+    def __str__(self):
+        return self.name
+
 
     def save(self, *args, **kwargs):
         

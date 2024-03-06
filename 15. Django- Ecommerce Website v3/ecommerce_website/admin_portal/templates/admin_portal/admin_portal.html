@@ -130,6 +130,8 @@
                     <tbody>
                         
                         {% for product in products %}
+                        
+                        {% if product.new_products %}
                         <tr>
                             <td><img src="{{product.imageURL}}" alt="" width="30%"></td>
                             <td>{{ product.name }}</td>
@@ -143,6 +145,9 @@
                                 
                             <td><a href="{% url 'product_inventory' product.id %}">Update</a></td>
                         </tr>
+                        {% endif %}
+                            
+                        
                         {% endfor %}
                             
                         
