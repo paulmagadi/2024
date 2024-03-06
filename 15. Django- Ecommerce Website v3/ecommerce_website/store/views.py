@@ -4,7 +4,8 @@ import datetime
 from django.db.models import Q
 
 def home(request):
-    products = Product.objects.all()
+    all_products = Product.objects.all()
+    products = all_products.filter(is_listed=True)
     sale_products = products.filter(is_sale=True)
     new_products = products.filter(is_new=True)
     featured_products = products.filter(is_featured=True)
