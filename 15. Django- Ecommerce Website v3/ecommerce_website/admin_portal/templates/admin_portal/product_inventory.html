@@ -55,8 +55,9 @@
 
 
         <section>
+            <h1 class="product-inventory-headings">UPDATE PRODUCT DETAILS</h1>
             <div class="product_form">
-                <h1>UPDATE PRODUCT DETAILS</h1>
+                
                 <form method="POST" action="{% url 'product_inventory' product.id %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form}}

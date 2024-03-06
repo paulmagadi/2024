@@ -55,8 +55,9 @@
 
 
         <section>
+            <h1 class="add-product-headings">ADD NEW PRODUCT</h1>
             <div class="product_form">
-                <h1>ADD NEW PRODUCT</h1>
+                
                 <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form }}
