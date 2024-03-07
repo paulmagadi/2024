@@ -71,57 +71,6 @@
     </div>
 </div>
 
-<script>
-    // Function to handle plus button click
-    $(document).on('click', '.plus-btn', function(e){
-        e.preventDefault();
-        var itemId = $(this).data('id'); // Get the data-id attribute of the clicked button (item ID)
-        var quantityElement = $(this).siblings('span'); // Get the adjacent span element containing the quantity
-
-        // Send AJAX request to update item quantity
-        $.ajax({
-            type: 'POST',
-            url: '{% url "cart_update" %}', // Replace "cart_update" with your actual URL name
-            data: {
-                item_id: itemId,
-                new_quantity: parseInt(quantityElement.text()) + 1, // Increment quantity by 1
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-            },
-            success: function(response){
-                // Update quantity display on success
-                quantityElement.text(parseInt(quantityElement.text()) + 1);
-            },
-            error: function(xhr, errmsg, err){
-                // Handle error
-            }
-        });
-    });
-
-    // Function to handle minus button click
-    $(document).on('click', '.minus-btn', function(e){
-        e.preventDefault();
-        var itemId = $(this).data('id'); // Get the data-id attribute of the clicked button (item ID)
-        var quantityElement = $(this).siblings('span'); // Get the adjacent span element containing the quantity
-
-        // Send AJAX request to update item quantity
-        $.ajax({
-            type: 'POST',
-            url: '{% url "cart_update" %}', // Replace "cart_update" with your actual URL name
-            data: {
-                item_id: itemId,
-                new_quantity: Math.max(parseInt(quantityElement.text()) - 1, 0), // Decrement quantity by 1 (ensure it doesn't go below 0)
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-            },
-            success: function(response){
-                // Update quantity display on success
-                quantityElement.text(Math.max(parseInt(quantityElement.text()) - 1, 0));
-            },
-            error: function(xhr, errmsg, err){
-                // Handle error
-            }
-        });
-    });
-</script>
 
 
 

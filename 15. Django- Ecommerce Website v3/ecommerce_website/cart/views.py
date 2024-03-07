@@ -60,4 +60,14 @@ def cart_delete(request):
 
 def cart_update(request, item_id, new_quantity):
     cart = Cart(request)
-    pass
+    if request.POST.get('product_id'):
+        product_id = int(request.POST.get('product_id'))
+        product_qty = int(request.POST.get('product_qty'))
+        product = get_object_or_404(Product, id=product_id)
+        
+        
+        cart.update(product=product, quantity=product_qty, request=request)
+        
+        cart_quantity = cart.__len__()
+        response = JsonResponse({'qty': cart_quantity})
+        return response
