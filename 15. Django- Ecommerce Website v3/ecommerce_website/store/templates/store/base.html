@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
 
   
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-</head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script></head>
 <body>
     <div class="body-container">
     {% include 'store/include/navbar.html' %}
@@ -45,7 +44,7 @@
                 // If the quantity input is not found, default to 1 (home page)
                 productQty = 1;
             }
-    
+            
             $.ajax({
                 type: 'POST',
                 url: '{% url "cart_add" %}',

@@ -80,6 +80,8 @@ class Cart():
         return mycart
     
     
+    
+    
     def order_total(self):
         total = 0
         for product_id, quantity in self.cart.items():
