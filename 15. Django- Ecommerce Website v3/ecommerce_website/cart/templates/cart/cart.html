@@ -49,9 +49,9 @@
                         <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
                         <div class="cart-item-name">{{ item.name }}</div>
                         <div class="cart-item-quantity"> 
-                            <button class="minus-btn" data-id="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
+                            <button class="minus-btn" data-index="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
                             <span>{{ item.quantity }}</span>
-                            <button class="plus-btn" data-id="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
+                            <button class="plus-btn" data-index="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
                         </div>
             
             {% if item.is_sale %}
