@@ -5,6 +5,10 @@ from store.models import Product
 from django.http import JsonResponse
 
 
+from django.views.decorators.http import require_POST
+from .models import CartItem
+
+
 
 # Create your views here.
 def cart(request):
@@ -58,5 +62,15 @@ def cart_add(request):
 def cart_delete(request):
     pass
 
-def cart_update(request):
-    pass
+
+
+
+@require_POST
+def update_cart_item(request, item_id, new_quantity):
+    try:
+        cart_item = CartItem.objects.get(id=item_id)
+        cart_item.quantity = new_quantity
+        cart_item.save()
+        return JsonResponse({'message': 'Cart item quantity updated successfully'})
+    except CartItem.DoesNotExist:
+        return JsonResponse({'error': 'Cart item not found'}, status=404)
