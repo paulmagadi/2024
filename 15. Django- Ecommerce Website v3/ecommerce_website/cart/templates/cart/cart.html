@@ -43,16 +43,16 @@
         <hr>
 
         {% endif %}
-        <div class="cart-element">
-            {% if cart_items %}
-            {% for item in cart_items %}
-            <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
-            <div class="cart-item-name">{{item.name}}</div>
-            <div class="cart-item-quantity">  
-                {{ item.quantity }}
-                
-                <!-- <p><span>&#9652</span><span>&#9662</span></p> -->
-            </div>
+            <div class="cart-element">
+                {% if cart_items %}
+                    {% for item in cart_items %}
+                        <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
+                        <div class="cart-item-name">{{ item.name }}</div>
+                        <div class="cart-item-quantity"> 
+                            <button class="minus-btn" data-id="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
+                            <span>{{ item.quantity }}</span>
+                            <button class="plus-btn" data-id="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
+                        </div>
             
             {% if item.is_sale %}
             <div class="cart-item-price">$ {{item.sale_price}}</div>
@@ -70,5 +70,54 @@
    
     </div>
 </div>
+
+
+
+<script>
+    // Function to handle quantity update
+    function updateQuantity(productId, newQuantity) {
+        fetch(`/update-cart-item/${productId}/${newQuantity}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'  // Ensure to include the CSRF token
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Update the quantity displayed on the page
+            document.querySelector(`[data-id="${productId}"]`).innerText = newQuantity;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    // Add event listeners to plus and minus buttons
+    document.querySelectorAll('.plus-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-id');
+            const currentQuantity = parseInt(this.nextElementSibling.innerText);
+            const newQuantity = currentQuantity + 1;
+            updateQuantity(productId, newQuantity);
+        });
+    });
+
+    document.querySelectorAll('.minus-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-id');
+            const currentQuantity = parseInt(this.previousElementSibling.innerText);
+            if (currentQuantity > 1) {
+                const newQuantity = currentQuantity - 1;
+                updateQuantity(productId, newQuantity);
+            }
+        });
+    });
+</script>
+
 {% endblock content %}
     
