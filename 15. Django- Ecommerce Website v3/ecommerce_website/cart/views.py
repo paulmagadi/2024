@@ -56,18 +56,27 @@ def cart_add(request):
         return response
 
 def cart_delete(request):
-    pass
+	cart = Cart(request)
+	if request.POST.get('action') == 'post':
+		# Get stuff
+		product_id = int(request.POST.get('product_id'))
+		# Call delete Function in Cart
+		cart.delete(product=product_id)
 
-def cart_update(request, item_id, new_quantity):
-    cart = Cart(request)
-    if request.POST.get('product_id'):
-        product_id = int(request.POST.get('product_id'))
-        product_qty = int(request.POST.get('product_qty'))
-        product = get_object_or_404(Product, id=product_id)
-        
-        
-        cart.update(product=product, quantity=product_qty, request=request)
-        
-        cart_quantity = cart.__len__()
-        response = JsonResponse({'qty': cart_quantity})
-        return response
+		response = JsonResponse({'product':product_id})
+		#return redirect('cart_summary')
+		return response
+
+
+def cart_update(request):
+	cart = Cart(request)
+	if request.POST.get('action') == 'post':
+		# Get stuff
+		product_id = int(request.POST.get('product_id'))
+		product_qty = int(request.POST.get('product_qty'))
+
+		cart.update(product=product_id, quantity=product_qty)
+
+		response = JsonResponse({'qty':product_qty})
+		#return redirect('cart_summary')
+		return response
