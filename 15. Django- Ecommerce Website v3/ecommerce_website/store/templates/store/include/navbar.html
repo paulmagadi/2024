@@ -34,7 +34,7 @@
                         <div class="dropdown"><a href="#">Category&#9662;</a>
                             <div class="dropdown-content">
                                 {% for category in categories %}
-                                <a href="#">{{category}}</a>
+                                <a href="{% url 'category' foo=name %}">{{category}}</a>
                                 {% endfor %}
                                 
                             </div>
