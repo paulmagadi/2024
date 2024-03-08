@@ -48,15 +48,12 @@
                     {% for item in cart_items %}
                         <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
                         <div class="cart-item-name">{{ item.name }}</div>
-                        <div class="cart-item-quantity"> 
-                           <p class="quantity"> <span ><input type="number" value="1" min="1" max="{{ stock_quantity }}"></span>
-                            <button type="button" data-index="{{item.id}}" class="update-cart">Update</button>
-                        </p>
+                        <div class="cart-quantity"> 
                             
-                            <!-- <button class="minus-btn" data-id="{{ item.id }}" style="padding: .3em .5em;">&minus;</button> -->
+                            <button class="reduce-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
                             
-                            <!-- <span>{{ item.quantity }}</span> -->
-                            <!-- <button class="plus-btn" data-id="{{ item.id }}" style="padding: .3em .5em;">&plus;</button> -->
+                            <span class="cart-item-quantits" data-index="{{ item.id }}">{{ item.quantity }}</span>
+                            <button class="add-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
                         </div>
             
             {% if item.is_sale %}
@@ -77,36 +74,60 @@
 </div>
 
 <script>
-    $(document).on('click', '.update-cart', function(e){
-        e.preventDefault();
-        var productId = $(this).val(); // Get the value of the clicked button (which is the specific product ID)
-        var productQty;
-
-        // Check if the quantity input is present in the current context (product page)
-        if ($(this).closest('.quantity').find('input[type="number"]').length) {
-            productQty = $(this).closest('.quantity').find('input[type="number"]').val();
-        } else {
-            // If the quantity input is not found, default to 1 (home page)
-            productQty = 1;
+    $(document).on('click', '.add-quantity', function(e){
+    e.preventDefault();
+    var productId = $(this).data('index');
+    var quantityElement = $('.cart-item-quantits[data-index="' + productId + '"]');
+    
+    // Convert the quantity to a number and increment
+    var productQty = parseFloat(quantityElement.text()) + 1;
+    
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart_update" %}',
+        data: {
+            product_id: productId,
+            product_qty: productQty,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+        success: function(json){
+            location.reload();
+        },
+        error: function(xhr, errmsg, err){
+            // Handle error
         }
-        
-        $.ajax({
-            type: 'POST',
-            url: '{% url "cart_update" %}',
-            data: {
-                product_id: productId,
-                product_qty: productQty,
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                action: 'post'
-            },
-            success: function(json){
-                location.reload();
-            },
-            error: function(xhr, errmsg, err){
-                // Handle error
-            }
-        });
     });
+});
+
+$(document).on('click', '.reduce-quantity', function(e){
+    e.preventDefault();
+    var productId = $(this).data('index');
+    var quantityElement = $('.cart-item-quantits[data-index="' + productId + '"]');
+    
+    // Convert the quantity to a number and decrement
+    var productQty = parseFloat(quantityElement.text()) - 1;
+    
+    if (productQty < 1) {
+            return;  // Do nothing if the quantity becomes less than 1
+        }
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart_update" %}',
+        data: {
+            product_id: productId,
+            product_qty: productQty,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+        success: function(json){
+            location.reload();
+        },
+        error: function(xhr, errmsg, err){
+            // Handle error
+        }
+    });
+});
 
 </script>
 
