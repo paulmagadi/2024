@@ -49,7 +49,6 @@ def categories(request):
     return render(request, 'store/all_categories.html', context)
     
 
-
 def sale(request):
     products = Product.objects.filter(is_sale=True)
     return render(request, 'store/sale.html', {'products': products})
