@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Product, Category
 import datetime
 from django.db.models import Q
 
@@ -28,9 +28,12 @@ def product(request, pk):
     return render(request, 'store/product.html', context)
 
 
-def category(request):
+def category(request, foo):
     return render(request, 'store/category.html')
 
+# def category(request):
+#     categories = Product.objects.values_list('category', flat=True).distinct()
+#     return render(request, 'store/category.html', {'categories': categories})
 
 def sale(request):
     products = Product.objects.filter(is_sale=True)

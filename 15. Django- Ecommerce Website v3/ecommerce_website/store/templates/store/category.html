@@ -8,4 +8,7 @@
 
 {% block content %}
     <h1>Category</h1>
+    {% for category in categories %}
+        <a href="#">{{ category }}</a>
+    {% endfor %}
 {% endblock content %}

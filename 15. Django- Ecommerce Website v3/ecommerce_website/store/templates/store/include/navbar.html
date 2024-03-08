@@ -30,7 +30,15 @@
                 <ul>
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="#">Products&#9662;</a></li>
-                    <li><a href="#">Category&#9662;</a></li>
+                    <li>
+                        <div class="dropdown"><a href="#">Category&#9662;</a>
+                            <div class="dropdown-content">
+                                {% for category in categories %}
+                                <a href="#">{{ category }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </li>
                     <li class="dropdown hide-on-mobile">
                         {% if user.is_authenticated %}
                         <a href="#" class="account-link">{{ user.first_name }} {{ user.last_name }}&#9662</a>
