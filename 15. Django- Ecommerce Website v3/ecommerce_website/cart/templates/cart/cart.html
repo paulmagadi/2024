@@ -50,10 +50,10 @@
                         <div class="cart-item-name">{{ item.name }}</div>
                         <div class="cart-quantity"> 
                             
-                            <button class="reduce-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
+                            <button type="button" class="reduce-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
                             
                             <span class="cart-item-quantits" data-index="{{ item.id }}">{{ item.quantity }}</span>
-                            <button class="add-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
+                            <button type="button" class="add-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
                         </div>
             
             {% if item.is_sale %}
@@ -62,6 +62,7 @@
             <div class="cart-item-price">$ {{item.price}}</div> 
             {% endif %}
             <div class="cart-item-total">$ {{item.total_price}}</div>
+            <button type="button" data-index="{{ item.id }}" class="remove-item" style="padding: .3em .5em; background-color: red; color: white;">Remove</button>
             {% endfor %}
             {% else %}
             <br><br><br><br><br><br>
@@ -117,6 +118,28 @@ $(document).on('click', '.reduce-quantity', function(e){
         data: {
             product_id: productId,
             product_qty: productQty,
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+        },
+        success: function(json){
+            location.reload();
+        },
+        error: function(xhr, errmsg, err){
+            // Handle error
+        }
+    });
+});
+
+
+$(document).on('click', '.delete-item', function(e){
+    e.preventDefault();
+    var productId = $(this).data('index');
+    
+    $.ajax({
+        type: 'POST',
+        url: '{% url "cart_delete" %}',
+        data: {
+            product_id: productId,
             csrfmiddlewaretoken: '{{ csrf_token }}',
             action: 'post'
         },

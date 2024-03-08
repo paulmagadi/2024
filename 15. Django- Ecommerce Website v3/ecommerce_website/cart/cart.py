@@ -83,7 +83,7 @@ class Cart():
 
     def delete(self, product):
         product_id = str(product)
-        # Delete from dictionary/cart
+        # Delete from cart
         if product_id in self.cart:
             del self.cart[product_id]
 
