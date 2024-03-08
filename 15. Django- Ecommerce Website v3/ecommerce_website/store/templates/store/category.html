@@ -7,8 +7,14 @@
     
 
 {% block content %}
-    <h1>Category</h1>
-    {% for category in categories %}
-        <a href="#">{{ category }}</a>
-    {% endfor %}
+{% include 'store/include/hero.html' %}
+<section>
+    <h3 class="section-title"><a href="{% url 'home' %}">Products</h3></a>
+    <div class= "product-container">
+        
+        {% for product in products %}
+        {% include 'store/include/product_card.html' %}
+        {% endfor %}
+    </div>
+</section>
 {% endblock content %}
