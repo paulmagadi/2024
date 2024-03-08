@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category
+from django.contrib import messages
 import datetime
 from django.db.models import Q
 
@@ -29,7 +30,17 @@ def product(request, pk):
 
 
 def category(request, foo):
-    return render(request, 'store/category.html')
+    try:
+        category = Category.objects.get(name=foo)
+        products = product.objects.filter(category=category)
+        context = {
+            'category': category,
+            'products': products,
+        }
+        return render(request, 'store/category.html', context)
+    except:
+        messages.warning(request, ('Category Does not exist'))
+    return redirect('home')
 
 # def category(request):
 #     categories = Product.objects.values_list('category', flat=True).distinct()
