@@ -2,14 +2,14 @@
 
 
 {% block title %}
-    Category
+    {{ category.name  }}' Category
 {% endblock title %}
     
 
 {% block content %}
 {% include 'store/include/hero.html' %}
 <section>
-    <h3 class="section-title"><a href="{% url 'home' %}">Products</h3></a>
+    <h3 class="section-title">{{ category.name}}' Category</h3>
     <div class= "product-container">
         
         {% for product in products %}

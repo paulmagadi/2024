@@ -29,22 +29,26 @@ def product(request, pk):
     return render(request, 'store/product.html', context)
 
 
-def category(request, foo):
-    try:
-        category = Category.objects.get(name=foo)
-        products = product.objects.filter(category=category)
-        context = {
-            'category': category,
-            'products': products,
-        }
-        return render(request, 'store/include/category.html', context)
-    except:
-        messages.warning(request, ('Category Does not exist'))
-    return redirect('home')
+def category(request, pk):
+    category = Category.objects.get(id=pk)
+    products = Product.objects.filter(category=category)
+    context = {
+        'category': category,
+        'products': products,
+    }
+    return render(request, 'store/category.html', context)
 
-# def category(request):
-#     categories = Product.objects.values_list('category', flat=True).distinct()
-#     return render(request, 'store/category.html', {'categories': categories})
+
+def categories(request):
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    context = {
+        'categories': categories,
+        'products': products,
+    }
+    return render(request, 'store/all_categories.html', context)
+    
+
 
 def sale(request):
     products = Product.objects.filter(is_sale=True)

@@ -31,14 +31,16 @@
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="#">Products&#9662;</a></li>
                     <li>
-                        <div class="dropdown"><a href="#">Category&#9662;</a>
+                        <div class="dropdown">
+                            <a href="#">Category&#9662;</a>
                             <div class="dropdown-content">
+                                <a href="{% url 'categories' %}">All Categories</a>
                                 {% for category in categories %}
-                                <a href="{% url 'category' foo=name %}">{{category}}</a>
+                                    <a href="{% url 'category' category.id %}">{{ category.name }}</a>
                                 {% endfor %}
-                                
                             </div>
                         </div>
+                        
                     </li>
                     <li class="dropdown hide-on-mobile">
                         {% if user.is_authenticated %}
