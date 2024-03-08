@@ -37,7 +37,7 @@ def category(request, foo):
             'category': category,
             'products': products,
         }
-        return render(request, 'store/category.html', context)
+        return render(request, 'store/include/category.html', context)
     except:
         messages.warning(request, ('Category Does not exist'))
     return redirect('home')
