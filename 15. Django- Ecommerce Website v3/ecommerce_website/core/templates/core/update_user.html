@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Register
+    Update User Details
 {% endblock title %}
     
 
@@ -10,7 +10,7 @@
 {% block content %}
 <!-- Register form -->
 <div class="form-container">
-    <form action="{% url 'register' %}" method="post" class="register-form">
+    <form action="{% url 'update_user' %}" method="post" class="register-form">
         {% csrf_token %}
         <div class="img">
             <span id="close-signup-form" class="close"><a href="{% url 'home' %}">&times;</a></span>
@@ -19,7 +19,7 @@
         <div class="login-container">
             {{ form }}
 
-            <button type="submit">Register</button>
+            <button type="submit">Update Details</button>
             
         </div>
         <div class="login-container">
