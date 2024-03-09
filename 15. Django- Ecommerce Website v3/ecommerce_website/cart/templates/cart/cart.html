@@ -50,9 +50,9 @@
             <div class="cart-element">
                 <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
                 <div class="cart-item-name">{{ item.name }}</div>
-                <div class="cart-quantity"> 
+                <div class="cart-item-quantity"> 
                     <button type="button" class="reduce-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
-                    <span class="cart-item-quantits" data-index="{{ item.id }}">{{ item.quantity }}</span>
+                    <span class="item-quantity" data-index="{{ item.id }}">{{ item.quantity }}</span>
                     <button type="button" class="add-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
                 </div>
                 {% if item.is_sale %}
@@ -67,7 +67,7 @@
             </div>
         {% endfor %}
             
-            {% else %}
+            {% else %}z
             <br><br><br><br><br><br>
             <h1>Nothing in your cart... <a href="{% url 'home' %}">Continue Shopping</a></h1>
             {% endif %}
@@ -79,7 +79,7 @@
     $(document).on('click', '.add-quantity', function(e){
     e.preventDefault();
     var productId = $(this).data('index');
-    var quantityElement = $('.cart-item-quantits[data-index="' + productId + '"]');
+    var quantityElement = $('.item-quantity[data-index="' + productId + '"]');
     
     // Convert the quantity to a number and increment
     var productQty = parseFloat(quantityElement.text()) + 1;
@@ -105,13 +105,14 @@
 $(document).on('click', '.reduce-quantity', function(e){
     e.preventDefault();
     var productId = $(this).data('index');
-    var quantityElement = $('.cart-item-quantits[data-index="' + productId + '"]');
+    var quantityElement = $('.item-quantity[data-index="' + productId + '"]');
     
     // Convert the quantity to a number and decrement
     var productQty = parseFloat(quantityElement.text()) - 1;
     
     if (productQty < 1) {
-            return;  // Do nothing if the quantity becomes less than 1
+        
+            return;  
         }
     $.ajax({
         type: 'POST',
