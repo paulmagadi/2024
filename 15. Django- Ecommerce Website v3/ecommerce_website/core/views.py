@@ -19,7 +19,7 @@ def update_user(request):
         return render(request, 'core/update_user.html', {'user_form': user_form})
     else:
         messages.error(request, ("You must be logged in to update your details"))
-    return render(request, 'core/update_user.html')
+        return redirect('home')
 
 def register_user(request):
     if request.method == 'POST':
