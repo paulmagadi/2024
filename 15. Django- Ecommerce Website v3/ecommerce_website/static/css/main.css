@@ -34,6 +34,25 @@ cursor: pointer;
     padding: .5em;
 }
 
+.alert-message {
+  width: 100%;
+  background-color: bisque;
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+  padding: .5em 1em;
+}
+
+.alert-message .close-message {
+  float: right;
+  font-size: 2rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: red;
+}
+
 header .hero-header{
     background-image: url(banner.jpg);
     background-position: center;

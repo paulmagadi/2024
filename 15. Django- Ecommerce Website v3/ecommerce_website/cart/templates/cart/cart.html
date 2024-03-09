@@ -39,37 +39,38 @@
             <div class="cart-item-quantity"><strong>Quantity</strong></div>
             <div class="cart-item-price"><strong>Price</strong></div>
             <div class="cart-item-total"><strong>Total</strong></div>
+            <div class="cart-item-remove"></div>
         </div>
         <hr>
 
         {% endif %}
+
+        {% if cart_items %}
+        {% for item in cart_items %}
             <div class="cart-element">
-                {% if cart_items %}
-                    {% for item in cart_items %}
-                        <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
-                        <div class="cart-item-name">{{ item.name }}</div>
-                        <div class="cart-quantity"> 
-                            
-                            <button type="button" class="reduce-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
-                            
-                            <span class="cart-item-quantits" data-index="{{ item.id }}">{{ item.quantity }}</span>
-                            <button type="button" class="add-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
-                        </div>
+                <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
+                <div class="cart-item-name">{{ item.name }}</div>
+                <div class="cart-quantity"> 
+                    <button type="button" class="reduce-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
+                    <span class="cart-item-quantits" data-index="{{ item.id }}">{{ item.quantity }}</span>
+                    <button type="button" class="add-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&plus;</button>
+                </div>
+                {% if item.is_sale %}
+                <div class="cart-item-price">$ {{item.sale_price}}</div>
+                {% else %}
+                <div class="cart-item-price">$ {{item.price}}</div> 
+                {% endif %}
+                <div class="cart-item-total">$ {{item.total_price}}</div>
+                <div class="cart-item-remove">
+                    <button type="button" data-index="{{ item.id }}" class="remove-item" style="padding: .3em .5em; background-color: red; color: white;">Remove</button>
+                </div>
+            </div>
+        {% endfor %}
             
-            {% if item.is_sale %}
-            <div class="cart-item-price">$ {{item.sale_price}}</div>
-            {% else %}
-            <div class="cart-item-price">$ {{item.price}}</div> 
-            {% endif %}
-            <div class="cart-item-total">$ {{item.total_price}}</div>
-            <button type="button" data-index="{{ item.id }}" class="remove-item" style="padding: .3em .5em; background-color: red; color: white;">Remove</button>
-            {% endfor %}
             {% else %}
             <br><br><br><br><br><br>
             <h1>Nothing in your cart... <a href="{% url 'home' %}">Continue Shopping</a></h1>
             {% endif %}
-        </div>
-        
    
     </div>
 </div>
