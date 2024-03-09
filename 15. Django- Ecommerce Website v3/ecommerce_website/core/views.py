@@ -5,6 +5,9 @@ from .forms import RegistrationForm
 from django.contrib.auth.models import User
 
 
+def update_user(request):
+    return render(request, 'core/update_user.html')
+
 def register_user(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)

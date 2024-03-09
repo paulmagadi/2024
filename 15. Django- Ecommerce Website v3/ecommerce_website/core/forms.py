@@ -1,4 +1,5 @@
-from django import forms
+from django import forms 
+from django.contrib.auth.forms import UserChangeForm
 
 class RegistrationForm(forms.Form):
     first_name = forms.CharField(max_length=100)
@@ -14,3 +15,9 @@ class RegistrationForm(forms.Form):
 
         if password != confirm_password:
             raise forms.ValidationError("Passwords do not match")
+        
+
+class UpdateUserForm(UserChangeForm):
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)
+    email = forms.EmailField()
