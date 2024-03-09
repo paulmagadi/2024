@@ -1,11 +1,24 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UpdateUserForm
 from django.contrib.auth.models import User
 
 
 def update_user(request):
+    if request.User.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        user_form = UpdateUserForm(request.Post or None, instance=current_user) 
+        
+        if user_form.is_valid():
+            user_form.save()
+            
+            login(request, current_user)
+            messages.success(request, ("User Details updated"))
+            return redirect('home')
+        return render(request, 'core/update_user.html', {'user_form': user_form})
+    else:
+        messages.error(request, ("You must"))
     return render(request, 'core/update_user.html')
 
 def register_user(request):
