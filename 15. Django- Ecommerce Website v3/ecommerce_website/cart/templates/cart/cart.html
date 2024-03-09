@@ -31,6 +31,7 @@
         {% endif %}
     </table>
 
+    
     <div class="cart-elements-container">
         {% if cart_items %}
         <div class="cart-element-header">
@@ -42,10 +43,6 @@
             <div class="cart-item-remove"></div>
         </div>
         <hr>
-
-        {% endif %}
-
-        {% if cart_items %}
         {% for item in cart_items %}
             <div class="cart-element">
                 <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="100%"></div>
@@ -66,13 +63,15 @@
                 </div>
             </div>
         {% endfor %}
-            
-            {% else %}z
+        {% else %}
+        <div class="cart-element">
             <br><br><br><br><br><br>
             <h1>Nothing in your cart... <a href="{% url 'home' %}">Continue Shopping</a></h1>
-            {% endif %}
-   
+        </div>
+        {% endif %}
     </div>
+    
+    
 </div>
 
 <script>
@@ -111,7 +110,7 @@ $(document).on('click', '.reduce-quantity', function(e){
     var productQty = parseFloat(quantityElement.text()) - 1;
     
     if (productQty < 1) {
-        
+
             return;  
         }
     $.ajax({
