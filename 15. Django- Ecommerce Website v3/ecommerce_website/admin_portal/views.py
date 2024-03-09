@@ -54,6 +54,7 @@ def add_product(request):
     }
     return render(request, 'admin_portal/add_product.html', context)
 
+@admin_or_staff_required
 def add_category(request):
     form = CategoryModelForm(request.POST)
     context = {
@@ -61,7 +62,7 @@ def add_category(request):
     }
     pass
 
-
+@admin_or_staff_required
 def inventory(request):
     products = Product.objects.all()
     products_count = products.count()
@@ -77,7 +78,7 @@ def inventory(request):
     }
     return render(request, 'admin_portal/inventory.html', context)
 
-
+@admin_or_staff_required
 def product_inventory(request, pk):
     products = Product.objects.all()
     product = get_object_or_404(Product, id=pk)
