@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword
 from django.contrib.auth.models import User
+from store.models import Profile
 
 
 def update_info(request):
