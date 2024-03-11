@@ -9,7 +9,7 @@ from store.models import Profile
 def update_info(request):
     if request.user.is_authenticated:
         current_user = Profile.objects.get(user__id=request.user.id)
-        form = UpdateInfoForm(request.POST or None, isinstance=current_user)
+        form = UpdateInfoForm(request.POST or None, instance=current_user)
         
         if form.is_valid():
             form.save()
