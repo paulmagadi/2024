@@ -7,7 +7,19 @@ from store.models import Profile
 
 
 def update_info(request):
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        form = UpdateUserForm(request.POST or None, isinstance=current_user)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, ("Your info has been updated"))
+            return redirect('home')
+        return render(request, 'core/update_info.html', {'form': form})
+    else:
+        messages.error(request, ("You must be logged in to update your info"))
     return render(request, 'core/update_info.html')
+
 
 def update_password(request):
     if request.user.is_authenticated:
