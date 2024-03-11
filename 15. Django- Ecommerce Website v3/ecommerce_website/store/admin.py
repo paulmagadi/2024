@@ -21,10 +21,10 @@ class UserAdmin(admin.ModelAdmin):
     inlines = [ProfileInline]
     
     
-#unregister
+#unregister old user
 admin.site.unregister(User)
 
-#register
+#register new user
 
 admin.site.register(User, UserAdmin)
     
