@@ -1,15 +1,15 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword
+from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm
 from django.contrib.auth.models import User
 from store.models import Profile
 
 
 def update_info(request):
     if request.user.is_authenticated:
-        current_user = User.objects.get(id=request.user.id)
-        form = UpdateUserForm(request.POST or None, isinstance=current_user)
+        current_user = Profile.objects.get(user__id=request.user.id)
+        form = UpdateInfoForm(request.POST or None, isinstance=current_user)
         
         if form.is_valid():
             form.save()
