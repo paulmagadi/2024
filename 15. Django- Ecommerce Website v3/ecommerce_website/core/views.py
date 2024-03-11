@@ -70,8 +70,13 @@ def register_user(request):
 
             user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
             user.save()
-            messages.success(request, ('Registration sucessful. Login to continue'))
-            return redirect('login')
+            
+            user = authenticate(username=email, password=password)
+            login(request, user)
+            messages.success(request, ('User created. Please fill in your Shipping info'))
+            return redirect('update_info')
+            # messages.success(request, ('Registration sucessful. Login to continue'))
+            # return redirect('login')
     else:
         form = RegistrationForm()
     return render(request, 'core/register.html', {'form': form})
