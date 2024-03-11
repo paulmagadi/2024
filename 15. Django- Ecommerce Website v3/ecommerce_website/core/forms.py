@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, SetPasswordForm
 
+from store.models import Profile
+
 class RegistrationForm(forms.Form):
     first_name = forms.CharField(max_length=100)
     last_name = forms.CharField(max_length=100)
@@ -30,3 +32,17 @@ class UpdateUserPassword(SetPasswordForm):
     class Meta:
         model = User
         fields = ['new_password1', 'new_password2']
+        
+        
+class UpdateInfoForm(forms.ModelForm):
+    phone = forms.CharField()
+    address1 = forms.CharField()
+    address2 = forms.CharField()
+    city = forms.CharField()
+    state = forms.CharField()
+    zipcode = forms.CharField()
+    country = forms.CharField()
+    
+    class Meta:
+        model = Profile
+        fields = ["Phone", "address1", "address2", "city", "state", "zipcode", "country"]
