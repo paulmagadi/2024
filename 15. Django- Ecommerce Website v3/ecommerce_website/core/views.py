@@ -5,8 +5,8 @@ from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword
 from django.contrib.auth.models import User
 
 
-def update_infor(request):
-    return render(request, 'core/update_infor.html')
+def update_info(request):
+    return render(request, 'core/update_info.html')
 
 def update_password(request):
     if request.user.is_authenticated:
