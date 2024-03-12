@@ -1,9 +1,12 @@
-from store.models import Product
+from store.models import Product, Profile
 from django.contrib import messages
 
 class Cart():
     def __init__(self, request):
         self.session = request.session
+        
+        self.request = request
+        
         cart = self.session.get('session_key')
         # Check if you have a session, if not create one
         if 'session_key' not in request.session:
@@ -38,6 +41,15 @@ class Cart():
                 self.cart[product_id] = quantity
             
         self.session.modified = True
+        
+        #Logged in user
+        if self.request.user.is_authenticated:
+            current_user = Profile.objects.filter(id__in=product_id)
+            
+            #convert '' to ""
+            string = str(self.cart)
+            string = string.replace("\'", "\"")
+            current_user.update(old_cart=str(string))
         
         
     def update(self, request, product, quantity):
