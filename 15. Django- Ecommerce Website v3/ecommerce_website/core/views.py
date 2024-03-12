@@ -102,7 +102,7 @@ def login_user(request):
                 #Add to session
                 cart = Cart(request)
                 for key, value in converted_cart.items():
-                    cart.add(product=key, quantity=value)
+                    cart.db_add(product=key, quantity=value)
                 
             
             
