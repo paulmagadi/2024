@@ -38,6 +38,26 @@ class Cart():
                 self.cart[product_id] = quantity
             
         self.session.modified = True
+        
+        
+    def update(self, request, product, quantity):
+        product_id = str(product.id)  # Ensure product_id is retrieved correctly
+        available_quantity = product.stock_quantity
+
+        # Check if the requested quantity exceeds the available stock
+        if quantity > available_quantity:
+            # Limit the quantity to the available stock
+            self.cart[product_id] = available_quantity
+            messages.warning(request, f"Quantity limit reached for {product.name}. Cart updated to maximum available quantity.")
+        else:
+            # Update the quantity in the cart
+            self.cart[product_id] = quantity
+
+        self.session.modified = True
+
+        # Return the updated cart
+        return self.cart
+
 
 
 
@@ -66,20 +86,7 @@ class Cart():
     
     def get_quants(self):
         return self.cart
-    
-    def update(self, product, quantity):
-        product_id = str(product)
-        product_qty = int(quantity)
 
-        # Get cart
-        ourcart = self.cart
-        # Update Dictionary/cart
-        ourcart[product_id] = product_qty
-
-        self.session.modified = True
-
-        thing = self.cart
-        return thing
 
     def delete(self, product):
         product_id = str(product)
