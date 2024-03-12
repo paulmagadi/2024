@@ -46,7 +46,7 @@ class Cart():
         if self.request.user.is_authenticated:
             
             #Get current user profile
-            current_user = Profile.objects.filter(id__in=self.request.user.id)
+            current_user = Profile.objects.filter(user__id=self.request.user.id)
             
             #convert '' to ""
             cart_dict = str(self.cart)
@@ -68,7 +68,18 @@ class Cart():
             self.cart[product_id] = quantity
 
         self.session.modified = True
-
+    
+        #Logged in user
+        if self.request.user.is_authenticated:
+            
+            #Get current user profile
+            current_user = Profile.objects.filter(user__id=self.request.user.id)
+            
+            #convert '' to ""
+            cart_dict = str(self.cart)
+            cart_dict = cart_dict.replace("\'", "\"")
+            current_user.update(old_cart=str(cart_dict))
+            
         # Return the updated cart
         return self.cart
 
@@ -109,6 +120,17 @@ class Cart():
             del self.cart[product_id]
 
         self.session.modified = True
+        
+        #Logged in user
+        if self.request.user.is_authenticated:
+            
+            #Get current user profile
+            current_user = Profile.objects.filter(user__id=self.request.user.id)
+            
+            #convert '' to ""
+            cart_dict = str(self.cart)
+            cart_dict = cart_dict.replace("\'", "\"")
+            current_user.update(old_cart=str(cart_dict))
     
     
     
