@@ -54,6 +54,21 @@ def cart_add(request):
         response = JsonResponse({'qty': cart_quantity})
         messages.success(request, ('Product added to cart'))
         return response
+    
+    
+def cart_update(request):
+    cart = Cart(request)
+    if request.POST.get('action') == 'post':
+        # Get stuff
+        product_id = int(request.POST.get('product_id'))
+        product = Product.objects.get(id=product_id)  # Fetch the Product object
+        product_qty = int(request.POST.get('product_qty'))
+
+        cart.update(request, product=product, quantity=product_qty)  # Pass the Product object
+
+        response = JsonResponse({'qty': product_qty})
+        messages.success(request, 'Cart updated successfully')
+        return response
 
 def cart_delete(request):
 	cart = Cart(request)
@@ -68,15 +83,3 @@ def cart_delete(request):
 		return response
 
 
-def cart_update(request):
-	cart = Cart(request)
-	if request.POST.get('action') == 'post':
-		# Get stuff
-		product_id = int(request.POST.get('product_id'))
-		product_qty = int(request.POST.get('product_qty'))
-
-		cart.update(product=product_id, quantity=product_qty)
-
-		response = JsonResponse({'qty':product_qty})
-		messages.success(request, ('Cart updated successuly'))
-		return response
