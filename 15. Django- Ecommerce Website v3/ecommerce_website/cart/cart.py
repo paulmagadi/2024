@@ -146,28 +146,15 @@ class Cart():
     
     
     # Add product to session
-    def db_add(self, request, product, quantity):
+    def db_add(self, product, quantity):
         product_id = str(product)
-        available_quantity = product.stock_quantity  # Assuming 'quantity' is the field representing available inventory in your Product model
+        product_qty = str(quantity)
         
         # Check if the product with the product id is in the session
         if product_id in self.cart:
-            # If the product is already in the cart, calculate the total quantity including the newly requested quantity
-            total_quantity = self.cart[product_id] + quantity
-            
-            # If the total quantity exceeds the available inventory, set the cart quantity to the available inventory and raise a message
-            if total_quantity > available_quantity:
-                self.cart[product_id] = available_quantity
-                messages.warning(request, f"Quantity limit reached for {product.name}. Cart updated to maximum available quantity.")
-            else:
-                self.cart[product_id] = total_quantity
+            pass
         else:
-            # If the product is not in the cart, add it with the requested quantity, limiting it to the available inventory if necessary
-            if quantity > available_quantity:
-                self.cart[product_id] = available_quantity
-                messages.warning(request, f"Quantity limit reached for {product.name}. Cart updated to maximum available quantity.")
-            else:
-                self.cart[product_id] = quantity
+            self.cart[product_id] = int(product_qty)
             
         self.session.modified = True
         
