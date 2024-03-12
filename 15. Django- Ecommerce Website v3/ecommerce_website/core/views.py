@@ -4,6 +4,8 @@ from django.contrib import messages
 from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm
 from django.contrib.auth.models import User
 from store.models import Profile
+import json
+from cart.cart import Cart
 
 
 def update_info(request):
@@ -88,6 +90,22 @@ def login_user(request):
         user = authenticate(username=email, password=password)
         if user is not None:
             login(request, user)
+            
+            #Shopping cart
+            current_user = Profile.objects.get(user__id=request.user.id)
+            # Get saved cart from the model
+            saved_cart = current_user.old_cart
+            if saved_cart:
+                #Convert the string back  to dictionary using JSON
+                converted_cart = json.loads(saved_cart)
+                
+                #Add to session
+                cart = Cart(request)
+                for key, value
+                
+            
+            
+            
             messages.success(request, ('Login successful!'))
             return redirect('home')  # Redirect to home if cart is empty or doesn't exist
         else:
