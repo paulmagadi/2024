@@ -44,12 +44,14 @@ class Cart():
         
         #Logged in user
         if self.request.user.is_authenticated:
-            current_user = Profile.objects.filter(id__in=product_id)
+            
+            #Get current user profile
+            current_user = Profile.objects.filter(id__in=self.request.user.id)
             
             #convert '' to ""
-            string = str(self.cart)
-            string = string.replace("\'", "\"")
-            current_user.update(old_cart=str(string))
+            cart_dict = str(self.cart)
+            cart_dict = cart_dict.replace("\'", "\"")
+            current_user.update(old_cart=str(cart_dict))
         
         
     def update(self, request, product, quantity):
