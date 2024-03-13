@@ -52,8 +52,7 @@
                             {% if user.is_authenticated %}
                             <a href="{% url 'logout' %}" class="login-button" id="login-button">Logout</a>
                             <hr>
-                            <a href="{% url 'update_user' %}" class="login-button" id="login-button">Profile</a>
-                            <a href="{% url 'update_info' %}" class="login-button" id="login-button">My Info</a>
+                            <a href="{% url 'user_profile' %}" class="login-button" id="login-button">Profile</a>
                             {% else %}
                             <a href="{% url 'login' %}" class="login-button" id="login-button">Login</a>
                             <hr>
