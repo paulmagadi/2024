@@ -10,7 +10,7 @@ class ShippingAddress(models.Model):
     address1 =  models.CharField(max_length=255)
     address2 =  models.CharField(max_length=255 , null=True, blank=True)
     city =  models.CharField(max_length=255)
-    state = models.CharField(max_length=255, null=True, Blank=True)
+    state = models.CharField(max_length=255, null=True, blank=True)
     country =  models.CharField(max_length=255)
     
     

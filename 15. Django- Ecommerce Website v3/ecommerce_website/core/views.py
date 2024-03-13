@@ -123,13 +123,6 @@ def logout_user(request):
     messages.success(request, ('You have been logged out!!!'))
     return redirect('home')
 
-# user Registration
-# def register_user(request):
-#     form = CreateUserForm()
-#     if request.method == "POST":
-#         form = CreateUserForm(request.POST)
-#         if form.is_valid:
-#             form.save()
-#             return redirect('home')
-            
-#     return render(request, 'store/register.html', {'form': form})
+
+def user_profile(request):
+    return render(request, 'core/user_profile.html')
