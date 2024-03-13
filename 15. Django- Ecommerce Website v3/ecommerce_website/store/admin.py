@@ -1,11 +1,13 @@
 from django.contrib import admin
-from .models import Product, Category, Profile
+from .models import Product, Category, Profile, ShippingAddress
 from django.contrib.auth.models import User
 # Register your models here.
 admin.site.register(Category)
 admin.site.register(Product)
 admin.site.register(Profile)
 
+# Register your models here.
+admin.site.register(ShippingAddress)
 
 #add profile info to user
 
