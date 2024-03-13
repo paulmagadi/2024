@@ -126,3 +126,17 @@ def logout_user(request):
 
 def user_profile(request):
     return render(request, 'core/user_profile.html')
+
+def shipping_info(request):
+    if request.user.is_authenticated:
+        current_user = Profile.objects.get(user__id=request.user.id)
+        form = UpdateInfoForm(request.POST or None, instance=current_user)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, ("Your info has been updated"))
+            return redirect('home')
+        return render(request, 'core/shipping_information.html', {'form': form})
+    else:
+        messages.error(request, ("You must be logged in to update your info"))
+    return render(request, 'core/shipping_information.html')
