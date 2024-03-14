@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 admin.site.register(Category)
 admin.site.register(Product)
 admin.site.register(Profile)
-
-# Register your models here.
 admin.site.register(ShippingAddress)
 
 #add profile info to user
@@ -14,7 +12,6 @@ admin.site.register(ShippingAddress)
 class ProfileInline(admin.StackedInline):
     model = Profile
     
-
 #extend user model
 
 class UserAdmin(admin.ModelAdmin):

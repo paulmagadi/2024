@@ -129,7 +129,7 @@ def user_profile(request):
 
 def shipping_info(request):
     if request.user.is_authenticated:
-        current_user = Profile.objects.get(user__id=request.user.id)
+        current_user = ShippingAddress.objects.get(user__id=request.user.id)
         form = ShippingAddressForm(request.POST or None, instance=current_user)
         
         if form.is_valid():

@@ -58,5 +58,5 @@ class ShippingAddressForm(forms.ModelForm):
     country = forms.CharField()
     
     class Meta:
-        model = Profile
+        model = ShippingAddress
         fields = ["phone", "address1", "address2", "city", "state", "zipcode", "country"]
