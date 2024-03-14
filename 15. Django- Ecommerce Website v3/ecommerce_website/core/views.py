@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm
+from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm, ShippingAddressForm
 from django.contrib.auth.models import User
-from store.models import Profile
+from store.models import Profile, ShippingAddress
 import json
 from cart.cart import Cart
 
@@ -130,7 +130,7 @@ def user_profile(request):
 def shipping_info(request):
     if request.user.is_authenticated:
         current_user = Profile.objects.get(user__id=request.user.id)
-        form = UpdateInfoForm(request.POST or None, instance=current_user)
+        form = ShippingAddressForm(request.POST or None, instance=current_user)
         
         if form.is_valid():
             form.save()
