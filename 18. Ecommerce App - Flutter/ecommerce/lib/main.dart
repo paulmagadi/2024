@@ -52,33 +52,34 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.amber,
         title: Row(
-                    children: [
-                        // Logo: Place an Image widget as the leading widget in AppBar
-                        Image.asset(
-                            'assets/images/sqlogo.jpg',  // Path to your logo image
-                            height: 30,  // Adjust the height as desired
-                        ),
-                        // Spacer to push the search bar to the right
-                        Spacer(),
-                        // Search bar: Add a TextField as an action
-                        Expanded(
-                            child: TextField(
-                                onSubmitted: (String query) {
-                                    // Handle search query submission
-                                    print('Search query: $query');
-                                },
-                                decoration: InputDecoration(
-                                    hintText: 'Search...',
-                                    hintStyle: TextStyle(color: Colors.white70),
-                                    border: InputBorder.none,
-                                    icon: Icon(Icons.search, color: Colors.white),
-                                ),
-                                style: TextStyle(color: Colors.white),
-                            ),
-                        ),
-                    ],
+          children: [
+            const Image(
+              image: AssetImage("assets/images/sqlogo.jpg"),
+              height: 30,
+            ),
+            // Spacer to push the search bar to the right
+            const Spacer(),
+            // Search bar: Add a TextField as an action
+            Expanded(
+              child: TextField(
+                onSubmitted: (String query) {
+                  // Handle search query submission
+                  print('Search query: $query');
+                },
+                decoration: InputDecoration(
+                  hintText: 'Search...',
+                  hintStyle: TextStyle(color: Colors.white70),
+                  border: InputBorder.none,
+                  icon: Icon(Icons.search,
+                      color: const Color.fromARGB(255, 193, 35, 35)),
                 ),
+                style: TextStyle(color: Color.fromARGB(255, 158, 49, 49)),
+              ),
+            ),
+          ],
+        ),
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
