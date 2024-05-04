@@ -42,18 +42,24 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Bellamore Online Shop"),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text("Bellamore Online Shop"),
+          ),
+          body: _pages[_selectedIndex],
+          bottomNavigationBar: CurvedNavigationBar(items: [
+            CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            CurvedNavigationBarItem(
+                icon: Icon(Icons.category), label: "Category"),
+            CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Deals"),
+            CurvedNavigationBarItem(
+                icon: Icon(Icons.shopping_cart), label: "Cart"),
+            CurvedNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
+          ]),
+        ),
       ),
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: CurvedNavigationBar(items: [
-        CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        CurvedNavigationBarItem(icon: Icon(Icons.category), label: "Category"),
-        CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Deals"),
-        CurvedNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Cart"),
-        CurvedNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
-      ]),
     );
   }
 }
