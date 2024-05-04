@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
 import './screens/home.dart';
 
 void main() {
@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
       title: 'Bellamore',
       theme: ThemeData(),
       home: const HomePage(),
-      
     );
   }
 }
@@ -29,15 +28,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0,
+  int _selectedIndex = 0;
 
-  final List
+  final List<Widget> _pages = [
+    HomeScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Bellamore Online Shop"),
       ),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: CurvedNavigationBar(items: [
+        CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+      ]),
     );
   }
 }
