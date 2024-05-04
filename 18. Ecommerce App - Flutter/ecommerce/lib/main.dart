@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text("Bellamore Online Shop"),
       ),
       body: _pages[_selectedIndex],
+
       bottomNavigationBar: CurvedNavigationBar(items: [
         CurvedNavigationBarItem(icon: const Icon(Icons.home), label: "Home"),
         CurvedNavigationBarItem(
@@ -64,7 +65,11 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.shopping_cart), label: "Cart"),
         CurvedNavigationBarItem(
             icon: const Icon(Icons.person), label: "Account"),
-      ]),
+      ],
+
+      index: _selectedIndex,
+      onTap: _onItemTapped,
+      ),
     );
   }
 }
