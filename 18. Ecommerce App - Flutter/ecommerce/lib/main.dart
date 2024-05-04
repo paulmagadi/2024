@@ -66,6 +66,12 @@ class _HomePageState extends State<HomePage> {
           CurvedNavigationBarItem(
               icon: const Icon(Icons.person), label: "Account"),
         ],
+        onTap: (index) {
+            // Update the state when an item is tapped
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
       ),
     );
   }
