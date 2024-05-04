@@ -2,6 +2,7 @@ import 'package:ecommerce/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
+import 'package:flutter/services.dart';
 
 import './screens/home.dart';
 import './screens/category.dart';
@@ -19,6 +20,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+      // Change the status bar color to your desired color
+      statusBarColor: Colors.blue,
+      // Set the status bar icon brightness to light
+      statusBarIconBrightness: Brightness.light,
+      // Change the system navigation bar color to your desired color
+      // systemNavigationBarColor: Colors.blueAccent,
+      // Set the system navigation bar icon brightness to light
+      systemNavigationBarIconBrightness: Brightness.light,
+    ));
     return MaterialApp(
       title: 'Bellamore',
       theme: ThemeData(),
@@ -67,16 +79,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: EasySearchBar(
-          titleTextStyle: TextStyle(fontSize: 40),
-          backgroundColor: mainColor,
-          foregroundColor: Colors.white,
+          titleTextStyle: const TextStyle(fontSize: 40),
+          backgroundColor: blackColor,
+          foregroundColor: mainColor,
           appBarHeight: 58,
-          animationDuration: Duration(milliseconds: 500),
+          animationDuration: const Duration(milliseconds: 500),
           isFloating: true,
           searchHintText: "Search Product...",
           leading: const Image(
-            image: AssetImage("assets/images/sqlogo.jpg"),
-            height: 30,
+            image: AssetImage("assets/images/bmlogo.png"),
+            height: 40,
           ),
           title: const Text('Bellamore'),
           onSearch: (value) => setState(() => searchValue = value),
