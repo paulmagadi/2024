@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
+import 'package:curved_navigation_bar_with_label/nav_custom_painter.dart';
 import './screens/home.dart';
 import './screens/category.dart';
 import './screens/account.dart';
@@ -55,20 +56,19 @@ class _HomePageState extends State<HomePage> {
         title: const Text("Bellamore Online Shop"),
       ),
       body: _pages[_selectedIndex],
-
-      bottomNavigationBar: CurvedNavigationBar(items: [
-        CurvedNavigationBarItem(icon: const Icon(Icons.home), label: "Home"),
-        CurvedNavigationBarItem(
-            icon: const Icon(Icons.category), label: "Category"),
-        CurvedNavigationBarItem(icon: const Icon(Icons.home), label: "Deals"),
-        CurvedNavigationBarItem(
-            icon: const Icon(Icons.shopping_cart), label: "Cart"),
-        CurvedNavigationBarItem(
-            icon: const Icon(Icons.person), label: "Account"),
-      ],
-
-      index: _selectedIndex,
-      onTap: _onItemTapped,
+      bottomNavigationBar: CurvedNavigationBar(
+        items: [
+          CurvedNavigationBarItem(icon: const Icon(Icons.home), label: "Home"),
+          CurvedNavigationBarItem(
+              icon: const Icon(Icons.category), label: "Category"),
+          CurvedNavigationBarItem(icon: const Icon(Icons.home), label: "Deals"),
+          CurvedNavigationBarItem(
+              icon: const Icon(Icons.shopping_cart), label: "Cart"),
+          CurvedNavigationBarItem(
+              icon: const Icon(Icons.person), label: "Account"),
+        ],
+        index: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
