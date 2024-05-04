@@ -50,13 +50,16 @@ class _HomePageState extends State<HomePage> {
           ),
           body: _pages[_selectedIndex],
           bottomNavigationBar: CurvedNavigationBar(items: [
-            CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             CurvedNavigationBarItem(
-                icon: Icon(Icons.category), label: "Category"),
-            CurvedNavigationBarItem(icon: Icon(Icons.home), label: "Deals"),
+                icon: const Icon(Icons.home), label: "Home"),
             CurvedNavigationBarItem(
-                icon: Icon(Icons.shopping_cart), label: "Cart"),
-            CurvedNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
+                icon: const Icon(Icons.category), label: "Category"),
+            CurvedNavigationBarItem(
+                icon: const Icon(Icons.home), label: "Deals"),
+            CurvedNavigationBarItem(
+                icon: const Icon(Icons.shopping_cart), label: "Cart"),
+            CurvedNavigationBarItem(
+                icon: const Icon(Icons.person), label: "Account"),
           ]),
         ),
       ),
