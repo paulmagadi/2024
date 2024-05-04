@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
 import './screens/home.dart';
+import './screens/category.dart';
+import './screens/account.dart';
+import './screens/cart.dart';
+import './screens/deals.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +36,10 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
+    const CategoryScreen(),
+    const ProfileScreen(),
+    const CartScreen(),
+    const DealsScreen(),
   ];
 
   void _onItemTapped(int index) {

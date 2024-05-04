@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -16,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Text("Bellamore Online Shop"),
+            Text("This is my Home Page"),
           ],
         ),
       ),
