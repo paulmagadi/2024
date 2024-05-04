@@ -57,8 +57,6 @@ class _HomePageState extends State<HomePage> {
         CurvedNavigationBarItem(
             icon: const Icon(Icons.person), label: "Account"),
       ]),
-      // ),
-      // ),
     );
   }
 }
