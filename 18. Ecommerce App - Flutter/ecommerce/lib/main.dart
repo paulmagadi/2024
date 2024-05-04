@@ -42,27 +42,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text("Bellamore Online Shop"),
-          ),
-          body: _pages[_selectedIndex],
-          bottomNavigationBar: CurvedNavigationBar(items: [
-            CurvedNavigationBarItem(
-                icon: const Icon(Icons.home), label: "Home"),
-            CurvedNavigationBarItem(
-                icon: const Icon(Icons.category), label: "Category"),
-            CurvedNavigationBarItem(
-                icon: const Icon(Icons.home), label: "Deals"),
-            CurvedNavigationBarItem(
-                icon: const Icon(Icons.shopping_cart), label: "Cart"),
-            CurvedNavigationBarItem(
-                icon: const Icon(Icons.person), label: "Account"),
-          ]),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Bellamore Online Shop"),
       ),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: CurvedNavigationBar(items: [
+        CurvedNavigationBarItem(icon: const Icon(Icons.home), label: "Home"),
+        CurvedNavigationBarItem(
+            icon: const Icon(Icons.category), label: "Category"),
+        CurvedNavigationBarItem(icon: const Icon(Icons.home), label: "Deals"),
+        CurvedNavigationBarItem(
+            icon: const Icon(Icons.shopping_cart), label: "Cart"),
+        CurvedNavigationBarItem(
+            icon: const Icon(Icons.person), label: "Account"),
+      ]),
+      // ),
+      // ),
     );
   }
 }
