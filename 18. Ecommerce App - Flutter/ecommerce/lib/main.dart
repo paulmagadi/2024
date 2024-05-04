@@ -34,6 +34,18 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+String searchValue = '';
+final List<String> _suggestions = [
+  'Shoes',
+  'Watch',
+  'Shirt',
+  'Belt',
+  'Dress',
+  'Skirt',
+  'Chains',
+  'Caps'
+];
+
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
@@ -61,12 +73,14 @@ class _HomePageState extends State<HomePage> {
           appBarHeight: 58,
           animationDuration: Duration(milliseconds: 500),
           isFloating: true,
+          searchHintText: "Search Product...",
           leading: const Image(
             image: AssetImage("assets/images/sqlogo.jpg"),
             height: 30,
           ),
           title: const Text('Bellamore'),
-          onSearch: (value) => setState(() => {})),
+          onSearch: (value) => setState(() => searchValue = value),
+          suggestions: _suggestions),
       body: _pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         items: [
