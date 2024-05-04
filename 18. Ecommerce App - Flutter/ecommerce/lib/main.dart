@@ -1,3 +1,4 @@
+import 'package:ecommerce/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
 import './screens/home.dart';
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: mainColor,
         title: Row(
           children: [
             const Image(
