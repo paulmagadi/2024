@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
-import 'package:curved_navigation_bar_with_label/nav_custom_painter.dart';
 import './screens/home.dart';
 import './screens/category.dart';
 import './screens/account.dart';
@@ -67,8 +66,6 @@ class _HomePageState extends State<HomePage> {
           CurvedNavigationBarItem(
               icon: const Icon(Icons.person), label: "Account"),
         ],
-        index: _selectedIndex,
-        onTap: _onItemTapped,
       ),
     );
   }
