@@ -52,7 +52,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bellamore Online Shop"),
+        title: Row(
+                    children: [
+                        // Logo: Place an Image widget as the leading widget in AppBar
+                        Image.asset(
+                            'assets/logo.png',  // Path to your logo image
+                            height: 30,  // Adjust the height as desired
+                        ),
+                        // Spacer to push the search bar to the right
+                        Spacer(),
+                        // Search bar: Add a TextField as an action
+                        Expanded(
+                            child: TextField(
+                                onSubmitted: (String query) {
+                                    // Handle search query submission
+                                    print('Search query: $query');
+                                },
+                                decoration: InputDecoration(
+                                    hintText: 'Search...',
+                                    hintStyle: TextStyle(color: Colors.white70),
+                                    border: InputBorder.none,
+                                    icon: Icon(Icons.search, color: Colors.white),
+                                ),
+                                style: TextStyle(color: Colors.white),
+                            ),
+                        ),
+                    ],
+                ),
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
