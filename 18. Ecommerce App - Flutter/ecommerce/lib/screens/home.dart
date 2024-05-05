@@ -69,6 +69,9 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
           // Banner section
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
