@@ -81,9 +81,6 @@ class HomeScreen extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
                 borderRadius: BorderRadius.circular(4.0),
-                
-
-                // Add more decoration if needed (e.g., box shadow, border)
               ),
             ),
           ),
