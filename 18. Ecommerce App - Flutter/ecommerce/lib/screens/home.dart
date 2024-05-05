@@ -26,60 +26,45 @@ class HomeScreen extends StatelessWidget {
                     title: 'Shoes',
                     onPressed: () {
                       // Handle category selection (e.g., navigate to the category screen)
-                      
                     },
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'T-Shits',
-                    onPressed: () {
-                    
-                    },
+                    onPressed: () {},
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Dress',
-                    onPressed: () {
-                  
-                    },
+                    onPressed: () {},
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Shirts',
-                    onPressed: () {
-                   
-                    },
+                    onPressed: () {},
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Kids Shoes',
-                    onPressed: () {
-                    
-                    },
+                    onPressed: () {},
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Women shoes',
-                    onPressed: () {
-                 
-                    },
+                    onPressed: () {},
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Men shoes',
-                    onPressed: () {
-                 
-                    },
+                    onPressed: () {},
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Sandals',
-                    onPressed: () {
-                  
-                    },
+                    onPressed: () {},
                   ),
 
-                  // more CategoryItem widgets 
+                  // more CategoryItem widgets
                 ],
               ),
             ),
