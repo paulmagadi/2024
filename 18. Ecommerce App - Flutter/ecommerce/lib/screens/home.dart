@@ -86,23 +86,29 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
-          CarouselSlider(
-            options: CarouselOptions(height: 400.0),
-            items: [1, 2, 3, 4, 5].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(color: Colors.amber),
-                      child: Text(
-                        'text $i',
-                        style: TextStyle(fontSize: 16.0),
-                      ));
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6.0),
+            child: CarouselSlider(
+              items: [
+                // Add images for the carousel
+                Image.asset('assets/images/banner/1.png', fit: BoxFit.cover),
+                Image.asset('assets/images/banner/2.png', fit: BoxFit.cover),
+                Image.asset('assets/images/banner/4.png', fit: BoxFit.cover),
+              ],
+              options: CarouselOptions(
+                height: 200.0, // Adjust the height as needed
+                autoPlay: true, // Enable autoplay
+                autoPlayInterval:
+                    const Duration(seconds: 3), // Time interval for autoplay
+                aspectRatio: 16 / 9, // Aspect ratio of the carousel
+                enlargeCenterPage: true, // Enlarge the center slide
+                onPageChanged: (index, reason) {
+                  // Handle page change events if needed
+                  print('Carousel page changed to index: $index');
                 },
-              );
-            }).toList(),
-          )
+              ),
+            ),
+          ),
           // Add other sections such as featured products, promotions, etc.
         ],
       ),

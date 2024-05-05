@@ -65,7 +65,9 @@ flutter:
   assets:
     - assets/images/bmlogo.png
     - assets/images/bellamore.png
-    - assets/images/banner1.png
+    - assets/images/banner/1.png
+    - assets/images/banner/2.png
+    - assets/images/banner/4.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
