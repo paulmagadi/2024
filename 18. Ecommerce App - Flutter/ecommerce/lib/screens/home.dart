@@ -26,60 +26,60 @@ class HomeScreen extends StatelessWidget {
                     title: 'Shoes',
                     onPressed: () {
                       // Handle category selection (e.g., navigate to the category screen)
-                      print('Category 1 selected');
+                      
                     },
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'T-Shits',
                     onPressed: () {
-                      print('Category 2 selected');
+                    
                     },
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Dress',
                     onPressed: () {
-                      print('Category 2 selected');
+                  
                     },
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Shirts',
                     onPressed: () {
-                      print('Category 2 selected');
+                   
                     },
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Kids Shoes',
                     onPressed: () {
-                      print('Category 2 selected');
+                    
                     },
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Women shoes',
                     onPressed: () {
-                      print('Category 2 selected');
+                 
                     },
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Men shoes',
                     onPressed: () {
-                      print('Category 2 selected');
+                 
                     },
                   ),
                   CategoryItem(
                     icon: Icons.category,
                     title: 'Sandals',
                     onPressed: () {
-                      print('Category 2 selected');
+                  
                     },
                   ),
 
-                  // Add more CategoryItem widgets for other categories
+                  // more CategoryItem widgets 
                 ],
               ),
             ),
