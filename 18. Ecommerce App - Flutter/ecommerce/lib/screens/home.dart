@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import '../components/banner_carousel.dart';
 // import 'package:ecommerce/constants/constants.dart';
 // Import any additional necessary packages
 
@@ -113,6 +113,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
+            
           ),
           // Add other sections such as featured products, promotions, etc.
         ],
