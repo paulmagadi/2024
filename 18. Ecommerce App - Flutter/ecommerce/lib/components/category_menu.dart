@@ -27,6 +27,31 @@ class CategoryMenu extends StatelessWidget {
             title: 'Dress',
             onPressed: () {},
           ),
+          CategoryItem(
+            icon: Icons.category,
+            title: 'Dress',
+            onPressed: () {},
+          ),
+          CategoryItem(
+            icon: Icons.category,
+            title: 'Dress',
+            onPressed: () {},
+          ),
+          CategoryItem(
+            icon: Icons.category,
+            title: 'Dress',
+            onPressed: () {},
+          ),
+          CategoryItem(
+            icon: Icons.category,
+            title: 'Dress',
+            onPressed: () {},
+          ),
+          CategoryItem(
+            icon: Icons.category,
+            title: 'Dress',
+            onPressed: () {},
+          ),
           // Add more CategoryItem widgets as needed
         ],
       ),
