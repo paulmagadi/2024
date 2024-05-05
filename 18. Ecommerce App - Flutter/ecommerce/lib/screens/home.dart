@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
               height: 200.0,
               decoration: BoxDecoration(
                 image: const DecorationImage(
-                  image: AssetImage('assets/images/banner1.png'),
+                  image: AssetImage('assets/images/banner/1.png'),
                   fit: BoxFit.contain,
                 ),
                 borderRadius: BorderRadius.circular(4.0),
