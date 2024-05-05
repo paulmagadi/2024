@@ -87,24 +87,29 @@ class HomeScreen extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6.0),
+          
+            padding: const EdgeInsets.symmetric(vertical: 2.0),
             child: CarouselSlider(
+              
               items: [
                 // Add images for the carousel
-                Image.asset('assets/images/banner/1.png', fit: BoxFit.cover),
-                Image.asset('assets/images/banner/2.png', fit: BoxFit.cover),
-                Image.asset('assets/images/banner/4.png', fit: BoxFit.cover),
+                Image.asset('assets/images/banner/7.png', fit: BoxFit.contain),
+                Image.asset('assets/images/banner/2.png', fit: BoxFit.contain),
+                Image.asset('assets/images/banner/4.png', fit: BoxFit.contain),
+                Image.asset('assets/images/banner/5.png', fit: BoxFit.contain),
+                Image.asset('assets/images/banner/6.png', fit: BoxFit.contain),
+                Image.asset('assets/images/banner/3.png', fit: BoxFit.contain),
               ],
               options: CarouselOptions(
                 height: 200.0, // Adjust the height as needed
                 autoPlay: true, // Enable autoplay
                 autoPlayInterval:
-                    const Duration(seconds: 3), // Time interval for autoplay
+                    const Duration(seconds: 10), // Time interval for autoplay
                 aspectRatio: 16 / 9, // Aspect ratio of the carousel
                 enlargeCenterPage: true, // Enlarge the center slide
                 onPageChanged: (index, reason) {
                   // Handle page change events if needed
-                  print('Carousel page changed to index: $index');
+                  // print('Carousel page changed to index: $index');
                 },
               ),
             ),
@@ -132,7 +137,7 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
