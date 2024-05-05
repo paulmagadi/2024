@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 // import 'package:ecommerce/constants/constants.dart';
 // Import any additional necessary packages
