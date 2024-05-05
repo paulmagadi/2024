@@ -21,15 +21,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.transparent,
-      // Change the status bar color to your desired color
-      statusBarColor: Colors.blue,
-      // Set the status bar icon brightness to light
-      statusBarIconBrightness: Brightness.light,
-      // Change the system navigation bar color to your desired color
-      // systemNavigationBarColor: Colors.blueAccent,
-      // Set the system navigation bar icon brightness to light
-      systemNavigationBarIconBrightness: Brightness.light,
+      // systemNavigationBarColor: Colors.red,
+      // statusBarColor: Colors.white,
+      // statusBarIconBrightness: Brightness.light,
+      // systemNavigationBarIconBrightness: Brightness.light,
     ));
     return MaterialApp(
       title: 'Bellamore',
@@ -80,14 +75,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: EasySearchBar(
           titleTextStyle: const TextStyle(fontSize: 40),
-          backgroundColor: blackColor,
+          backgroundColor: blueColor,
           foregroundColor: mainColor,
           appBarHeight: 58,
           animationDuration: const Duration(milliseconds: 500),
           isFloating: true,
           searchHintText: "Search Product...",
           leading: const Image(
-            image: AssetImage("assets/images/bmlogo.png"),
+            image: AssetImage("assets/images/bellamore.png"),
             height: 40,
           ),
           title: const Text('Bellamore'),

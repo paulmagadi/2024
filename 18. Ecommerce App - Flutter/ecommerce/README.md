@@ -141,3 +141,30 @@ showClearSearchIcon	bool	❌	Can be used to show search clear textField button	f
 searchClearIconTheme	IconThemeData	❌	Can be used to set custom icon theme for the search clear textField button	
 searchTextDirection	TextDirection	❌	Can be used to change text direction	TextDirection.ltr
 putActionsOnRight	bool	❌	Can be used to determine if the actions button will be placed at right of the appbar
+
+
+
+
+
+
+
+// Header with the app's logo
+          
+
+          // Search bar (if you don't already have one in the AppBar)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                prefixIcon: const Icon(Icons.search),
+              ),
+              onSubmitted: (query) {
+                // Handle search query submission
+                print('Search query: $query');
+              },
+            ),
+          ),
