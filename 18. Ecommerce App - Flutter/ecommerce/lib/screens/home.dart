@@ -69,6 +69,22 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          // Banner section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Container(
+              height: 200.0, // Adjust the height as needed
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      'assets/images/bmlogo.png'), // Path to your banner image
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+                // Add more decoration if needed (e.g., box shadow, border)
+              ),
+            ),
+          ),
           // Add other sections such as featured products, promotions, etc.
         ],
       ),
