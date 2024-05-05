@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-// import 'package:ecommerce/constants/constants.dart'; 
+
+// import 'package:ecommerce/constants/constants.dart';
 // Import any additional necessary packages
 
 class HomeScreen extends StatelessWidget {
@@ -8,68 +8,127 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
-      
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section for categories
+          // Horizontal menu for categories
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Column(
-              children: [
-                Text(
-                  'Categories',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: SingleChildScrollView(
+              scrollDirection:
+                  Axis.horizontal, // Set scroll direction to horizontal
+              child: Row(
+                children: [
+                  // Create a list of category items (e.g., buttons or cards)
+                  CategoryItem(
+                    icon: Icons.category, // Use appropriate icons or images
+                    title: 'Shoes',
+                    onPressed: () {
+                      // Handle category selection (e.g., navigate to the category screen)
+                      print('Category 1 selected');
+                    },
                   ),
-                ),
-                // Display categories using a grid view or a list view
-                // Example: GridView.builder or ListView.builder
-                // Customize the display of categories here
-              ],
+                  CategoryItem(
+                    icon: Icons.category,
+                    title: 'T-Shits',
+                    onPressed: () {
+                      print('Category 2 selected');
+                    },
+                  ),
+                  CategoryItem(
+                    icon: Icons.category,
+                    title: 'Dress',
+                    onPressed: () {
+                      print('Category 2 selected');
+                    },
+                  ),
+                  CategoryItem(
+                    icon: Icons.category,
+                    title: 'Shirts',
+                    onPressed: () {
+                      print('Category 2 selected');
+                    },
+                  ),
+                  CategoryItem(
+                    icon: Icons.category,
+                    title: 'Kids Shoes',
+                    onPressed: () {
+                      print('Category 2 selected');
+                    },
+                  ),
+                  CategoryItem(
+                    icon: Icons.category,
+                    title: 'Women shoes',
+                    onPressed: () {
+                      print('Category 2 selected');
+                    },
+                  ),
+                  CategoryItem(
+                    icon: Icons.category,
+                    title: 'Men shoes',
+                    onPressed: () {
+                      print('Category 2 selected');
+                    },
+                  ),
+                  CategoryItem(
+                    icon: Icons.category,
+                    title: 'Sandals',
+                    onPressed: () {
+                      print('Category 2 selected');
+                    },
+                  ),
+
+                  // Add more CategoryItem widgets for other categories
+                ],
+              ),
             ),
           ),
-
-          // Section for featured products/deals
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Featured Products',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                // Display featured products here (e.g., using a horizontal list view)
-              ],
-            ),
-          ),
-
-          // Section for products list
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Products',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                // Display products using a GridView or ListView
-              ],
-            ),
-          ),
-
-          // Add more sections as needed (e.g., promotions, etc.)
+          // Add other sections such as featured products, promotions, etc.
         ],
+      ),
+    );
+  }
+}
+
+// Define a custom widget for each category item
+class CategoryItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final VoidCallback onPressed;
+
+  const CategoryItem({
+    required this.icon,
+    required this.title,
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          // primary: Colors.white,
+          // onPrimary: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 24.0,
+            ),
+            SizedBox(height: 4.0),
+            Text(title),
+          ],
+        ),
       ),
     );
   }
