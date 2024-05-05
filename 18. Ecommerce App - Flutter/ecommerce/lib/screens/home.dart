@@ -12,14 +12,14 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Horizontal menu for categories
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
             child: CategoryMenu(),
           ),
 
           // Banner section
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Container(
               height: 200.0,
               decoration: BoxDecoration(
@@ -33,8 +33,8 @@ class HomeScreen extends StatelessWidget {
           ),
 
           // Add the BannerCarousel component
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 1.0),
             child: BannerCarousel(),
           ),
 
