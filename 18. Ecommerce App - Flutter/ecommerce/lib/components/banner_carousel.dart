@@ -24,19 +24,25 @@ class _BannerCarouselState extends State<BannerCarousel> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Carousel slider
         CarouselSlider(
           items: items.map((item) {
-            return Image.asset(
-              item,
-              fit: BoxFit.contain,
-              width: double.infinity,
+            // Wrap each image in a ClipRRect to apply border radius
+            return ClipRRect(
+              borderRadius:
+                  BorderRadius.circular(8.0), // Specify the border radius
+              child: Image.asset(
+                item,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             );
           }).toList(),
           carouselController: _controller,
           options: CarouselOptions(
-            height: 170.0,
+            height: 180.0, // Adjust height as needed
             autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 10),
+            autoPlayInterval: const Duration(seconds: 5),
             aspectRatio: 16 / 9,
             enlargeCenterPage: true,
             onPageChanged: (index, reason) {
@@ -55,16 +61,13 @@ class _BannerCarouselState extends State<BannerCarousel> {
               child: Container(
                 width: 12.0,
                 height: 12.0,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 4.0,
-                  horizontal: 4.0,
-                ),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: (Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : const Color.fromARGB(255, 250, 75, 0))
-                      .withOpacity(_current == entry.key ? 0.9 : 0.4),
+                  color: _current == entry.key
+                      ? Colors.blue // Active dot color
+                      : Colors.grey, // Inactive dot color
                 ),
               ),
             );
