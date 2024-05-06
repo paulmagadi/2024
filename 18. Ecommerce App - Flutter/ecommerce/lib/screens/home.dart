@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../components/category_menu.dart';
 import '../components/banner_carousel.dart';
 
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
