@@ -40,7 +40,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
           }).toList(),
           carouselController: _controller,
           options: CarouselOptions(
-            height: 180.0, // Adjust height as needed
+            height: 200.0, 
             autoPlay: true,
             autoPlayInterval: const Duration(seconds: 5),
             aspectRatio: 16 / 9,
