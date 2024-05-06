@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/featured.dart';
 
 // Define a class to represent each featured product
 class FeaturedProduct {
@@ -26,34 +27,44 @@ class FeaturedSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section title
-          Text(
-            'Featured Products',
-            style: Theme.of(context).textTheme.titleLarge,
+          // Section title row with title and "See More" button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Section title
+                Text(
+                  'Featured Products',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+
+                // "See More" button
+                TextButton(
+                  onPressed: () {
+                    // Navigate to the FeaturedScreen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FeaturedScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text('See More'),
+                ),
+              ],
+            ),
           ),
-          // "See More" button
-                                TextButton(
-                                    onPressed: () {
-                                        // Navigate to the FeaturedScreen
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => FeaturedScreen(),
-                                            ),
-                                        );
-                                    },
-                                    child: const Text('See More'),
-                                ),
 
           // Grid view of featured products
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // Number of columns
-              childAspectRatio: 4 / 4, // Aspect ratio of each grid item
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
+              crossAxisCount: 3, // Number of columns
+              childAspectRatio: 3 / 4, // Aspect ratio of each grid item
+              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 2.0,
             ),
             itemCount: featuredProducts.length,
             itemBuilder: (context, index) {
@@ -109,7 +120,7 @@ class FeaturedProductItem extends StatelessWidget {
                 // Product price
                 Text(
                   '\$${product.price.toStringAsFixed(2)}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
                   ),

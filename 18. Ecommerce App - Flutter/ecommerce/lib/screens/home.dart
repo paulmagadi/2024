@@ -98,6 +98,16 @@ class HomeScreen extends StatelessWidget {
                   title: 'Product 4',
                   price: 29.99,
                 ),
+                FeaturedProduct(
+                  imageUrl: 'assets/images/products/5.jpg',
+                  title: 'Product 5',
+                  price: 29.99,
+                ),
+                FeaturedProduct(
+                  imageUrl: 'assets/images/products/6.jpg',
+                  title: 'Product 6',
+                  price: 29.99,
+                ),
                 // Add more FeaturedProduct objects as needed...
               ],
             ),
