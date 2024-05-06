@@ -43,13 +43,18 @@ class DealsSection extends StatelessWidget {
                 Row(
                   children: [
                     // "See More" button
-                    TextButton(
-                      onPressed: () {
-                        // Handle "See More" button press
-                        // For example, navigate to the full deals page
-                      },
-                      child: const Text('See More'),
-                    ),
+                                        TextButton(
+                                            onPressed: () {
+                                                // Navigate to the deals screen when pressed
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) => DealsScreen(),
+                                                    ),
+                                                );
+                                            },
+                                            child: const Text('See More'),
+                                        ),
 
                     // Arrow angle icon
                     const Icon(
