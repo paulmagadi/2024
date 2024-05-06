@@ -45,13 +45,13 @@ class HomeScreen extends StatelessWidget {
             child: DealsSection(
               deals: [
                 Deal(
-                  imageUrl: 'assets/images/deals/deal1.png',
+                  imageUrl: 'assets/images/banner/7.png',
                   title: 'Deal 1',
                   oldPrice: 19.99,
                   newPrice: 14.99,
                 ),
                 Deal(
-                  imageUrl: 'assets/images/deals/deal2.png',
+                  imageUrl: 'assets/images/banner/6.png',
                   title: 'Deal 2',
                   oldPrice: 49.99,
                   newPrice: 39.99,
