@@ -9,9 +9,9 @@ class DealsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Deals'),
       ),
-      body: Center(
+      body: const Center(
         // Customize the body of the deals screen as needed
-        child: const Text('This is the deals screen'),
+        child: Text('This is the deals screen'),
       ),
     );
   }
