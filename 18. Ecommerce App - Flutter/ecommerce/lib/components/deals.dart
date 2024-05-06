@@ -45,6 +45,7 @@ class DealsSection extends StatelessWidget {
                   children: [
                     // "See More" button
                     TextButton(
+                      
                       onPressed: () {
                         // Navigate to the deals screen when pressed
                         Navigator.push(
@@ -55,6 +56,7 @@ class DealsSection extends StatelessWidget {
                         );
                       },
                       child: const Text('See More'),
+                      
                     ),
 
                     // Arrow angle icon
