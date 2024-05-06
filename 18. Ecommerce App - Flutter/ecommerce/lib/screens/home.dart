@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../components/category_menu.dart';
 import '../components/banner_carousel.dart';
 import '../components/deals.dart';
+import '../components/featured.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -71,6 +72,26 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+
+          // Add the FeaturedSection component
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: FeaturedSection(
+                            featuredProducts: [
+                                FeaturedProduct(
+                                    imageUrl: 'assets/images/products/1.jpg',
+                                    title: 'Product 1',
+                                    price: 39.99,
+                                ),
+                                FeaturedProduct(
+                                    imageUrl: 'assets/images/products/2.jpg',
+                                    title: 'Product 2',
+                                    price: 29.99,
+                                ),
+                                // Add more FeaturedProduct objects as needed...
+                            ],
+                        ),
+                    ),
 
           // Add other sections such as featured products, promotions, etc.
         ],
