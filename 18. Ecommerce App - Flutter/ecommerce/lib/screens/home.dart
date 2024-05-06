@@ -59,7 +59,20 @@ class HomeScreen extends StatelessWidget {
                   oldPrice: 49.99,
                   newPrice: 39.99,
                 ),
+                Deal(
+                  imageUrl: 'assets/images/products/1.jpg',
+                  title: 'Deal 1',
+                  oldPrice: 19.99,
+                  newPrice: 14.99,
+                ),
+                Deal(
+                  imageUrl: 'assets/images/products/1.jpg',
+                  title: 'Deal 1',
+                  oldPrice: 19.99,
+                  newPrice: 14.99,
+                ),
               ],
+              
             ),
           ),
 
