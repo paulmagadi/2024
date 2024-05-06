@@ -74,8 +74,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: EasySearchBar(
-          titleTextStyle: const TextStyle(fontSize: 40),
-          backgroundColor: blueColor,
+          systemOverlayStyle:
+              SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+          titleTextStyle: const TextStyle(fontSize: 40, color: mainColor),
+          backgroundColor: bgColor,
           foregroundColor: mainColor,
           appBarHeight: 58,
           animationDuration: const Duration(milliseconds: 500),
