@@ -28,7 +28,7 @@ class FeaturedSection extends StatelessWidget {
                     // Section title
                     Text(
                         'Featured Products',
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleLarge,
                     ),
                     
                     // Grid view of featured products
@@ -88,7 +88,7 @@ class FeaturedProductItem extends StatelessWidget {
                                 // Product title
                                 Text(
                                     product.title,
-                                    style: Theme.of(context).textTheme.subtitle1,
+                                    style: Theme.of(context).textTheme.titleMedium,
                                 ),
                                 
                                 // Product price
