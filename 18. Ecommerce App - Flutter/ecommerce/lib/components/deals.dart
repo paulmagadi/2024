@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DealsSection extends StatelessWidget {
-  final List<Deal> deals;  // Define a list of deals
+  final List<Deal> deals; // Define a list of deals
 
   const DealsSection({Key? key, required this.deals}) : super(key: key);
 
@@ -15,20 +15,22 @@ class DealsSection extends StatelessWidget {
           // Section title
           Text(
             'Deals',
-            style: Theme.of(context).textTheme.headline6,  // Use your app's theme
+            style:
+                Theme.of(context).textTheme.titleLarge, // Use your app's theme
           ),
-          
+
           // Display deals in a grid view
           GridView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),  // To prevent scrolling within the grid
+            physics:
+                const NeverScrollableScrollPhysics(), // To prevent scrolling within the grid
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,  // Number of columns
-              childAspectRatio: 3 / 4,  // Aspect ratio of each grid item
-              mainAxisSpacing: 8.0,  // Spacing between rows
-              crossAxisSpacing: 8.0,  // Spacing between columns
+              crossAxisCount: 2, // Number of columns
+              childAspectRatio: 3 / 4, // Aspect ratio of each grid item
+              mainAxisSpacing: 8.0, // Spacing between rows
+              crossAxisSpacing: 8.0, // Spacing between columns
             ),
-            itemCount: deals.length,  // Number of deals
+            itemCount: deals.length, // Number of deals
             itemBuilder: (context, index) {
               final deal = deals[index];
               return DealItem(
@@ -77,10 +79,10 @@ class DealItem extends StatelessWidget {
           Expanded(
             child: Image.asset(
               deal.imageUrl,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
           ),
-          
+
           // Deal details
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -90,27 +92,27 @@ class DealItem extends StatelessWidget {
                 // Deal title
                 Text(
                   deal.title,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                
+
                 // Deal prices
                 Row(
                   children: [
                     // Old price
                     Text(
                       '\$${deal.oldPrice.toStringAsFixed(2)}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.grey,
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
-                    
+
                     const SizedBox(width: 8.0),
-                    
+
                     // New price
                     Text(
                       '\$${deal.newPrice.toStringAsFixed(2)}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
                       ),
