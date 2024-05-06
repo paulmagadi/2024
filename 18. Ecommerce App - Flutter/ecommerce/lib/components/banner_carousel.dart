@@ -16,9 +16,9 @@ class BannerCarousel extends StatelessWidget {
         Image.asset('assets/images/banner/3.png', fit: BoxFit.contain),
       ],
       options: CarouselOptions(
-        height: 170.0,
+        height: 160.0,
         autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 10),
+        autoPlayInterval: const Duration(seconds: 5),
         aspectRatio: 16 / 9,
         enlargeCenterPage: true,
         onPageChanged: (index, reason) {
