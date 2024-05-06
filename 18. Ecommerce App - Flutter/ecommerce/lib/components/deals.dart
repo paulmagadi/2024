@@ -45,7 +45,6 @@ class DealsSection extends StatelessWidget {
                   children: [
                     // "See More" button
                     TextButton(
-                      
                       onPressed: () {
                         // Navigate to the deals screen when pressed
                         Navigator.push(
@@ -56,7 +55,6 @@ class DealsSection extends StatelessWidget {
                         );
                       },
                       child: const Text('See More'),
-                      
                     ),
 
                     // Arrow angle icon
@@ -114,6 +112,7 @@ class DealItem extends StatelessWidget {
                 deal.imageUrl,
                 height: 100.0, // Adjust height as needed
                 width: 100.0, // Adjust width as needed
+                alignment: Alignment.topCenter,
                 fit: BoxFit.contain,
               ),
             ),
