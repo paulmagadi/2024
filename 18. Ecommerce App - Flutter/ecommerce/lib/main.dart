@@ -81,10 +81,10 @@ class _HomePageState extends State<HomePage> {
           animationDuration: const Duration(milliseconds: 500),
           isFloating: true,
           searchHintText: "Search Product...",
-          leading: const Image(
-            image: AssetImage("assets/images/bellamore.png"),
-            height: 40,
-          ),
+          // leading: const Image(
+          //   image: AssetImage("assets/images/bellamore.png"),
+          //   height: 40,
+          // ),
           title: const Text('Bellamore'),
           onSearch: (value) => setState(() => searchValue = value),
           suggestions: _suggestions),
