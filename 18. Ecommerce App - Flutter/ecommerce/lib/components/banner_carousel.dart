@@ -63,7 +63,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
                   shape: BoxShape.circle,
                   color: (Theme.of(context).brightness == Brightness.dark
                           ? Colors.white
-                          : Color.fromARGB(255, 250, 75, 0))
+                          : const Color.fromARGB(255, 250, 75, 0))
                       .withOpacity(_current == entry.key ? 0.9 : 0.4),
                 ),
               ),
