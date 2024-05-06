@@ -34,7 +34,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
           }).toList(),
           carouselController: _controller,
           options: CarouselOptions(
-            height: 200.0,
+            height: 170.0,
             autoPlay: true,
             autoPlayInterval: const Duration(seconds: 10),
             aspectRatio: 16 / 9,
@@ -56,7 +56,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
                 width: 12.0,
                 height: 12.0,
                 margin: const EdgeInsets.symmetric(
-                  vertical: 8.0,
+                  vertical: 4.0,
                   horizontal: 4.0,
                 ),
                 decoration: BoxDecoration(
