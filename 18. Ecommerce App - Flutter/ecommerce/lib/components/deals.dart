@@ -26,6 +26,7 @@ class DealsSection extends StatelessWidget {
                 const NeverScrollableScrollPhysics(), // To prevent scrolling within the grid
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // Number of columns
+              
               childAspectRatio: 3 / 4, // Aspect ratio of each grid item
               mainAxisSpacing: 8.0, // Spacing between rows
               crossAxisSpacing: 8.0, // Spacing between columns

@@ -41,8 +41,11 @@ class HomeScreen extends StatelessWidget {
 
           // Add the DealsSection component
           Padding(
+      
             padding: const EdgeInsets.symmetric(vertical: 8.0),
+          
             child: DealsSection(
+              
               deals: [
                 Deal(
                   imageUrl: 'assets/images/products/1.jpg',
