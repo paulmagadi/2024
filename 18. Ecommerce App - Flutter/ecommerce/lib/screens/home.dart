@@ -22,15 +22,13 @@ class HomeScreen extends StatelessWidget {
           ),
 
           // Banner section
-          const BannerSection(),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            child: BannerSection(),
+          ),
 
           // BannerCarousel component
-          const Column(children: [
-            Expanded(
-              child: BannerCarousel(),
-            ),
-            // padding: EdgeInsets.symmetric(vertical: 1.0),
-          ]),
+          const BannerCarousel(),
 
           //DealsSection component
           Padding(
