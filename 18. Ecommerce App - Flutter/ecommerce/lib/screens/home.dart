@@ -74,24 +74,34 @@ class HomeScreen extends StatelessWidget {
           ),
 
           // Add the FeaturedSection component
-                    Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: FeaturedSection(
-                            featuredProducts: [
-                                FeaturedProduct(
-                                    imageUrl: 'assets/images/products/1.jpg',
-                                    title: 'Product 1',
-                                    price: 39.99,
-                                ),
-                                FeaturedProduct(
-                                    imageUrl: 'assets/images/products/2.jpg',
-                                    title: 'Product 2',
-                                    price: 29.99,
-                                ),
-                                // Add more FeaturedProduct objects as needed...
-                            ],
-                        ),
-                    ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: FeaturedSection(
+              featuredProducts: [
+                FeaturedProduct(
+                  imageUrl: 'assets/images/products/1.jpg',
+                  title: 'Product 1',
+                  price: 39.99,
+                ),
+                FeaturedProduct(
+                  imageUrl: 'assets/images/products/2.jpg',
+                  title: 'Product 2',
+                  price: 29.99,
+                ),
+                FeaturedProduct(
+                  imageUrl: 'assets/images/products/3.jpg',
+                  title: 'Product 3',
+                  price: 29.99,
+                ),
+                FeaturedProduct(
+                  imageUrl: 'assets/images/products/4.jpg',
+                  title: 'Product 4',
+                  price: 29.99,
+                ),
+                // Add more FeaturedProduct objects as needed...
+              ],
+            ),
+          ),
 
           // Add other sections such as featured products, promotions, etc.
         ],
