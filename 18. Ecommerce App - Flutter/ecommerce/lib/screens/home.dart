@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/category_menu.dart';
+import '../components/banner.dart';
 import '../components/banner_carousel.dart';
 import '../components/deals.dart';
 import '../components/featured.dart';
@@ -21,27 +22,17 @@ class HomeScreen extends StatelessWidget {
           ),
 
           // Banner section
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-            child: Container(
-              height: 200.0,
-              decoration: BoxDecoration(
-                image: const DecorationImage(
-                  image: AssetImage('assets/images/banner/1.png'),
-                  fit: BoxFit.contain,
-                ),
-                borderRadius: BorderRadius.circular(4.0),
-              ),
+          const BannerSection(),
+
+          // BannerCarousel component
+          const Column(children: [
+            Expanded(
+              child: BannerCarousel(),
             ),
-          ),
+            // padding: EdgeInsets.symmetric(vertical: 1.0),
+          ]),
 
-          // Add the BannerCarousel component
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 1.0),
-            child: BannerCarousel(),
-          ),
-
-          // Add the DealsSection component
+          //DealsSection component
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: DealsSection(
@@ -74,7 +65,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
-          // Add the FeaturedSection component
+          // FeaturedSection component
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: FeaturedSection(
@@ -114,7 +105,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
-          // Add All Products
+          // All Products
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ProductsSection(
@@ -149,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                   title: 'Product 6',
                   price: 29.99,
                 ),
-                // Add more FeaturedProduct objects as needed...
+                // Add more Product objects as needed...
               ],
             ),
           ),

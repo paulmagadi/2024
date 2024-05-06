@@ -59,7 +59,7 @@ class DealsSection extends StatelessWidget {
 
                     // Arrow angle icon
                     const Icon(
-                      Icons.arrow_forward,
+                      Icons.keyboard_double_arrow_right,
                       size: 16.0,
                       color: Colors.grey,
                     ),
@@ -95,7 +95,7 @@ class DealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 1.0),
       child: Card(
         elevation: 2.0,
         shape: RoundedRectangleBorder(
@@ -112,7 +112,7 @@ class DealItem extends StatelessWidget {
                 deal.imageUrl,
                 height: 100.0, // Adjust height as needed
                 width: 100.0, // Adjust width as needed
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
 
