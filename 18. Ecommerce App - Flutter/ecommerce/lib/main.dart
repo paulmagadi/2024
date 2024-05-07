@@ -76,9 +76,9 @@ class _HomePageState extends State<HomePage> {
       appBar: EasySearchBar(
           systemOverlayStyle:
               SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-          titleTextStyle: const TextStyle(fontSize: 40, color: mainColor),
+          titleTextStyle: const TextStyle(fontSize: 40, color: blackColor),
           backgroundColor: bgColor,
-          foregroundColor: mainColor,
+          foregroundColor: blackColor,
           appBarHeight: 58,
           animationDuration: const Duration(milliseconds: 500),
           isFloating: true,
