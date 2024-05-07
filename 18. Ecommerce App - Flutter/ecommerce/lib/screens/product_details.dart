@@ -10,14 +10,14 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(product.title),
+        title: Text(product.name),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             // Display the product image
             Image.asset(
-              product.imageUrl,
+              product.image,
               fit: BoxFit.cover,
               width: double.infinity,
             ),
@@ -29,7 +29,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 children: [
                   // Display the product title
                   Text(
-                    product.title,
+                    product.name,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   // Display the product price

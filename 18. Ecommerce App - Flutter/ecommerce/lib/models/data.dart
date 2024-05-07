@@ -2,32 +2,32 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Product {
-  final String title;
+  final String name;
   final String description;
   final double price;
-  final String imageUrl;
+  final String image;
 
   Product({
-    required this.title,
+    required this.name,
     required this.description,
     required this.price,
-    required this.imageUrl,
+    required this.image,
   });
 
   // Factory constructor to parse JSON data into a Product instance
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      title: json['title'],
+      name: json['name'],
       description: json['description'],
       price: json['price'].toDouble(),
-      imageUrl: json['image_url'],
+      image: json['image'],
     );
   }
 }
 
 // Function to fetch products from the backend
 Future<List<Product>> fetchProducts() async {
-  final response = await http.get(Uri.parse('http://your_backend_url/products/'));
+  final response = await http.get(Uri.parse('http://127.0.0.1:8000/products/'));
 
   if (response.statusCode == 200) {
     List<dynamic> data = jsonDecode(response.body);

@@ -7,8 +7,6 @@
 // import '../components/products.dart';
 // import 'package:http/http.dart' as http;
 
-
-
 // class HomeScreen extends StatelessWidget {
 //   const HomeScreen({Key? key}) : super(key: key);
 
@@ -37,9 +35,9 @@
 //           Padding(
 //             padding: const EdgeInsets.symmetric(vertical: 8.0),
 //             child: DealsSection(
-              
+
 //               deals: [
-                
+
 //                 Deal(
 //                   imageUrl: 'assets/images/products/1.jpg',
 //                   title: 'Deal 1',
@@ -160,10 +158,9 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
-import '../models/data.dart';  // Import the data functions and model classes
-import '../screens/product_details.dart';  // Import the product details screen
+import '../models/data.dart'; // Import the data functions and model classes
+import '../screens/product_details.dart'; // Import the product details screen
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -171,11 +168,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Home'),
+      // ),
       body: FutureBuilder<List<Product>>(
-        future: fetchProducts(),  // Fetch data from the backend
+        future: fetchProducts(), // Fetch data from the backend
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             // Show a loading indicator while waiting for data
@@ -192,14 +189,15 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final product = products[index];
                 return ListTile(
-                  title: Text(product.title),
+                  title: Text(product.name),
                   subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
                   onTap: () {
                     // Navigate to ProductDetailsScreen when a product is tapped
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductDetailsScreen(product: product),
+                        builder: (context) =>
+                            ProductDetailsScreen(product: product),
                       ),
                     );
                   },
@@ -212,4 +210,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
