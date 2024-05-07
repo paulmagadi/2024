@@ -5,6 +5,8 @@ import '../components/banner_carousel.dart';
 import '../components/deals.dart';
 import '../components/featured.dart';
 import '../components/products.dart';
+import 'package:http/http.dart' as http;
+
 
 
 class HomeScreen extends StatelessWidget {
