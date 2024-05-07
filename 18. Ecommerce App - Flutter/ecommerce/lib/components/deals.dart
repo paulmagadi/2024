@@ -106,6 +106,7 @@ class DealItem extends StatelessWidget {
           children: [
             // Deal image
             ClipRRect(
+              
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(8.0)),
               child: Image.asset(

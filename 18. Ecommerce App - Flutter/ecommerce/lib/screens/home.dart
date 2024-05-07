@@ -6,6 +6,7 @@ import '../components/deals.dart';
 import '../components/featured.dart';
 import '../components/products.dart';
 
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -34,7 +35,9 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: DealsSection(
+              
               deals: [
+                
                 Deal(
                   imageUrl: 'assets/images/products/1.jpg',
                   title: 'Deal 1',
