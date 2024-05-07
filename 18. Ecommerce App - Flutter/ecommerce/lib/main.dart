@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           systemOverlayStyle:
               SystemUiOverlayStyle(statusBarColor: Colors.transparent),
           titleTextStyle: const TextStyle(fontSize: 40, color: blackColor),
-          backgroundColor: bgColor,
+          backgroundColor: whiteColor,
           foregroundColor: blackColor,
           appBarHeight: 58,
           animationDuration: const Duration(milliseconds: 500),
