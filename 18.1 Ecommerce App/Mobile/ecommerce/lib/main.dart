@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const HomeScreen(),
+     PostList(),
     // const CategoryScreen(),
     // const DealsScreen(),
     // const CartScreen(),

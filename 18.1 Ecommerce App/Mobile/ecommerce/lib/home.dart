@@ -1,50 +1,70 @@
 import 'package:flutter/material.dart';
-import 'data.dart';  // Import the data functions and model classes
-import 'product_details.dart';  // Import the product details screen
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: PostList(),
+    );
+  }
+}
+
+class PostList extends StatefulWidget {
+  @override
+  _PostListState createState() => _PostListState();
+}
+
+class _PostListState extends State<PostList> {
+  List<dynamic> _postData = [];
+
+  Future<void> fetchData() async {
+    final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+
+    if (response.statusCode == 200) {
+      // If the server returns a 200 OK response, parse the JSON.
+      setState(() {
+        _postData = jsonDecode(response.body);
+      });
+    } else {
+      // If the server did not return a 200 OK response,
+      // throw an exception.
+      throw Exception('Failed to load data');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Fetch Data Example'),
       ),
-      body: FutureBuilder<List<Product>>(
-        future: fetchProducts(),  // Fetch data from the backend
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            // Show a loading indicator while waiting for data
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            // Show an error message if data fetching fails
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else {
-            final products = snapshot.data!;
-
-            // Display the list of products
-            return ListView.builder(
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                final product = products[index];
-                return ListTile(
-                  title: Text(product.name),
-                  subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
-                  onTap: () {
-                    // Navigate to ProductDetailsScreen when a product is tapped
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductDetailsScreen(product: product),
-                      ),
-                    );
-                  },
-                );
-              },
-            );
-          }
-        },
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: fetchData,
+              child: const Text('Fetch Data'),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _postData.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(_postData[index]['title']),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

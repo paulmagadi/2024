@@ -33,21 +33,21 @@ class ProductDetailsScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   // Display the product price
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      '\$${product.price.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  //   child: Text(
+                  //     '\$${product.price.toStringAsFixed(2)}',
+                  //     style: const TextStyle(
+                  //       color: Colors.green,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  // ),
                   // Display the product description
-                  Text(
-                    product.description,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
+                  // Text(
+                  //   product.description,
+                  //   style: Theme.of(context).textTheme.bodyLarge,
+                  // ),
                   // Add buttons (e.g., add to cart, wishlist) if needed
                   Row(
                     children: [
