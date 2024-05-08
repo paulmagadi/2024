@@ -27,7 +27,7 @@ class Product {
 
 // Function to fetch products from the backend
 Future<List<Product>> fetchProducts() async {
-  final response = await http.get(Uri.parse('http://127.0.2.2:8000/products/'));
+  final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/products/'));
 
   if (response.statusCode == 200) {
     List<dynamic> data = jsonDecode(response.body);
