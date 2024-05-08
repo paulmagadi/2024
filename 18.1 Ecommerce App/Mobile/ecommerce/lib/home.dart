@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'data.dart';  // Import the data functions and model classes
-import 'product_details_screen.dart';  // Import the product details screen
+import 'product_details.dart';  // Import the product details screen
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

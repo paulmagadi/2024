@@ -3,7 +3,7 @@ from rest_framework import permissions, viewsets, generics
 
 from .serializers import GroupSerializer, UserSerializer, ProductSerializer, CategorySerializer
 
-from .models import Product, Category
+from store.models import Product, Category
 
 
 

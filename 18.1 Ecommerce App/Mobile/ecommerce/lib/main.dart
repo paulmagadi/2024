@@ -4,7 +4,7 @@ import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
 // import 'package:easy_search_bar/easy_search_bar.dart';
 // import 'package:flutter/services.dart';
 
-// import './screens/home.dart';
+import 'home.dart';
 // import './screens/category.dart';
 // import './screens/deals.dart';
 // import './screens/cart.dart';
