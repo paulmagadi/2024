@@ -17,7 +17,7 @@ class Deal {
 }
 
 class DealsSection extends StatelessWidget {
-  final List<Deal> deals; // Define a list of deals
+  final List<Deal> deals;
 
   const DealsSection({Key? key, required this.deals}) : super(key: key);
 
@@ -28,7 +28,7 @@ class DealsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section title row with title, "See More" button, and arrow angle
+          // Section title row
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
@@ -37,16 +37,15 @@ class DealsSection extends StatelessWidget {
                 // Section title
                 Text(
                   'Deals',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
 
-                // "See More" button with arrow angle
+                // "See More" button with arrow icon
                 Row(
                   children: [
-                    // "See More" button
                     TextButton(
                       onPressed: () {
-                        // Navigate to the deals screen when pressed
+                        // Navigate to the DealsScreen
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -56,8 +55,6 @@ class DealsSection extends StatelessWidget {
                       },
                       child: const Text('See More'),
                     ),
-
-                    // Arrow angle icon
                     const Icon(
                       Icons.keyboard_double_arrow_right,
                       size: 16.0,
@@ -70,14 +67,15 @@ class DealsSection extends StatelessWidget {
           ),
 
           // Horizontally scrolling list of deals
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: deals
-                  .map((deal) => DealItem(
-                        deal: deal,
-                      ))
-                  .toList(),
+          SizedBox(
+            height: 180, // Adjust height as needed
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: deals.length,
+              itemBuilder: (context, index) {
+                final deal = deals[index];
+                return DealItem(deal: deal);
+              },
             ),
           ),
         ],
@@ -86,7 +84,7 @@ class DealsSection extends StatelessWidget {
   }
 }
 
-// Define a custom widget for each deal item
+// Custom widget to represent each deal item
 class DealItem extends StatelessWidget {
   final Deal deal;
 
@@ -95,7 +93,7 @@ class DealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 1.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0), // Adjust padding as needed
       child: Card(
         elevation: 2.0,
         shape: RoundedRectangleBorder(
@@ -106,15 +104,14 @@ class DealItem extends StatelessWidget {
           children: [
             // Deal image
             ClipRRect(
-              
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(8.0)),
               child: Image.asset(
                 deal.imageUrl,
                 height: 100.0, // Adjust height as needed
                 width: 100.0, // Adjust width as needed
-                alignment: Alignment.topCenter,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover, // Changed to BoxFit.cover
+                semanticLabel: deal.title, // Add semantic label for accessibility
               ),
             ),
 
@@ -127,8 +124,10 @@ class DealItem extends StatelessWidget {
                   // Deal title
                   Text(
                     deal.title,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
+
+                  const SizedBox(height: 4.0), // Add spacing between title and prices
 
                   // Deal prices
                   Row(
