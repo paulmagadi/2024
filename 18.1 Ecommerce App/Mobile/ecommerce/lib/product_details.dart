@@ -16,11 +16,11 @@ class ProductDetailsScreen extends StatelessWidget {
         child: Column(
           children: [
             // Display the product image
-            Image.asset(
-              product.image,
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
+            // Image.asset(
+            //   product.image,
+            //   fit: BoxFit.cover,
+            //   width: double.infinity,
+            // ),
             // Product details
             Padding(
               padding: const EdgeInsets.all(16.0),
