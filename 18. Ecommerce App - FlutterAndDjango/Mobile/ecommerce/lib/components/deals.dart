@@ -37,7 +37,7 @@ class DealsSection extends StatelessWidget {
                 // Section title
                 Text(
                   'Deals',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
 
                 // "See More" button with arrow icon
@@ -111,7 +111,7 @@ class DealItem extends StatelessWidget {
                 deal.imageUrl,
                 height: 100.0, // Adjust height as needed
                 width: 100.0, // Adjust width as needed
-                fit: BoxFit.cover, // Changed to BoxFit.cover
+                fit: BoxFit.contain, // Changed to BoxFit.cover
                 semanticLabel:
                     deal.title, // Add semantic label for accessibility
               ),
@@ -126,7 +126,7 @@ class DealItem extends StatelessWidget {
                   // Deal title
                   Text(
                     deal.title,
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
 
                   const SizedBox(

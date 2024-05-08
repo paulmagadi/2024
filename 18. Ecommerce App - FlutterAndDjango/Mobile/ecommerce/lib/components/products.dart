@@ -65,10 +65,10 @@ class ProductsSection extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount:
-                  2, // Adjust number of columns for different screen sizes
+                  3, // Adjust number of columns for different screen sizes
               childAspectRatio: 2 / 3, // Adjust aspect ratio for better layout
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 2.0,
             ),
             itemCount: allProducts.length,
             itemBuilder: (context, index) {
@@ -101,7 +101,7 @@ class AllProductItem extends StatelessWidget {
           // Product image
           Expanded(
             child: Image.network(
-              product.imageUrl,  // Use Image.network for remote images
+              product.imageUrl, // Use Image.network for remote images
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 // Error handling for failed image loading
@@ -129,38 +129,45 @@ class AllProductItem extends StatelessWidget {
                   product.title,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
+                Row(
+                  children: [
+                    // Displaying prices
+                    if (product.isSale) ...[
+                      // If the product is on sale, display the old price (struck through)
+                      Text(
+                        '\$${product.price.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 10,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
 
-                // Displaying prices
-                if (product.isSale) ...[
-                  // If the product is on sale, display the old price (struck through)
-                  Text(
-                    '\$${product.price.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
+                      const SizedBox(
+                          width:
+                              4.0), // Add a small gap between old and new price
 
-                  const SizedBox(width: 4.0),  // Add a small gap between old and new price
-
-                  // Display the sale price
-                  Text(
-                    '\$${product.salePrice.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ] else ...[
-                  // If the product is not on sale, display only the regular price
-                  Text(
-                    '\$${product.price.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+                      // Display the sale price
+                      Text(
+                        '\$${product.salePrice.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ] else ...[
+                      // If the product is not on sale, display only the regular price
+                      Text(
+                        '\$${product.price.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
               ],
             ),
           ),
@@ -169,4 +176,3 @@ class AllProductItem extends StatelessWidget {
     );
   }
 }
-

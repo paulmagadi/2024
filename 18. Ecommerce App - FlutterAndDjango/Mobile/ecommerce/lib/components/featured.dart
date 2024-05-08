@@ -62,10 +62,10 @@ class FeaturedSection extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount:
-                  2, // Adjust number of columns for different screen sizes
+                  3, // Adjust number of columns for different screen sizes
               childAspectRatio: 2 / 3, // Adjust aspect ratio for better layout
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 2.0,
             ),
             itemCount: featuredProducts.length,
             itemBuilder: (context, index) {
@@ -99,9 +99,8 @@ class FeaturedProductItem extends StatelessWidget {
           // Product image
           Expanded(
             child: Image.network(
-              product
-                  .imageUrl, // Use Image.network if the images are hosted remotely
-              fit: BoxFit.cover,
+              product.imageUrl,
+              fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) {
                 // Error handling for failed image loading
                 return const Icon(Icons.error, color: Colors.red);
