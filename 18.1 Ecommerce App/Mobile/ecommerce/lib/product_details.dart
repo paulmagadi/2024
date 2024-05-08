@@ -16,17 +16,18 @@ class ProductDetailsScreen extends StatelessWidget {
         child: Column(
           children: [
             // Display the product image
-            // Image.asset(
-            //   product.image,
-            //   fit: BoxFit.cover,
-            //   width: double.infinity,
-            // ),
+            Image.asset(
+              product.image,
+              fit: BoxFit.cover,
+              width: double.infinity,
+            ),
             // Product details
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  
                   // Display the product title
                   Text(
                     product.name,
@@ -44,10 +45,10 @@ class ProductDetailsScreen extends StatelessWidget {
                   //   ),
                   // ),
                   // Display the product description
-                  // Text(
-                  //   product.description,
-                  //   style: Theme.of(context).textTheme.bodyLarge,
-                  // ),
+                  Text(
+                    product.description,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
                   // Add buttons (e.g., add to cart, wishlist) if needed
                   Row(
                     children: [

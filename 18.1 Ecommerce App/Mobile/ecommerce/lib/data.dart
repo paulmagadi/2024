@@ -3,24 +3,24 @@ import 'package:http/http.dart' as http;
 
 class Product {
   final String name;
-  // final String description;
+  final String description;
   // final double price;
-  // final String image;
+  final String image;
 
   Product({
     required this.name,
-    // required this.description,
+    required this.description,
     // required this.price,
-    // required this.image,
+    required this.image,
   });
 
   // Factory constructor to parse JSON data into a Product instance
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       name: json['name'],
-      // description: json['description'],
+      description: json['description'],
       // price: json['price'].toDouble(),
-      // image: json['image'],
+      image: json['image'],
     );
   }
 }
