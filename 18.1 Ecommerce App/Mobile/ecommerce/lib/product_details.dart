@@ -16,7 +16,7 @@ class ProductDetailsScreen extends StatelessWidget {
         child: Column(
           children: [
             // Display the product image
-            Image.asset(
+            Image.network(
               product.image,
               fit: BoxFit.cover,
               width: double.infinity,

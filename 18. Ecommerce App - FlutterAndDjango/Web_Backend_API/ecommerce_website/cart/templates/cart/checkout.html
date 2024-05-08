@@ -1,0 +1,82 @@
+{% extends 'store/base.html' %}
+
+
+{% block title %}
+    checkout
+{% endblock title %}
+    
+
+
+{% block content %}
+{% if cart_items %}
+<div class="checkout-container">
+    
+    <div class="order-summary">
+        <div class="back-to-cart">
+            <a href="{% url 'cart' %}"><button>&larr; Back to Cart</button></a>
+        </div>
+        
+        <div class="cart-elements-container">
+            
+            <h1>Order Summary</h1>
+            <hr> 
+            <div class="cart-element">
+                
+                {% for item in cart_items %}
+                <div class="cart-item-image"><img src="{{ item.imageURL }}" alt="" width="60%"></div>
+                <div class="cart-item-name">{{ item.name }}</div>
+                <div class="cart-item-price">x</div>
+                <div class="cart-item-quantity">
+                    <p> {{ item.quantity }}</p>
+                </div>
+                
+                <div class="cart-item-total">$ {{item.total_price}}</div>
+                <div class="cart-item-remove"></div>
+                {% endfor %}
+                
+            </div>
+            
+            <p>Items: {{ total_quantity }}</p>
+            <p>Amount: ${{ order_total }}</p>
+            
+        </div>
+    </div>
+
+    <div class="customer-information">
+        <h1>Customer Information</h1>
+        <div class="user-information">
+            <form action="">
+                <input type="text" placeholder="Name" name="name">
+                <input type="email" placeholder="Email" name="email">
+            </form>
+        </div>
+
+        <div class="shipping-information">
+            
+            <h1>Shipping Information</h1>
+            <form action="">
+                <input type="text" placeholder="Address">
+                <input type="text" placeholder="City">
+                <input type="text" placeholder="State">
+                <input type="text" placeholder="Phone Number">
+                
+                <input type="submit" value="Continue" style="cursor: pointer;">
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+{% else %}
+        <h1>You have no items in Your cart... <a href="{% url 'home' %}">Continue shopping</a></h1>
+        {% endif %}
+        <section>
+            <h3 class="section-title"><a href="{% url 'home' %}">Products</h3></a>
+            <div class= "product-container">
+                
+                {% for product in products %}
+                {% include 'store/include/product_card.html' %}
+                {% endfor %}
+            </div>
+        </section>
+{% endblock content %}
