@@ -93,7 +93,8 @@ class DealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0), // Adjust padding as needed
+      padding: const EdgeInsets.symmetric(
+          horizontal: 4.0), // Adjust padding as needed
       child: Card(
         elevation: 2.0,
         shape: RoundedRectangleBorder(
@@ -106,12 +107,13 @@ class DealItem extends StatelessWidget {
             ClipRRect(
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(8.0)),
-              child: Image.asset(
+              child: Image.network(
                 deal.imageUrl,
                 height: 100.0, // Adjust height as needed
                 width: 100.0, // Adjust width as needed
                 fit: BoxFit.cover, // Changed to BoxFit.cover
-                semanticLabel: deal.title, // Add semantic label for accessibility
+                semanticLabel:
+                    deal.title, // Add semantic label for accessibility
               ),
             ),
 
@@ -127,7 +129,8 @@ class DealItem extends StatelessWidget {
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
 
-                  const SizedBox(height: 4.0), // Add spacing between title and prices
+                  const SizedBox(
+                      height: 4.0), // Add spacing between title and prices
 
                   // Deal prices
                   Row(

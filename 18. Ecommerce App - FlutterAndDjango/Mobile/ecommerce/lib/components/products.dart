@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import '../screens/products.dart';
 
-// Define a class to represent each featured product
+// Define a class to represent each product
 class AllProduct {
   final String imageUrl;
   final String title;
   final double price;
+  final double salePrice;
+  final bool isSale;
 
-  AllProduct({
-    required this.imageUrl,
-    required this.title,
-    required this.price,
-  });
+  AllProduct(
+      {required this.imageUrl,
+      required this.title,
+      required this.price,
+      required this.salePrice,
+      required this.isSale});
 }
 
 class ProductsSection extends StatelessWidget {
-  final List<AllProduct> allProducts; // List of featured products
+  final List<AllProduct> allProducts;
 
   const ProductsSection({Key? key, required this.allProducts})
       : super(key: key);
@@ -27,7 +30,7 @@ class ProductsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section title row with title and "See More" button
+          // Section title row
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
@@ -42,11 +45,11 @@ class ProductsSection extends StatelessWidget {
                 // "See More" button
                 TextButton(
                   onPressed: () {
-                    // Navigate to the FeaturedScreen
+                    // Navigate to the ProductsScreen
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductsScreen(),
+                        builder: (context) => const ProductsScreen(),
                       ),
                     );
                   },
@@ -56,22 +59,21 @@ class ProductsSection extends StatelessWidget {
             ),
           ),
 
-          // Grid view of featured products
+          // Grid view of products
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // Number of columns
-              childAspectRatio: 3 / 4, // Aspect ratio of each grid item
-              mainAxisSpacing: 2.0,
-              crossAxisSpacing: 2.0,
+              crossAxisCount:
+                  2, // Adjust number of columns for different screen sizes
+              childAspectRatio: 2 / 3, // Adjust aspect ratio for better layout
+              mainAxisSpacing: 8.0,
+              crossAxisSpacing: 8.0,
             ),
             itemCount: allProducts.length,
             itemBuilder: (context, index) {
               final product = allProducts[index];
-              return AllProductItem(
-                product: product,
-              );
+              return AllProductItem(product: product);
             },
           ),
         ],
@@ -80,7 +82,7 @@ class ProductsSection extends StatelessWidget {
   }
 }
 
-// Define a custom widget for each featured product item
+// Define a custom widget for each product item
 class AllProductItem extends StatelessWidget {
   final AllProduct product;
 
@@ -98,9 +100,21 @@ class AllProductItem extends StatelessWidget {
         children: [
           // Product image
           Expanded(
-            child: Image.asset(
-              product.imageUrl,
+            child: Image.network(
+              product.imageUrl,  // Use Image.network for remote images
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                // Error handling for failed image loading
+                return const Icon(Icons.error, color: Colors.red);
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                } else {
+                  // Display a CircularProgressIndicator while the image is loading
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
             ),
           ),
 
@@ -116,14 +130,37 @@ class AllProductItem extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
 
-                // Product price
-                Text(
-                  '\$${product.price.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
+                // Displaying prices
+                if (product.isSale) ...[
+                  // If the product is on sale, display the old price (struck through)
+                  Text(
+                    '\$${product.price.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      decoration: TextDecoration.lineThrough,
+                    ),
                   ),
-                ),
+
+                  const SizedBox(width: 4.0),  // Add a small gap between old and new price
+
+                  // Display the sale price
+                  Text(
+                    '\$${product.salePrice.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ] else ...[
+                  // If the product is not on sale, display only the regular price
+                  Text(
+                    '\$${product.price.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -132,3 +169,4 @@ class AllProductItem extends StatelessWidget {
     );
   }
 }
+

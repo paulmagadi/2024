@@ -35,6 +35,8 @@ class HomeScreen extends StatelessWidget {
               imageUrl: product.image,
               title: product.name,
               price: product.price,
+              salePrice: product.salePrice,
+              isSale: product.isSale,
             );
           }
 

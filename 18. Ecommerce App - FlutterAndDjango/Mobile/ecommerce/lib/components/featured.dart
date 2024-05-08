@@ -15,7 +15,7 @@ class FeaturedProduct {
 }
 
 class FeaturedSection extends StatelessWidget {
-  final List<FeaturedProduct> featuredProducts; // List of featured products
+  final List<FeaturedProduct> featuredProducts;
 
   const FeaturedSection({Key? key, required this.featuredProducts})
       : super(key: key);
@@ -27,7 +27,7 @@ class FeaturedSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section title row with title and "See More" button
+          // Section title row
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
@@ -46,7 +46,7 @@ class FeaturedSection extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => FeaturedScreen(),
+                        builder: (context) => const FeaturedScreen(),
                       ),
                     );
                   },
@@ -61,17 +61,16 @@ class FeaturedSection extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // Number of columns
-              childAspectRatio: 3 / 4, // Aspect ratio of each grid item
-              mainAxisSpacing: 2.0,
-              crossAxisSpacing: 2.0,
+              crossAxisCount:
+                  2, // Adjust number of columns for different screen sizes
+              childAspectRatio: 2 / 3, // Adjust aspect ratio for better layout
+              mainAxisSpacing: 8.0,
+              crossAxisSpacing: 8.0,
             ),
             itemCount: featuredProducts.length,
             itemBuilder: (context, index) {
               final product = featuredProducts[index];
-              return FeaturedProductItem(
-                product: product,
-              );
+              return FeaturedProductItem(product: product);
             },
           ),
         ],
@@ -99,9 +98,22 @@ class FeaturedProductItem extends StatelessWidget {
         children: [
           // Product image
           Expanded(
-            child: Image.asset(
-              product.imageUrl,
+            child: Image.network(
+              product
+                  .imageUrl, // Use Image.network if the images are hosted remotely
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                // Error handling for failed image loading
+                return const Icon(Icons.error, color: Colors.red);
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                } else {
+                  // Display a CircularProgressIndicator while the image is loading
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
             ),
           ),
 
@@ -120,7 +132,7 @@ class FeaturedProductItem extends StatelessWidget {
                 // Product price
                 Text(
                   '\$${product.price.toStringAsFixed(2)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,
                   ),
