@@ -24,7 +24,8 @@ class _PostListState extends State<PostList> {
   List<dynamic> _postData = [];
 
   Future<void> fetchData() async {
-    final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+    final response =
+        await http.get(Uri.parse('http://127.0.0.1:8000/api/products/'));
 
     if (response.statusCode == 200) {
       // If the server returns a 200 OK response, parse the JSON.
@@ -58,7 +59,7 @@ class _PostListState extends State<PostList> {
                 itemCount: _postData.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(_postData[index]['title']),
+                    title: Text(_postData[index]['description']),
                   );
                 },
               ),
