@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-
 import '../screens/deals.dart';
-// import 'new_item.dart'; // Make sure you have the new_item.dart file or create it
+
 class NewItem {
   final String imageUrl;
   final String title;
   final double oldPrice;
   final double newPrice;
   final bool isNew;
+  final bool isSale; // Add this property
 
   NewItem({
     required this.imageUrl,
@@ -15,13 +15,15 @@ class NewItem {
     required this.oldPrice,
     required this.newPrice,
     required this.isNew,
+    required this.isSale, // Initialize this property
   });
 }
 
 class NewArrivalsSection extends StatelessWidget {
   final List<NewItem> newItems;
 
-  const NewArrivalsSection({Key? key, required this.newItems}) : super(key: key);
+  const NewArrivalsSection({Key? key, required this.newItems})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class NewArrivalsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title and "See More" button
+          // Section title and "See More" button
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
@@ -38,7 +40,7 @@ class NewArrivalsSection extends StatelessWidget {
               children: [
                 Text(
                   'New Arrivals',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 TextButton(
                   onPressed: () {
@@ -52,7 +54,6 @@ class NewArrivalsSection extends StatelessWidget {
               ],
             ),
           ),
-
           // Horizontally scrolling list of new items
           SizedBox(
             height: 180, // Adjust height as needed
@@ -69,7 +70,6 @@ class NewArrivalsSection extends StatelessWidget {
     );
   }
 }
-
 
 class NewItemWidget extends StatelessWidget {
   final NewItem newItem;
@@ -90,11 +90,13 @@ class NewItemWidget extends StatelessWidget {
           children: [
             // Image
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(8.0)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(8.0)),
               child: Image.network(
                 newItem.imageUrl,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) => const Icon(Icons.error, color: Colors.red),
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.error, color: Colors.red),
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) {
                     return child;
@@ -113,13 +115,15 @@ class NewItemWidget extends StatelessWidget {
                 children: [
                   Text(
                     newItem.title,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
                   const SizedBox(height: 4.0),
-                  if (newItem.isNew) ...[
-                    // If the item is new, display old price (struck through) and new price
+
+                  // If the item is new and on sale, display the old price (struck through) and new price
+                  if (newItem.isNew && newItem.isSale) ...[
                     Row(
                       children: [
+                        // Old price (struck through)
                         Text(
                           '\$${newItem.oldPrice.toStringAsFixed(2)}',
                           style: const TextStyle(
@@ -128,6 +132,7 @@ class NewItemWidget extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 4.0),
+                        // New price (highlighted)
                         Text(
                           '\$${newItem.newPrice.toStringAsFixed(2)}',
                           style: const TextStyle(
@@ -137,8 +142,8 @@ class NewItemWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ] else ...[
-                    // If the item is not new, display the regular price only
+                  ] else if (newItem.isNew) ...[
+                    // If the item is new but not on sale, display the new price only
                     Text(
                       '\$${newItem.newPrice.toStringAsFixed(2)}',
                       style: const TextStyle(
