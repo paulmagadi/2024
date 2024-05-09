@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
 
-
-import 'package:flutter/material.dart';
 import '../screens/deals.dart';
 // import 'new_item.dart'; // Make sure you have the new_item.dart file or create it
+class NewItem {
+  final String imageUrl;
+  final String title;
+  final double oldPrice;
+  final double newPrice;
+  final bool isNew;
+
+  NewItem({
+    required this.imageUrl,
+    required this.title,
+    required this.oldPrice,
+    required this.newPrice,
+    required this.isNew,
+  });
+}
 
 class NewArrivalsSection extends StatelessWidget {
   final List<NewItem> newItems;
@@ -25,7 +38,7 @@ class NewArrivalsSection extends StatelessWidget {
               children: [
                 Text(
                   'New Arrivals',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 TextButton(
                   onPressed: () {
@@ -57,21 +70,6 @@ class NewArrivalsSection extends StatelessWidget {
   }
 }
 
-class NewItem {
-  final String imageUrl;
-  final String title;
-  final double oldPrice;
-  final double newPrice;
-  final bool isNew;
-
-  NewItem({
-    required this.imageUrl,
-    required this.title,
-    required this.oldPrice,
-    required this.newPrice,
-    required this.isNew,
-  });
-}
 
 class NewItemWidget extends StatelessWidget {
   final NewItem newItem;
@@ -101,7 +99,7 @@ class NewItemWidget extends StatelessWidget {
                   if (loadingProgress == null) {
                     return child;
                   } else {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                 },
               ),
@@ -115,7 +113,7 @@ class NewItemWidget extends StatelessWidget {
                 children: [
                   Text(
                     newItem.title,
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 4.0),
                   if (newItem.isNew) ...[
