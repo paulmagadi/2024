@@ -59,13 +59,13 @@ class HomeScreen extends StatelessWidget {
             );
           }
 
-          NewProduct convertProductToNewProduct(Product product) {
-            return NewProduct(
+          NewItem convertProductToNewProduct(Product product) {
+            return NewItem(
               imageUrl: product.image,
               title: product.name,
               oldPrice: product.price,
               newPrice: product.salePrice,
-              isNew: product.isNew, 
+              isNew: product.isNew,
             );
           }
 
@@ -74,14 +74,15 @@ class HomeScreen extends StatelessWidget {
               products.where((product) => product.isFeatured).toList();
           final dealsProducts =
               products.where((product) => product.isSale).toList();
-          final newProducts = products.where((product) => product.isNew).toList();
+          final newProducts =
+              products.where((product) => product.isNew).toList();
 
           List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
           List<FeaturedProduct> featured =
               featuredProducts.map(convertProductToFeaturedProduct).toList();
           List<AllProduct> allProducts =
               products.map(convertProductToAllProduct).toList();
-          List<NewProduct> newProductsList =
+          List<NewItem> newProductsList =
               newProducts.map(convertProductToNewProduct).toList();
 
           return Column(
@@ -117,7 +118,7 @@ class HomeScreen extends StatelessWidget {
               // New Arrivals section
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: NewArrivalsSection(newProducts: newProductsList),
+                child: NewArrivalsSection(newItems: newProductsList),
               ),
 
               // All Products section

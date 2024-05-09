@@ -93,7 +93,7 @@ class NewItemWidget extends StatelessWidget {
               borderRadius: const BorderRadius.vertical(top: Radius.circular(8.0)),
               child: Image.network(
                 newItem.imageUrl,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 errorBuilder: (context, error, stackTrace) => const Icon(Icons.error, color: Colors.red),
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) {
