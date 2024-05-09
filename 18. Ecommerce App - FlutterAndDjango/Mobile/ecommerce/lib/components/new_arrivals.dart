@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
 import '../screens/deals.dart';
 import '../screens/product_details.dart';
-import '../models/model_converters.dart';
+import '../models/product_model.dart';
+// import '../models/model_converters.dart';
 
 class NewItem {
-  final String imageUrl;
-  final String title;
-  final double oldPrice;
-  final double newPrice;
-  final bool isNew;
-  final bool isSale; 
+  final String name;
   final String description;
+  final double price;
+  final String image;
+  final bool isSale;
+  final double salePrice;
+  final bool inStock;
+  final int stockQuantity;
+  final double discount;
+  final int percentageDiscount;
+  final bool isNew;
+  final bool isFeatured;
+  final bool isListed;
+  final DateTime createdAt;
 
   NewItem({
-    required this.imageUrl,
-    required this.title,
-    required this.oldPrice,
-    required this.newPrice,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.image,
+    required this.isSale,
+    required this.salePrice,
+    required this.inStock,
+    required this.stockQuantity,
+    required this.discount,
+    required this.percentageDiscount,
     required this.isNew,
-    required this.isSale, 
-    required this.description
+    required this.isFeatured,
+    required this.isListed,
+    required this.createdAt,
   });
 }
 
@@ -92,6 +107,19 @@ class NewArrivalsSection extends StatelessWidget {
 
 class NewItemWidget extends StatelessWidget {
     final NewItem newItem;
+
+    Product convertNewItemToProduct(NewItem newItem) {
+    return Product(
+        name: newItem.title,
+        image: newItem.imageUrl,
+        price: newItem.oldPrice,
+        salePrice: newItem.newPrice,
+        isSale: newItem.isSale,
+        isNew: newItem.isNew,
+        description: newItem.description,
+        inStock: newItem.inStock
+    );
+}
 
     const NewItemWidget({Key? key, required this.newItem}) : super(key: key);
 

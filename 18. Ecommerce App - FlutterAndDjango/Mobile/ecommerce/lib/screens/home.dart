@@ -8,9 +8,9 @@ import '../components/banner.dart';
 import '../components/banner_carousel.dart';
 
 import '../components/deals.dart';
-import '../components/featured.dart';
+// import '../components/featured.dart';
 import '../components/products.dart';
-import '../components/new_arrivals.dart';
+// import '../components/new_arrivals.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,20 +33,20 @@ class HomeScreen extends StatelessWidget {
           final products = snapshot.data!;
 
           // Filter products for different sections based on conditions
-          final featuredProducts =
-              products.where((product) => product.isFeatured).toList();
+          // final featuredProducts =
+          //     products.where((product) => product.isFeatured).toList();
           final dealsProducts =
               products.where((product) => product.isSale).toList();
-          final newProducts =
-              products.where((product) => product.isNew).toList();
+          // final newProducts =
+          //     products.where((product) => product.isNew).toList();
 
           List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
-          List<FeaturedProduct> featured =
-              featuredProducts.map(convertProductToFeaturedProduct).toList();
+          // List<FeaturedProduct> featured =
+          //     featuredProducts.map(convertProductToFeaturedProduct).toList();
           List<AllProduct> allProducts =
               products.map(convertProductToAllProduct).toList();
-          List<NewItem> newProductsList =
-              newProducts.map(convertProductToNewProduct).toList();
+          // List<NewItem> newProductsList =
+          //     newProducts.map(convertProductToNewProduct).toList();
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,16 +73,16 @@ class HomeScreen extends StatelessWidget {
               ),
 
               // FeaturedSection component
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: FeaturedSection(featuredProducts: featured),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+              //   child: FeaturedSection(featuredProducts: featured),
+              // ),
 
-              // New Arrivals section
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: NewArrivalsSection(newItems: newProductsList),
-              ),
+              // // New Arrivals section
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+              //   child: NewArrivalsSection(newItems: newProductsList),
+              // ),
 
               // All Products section
               Padding(
