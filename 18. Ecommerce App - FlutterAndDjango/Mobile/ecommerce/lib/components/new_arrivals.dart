@@ -38,18 +38,33 @@ class NewArrivalsSection extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Section title
                 Text(
-                  'New Arrivals',
-                  style: Theme.of(context).textTheme.headline6,
+                  'Deals',
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const DealsScreen()),
-                    );
-                  },
-                  child: const Text('See More'),
+
+                // "See More" button with arrow icon
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        // Navigate to the DealsScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DealsScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text('See More'),
+                    ),
+                    const Icon(
+                      Icons.keyboard_double_arrow_right,
+                      size: 16.0,
+                      color: Colors.grey,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -115,7 +130,7 @@ class NewItemWidget extends StatelessWidget {
                 children: [
                   Text(
                     newItem.title,
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 4.0),
 
