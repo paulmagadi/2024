@@ -1,5 +1,62 @@
 import 'package:flutter/material.dart';
 
+
+import 'package:flutter/material.dart';
+import '../screens/deals.dart';
+// import 'new_item.dart'; // Make sure you have the new_item.dart file or create it
+
+class NewArrivalsSection extends StatelessWidget {
+  final List<NewItem> newItems;
+
+  const NewArrivalsSection({Key? key, required this.newItems}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Title and "See More" button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'New Arrivals',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const DealsScreen()),
+                    );
+                  },
+                  child: const Text('See More'),
+                ),
+              ],
+            ),
+          ),
+
+          // Horizontally scrolling list of new items
+          SizedBox(
+            height: 180, // Adjust height as needed
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: newItems.length,
+              itemBuilder: (context, index) {
+                return NewItemWidget(newItem: newItems[index]);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class NewItem {
   final String imageUrl;
   final String title;
