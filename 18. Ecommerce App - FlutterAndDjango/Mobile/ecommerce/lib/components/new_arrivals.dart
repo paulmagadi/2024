@@ -111,7 +111,7 @@ class NewItemWidget extends StatelessWidget {
                 newItem.imageUrl,
                 height: 100.0,
                 width: 120.0,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 errorBuilder: (context, error, stackTrace) =>
                     const Icon(Icons.error, color: Colors.red),
                 loadingBuilder: (context, child, loadingProgress) {
