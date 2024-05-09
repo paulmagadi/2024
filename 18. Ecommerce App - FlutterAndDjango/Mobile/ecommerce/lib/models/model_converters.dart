@@ -54,7 +54,7 @@ Product convertNewItemToProduct(NewItem newItem) {
         isSale: newItem.isSale,
         isNew: newItem.isNew,
         description: newItem.description,
-        inStock: product.inStock
+        inStock: product.inSto
       stockQuantity: 
       discount: 
       percentageDiscount: 
