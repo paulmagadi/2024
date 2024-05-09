@@ -136,7 +136,6 @@ class DealItem extends StatelessWidget {
                   deal.imageUrl,
                   height: 100.0,
                   width: 100,
-                  // width: double.infinity,
                   fit: BoxFit.contain,
                   semanticLabel:
                       deal.title, // Add semantic label for accessibility
@@ -152,7 +151,7 @@ class DealItem extends StatelessWidget {
                     // Deal title
                     Text(
                       deal.title,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 4.0),
                     // Deal prices
