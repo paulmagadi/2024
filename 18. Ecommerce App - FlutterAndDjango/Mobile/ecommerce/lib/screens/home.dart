@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/product_data.dart';
 import '../models/product_model.dart';
+import '../models/model_converters.dart';
 
 import '../components/category_menu.dart';
 import '../components/banner.dart';
@@ -30,45 +31,6 @@ class HomeScreen extends StatelessWidget {
 
           // If data is successfully fetched, display the home page UI
           final products = snapshot.data!;
-
-          // Define conversion functions
-          AllProduct convertProductToAllProduct(Product product) {
-            return AllProduct(
-              imageUrl: product.image,
-              title: product.name,
-              price: product.price,
-              salePrice: product.salePrice,
-              isSale: product.isSale,
-            );
-          }
-
-          Deal convertProductToDeal(Product product) {
-            return Deal(
-              imageUrl: product.image,
-              title: product.name,
-              oldPrice: product.price,
-              newPrice: product.salePrice,
-            );
-          }
-
-          FeaturedProduct convertProductToFeaturedProduct(Product product) {
-            return FeaturedProduct(
-              imageUrl: product.image,
-              title: product.name,
-              price: product.price,
-            );
-          }
-
-          NewItem convertProductToNewProduct(Product product) {
-            return NewItem(
-              imageUrl: product.image,
-              title: product.name,
-              oldPrice: product.price,
-              newPrice: product.salePrice,
-              isSale: product.isSale,
-              isNew: product.isNew,
-            );
-          }
 
           // Filter products for different sections based on conditions
           final featuredProducts =

@@ -1,19 +1,48 @@
-// model_converters.dart
+
 
 import './product_model.dart';
+import '../components/products.dart';
+import '../components/new_arrivals.dart';
+import '../components/deals.dart';
+import '../components/featured.dart';
 
 
-// Conversion function from NewItem to Product
-Product convertNewItemToProduct(NewItem newItem) {
-    return Product(
-        name: newItem.title,
-        image: newItem.imageUrl,
-        price: newItem.oldPrice,
-        salePrice: newItem.newPrice,
-        isSale: newItem.isSale,
-        isNew: newItem.isNew,
-        // Add any additional properties as necessary
-    );
-}
+          // Define conversion functions
+          AllProduct convertProductToAllProduct(Product product) {
+            return AllProduct(
+              imageUrl: product.image,
+              title: product.name,
+              price: product.price,
+              salePrice: product.salePrice,
+              isSale: product.isSale,
+            );
+          }
 
-// Add more conversion functions as needed...
+          Deal convertProductToDeal(Product product) {
+            return Deal(
+              imageUrl: product.image,
+              title: product.name,
+              oldPrice: product.price,
+              newPrice: product.salePrice,
+            );
+          }
+
+          FeaturedProduct convertProductToFeaturedProduct(Product product) {
+            return FeaturedProduct(
+              imageUrl: product.image,
+              title: product.name,
+              price: product.price,
+            );
+          }
+
+          NewItem convertProductToNewProduct(Product product) {
+            return NewItem(
+              imageUrl: product.image,
+              title: product.name,
+              oldPrice: product.price,
+              newPrice: product.salePrice,
+              isSale: product.isSale,
+              isNew: product.isNew,
+            );
+          }
+
