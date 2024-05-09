@@ -109,8 +109,8 @@ class DealItem extends StatelessWidget {
                   const BorderRadius.vertical(top: Radius.circular(8.0)),
               child: Image.network(
                 deal.imageUrl,
-                height: 100.0, // Adjust height as needed
-                width: 100.0, // Adjust width as needed
+                height: 100.0, 
+                width: 100.0, 
                 fit: BoxFit.contain, // Changed to BoxFit.cover
                 semanticLabel:
                     deal.title, // Add semantic label for accessibility

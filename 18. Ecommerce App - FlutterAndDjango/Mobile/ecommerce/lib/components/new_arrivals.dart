@@ -40,7 +40,7 @@ class NewArrivalsSection extends StatelessWidget {
               children: [
                 // Section title
                 Text(
-                  'Deals',
+                  'New Arrivals',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
 
@@ -109,6 +109,8 @@ class NewItemWidget extends StatelessWidget {
                   const BorderRadius.vertical(top: Radius.circular(8.0)),
               child: Image.network(
                 newItem.imageUrl,
+                height: 80.0,
+                width: 100.0,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) =>
                     const Icon(Icons.error, color: Colors.red),
