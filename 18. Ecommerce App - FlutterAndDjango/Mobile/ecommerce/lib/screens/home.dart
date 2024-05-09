@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import '../models/product_data.dart';
 import '../models/product_model.dart';
+import '../models/model_converters.dart';
 
 import '../components/category_menu.dart';
 import '../components/banner.dart';
 import '../components/banner_carousel.dart';
 
 import '../components/deals.dart';
+import '../components/featured.dart';
+import '../components/products.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,26 +28,20 @@ class HomeScreen extends StatelessWidget {
             return Center(child: Text('${snapshot.error}'));
           }
 
-          // If data is successfully fetched, display the home page UI
           final products = snapshot.data!;
 
           // Filter products for different sections based on conditions
           // final featuredProducts =
           //     products.where((product) => product.isFeatured).toList();
-          // final dealsProducts =
-          // products.where((product) => product.isSale).toList();
-          // final newProducts =
-          //     products.where((product) => product.isNew).toList();
           final dealsProducts =
               products.where((product) => product.isSale).toList();
 
-          // List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
+          // convert
+          List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
           // List<FeaturedProduct> featured =
           //     featuredProducts.map(convertProductToFeaturedProduct).toList();
-          // List<AllProduct> allProducts =
-          //     products.map(convertProductToAllProduct).toList();
-          // List<NewItem> newProductsList =
-          //     newProducts.map(convertProductToNewProduct).toList();
+          List<AllProduct> allProducts =
+              products.map(convertProductToAllProduct).toList();
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,26 +64,29 @@ class HomeScreen extends StatelessWidget {
               // DealsSection component
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: DealsSection(deals: dealsProducts),
+                child: DealsSection(
+                  deals: deals,
+                  products: products,
+                ),
               ),
 
               // FeaturedSection component
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(vertical: 8.0),
-              //   child: FeaturedSection(featuredProducts: featured),
-              // ),
-
-              // // New Arrivals section
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(vertical: 8.0),
-              //   child: NewArrivalsSection(newItems: newProductsList),
-              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: FeaturedSection(
+                  featuredProducts: products,
+                ),
+              ),
 
               // All Products section
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(vertical: 8.0),
-              //   child: ProductsSection(allProducts: allProducts),
-              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: ProductsSection(
+                  allProducts: allProducts,
+                ),
+              ),
+
+              // Add other sections as needed...
             ],
           );
         },

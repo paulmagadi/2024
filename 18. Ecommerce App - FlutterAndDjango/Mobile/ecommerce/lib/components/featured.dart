@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
-import '../screens/featured.dart';
+// import '../screens/featured.dart';
+import '../screens/product_details.dart';
+import '../models/product_model.dart';
+// import '../models/model_converters.dart';
 
 // Define a class to represent each featured product
-class FeaturedProduct {
-  final String imageUrl;
-  final String title;
-  final double price;
+// class FeaturedProduct {
+//   final String imageUrl;
+//   final String title;
+//   final double price;
 
-  FeaturedProduct({
-    required this.imageUrl,
-    required this.title,
-    required this.price,
-  });
-}
+//   FeaturedProduct({
+//     required this.imageUrl,
+//     required this.title,
+//     required this.price,
+//   });
+// }
 
 class FeaturedSection extends StatelessWidget {
-  final List<FeaturedProduct> featuredProducts;
+  final List<Product> featuredProducts;
 
   const FeaturedSection({Key? key, required this.featuredProducts})
       : super(key: key);
@@ -38,24 +41,16 @@ class FeaturedSection extends StatelessWidget {
                   'Featured Products',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-
                 // "See More" button
                 TextButton(
                   onPressed: () {
-                    // Navigate to the FeaturedScreen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const FeaturedScreen(),
-                      ),
-                    );
+                    // Handle "See More" button (optional)
                   },
                   child: const Text('See More'),
                 ),
               ],
             ),
           ),
-
           // Grid view of featured products
           GridView.builder(
             shrinkWrap: true,
@@ -79,67 +74,100 @@ class FeaturedSection extends StatelessWidget {
   }
 }
 
-// Define a custom widget for each featured product item
 class FeaturedProductItem extends StatelessWidget {
-  final FeaturedProduct product;
+  final Product product;
 
   const FeaturedProductItem({Key? key, required this.product})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Product image
-          Expanded(
-            child: Image.network(
-              product.imageUrl,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                // Error handling for failed image loading
-                return const Icon(Icons.error, color: Colors.red);
-              },
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) {
-                  return child;
-                } else {
-                  // Display a CircularProgressIndicator while the image is loading
-                  return const Center(child: CircularProgressIndicator());
-                }
-              },
-            ),
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the ProductDetailsScreen when the product is clicked
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(product: product),
           ),
-
-          // Product details
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Product title
-                Text(
-                  product.title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-
-                // Product price
-                Text(
-                  '\$${product.price.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
+        );
+      },
+      child: Card(
+        elevation: 2.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Product image
+            Expanded(
+              child: Image.network(
+                product.image,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.error, color: Colors.red),
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            ),
+            // Product details
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Product title
+                  Text(
+                    product.name,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 4.0),
+                  // Display old price and new price if the product is on sale
+                  if (product.isSale) ...[
+                    Row(
+                      children: [
+                        // Old price (struck through)
+                        Text(
+                          '\$${product.price.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 10,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                        const SizedBox(width: 8.0),
+                        // New price (highlighted)
+                        Text(
+                          '\$${product.salePrice.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ] else ...[
+                    // Display regular price if the product is not on sale
+                    Text(
+                      '\$${product.price.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

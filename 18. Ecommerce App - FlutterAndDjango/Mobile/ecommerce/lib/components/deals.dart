@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
-import '../models/product_model.dart';
+import '../screens/deals.dart';
 import '../screens/product_details.dart';
+import '../models/product_model.dart';
+
+// Define a class to represent each deal
+class Deal {
+  final String imageUrl;
+  final String title;
+  final double oldPrice;
+  final double newPrice;
+
+  Deal({
+    required this.imageUrl,
+    required this.title,
+    required this.oldPrice,
+    required this.newPrice,
+  });
+}
 
 class DealsSection extends StatelessWidget {
-  final List<Product> deals;
+  final List<Deal> deals;
+  final List<Product> products; // Add a list of Product objects
 
-  const DealsSection({Key? key, required this.deals}) : super(key: key);
+  const DealsSection({Key? key, required this.deals, required this.products})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,53 +32,65 @@ class DealsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section title and "See More" button
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Deals',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              TextButton(
-                onPressed: () {
-                  // Handle "See More" button press (optional)
-                },
-                child: const Text('See More'),
-              ),
-            ],
+          // Section title row
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Section title
+                Text(
+                  'Deals',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                // "See More" button and icon
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        // Navigate to the DealsScreen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DealsScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text('See More'),
+                    ),
+                    const Icon(
+                      Icons.keyboard_double_arrow_right,
+                      size: 16.0,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           // Horizontally scrolling list of deals
           SizedBox(
-            height: 180,
+            height: 180, // Adjust height as needed
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: deals.length,
               itemBuilder: (context, index) {
-                final product = deals[index];
-                return GestureDetector(
-                  onTap: () {
-                    // Navigate to the product details screen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ProductDetailsScreen(product: product),
-                      ),
-                    );
-                  },
-                  child: Card(
-                    elevation: 2.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Column(
-                      children: [
-                        // Display product image and details...
-                      ],
-                    ),
-                  ),
+                final deal = deals[index];
+                // Find the associated Product object using the deal title or other identifying properties
+                final product = products.firstWhere(
+                  (product) => product.name == deal.title,
+                  orElse: () => throw Exception('No matching Product found'),
+
+                  // Handle the case when no matching product is found
                 );
+
+                // Only pass the product if it was found
+                // ignore: unnecessary_null_comparison
+                if (product != null) {
+                  return DealItem(deal: deal, product: product);
+                }
+                // Otherwise, return an empty container or some other placeholder
+                return Container();
               },
             ),
           ),
@@ -71,82 +101,75 @@ class DealsSection extends StatelessWidget {
 }
 
 class DealItem extends StatelessWidget {
-  final Product deal; // A Product object representing the deal
+  final Deal deal;
+  final Product product;
 
-  const DealItem({Key? key, required this.deal}) : super(key: key);
+  const DealItem({Key? key, required this.deal, required this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to the ProductDetailsScreen when the deal is clicked
+        // Navigate to the ProductDetailsScreen when the deal item is clicked
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetailsScreen(product: deal),
+            builder: (context) => ProductDetailsScreen(product: product),
           ),
         );
       },
-      child: Card(
-        elevation: 2.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Display the deal image
-            ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
-              child: Image.network(
-                deal.image,
-                height: 120, // Adjust height as needed
-                width: double.infinity,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.error, color: Colors.red),
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) {
-                    return child;
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Card(
+          elevation: 2.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Deal image
+              ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
+                child: Image.network(
+                  deal.imageUrl,
+                  height: 100.0,
+                  width: 100,
+                  // width: double.infinity,
+                  fit: BoxFit.contain,
+                  semanticLabel:
+                      deal.title, // Add semantic label for accessibility
+                ),
               ),
-            ),
 
-            // Display deal details (title and prices)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Deal title
-                  Text(
-                    deal.name,
-                    style: Theme.of(context).textTheme.subtitle1,
-                  ),
-
-                  const SizedBox(height: 4.0),
-
-                  // Display old price (struck through) and new price (highlighted)
-                  if (deal.isSale) ...[
+              // Deal details
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Deal title
+                    Text(
+                      deal.title,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 4.0),
+                    // Deal prices
                     Row(
                       children: [
                         // Old price (struck through)
                         Text(
-                          '\$${deal.price.toStringAsFixed(2)}',
+                          '\$${deal.oldPrice.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.grey,
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),
-
                         const SizedBox(width: 8.0),
-
                         // New price (highlighted)
                         Text(
-                          '\$${deal.salePrice.toStringAsFixed(2)}',
+                          '\$${deal.newPrice.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.bold,
@@ -154,20 +177,11 @@ class DealItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ] else ...[
-                    // Display only the regular price if no sale
-                    Text(
-                      '\$${deal.price.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ],
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
