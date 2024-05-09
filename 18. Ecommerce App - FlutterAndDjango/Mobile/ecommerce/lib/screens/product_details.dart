@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/product_model.dart'; 
+import '../models/product_model.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-    final Product product; // The selected product
+    final Product product;
 
     const ProductDetailsScreen({Key? key, required this.product}) : super(key: key);
 
@@ -16,7 +16,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        // Display product image
+                        // Display the product image
                         Image.network(
                             product.image,
                             fit: BoxFit.cover,
@@ -28,17 +28,17 @@ class ProductDetailsScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                                 product.name,
-                                style: Theme.of(context).textTheme.headlineSmall,
+                                style: Theme.of(context).textTheme.headline5,
                             ),
                         ),
 
-                        // Display old price and new price (if applicable)
-                        if (product.isSale) ...[
-                            Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                    children: [
-                                        // Old price (struck through)
+                        // Display old price and new price
+                        Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                                children: [
+                                    if (product.isSale) ...[
+                                        // Old price if the product is on sale (struck through)
                                         Text(
                                             '\$${product.price.toStringAsFixed(2)}',
                                             style: const TextStyle(
@@ -47,42 +47,29 @@ class ProductDetailsScreen extends StatelessWidget {
                                             ),
                                         ),
                                         const SizedBox(width: 8.0),
-                                        // New price (highlighted)
-                                        Text(
-                                            '\$${product.salePrice.toStringAsFixed(2)}',
-                                            style: const TextStyle(
-                                                color: Colors.red,
-                                                fontWeight: FontWeight.bold,
-                                            ),
-                                        ),
                                     ],
-                                ),
-                            ),
-                        ] else ...[
-                            // Display only the new price if no sale
-                            Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                    '\$${product.price.toStringAsFixed(2)}',
-                                    style: const TextStyle(
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.bold,
+                                    // Display the sale price
+                                    Text(
+                                        '\$${product.salePrice.toStringAsFixed(2)}',
+                                        style: const TextStyle(
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.bold,
+                                        ),
                                     ),
-                                ),
+                                ],
                             ),
-                        ],
-
-                        // Display product description or other details
+                        ),
+                        
+                        // Display product description
                         Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                                product.description,
-                                // product.description ?? 'No description available.',
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                product.description ?? 'No description available.',
+                                style: Theme.of(context).textTheme.bodyText2,
                             ),
                         ),
 
-                        // Add more product details or related products if needed...
+                        // Add more sections as needed...
                     ],
                 ),
             ),

@@ -40,5 +40,27 @@ NewItem convertProductToNewProduct(Product product) {
     newPrice: product.salePrice,
     isSale: product.isSale,
     isNew: product.isNew,
+    description: product.description,
   );
+}
+
+
+Product convertNewItemToProduct(NewItem newItem) {
+    return Product(
+        name: newItem.title,
+        image: newItem.imageUrl,
+        price: newItem.oldPrice,
+        salePrice: newItem.newPrice,
+        isSale: newItem.isSale,
+        isNew: newItem.isNew,
+        description: newItem.description,
+        inStock: product.inStock
+      stockQuantity: 
+      discount: 
+      percentageDiscount: 
+      isNew: 
+      isFeatured: 
+      isListed: 
+      createdAt: 
+    );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/deals.dart';
 import '../screens/product_details.dart';
+import '../models/model_converters.dart';
 
 class NewItem {
   final String imageUrl;
@@ -9,6 +10,7 @@ class NewItem {
   final double newPrice;
   final bool isNew;
   final bool isSale; 
+  final String description;
 
   NewItem({
     required this.imageUrl,
@@ -17,6 +19,7 @@ class NewItem {
     required this.newPrice,
     required this.isNew,
     required this.isSale, 
+    required this.description
   });
 }
 
@@ -94,96 +97,29 @@ class NewItemWidget extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: GestureDetector(
-                onTap: () {
-                  
-                    // Navigate to the ProductDetailsScreen when the product is clicked
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ProductDetailsScreen(product: product),
-                        ),
-                    );
-                },
-                child: Card(
-                    elevation: 2.0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+        return GestureDetector(
+            onTap: () {
+                // Convert NewItem to Product using conversion function
+                Product product = convertNewItemToProduct(newItem);
+                
+                // Navigate to the ProductDetailsScreen
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProductDetailsScreen(product: product),
                     ),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                            // Image
-                            ClipRRect(
-                                borderRadius: const BorderRadius.vertical(top: Radius.circular(8.0)),
-                                child: Image.network(
-                                    newItem.imageUrl,
-                                    height: 100.0,
-                                    width: 120.0,
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (context, error, stackTrace) => const Icon(Icons.error, color: Colors.red),
-                                    loadingBuilder: (context, child, loadingProgress) {
-                                        if (loadingProgress == null) {
-                                            return child;
-                                        } else {
-                                            return const Center(child: CircularProgressIndicator());
-                                        }
-                                    },
-                                ),
-                            ),
-
-                            // Details
-                            Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                        Text(
-                                            newItem.title,
-                                            style: Theme.of(context).textTheme.subtitle1,
-                                        ),
-                                        const SizedBox(height: 4.0),
-
-                                        // If the item is new and on sale, display old price (struck through) and new price
-                                        if (newItem.isNew && newItem.isSale) ...[
-                                            Row(
-                                                children: [
-                                                    // Old price (struck through)
-                                                    Text(
-                                                        '\$${newItem.oldPrice.toStringAsFixed(2)}',
-                                                        style: const TextStyle(
-                                                            color: Colors.grey,
-                                                            decoration: TextDecoration.lineThrough,
-                                                        ),
-                                                    ),
-                                                    const SizedBox(width: 4.0),
-                                                    // New price (highlighted)
-                                                    Text(
-                                                        '\$${newItem.newPrice.toStringAsFixed(2)}',
-                                                        style: const TextStyle(
-                                                            color: Colors.red,
-                                                            fontWeight: FontWeight.bold,
-                                                        ),
-                                                    ),
-                                                ],
-                                            ),
-                                        ] else if (newItem.isNew) ...[
-                                            // If the item is new but not on sale, display the new price only
-                                            Text(
-                                                '\$${newItem.newPrice.toStringAsFixed(2)}',
-                                                style: const TextStyle(
-                                                    color: Colors.green,
-                                                    fontWeight: FontWeight.bold,
-                                                ),
-                                            ),
-                                        ],
-                                    ],
-                                ),
-                            ),
-                        ],
-                    ),
+                );
+            },
+            child: Card(
+                elevation: 2.0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        // Display product image and details...
+                    ],
                 ),
             ),
         );
