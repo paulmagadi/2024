@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import '../models/product_data.dart';
 import '../models/product_model.dart';
-import '../models/model_converters.dart';
 
 import '../components/category_menu.dart';
 import '../components/banner.dart';
 import '../components/banner_carousel.dart';
 
 import '../components/deals.dart';
-// import '../components/featured.dart';
-import '../components/products.dart';
-// import '../components/new_arrivals.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,16 +31,18 @@ class HomeScreen extends StatelessWidget {
           // Filter products for different sections based on conditions
           // final featuredProducts =
           //     products.where((product) => product.isFeatured).toList();
-          final dealsProducts =
-              products.where((product) => product.isSale).toList();
+          // final dealsProducts =
+          // products.where((product) => product.isSale).toList();
           // final newProducts =
           //     products.where((product) => product.isNew).toList();
+          final dealsProducts =
+              products.where((product) => product.isSale).toList();
 
-          List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
+          // List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
           // List<FeaturedProduct> featured =
           //     featuredProducts.map(convertProductToFeaturedProduct).toList();
-          List<AllProduct> allProducts =
-              products.map(convertProductToAllProduct).toList();
+          // List<AllProduct> allProducts =
+          //     products.map(convertProductToAllProduct).toList();
           // List<NewItem> newProductsList =
           //     newProducts.map(convertProductToNewProduct).toList();
 
@@ -69,7 +67,7 @@ class HomeScreen extends StatelessWidget {
               // DealsSection component
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: DealsSection(deals: deals),
+                child: DealsSection(deals: dealsProducts),
               ),
 
               // FeaturedSection component
@@ -85,10 +83,10 @@ class HomeScreen extends StatelessWidget {
               // ),
 
               // All Products section
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: ProductsSection(allProducts: allProducts),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+              //   child: ProductsSection(allProducts: allProducts),
+              // ),
             ],
           );
         },
