@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-@mqbjl15&t(g5!t10^tv+!8x5o1))9u=632c!!#c_s#*5r#xf9
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',  # Add other allowed hosts here
+    'localhost',  
     '127.0.0.1',  # Localhost IP address
     '10.0.2.2',   # Android emulator's alias for localhost
 ]
