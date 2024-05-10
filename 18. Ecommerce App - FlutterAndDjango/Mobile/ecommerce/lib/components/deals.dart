@@ -18,14 +18,13 @@ class Deal {
   });
 }
 
-const int maxNameLength = 20;
+const int maxNameLength = 15;
 
 class DealsSection extends StatelessWidget {
   // final List<Deal> deals;
   final List<Product> products; // Add a list of Product objects
 
-  const DealsSection({Key? key, required this.products})
-      : super(key: key);
+  const DealsSection({Key? key, required this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +71,7 @@ class DealsSection extends StatelessWidget {
           ),
           // Horizontally scrolling list of deals
           SizedBox(
-            height: 180, // Adjust height as needed
+            height: 180, 
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: products.length,
@@ -106,8 +105,7 @@ class DealItem extends StatelessWidget {
   // final Deal deal;
   final Product product;
 
-  const DealItem({Key? key, required this.product})
-      : super(key: key);
+  const DealItem({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +124,7 @@ class DealItem extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 2.0),
         child: Card(
           elevation: 2.0,
           shape: RoundedRectangleBorder(

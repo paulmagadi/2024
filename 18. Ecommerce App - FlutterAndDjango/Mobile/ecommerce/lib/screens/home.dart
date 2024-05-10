@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
+
 import '../models/product_data.dart';
 import '../models/product_model.dart';
 
@@ -36,7 +38,10 @@ class HomeScreen extends StatelessWidget {
 
           final featuredProducts =
               productsModel.where((product) => product.isFeatured).toList();
-          final limitedFeaturedProducts = featuredProducts.sublist(0, 5);
+          final endIndex =
+              min(featuredProducts.length, 6); // Import 'dart:math';
+          // Limit the featured products list to the first 6 items (or less if the list is shorter)
+          final limitedFeaturedProducts = featuredProducts.sublist(0, endIndex);
 
           final dealsProducts =
               productsModel.where((product) => product.isSale).toList();
@@ -65,8 +70,10 @@ class HomeScreen extends StatelessWidget {
               // DealsSection component
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: DealsSection(
-                  products: dealsProducts,
+                child: SizedBox(
+                  child: DealsSection(
+                    products: dealsProducts,
+                  ),
                 ),
               ),
 

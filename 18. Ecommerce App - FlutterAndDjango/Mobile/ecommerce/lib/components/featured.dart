@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../screens/featured.dart';
 import '../screens/product_details.dart';
@@ -41,7 +42,9 @@ class FeaturedSection extends StatelessWidget {
                         ),
                       );
                     } catch (e) {
-                      print('Error navigating to FeaturedScreen: $e');
+                      if (kDebugMode) {
+                        print('Error navigating to FeaturedScreen: $e');
+                      }
                     }
                   },
                   child: const Text('See More'),
