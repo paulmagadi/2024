@@ -40,19 +40,6 @@ class FeaturedSection extends StatelessWidget {
                         builder: (context) => const FeaturedScreen(),
                       ),
                     );
-
-                    // try {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => const FeaturedScreen(),
-                    //     ),
-                    //   );
-                    // } catch (e) {
-                    //   if (kDebugMode) {
-                    //     print('Error navigating to FeaturedScreen: $e');
-                    //   }
-                    // }
                   },
                   child: const Text('See More'),
                 ),
@@ -117,7 +104,7 @@ class FeaturedProductItem extends StatelessWidget {
             Expanded(
               child: Image.network(
                 product.image,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 errorBuilder: (context, error, stackTrace) =>
                     const Icon(Icons.error, color: Colors.red),
                 loadingBuilder: (context, child, loadingProgress) {

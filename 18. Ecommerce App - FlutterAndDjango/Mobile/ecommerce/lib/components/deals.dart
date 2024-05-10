@@ -3,28 +3,13 @@ import '../screens/deals.dart';
 import '../screens/product_details.dart';
 import '../models/product_model.dart';
 
-// Define a class to represent each deal
-class Deal {
-  final String imageUrl;
-  final String title;
-  final double oldPrice;
-  final double newPrice;
-
-  Deal({
-    required this.imageUrl,
-    required this.title,
-    required this.oldPrice,
-    required this.newPrice,
-  });
-}
-
 const int maxNameLength = 15;
 
 class DealsSection extends StatelessWidget {
   // final List<Deal> deals;
   final List<Product> products; // Add a list of Product objects
 
-  const DealsSection({Key? key, required this.products}) : super(key: key);
+  const DealsSection({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +56,7 @@ class DealsSection extends StatelessWidget {
           ),
           // Horizontally scrolling list of deals
           SizedBox(
-            height: 180, 
+            height: 180,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: products.length,
@@ -105,7 +90,7 @@ class DealItem extends StatelessWidget {
   // final Deal deal;
   final Product product;
 
-  const DealItem({Key? key, required this.product}) : super(key: key);
+  const DealItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +109,7 @@ class DealItem extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+        padding: const EdgeInsets.symmetric(horizontal: 1.0),
         child: Card(
           elevation: 2.0,
           shape: RoundedRectangleBorder(
@@ -135,7 +120,8 @@ class DealItem extends StatelessWidget {
             children: [
               // Deal image
               ClipRRect(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8.0)),
                 child: Image.network(
                   product.image,
                   height: 100.0,
