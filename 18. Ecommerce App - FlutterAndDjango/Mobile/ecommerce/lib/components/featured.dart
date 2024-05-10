@@ -34,18 +34,25 @@ class FeaturedSection extends StatelessWidget {
                 // "See More" button
                 TextButton(
                   onPressed: () {
-                    try {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const FeaturedScreen(),
-                        ),
-                      );
-                    } catch (e) {
-                      if (kDebugMode) {
-                        print('Error navigating to FeaturedScreen: $e');
-                      }
-                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FeaturedScreen(),
+                      ),
+                    );
+
+                    // try {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => const FeaturedScreen(),
+                    //     ),
+                    //   );
+                    // } catch (e) {
+                    //   if (kDebugMode) {
+                    //     print('Error navigating to FeaturedScreen: $e');
+                    //   }
+                    // }
                   },
                   child: const Text('See More'),
                 ),
