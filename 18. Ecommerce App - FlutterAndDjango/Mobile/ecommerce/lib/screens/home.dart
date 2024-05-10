@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
           final dealsProducts =
               products.where((product) => product.isSale).toList();
           final newArrivals =
-              products.where((product) => product.isSale).toList();
+              products.where((product) => product.isNew).toList();
 
           // convert
           List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
