@@ -9,7 +9,6 @@ import './screens/category.dart';
 import './screens/deals.dart';
 import './screens/cart.dart';
 import './screens/account.dart';
-import './screens/featured.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,13 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bellamore',
       theme: ThemeData(),
-      initialRoute: '/', // Initial route (home screen)
-            routes: {
-                '/': (context) => HomeScreen(), // Home screen route
-                '/featured': (context) => FeaturedScreen(), // Featured screen route
-                '/deals': (context) => DealsScreen(), // Deals screen route
-                // Add more routes as needed
-            },
+      home: const HomePage(),
     );
   }
 }
