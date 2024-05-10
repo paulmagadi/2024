@@ -4,6 +4,8 @@ import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/services.dart';
 
+// import 'package:badges/badges.dart' as badges;
+
 import './screens/home.dart';
 import './screens/category.dart';
 import './screens/deals.dart';
