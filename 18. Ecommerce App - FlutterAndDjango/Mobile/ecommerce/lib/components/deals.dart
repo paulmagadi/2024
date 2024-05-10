@@ -120,6 +120,7 @@ class DealItem extends StatelessWidget {
         );
       },
       child: Padding(
+      
         padding: const EdgeInsets.symmetric(horizontal: 4.0),
         child: Card(
           elevation: 2.0,
