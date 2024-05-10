@@ -120,7 +120,6 @@ class DealItem extends StatelessWidget {
         );
       },
       child: Padding(
-      
         padding: const EdgeInsets.symmetric(horizontal: 4.0),
         child: Card(
           elevation: 2.0,
@@ -128,7 +127,6 @@ class DealItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Column(
-            
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Deal image
