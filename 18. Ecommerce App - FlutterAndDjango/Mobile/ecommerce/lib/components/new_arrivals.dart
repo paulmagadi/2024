@@ -3,7 +3,7 @@ import '../screens/new_arrivals.dart';
 import '../screens/product_details.dart';
 import '../models/product_model.dart';
 
-const int maxNameLength = 20;
+const int maxNameLength = 16;
 
 class NewArrivalSection extends StatelessWidget {
   // final List<Deal> deals;
@@ -61,10 +61,10 @@ class NewArrivalSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: products.length,
               itemBuilder: (context, index) {
-                final newProduct = products[index];
+                final product = products[index];
                 // Find the associated Product object using the product name or other identifying properties
-                final product = products.firstWhere(
-                  (product) => product.name == newProduct.name,
+                final newproduct = products.firstWhere(
+                  (product) => product.name == product.name,
                   orElse: () => throw Exception('No matching Product found'),
 
                   // Handle the case when no matching product is found
@@ -72,7 +72,7 @@ class NewArrivalSection extends StatelessWidget {
 
                 // Only pass the product if it was found
                 // ignore: unnecessary_null_comparison
-                if (product != null) {
+                if (newproduct != null) {
                   return NewArrivalItem(product: product);
                 }
                 // Otherwise, return an empty container or some other placeholder
@@ -124,7 +124,7 @@ class NewArrivalItem extends StatelessWidget {
                 child: Image.network(
                   product.image,
                   height: 100.0,
-                  width: 100,
+                  width: 120,
                   fit: BoxFit.contain,
                   semanticLabel:
                       product.name, // Add semantic label for accessibility
