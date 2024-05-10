@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/featured.dart';
+// import '../screens/featured.dart';
 import '../screens/product_details.dart';
 import '../models/product_model.dart';
 
@@ -33,16 +33,7 @@ class FeaturedSection extends StatelessWidget {
                 // "See More" button
                 TextButton(
                   onPressed: () {
-                    try {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const FeaturedScreen(),
-                        ),
-                      );
-                    } catch (e) {
-                      print('Error navigating to FeaturedScreen: $e');
-                    }
+                    Navigator.pushNamed(context, '/featured');
                   },
                   child: const Text('See More'),
                 ),
