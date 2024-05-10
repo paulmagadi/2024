@@ -19,11 +19,10 @@ class AllProduct {
 }
 
 class ProductsSection extends StatelessWidget {
-  final List<AllProduct> allProducts;
   final List<Product> products;
 
   const ProductsSection(
-      {Key? key, required this.allProducts, required this.products})
+      {Key? key, required this.products})
       : super(key: key);
 
   @override
@@ -61,9 +60,9 @@ class ProductsSection extends StatelessWidget {
               mainAxisSpacing: 2.0,
               crossAxisSpacing: 2.0,
             ),
-            itemCount: allProducts.length,
+            itemCount: products.length,
             itemBuilder: (context, index) {
-              final product = allProducts[index];
+              final product = products[index];
               return AllProductItem(product: product);
             },
           ),
@@ -75,9 +74,10 @@ class ProductsSection extends StatelessWidget {
 
 // Define a custom widget for each product item
 class AllProductItem extends StatelessWidget {
-  final AllProduct product;
+  final Product product;
 
-  const AllProductItem({Key? key, required this.product}) : super(key: key);
+  const AllProductItem({super.key, required this.product});
+  // const AllProductItem({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +92,7 @@ class AllProductItem extends StatelessWidget {
           // Product image
           Expanded(
             child: Image.network(
-              product.imageUrl, // Use Image.network for remote images
+              product.image, // Use Image.network for remote images
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 // Error handling for failed image loading
@@ -103,7 +103,7 @@ class AllProductItem extends StatelessWidget {
                   return child;
                 } else {
                   // Display a CircularProgressIndicator while the image is loading
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
               },
             ),
@@ -117,7 +117,7 @@ class AllProductItem extends StatelessWidget {
               children: [
                 // Product title
                 Text(
-                  product.title,
+                  product.name,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 Row(

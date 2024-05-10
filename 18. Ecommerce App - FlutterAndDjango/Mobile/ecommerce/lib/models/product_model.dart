@@ -30,6 +30,7 @@ class Product {
     required this.isListed,
     required this.createdAt,
   });
+  
 
   // Factory constructor to parse JSON data into a Product instance
   factory Product.fromJson(Map<String, dynamic> json) {

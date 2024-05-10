@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/product_data.dart';
 import '../models/product_model.dart';
-import '../models/model_converters.dart';
 
 import '../components/category_menu.dart';
 import '../components/banner.dart';
@@ -37,19 +36,13 @@ class HomeScreen extends StatelessWidget {
 
           final featuredProducts =
               productsModel.where((product) => product.isFeatured).toList();
+          final limitedFeaturedProducts = featuredProducts.sublist(0, 5);
+
           final dealsProducts =
               productsModel.where((product) => product.isSale).toList();
+
           final newArrivals =
               productsModel.where((product) => product.isNew).toList();
-
-          // convert
-          List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
-          // List<FeaturedProduct> featured =
-          //     featuredProducts.map(convertProductToFeaturedProduct).toList();
-          List<AllProduct> allProducts =
-              products.map(convertProductToAllProduct).toList();
-
-          final limitedFeaturedProducts = featuredProducts.sublist(0, 5);
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,8 +66,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: DealsSection(
-                  deals: deals,
-                  products: products,
+                  products: dealsProducts,
                 ),
               ),
 
@@ -98,12 +90,11 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: ProductsSection(
-                  allProducts: allProducts,
                   products: products,
                 ),
               ),
 
-              // Add other sections as needed...
+              // Add other sections
             ],
           );
         },

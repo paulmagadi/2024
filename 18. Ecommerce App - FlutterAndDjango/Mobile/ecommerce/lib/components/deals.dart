@@ -21,10 +21,10 @@ class Deal {
 const int maxNameLength = 20;
 
 class DealsSection extends StatelessWidget {
-  final List<Deal> deals;
+  // final List<Deal> deals;
   final List<Product> products; // Add a list of Product objects
 
-  const DealsSection({Key? key, required this.deals, required this.products})
+  const DealsSection({Key? key, required this.products})
       : super(key: key);
 
   @override
@@ -75,12 +75,12 @@ class DealsSection extends StatelessWidget {
             height: 180, // Adjust height as needed
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: deals.length,
+              itemCount: products.length,
               itemBuilder: (context, index) {
-                final deal = deals[index];
+                final deal = products[index];
                 // Find the associated Product object using the deal title or other identifying properties
                 final product = products.firstWhere(
-                  (product) => product.name == deal.title,
+                  (product) => product.name == deal.name,
                   orElse: () => throw Exception('No matching Product found'),
 
                   // Handle the case when no matching product is found
@@ -89,7 +89,7 @@ class DealsSection extends StatelessWidget {
                 // Only pass the product if it was found
                 // ignore: unnecessary_null_comparison
                 if (product != null) {
-                  return DealItem(deal: deal, product: product);
+                  return DealItem(product: product);
                 }
                 // Otherwise, return an empty container or some other placeholder
                 return Container();
@@ -103,10 +103,10 @@ class DealsSection extends StatelessWidget {
 }
 
 class DealItem extends StatelessWidget {
-  final Deal deal;
+  // final Deal deal;
   final Product product;
 
-  const DealItem({Key? key, required this.deal, required this.product})
+  const DealItem({Key? key, required this.product})
       : super(key: key);
 
   @override
@@ -139,12 +139,12 @@ class DealItem extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
                 child: Image.network(
-                  deal.imageUrl,
+                  product.image,
                   height: 100.0,
                   width: 100,
                   fit: BoxFit.contain,
                   semanticLabel:
-                      deal.title, // Add semantic label for accessibility
+                      product.name, // Add semantic label for accessibility
                 ),
               ),
 
@@ -165,7 +165,7 @@ class DealItem extends StatelessWidget {
                       children: [
                         // Old price (struck through)
                         Text(
-                          '\$${deal.oldPrice.toStringAsFixed(2)}',
+                          '\$${product.price.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.grey,
                             decoration: TextDecoration.lineThrough,
@@ -174,7 +174,7 @@ class DealItem extends StatelessWidget {
                         const SizedBox(width: 8.0),
                         // New price (highlighted)
                         Text(
-                          '\$${deal.newPrice.toStringAsFixed(2)}',
+                          '\$${product.salePrice.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.bold,
