@@ -1,3 +1,4 @@
+import 'package:ecommerce/components/new_arrivals.dart';
 import 'package:flutter/material.dart';
 import '../models/product_data.dart';
 import '../models/product_model.dart';
@@ -77,6 +78,14 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: FeaturedSection(
                   featuredProducts: limitedFeaturedProducts,
+                ),
+              ),
+
+              // New Arrivals Section
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: NewArrivalSection(
+                  products: products,
                 ),
               ),
 

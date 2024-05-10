@@ -1,6 +1,5 @@
-import 'package:ecommerce/screens/new_arrivals.dart';
 import 'package:flutter/material.dart';
-// import '../screens/deals.dart';
+import '../screens/new_arrivals.dart';
 import '../screens/product_details.dart';
 import '../models/product_model.dart';
 
