@@ -32,7 +32,7 @@ class FeaturedSection extends StatelessWidget {
                 // "See More" button
                 TextButton(
                   onPressed: () {
-                    // Handle "See More" button (optional)
+                    
                   },
                   child: const Text('See More'),
                 ),
