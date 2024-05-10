@@ -96,6 +96,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: ProductsSection(
                   allProducts: allProducts,
+                  products: products,
                 ),
               ),
 
