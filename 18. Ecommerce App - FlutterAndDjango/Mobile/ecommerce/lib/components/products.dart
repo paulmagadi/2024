@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/products.dart';
+// import '../screens/products.dart';
 import '../models/product_model.dart';
 
 // Define a class to represent each product
@@ -22,7 +22,8 @@ class ProductsSection extends StatelessWidget {
   final List<AllProduct> allProducts;
   final List<Product> products;
 
-  const ProductsSection({Key? key, required this.allProducts, required this.products})
+  const ProductsSection(
+      {Key? key, required this.allProducts, required this.products})
       : super(key: key);
 
   @override
@@ -45,18 +46,6 @@ class ProductsSection extends StatelessWidget {
                 ),
 
                 // "See More" button
-                TextButton(
-                  onPressed: () {
-                    // Navigate to the ProductsScreen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ProductsScreen(products: product),
-                      ),
-                    );
-                  },
-                  child: const Text('See More'),
-                ),
               ],
             ),
           ),
