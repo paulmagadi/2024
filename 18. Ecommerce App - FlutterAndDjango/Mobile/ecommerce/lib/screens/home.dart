@@ -29,18 +29,18 @@ class HomeScreen extends StatelessWidget {
             return Center(child: Text('${snapshot.error}'));
           }
 
-          final products = snapshot.data!;
+          final productsModel = snapshot.data!;
 
           // Filter products for different sections based on conditions
-          final listedProducts =
-              products.where((product) => product.isListed).toList();
+          final products =
+              productsModel.where((product) => product.isFeatured).toList();
 
           final featuredProducts =
-              listedProducts.where((product) => product.isFeatured).toList();
+              productsModel.where((product) => product.isFeatured).toList();
           final dealsProducts =
-              listedProducts.where((product) => product.isSale).toList();
+              productsModel.where((product) => product.isSale).toList();
           final newArrivals =
-              listedProducts.where((product) => product.isNew).toList();
+              productsModel.where((product) => product.isNew).toList();
 
           // convert
           List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
           List<AllProduct> allProducts =
               products.map(convertProductToAllProduct).toList();
 
-          final limitedFeaturedProducts = featuredProducts.sublist(0, 6);
+          final limitedFeaturedProducts = featuredProducts.sublist(0, 5);
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
