@@ -32,12 +32,15 @@ class HomeScreen extends StatelessWidget {
           final products = snapshot.data!;
 
           // Filter products for different sections based on conditions
+          final listedProducts =
+              products.where((product) => product.isListed).toList();
+
           final featuredProducts =
-              products.where((product) => product.isFeatured).toList();
+              listedProducts.where((product) => product.isFeatured).toList();
           final dealsProducts =
-              products.where((product) => product.isSale).toList();
+              listedProducts.where((product) => product.isSale).toList();
           final newArrivals =
-              products.where((product) => product.isNew).toList();
+              listedProducts.where((product) => product.isNew).toList();
 
           // convert
           List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
