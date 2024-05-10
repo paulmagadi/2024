@@ -31,8 +31,8 @@ class HomeScreen extends StatelessWidget {
           final products = snapshot.data!;
 
           // Filter products for different sections based on conditions
-          // final featuredProducts =
-          //     products.where((product) => product.isFeatured).toList();
+          final featuredProducts =
+              products.where((product) => product.isFeatured).toList();
           final dealsProducts =
               products.where((product) => product.isSale).toList();
 
@@ -42,6 +42,8 @@ class HomeScreen extends StatelessWidget {
           //     featuredProducts.map(convertProductToFeaturedProduct).toList();
           List<AllProduct> allProducts =
               products.map(convertProductToAllProduct).toList();
+
+          final limitedFeaturedProducts = featuredProducts.sublist(0, 6);
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +76,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: FeaturedSection(
-                  featuredProducts: products,
+                  featuredProducts: limitedFeaturedProducts,
                 ),
               ),
 
