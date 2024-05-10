@@ -127,6 +127,7 @@ class DealItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Column(
+            
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Deal image
