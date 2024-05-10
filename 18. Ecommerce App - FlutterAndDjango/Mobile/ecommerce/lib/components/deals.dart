@@ -18,6 +18,8 @@ class Deal {
   });
 }
 
+const int maxNameLength = 20;
+
 class DealsSection extends StatelessWidget {
   final List<Deal> deals;
   final List<Product> products; // Add a list of Product objects
@@ -109,6 +111,10 @@ class DealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Truncate product name if it exceeds the maximum length
+    String truncatedName = product.name.length > maxNameLength
+        ? '${product.name.substring(0, maxNameLength)}...'
+        : product.name;
     return GestureDetector(
       onTap: () {
         // Navigate to the ProductDetailsScreen when the deal item is clicked
@@ -150,7 +156,7 @@ class DealItem extends StatelessWidget {
                   children: [
                     // Deal title
                     Text(
-                      deal.title,
+                      truncatedName,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 4.0),
