@@ -62,7 +62,7 @@ class NewArrivalSection extends StatelessWidget {
               itemCount: products.length,
               itemBuilder: (context, index) {
                 final newProduct = products[index];
-                // Find the associated Product object using the deal title or other identifying properties
+                // Find the associated Product object using the product name or other identifying properties
                 final product = products.firstWhere(
                   (product) => product.name == newProduct.name,
                   orElse: () => throw Exception('No matching Product found'),
