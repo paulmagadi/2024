@@ -1,4 +1,3 @@
-import 'package:ecommerce/components/new_arrivals.dart';
 import 'package:flutter/material.dart';
 import '../models/product_data.dart';
 import '../models/product_model.dart';
@@ -11,6 +10,7 @@ import '../components/banner_carousel.dart';
 import '../components/deals.dart';
 import '../components/featured.dart';
 import '../components/products.dart';
+import '../components/new_arrivals.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,6 +36,8 @@ class HomeScreen extends StatelessWidget {
               products.where((product) => product.isFeatured).toList();
           final dealsProducts =
               products.where((product) => product.isSale).toList();
+          final newArrivals =
+              products.where((product) => product.isNew).toList();
 
           // convert
           List<Deal> deals = dealsProducts.map(convertProductToDeal).toList();
@@ -85,7 +87,7 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: NewArrivalSection(
-                  products: products,
+                  products: newArrivals,
                 ),
               ),
 

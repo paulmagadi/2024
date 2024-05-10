@@ -3,16 +3,13 @@ import '../screens/new_arrivals.dart';
 import '../screens/product_details.dart';
 import '../models/product_model.dart';
 
-
-
 const int maxNameLength = 20;
 
 class NewArrivalSection extends StatelessWidget {
   // final List<Deal> deals;
   final List<Product> products; // Add a list of Product objects
 
-  const NewArrivalSection({Key? key, required this.products})
-      : super(key: key);
+  const NewArrivalSection({Key? key, required this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +89,7 @@ class NewArrivalSection extends StatelessWidget {
 class NewArrivalItem extends StatelessWidget {
   final Product product;
 
-  const NewArrivalItem({Key? key, required this.product})
-      : super(key: key);
+  const NewArrivalItem({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +119,8 @@ class NewArrivalItem extends StatelessWidget {
             children: [
               // Deal image
               ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(8.0)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(8.0)),
                 child: Image.network(
                   product.image,
                   height: 100.0,
@@ -140,34 +137,47 @@ class NewArrivalItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Deal title
+                    // Display truncated product title
                     Text(
                       truncatedName,
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 4.0),
-                    // Deal prices
-                    Row(
-                      children: [
-                        // Old price (struck through)
-                        Text(
-                          '\$${product.price.toStringAsFixed(2)}',
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            decoration: TextDecoration.lineThrough,
+                    // Display old and new prices if on sale, otherwise regular price
+                    if (product.isSale) ...[
+                      Row(
+                        children: [
+                          // Old price (struck through)
+                          Text(
+                            '\$${product.price.toStringAsFixed(2)}',
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 10,
+                              decoration: TextDecoration.lineThrough,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 8.0),
-                        // New price (highlighted)
-                        Text(
-                          '\$${product.salePrice.toStringAsFixed(2)}',
-                          style: const TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
+                          const SizedBox(width: 8.0),
+                          // New price (highlighted)
+                          Text(
+                            '\$${product.salePrice.toStringAsFixed(2)}',
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
+                        ],
+                      ),
+                    ] else ...[
+                      // Display regular price if not on sale
+                      Text(
+                        '\$${product.price.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ],
                 ),
               ),
