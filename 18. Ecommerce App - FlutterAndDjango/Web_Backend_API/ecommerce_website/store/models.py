@@ -89,6 +89,8 @@ class Product(models.Model):
         else:
             self.in_stock = True
             
+        
+            
         if self.is_sale and self.sale_price < self.price:
             self.discount = round(self.price - self.sale_price, 2)
             self.percentage_discount = round((self.discount / self.price) * 100)
