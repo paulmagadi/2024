@@ -7,6 +7,7 @@ from django.db.models import Q
 def home(request):
     all_products = Product.objects.all()
     products = all_products.filter(is_listed=True)
+    
     sale_products = products.filter(is_sale=True)
     new_products = products.filter(is_new=True)
     featured_products = products.filter(is_featured=True)
@@ -79,8 +80,9 @@ def search(request):
     return render(request, 'store/search.html', context)
 
 def banner(request):
-    banners = WebBanner.objects.all()
+    banner = WebBanner.objects.filter(in_use=True)
+    bannerImageUrl = banner.imageURL.url
     context = {
-        'banners': banners
+        'bannerImageUrl': bannerImageUrl
     }
     return(request,'store/include/hero.html', context)

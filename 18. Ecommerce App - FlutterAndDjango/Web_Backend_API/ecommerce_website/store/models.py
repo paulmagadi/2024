@@ -120,6 +120,7 @@ class WebBanner(models.Model):
     image = models.ImageField(upload_to='uploads/banners/', verbose_name="Image")
     caption = models.CharField(max_length=255, blank=True, null=True, verbose_name="Caption")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
+    in_use = models.BooleanField(default=False)
 
     def __str__(self):
         return self.caption  

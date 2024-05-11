@@ -1,9 +1,9 @@
 header .hero-header{
-    /* background-image: url(banner.jpg);
+    background-image: url('{{ bannerImageUrl }}');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; */
-    height: 40vh;
+    background-size: cover;
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
