@@ -78,12 +78,17 @@ class Product(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     
 
-    @property
-    def new_product(self):
-        threshold_date = timezone.now() - timezone.timedelta(days=7)
-        new = self.created_at >= threshold_date
-        return new
-    
+    @receiver(post_save, sender=Product)
+    def update_is_new(sender, instance, **kwargs):
+        """
+        Signal handler function to update the 'is_new' field of the Product model after 7 days.
+        """
+        if instance.created_at >= timezone.now() - timezone.timedelta(days=7):
+            instance.is_new = True
+            instance.save()
+        else:
+            instance.is_new = False
+            instance.save()
 
     def save(self, *args, **kwargs):
         if self.created_at >= timezone.now() - timezone.timedelta(days=7):
@@ -105,6 +110,7 @@ class Product(models.Model):
             self.discount = 0
             self.percentage_discount = 0
         super().save(*args, **kwargs)
+        
 
     def __str__(self):
         return self.name
