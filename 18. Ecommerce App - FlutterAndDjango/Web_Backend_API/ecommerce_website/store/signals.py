@@ -1,15 +1,16 @@
-from django.apps import AppConfig
 from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.utils import timezone
+from .models import Product
 
 
-class StoreConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'store'
-
-    def ready(self):
-        # Import signals module to connect signal handler function
-        from . import signals  # noqa
-        
-        # Connect the signal handler function to the post_save signal of the Product model
-        Product = self.get_model('Product')
-        post_save.connect(signals.update_is_new, sender=Product)
+@receiver(post_save, sender=Product)
+def update_is_new(sender, instance, **kwargs):
+    """
+    Signal handler function to update the 'is_new' field of the Product model after 7 days.
+    """
+    if instance.created_at >= timezone.now() - timezone.timedelta(minutes=1):
+        instance.is_new =  False
+    else:
+        instance.is_new =  True
+    instance.save()
