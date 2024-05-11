@@ -18,7 +18,7 @@ def admin_or_staff_required(view_func):
         return view_func(request, *args, **kwargs)
     return _wrapped_view
 
-# Usage example:
+
 @admin_or_staff_required
 def admin_portal(request):
     products = Product.objects.all()
