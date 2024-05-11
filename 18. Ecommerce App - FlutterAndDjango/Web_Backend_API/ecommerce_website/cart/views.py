@@ -52,7 +52,7 @@ def cart_add(request):
         
         cart_quantity = cart.__len__()
         response = JsonResponse({'qty': cart_quantity})
-        messages.success(request, ('Product added to cart'))
+        # messages.success(request, ('Product added to cart'))
         return response
     
     
@@ -67,7 +67,7 @@ def cart_update(request):
         cart.update(request, product=product, quantity=product_qty)  # Pass the Product object
 
         response = JsonResponse({'qty': product_qty})
-        messages.success(request, 'Cart updated successfully')
+        # messages.success(request, 'Cart updated successfully')
         return response
 
 def cart_delete(request):

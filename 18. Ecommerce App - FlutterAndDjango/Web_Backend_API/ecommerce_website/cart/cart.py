@@ -32,6 +32,7 @@ class Cart():
                 messages.warning(request, f"Quantity limit reached for {product.name}. Cart updated to maximum available quantity.")
             else:
                 self.cart[product_id] = total_quantity
+                messages.success(request, ('Product updated to cart.'))
         else:
             # If the product is not in the cart, add it with the requested quantity, limiting it to the available inventory if necessary
             if quantity > available_quantity:
@@ -39,6 +40,7 @@ class Cart():
                 messages.warning(request, f"Quantity limit reached for {product.name}. Cart updated to maximum available quantity.")
             else:
                 self.cart[product_id] = quantity
+                messages.success(request, ('Product added to cart'))
             
         self.session.modified = True
         
@@ -85,9 +87,6 @@ class Cart():
         return self.cart
 
 
-
-
-        
         
     # Define the cart length(for updating cart count)
     def __len__(self):
