@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'corsheaders',
     'core',
-    'store',
+    'store.apps.StoreConfig',
     'cart',
     'admin_portal',
     'payment',
