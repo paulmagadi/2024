@@ -1,8 +1,8 @@
 header .hero-header{
-    background-image: url(banner.jpg);
+    /* background-image: url(banner.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     height: 40vh;
     display: flex;
     justify-content: center;

@@ -53,7 +53,7 @@ cursor: pointer;
   color: red;
 }
 
-header .hero-header{
+/* header .hero-header{
     background-image: url(banner.jpg);
     background-position: center;
     background-repeat: no-repeat;
@@ -64,7 +64,7 @@ header .hero-header{
     align-items: center;
     color: white;
     top: 50%;
-}
+} */
 
 .header h1 {
     font-size: 4rem;

@@ -1,5 +1,11 @@
 <header>
     <div class="hero-header">
         <h1>Bella Online Shop</h1>
+        
+        {% for banner in banner %}
+        <div class="image"><img src="{{ banner.imageURL }}" alt="Banner" width="100%"></div> 
+        {% endfor %}
+            
+        
     </div>
 </header>

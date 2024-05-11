@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Category
+from .models import Product, Category, WebBanner
 from django.contrib import messages
 import datetime
 from django.db.models import Q
@@ -77,3 +77,10 @@ def search(request):
         'products': products,
     }
     return render(request, 'store/search.html', context)
+
+def banner(request):
+    banners = WebBanner.objects.all()
+    context = {
+        'banners': banners
+    }
+    return(request,'store/include/hero.html', context)
