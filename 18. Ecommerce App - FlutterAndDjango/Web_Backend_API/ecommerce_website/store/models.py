@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 import datetime
 from django.utils import timezone
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -81,6 +83,7 @@ class Product(models.Model):
         threshold_date = timezone.now() - timezone.timedelta(days=7)
         new = self.created_at >= threshold_date
         return new
+    
 
     def save(self, *args, **kwargs):
         
@@ -89,8 +92,7 @@ class Product(models.Model):
         else:
             self.in_stock = True
             
-        
-            
+       
         if self.is_sale and self.sale_price < self.price:
             self.discount = round(self.price - self.sale_price, 2)
             self.percentage_discount = round((self.discount / self.price) * 100)
