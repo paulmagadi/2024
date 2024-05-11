@@ -86,6 +86,11 @@ class Product(models.Model):
     
 
     def save(self, *args, **kwargs):
+        if self.created_at >= timezone.now() - timezone.timedelta(days=7):
+            self.is_new = True
+        else:
+            self.is_new = False
+            
         
         if self.stock_quantity == 0:
             self.in_stock = False
