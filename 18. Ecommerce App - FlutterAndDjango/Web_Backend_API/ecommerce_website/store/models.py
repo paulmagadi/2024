@@ -79,7 +79,7 @@ class Product(models.Model):
     
 
     def save(self, *args, **kwargs):
-        if self.created_at >= timezone.now() - timezone.timedelta(days=30):
+        if self.created_at >= timezone.now() - timezone.timedelta(min=5):
             self.is_new = False
         else:
             self.is_new = True
