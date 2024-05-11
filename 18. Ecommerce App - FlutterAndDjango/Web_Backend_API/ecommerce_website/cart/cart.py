@@ -66,6 +66,7 @@ class Cart():
         else:
             # Update the quantity in the cart
             self.cart[product_id] = quantity
+            messages.success(request, 'Cart updated successfully')
 
         self.session.modified = True
     
