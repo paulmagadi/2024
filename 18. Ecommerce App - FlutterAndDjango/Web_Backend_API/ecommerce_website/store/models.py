@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 import datetime
 from django.utils import timezone
 
@@ -77,18 +77,6 @@ class Product(models.Model):
     is_listed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
     
-
-    @receiver(post_save, sender=Product)
-    def update_is_new(sender, instance, **kwargs):
-        """
-        Signal handler function to update the 'is_new' field of the Product model after 7 days.
-        """
-        if instance.created_at >= timezone.now() - timezone.timedelta(days=7):
-            instance.is_new = True
-            instance.save()
-        else:
-            instance.is_new = False
-            instance.save()
 
     def save(self, *args, **kwargs):
         if self.created_at >= timezone.now() - timezone.timedelta(days=7):
