@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class MobileBanner(models.Model):
-    image = models.ImageField(upload_to='uploadsbanners/', verbose_name="Image")
+    image = models.ImageField(upload_to='uploads/banners/', verbose_name="Image")
     caption = models.CharField(max_length=255, blank=True, null=True, verbose_name="Caption")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created At")
 
