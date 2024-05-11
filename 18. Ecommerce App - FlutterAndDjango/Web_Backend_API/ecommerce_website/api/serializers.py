@@ -1,5 +1,6 @@
 from django.contrib.auth.models import Group, User
 from store.models import Product, Category
+from api.models import MobileBanner
 from rest_framework import serializers
 
 
@@ -25,4 +26,10 @@ class ProductSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+        fields = '__all__'
+        
+        
+class MobileBannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MobileBanner
         fields = '__all__'

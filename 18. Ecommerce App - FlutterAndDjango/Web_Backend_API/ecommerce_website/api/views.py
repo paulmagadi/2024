@@ -2,9 +2,10 @@ from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets, generics
 from rest_framework.decorators import api_view
 
-from .serializers import GroupSerializer, UserSerializer, ProductSerializer, CategorySerializer
+from .serializers import GroupSerializer, UserSerializer, ProductSerializer, CategorySerializer, MobileBannerSerializer
 
 from store.models import Product, Category
+from .models import MobileBanner
 
 
 # @api_view(['GET'])
@@ -36,3 +37,8 @@ class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     # permission_classes = [permissions.IsAuthenticated]
+    
+    
+class MobileBannerListView(generics.ListAPIView):
+    queryset = MobileBanner.objects.all()
+    serializer_class = MobileBannerSerializer
