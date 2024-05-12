@@ -116,6 +116,19 @@ class ProductImages(models.Model):
     image = models.ImageField(upload_to='uploads/Products/')
     
     
+    def __str__(self):
+        return self.id
+    
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+    
+    
+    
     
 class WebBanner(models.Model):
     image = models.ImageField(upload_to='uploads/banners/', verbose_name="Image")
