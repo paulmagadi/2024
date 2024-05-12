@@ -113,7 +113,7 @@ class Product(models.Model):
     
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, default=1)
-    image = models.ImageField(upload_to='uploads/Products/')
+    image = models.ImageField(upload_to='uploads/products/')
     
     class Meta:
         verbose_name_plural = 'Product Images'
