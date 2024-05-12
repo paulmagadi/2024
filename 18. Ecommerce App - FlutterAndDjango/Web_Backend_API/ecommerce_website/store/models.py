@@ -59,6 +59,13 @@ class Category(models.Model):
     
     class Meta:
         verbose_name_plural = 'categories'
+        
+class Specification(models.Model):
+    name = models.CharField(max_length=255)
+    value = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.name}: {self.value}"
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -111,6 +118,8 @@ class Product(models.Model):
         except:
             url = ''
         return url
+    
+
     
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, default=1)
