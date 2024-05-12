@@ -76,6 +76,7 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
     is_listed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
+    specifications = models.ManyToManyField(Specification)
     
 
     def save(self, *args, **kwargs):
