@@ -102,11 +102,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-    
-
-    
         
-    
     @property
     def imageURL(self):
         try:
@@ -114,6 +110,11 @@ class Product(models.Model):
         except:
             url = ''
         return url
+    
+class ProductImages(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, default=1)
+    image = models.ImageField(upload_to='uploads/Products/')
+    
     
     
 class WebBanner(models.Model):
