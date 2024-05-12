@@ -10,12 +10,10 @@ admin.site.register(WebBanner)
 admin.site.register(ProductImages)
 
 #add profile info to user
-
 class ProfileInline(admin.StackedInline):
     model = Profile
     
 #extend user model
-
 class UserAdmin(admin.ModelAdmin):
     model = User
     field = ["username", "first_name", "last_name", "email"]
