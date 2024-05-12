@@ -111,9 +111,12 @@ class Product(models.Model):
             url = ''
         return url
     
-class ProductImages(models.Model):
+class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, default=1)
     image = models.ImageField(upload_to='uploads/Products/')
+    
+    class Meta:
+        verbose_name_plural = 'Product Images'
     
     
     def __str__(self):
