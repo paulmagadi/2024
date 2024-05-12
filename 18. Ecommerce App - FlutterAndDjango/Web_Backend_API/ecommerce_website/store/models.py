@@ -70,7 +70,7 @@ class Specification(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(default=0, max_digits=9, decimal_places=2)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+    category = models.ManyToManyField(Category)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='uploads/products/')
     is_sale = models.BooleanField(default=False)
@@ -83,7 +83,7 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
     is_listed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
-    specifications = models.ManyToManyField(Specification)
+    specifications = models.ManyToManyField(Specification, null=True, blank=True)
     
 
     def save(self, *args, **kwargs):
