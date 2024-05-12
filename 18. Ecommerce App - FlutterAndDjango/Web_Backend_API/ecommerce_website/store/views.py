@@ -7,7 +7,7 @@ from django.db.models import Q
 def home(request):
     all_products = Product.objects.all()
     products = all_products.filter(is_listed=True)
-    
+    banners = WebBanner.objects.filter(in_use=True)
     sale_products = products.filter(is_sale=True)
     new_products = products.filter(is_new=True)
     featured_products = products.filter(is_featured=True)
@@ -16,6 +16,7 @@ def home(request):
         'sale_products': sale_products,
         'new_products': new_products,
         'featured_products': featured_products,
+        'banners': banners,
     }
     return render(request, 'store/home.html', context)
 
@@ -79,10 +80,9 @@ def search(request):
     }
     return render(request, 'store/search.html', context)
 
-def banner(request):
-    banner = WebBanner.objects.filter(in_use=True)
-    bannerImageUrl = banner.imageURL.url
-    context = {
-        'bannerImageUrl': bannerImageUrl
-    }
-    return(request,'store/include/hero.html', context)
+# def banner(request):
+#     banners = WebBanner.objects.filter(in_use=True)
+#     context = {
+#         'banners': banners
+#     }
+#     return(request,'store/include/hero.html', context)
