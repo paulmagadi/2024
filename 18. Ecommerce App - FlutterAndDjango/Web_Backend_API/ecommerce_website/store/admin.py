@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Profile, ShippingAddress, WebBanner, ProductImages
+from .models import Product, Category, Profile, ShippingAddress, WebBanner, ProductImage
 from django.contrib.auth.models import User
 # Register your models here.
 admin.site.register(Category)
@@ -7,7 +7,7 @@ admin.site.register(Product)
 admin.site.register(Profile)
 admin.site.register(ShippingAddress)
 admin.site.register(WebBanner)
-admin.site.register(ProductImages)
+admin.site.register(ProductImage)
 
 #add profile info to user
 class ProfileInline(admin.StackedInline):
