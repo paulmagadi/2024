@@ -1,3 +1,4 @@
+import 'package:ecommerce/constants/constants.dart';
 import 'package:flutter/material.dart';
 import '../screens/deals.dart';
 import '../screens/product_details.dart';
@@ -20,8 +21,10 @@ class DealsSection extends StatelessWidget {
         children: [
           // Section title row
           Padding(
+            
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
+              
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Section title
