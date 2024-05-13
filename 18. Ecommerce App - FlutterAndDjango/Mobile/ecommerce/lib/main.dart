@@ -31,8 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bellamore',
       theme: ThemeData(),
-      home: const HomePage(
-      ),
+      home: const HomePage(),
     );
   }
 }
