@@ -1,4 +1,4 @@
-import 'package:ecommerce/constants/constants.dart';
+// import 'package:ecommerce/constants/constants.dart';
 import 'package:flutter/material.dart';
 import '../screens/deals.dart';
 import '../screens/product_details.dart';
@@ -7,7 +7,6 @@ import '../models/product_model.dart';
 const int maxNameLength = 15;
 
 class DealsSection extends StatelessWidget {
-  // final List<Deal> deals;
   final List<Product> products; // Add a list of Product objects
 
   const DealsSection({super.key, required this.products});
@@ -23,7 +22,6 @@ class DealsSection extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
-              
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Section title
@@ -58,10 +56,8 @@ class DealsSection extends StatelessWidget {
           ),
           // Horizontally scrolling list of deals
           SizedBox(
-            
             height: 180,
             child: ListView.builder(
-              
               scrollDirection: Axis.horizontal,
               itemCount: products.length,
               itemBuilder: (context, index) {
