@@ -8,7 +8,7 @@ const Color whiteColor = Colors.white;
 const Color blackColor = Color.fromARGB(255, 0, 0, 0);
 const Color textColor = Color.fromARGB(255, 0, 0, 0);
 const Color blueColor = Color.fromARGB(255, 193, 188, 165);
-const Color bgColor = Color.fromARGB(255, 114, 243, 247);
+const Color bgColor = Color.fromRGBO(17, 99, 89, 1);
 
 // Define padding and margin constants
 const EdgeInsets defaultPadding = EdgeInsets.all(16.0);
