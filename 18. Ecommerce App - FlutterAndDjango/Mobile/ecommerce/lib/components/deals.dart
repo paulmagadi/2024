@@ -58,8 +58,10 @@ class DealsSection extends StatelessWidget {
           ),
           // Horizontally scrolling list of deals
           SizedBox(
+            
             height: 180,
             child: ListView.builder(
+              
               scrollDirection: Axis.horizontal,
               itemCount: products.length,
               itemBuilder: (context, index) {
