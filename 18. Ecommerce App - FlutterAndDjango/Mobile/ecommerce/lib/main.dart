@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
           onSearch: (value) => setState(() => searchValue = value),
           suggestions: _suggestions),
       body: _pages[_selectedIndex],
-      backgroundColor: Color.fromRGBO(17, 99, 90, 0),
+      backgroundColor: Color.fromRGBO(17, 99, 89, 1),
       bottomNavigationBar: CurvedNavigationBar(
         items: [
           CurvedNavigationBarItem(icon: const Icon(Icons.home), label: "Home"),
