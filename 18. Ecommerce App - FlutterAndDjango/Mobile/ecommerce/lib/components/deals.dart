@@ -21,7 +21,6 @@ class DealsSection extends StatelessWidget {
         children: [
           // Section title row
           Padding(
-            
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               
