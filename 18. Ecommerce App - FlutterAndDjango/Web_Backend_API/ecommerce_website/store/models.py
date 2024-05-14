@@ -61,8 +61,8 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
         
 class Specification(models.Model):
-    name = models.CharField(max_length=255)
-    value = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True)
+    value = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return f"{self.name}: {self.value}"
@@ -83,7 +83,7 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
     is_listed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
-    specification = models.ManyToManyField(Specification, blank=True, default=1)
+    specification = models.ManyToManyField(Specification, blank=True, default=1, null=True)
     
 
     def save(self, *args, **kwargs):
