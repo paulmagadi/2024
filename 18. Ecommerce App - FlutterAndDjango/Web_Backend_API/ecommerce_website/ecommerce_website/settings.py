@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework', 
+    'djoser',
     'rest_framework.authtoken',
     'corsheaders',
     'drf_yasg',
@@ -144,6 +145,10 @@ REST_FRAMEWORK = {
     # 'PAGE_SIZE': 10
     # 'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.TokenAuthentication'),
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication'),
+}
+
+DJOSER = {
+    'USER_ID_FIELD': 'username',
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
