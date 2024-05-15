@@ -1,9 +1,10 @@
-// login_screen.dart
-// import 'package:ecommerce/main.dart';
+
+
 import 'package:ecommerce/screens/account.dart';
 import 'package:ecommerce/screens/auth/registration.dart';
-// import 'package:ecommerce/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,26 +15,44 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   bool _isLoading = false;
 
-  void _login() {
+  Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
 
-      // Perform login logic here
-      // This is just a mock login for demonstration purposes
-      Future.delayed(Duration(seconds: 2), () {
-        setState(() {
-          _isLoading = false;
-        });
-        // Assuming login is successful, navigate to the home screen
+      final response = await http.post(
+        Uri.parse('https://your-django-backend.com/api/login/'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'email': _emailController.text,
+          'password': _passwordController.text,
+        }),
+      );
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (response.statusCode == 200) {
+        // Login successful
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => ProfileScreen()),
         );
-      });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login successful!')),
+        );
+        // Navigate to the home screen or another screen
+      } else {
+        // Login failed
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login failed: ${response.body}')),
+        );
+      }
     }
   }
 
