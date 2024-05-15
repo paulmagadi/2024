@@ -1,3 +1,4 @@
+// profile_screen.dart
 import 'package:ecommerce/screens/auth/auth_service.dart';
 import 'package:ecommerce/screens/auth/login.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +123,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           child: CircleAvatar(
                             radius: 55,
-                            // backgroundImage: AssetImage('images/paul.jpg'),
                           ),
                         ),
                         SizedBox(height: 20),
