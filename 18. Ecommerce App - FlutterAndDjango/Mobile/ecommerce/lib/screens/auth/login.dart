@@ -1,5 +1,5 @@
 // login_screen.dart
-import 'package:ecommerce/main.dart';
+// import 'package:ecommerce/main.dart';
 import 'package:ecommerce/screens/account.dart';
 import 'package:ecommerce/screens/auth/registration.dart';
 // import 'package:ecommerce/screens/home.dart';
