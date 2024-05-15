@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       final response = await http.post(
-        Uri.parse('https://your-django-backend.com/api/login/'),
+        Uri.parse('https://10.0.2.2:8000/api/login/'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': _emailController.text,
