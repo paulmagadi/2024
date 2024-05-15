@@ -1,5 +1,3 @@
-
-
 import 'package:ecommerce/screens/account.dart';
 import 'package:ecommerce/screens/auth/registration.dart';
 import 'package:flutter/material.dart';
