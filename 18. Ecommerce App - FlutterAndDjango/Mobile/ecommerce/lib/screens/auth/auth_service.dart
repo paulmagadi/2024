@@ -1,11 +1,26 @@
 // auth_service.dart
-import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
+  static const String _authTokenKey = 'authToken';
+
+  Future<void> saveAuthToken(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_authTokenKey, token);
+  }
+
+  Future<String?> getAuthToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_authTokenKey);
+  }
+
+  Future<void> clearAuthToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_authTokenKey);
+  }
+
   Future<bool> isAuthenticated() async {
-    // Simulate a network call to check if the user is authenticated
-    await Future.delayed(const Duration(seconds: 1));
-    // Return true if authenticated, false otherwise
-    return false; // Change this based on your authentication logic
+    final token = await getAuthToken();
+    return token != null;
   }
 }
