@@ -1,8 +1,10 @@
-import 'package:ecommerce/screens/account.dart';
-import 'package:ecommerce/screens/auth/registration.dart';
+// login_screen.dart
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:ecommerce/screens/account.dart';
+import 'package:ecommerce/screens/auth/registration.dart';
+import 'package:ecommerce/screens/auth/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -13,7 +15,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   bool _isLoading = false;
 
   Future<void> _login() async {
@@ -36,17 +37,22 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       if (response.statusCode == 200) {
-        // Login successful
+        final responseData = jsonDecode(response.body);
+        final String authToken = responseData['token'];
+
+        // Save the auth token
+        await AuthService().saveAuthToken(authToken);
+
+        // Navigate to the profile screen
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => ProfileScreen()),
         );
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
         );
-        // Navigate to the home screen or another screen
       } else {
-        // Login failed
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login failed: ${response.body}')),
         );
