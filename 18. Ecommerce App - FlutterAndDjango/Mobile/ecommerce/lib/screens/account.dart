@@ -72,31 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(height: 16), // Add spacing between rows
 
-                        // Website information
-                        Row(
-                          children: [
-                            Icon(Icons.web, color: Colors.green),
-                            SizedBox(width: 8),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Website',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                GestureDetector(
-                                  onTap: () {
-                                    // Handle website tap
-                                    // You can use url_launcher package to launch the URL
-                                  },
-                                  child: const Text(
-                                    'sqcodes.com',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                       
                         const SizedBox(height: 16), // Add spacing between rows
 
                         // Address information
@@ -143,15 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: Colors.black,
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          'Software Developer',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.black,
-                          ),
-                        ),
+                    
                         // const SizedBox(height: 20),
                       ],
                     ),
