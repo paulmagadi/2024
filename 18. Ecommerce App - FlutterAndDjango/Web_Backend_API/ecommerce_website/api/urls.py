@@ -15,6 +15,8 @@ urlpatterns = [
     path('products/', views.ProductListView.as_view(), name='product-list'),
     path('categories/', views.CategoryListView.as_view(), name='category-list'),
     path('mobile_banner/', views.MobileBannerListView.as_view(), name='mobile-banner-list'),
+    path('login/', views.login, name=('login')),
+    path('register/', views.register, name=('register')),
 ]
 
 
