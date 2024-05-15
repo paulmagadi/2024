@@ -21,7 +21,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Padding(
                 padding: EdgeInsets.all(16.0),
                 // The entire card is a row
+
                 child: Row(
+                  
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     //Create two columns.
