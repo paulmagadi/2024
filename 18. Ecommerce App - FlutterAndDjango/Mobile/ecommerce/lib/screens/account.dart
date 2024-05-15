@@ -2,7 +2,6 @@
 import 'package:ecommerce/screens/auth/auth_service.dart';
 import 'package:ecommerce/screens/auth/login.dart';
 import 'package:flutter/material.dart';
-import '../screens/auth/auth_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
