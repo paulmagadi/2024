@@ -1,10 +1,9 @@
-// login_screen.dart
+import 'package:ecommerce/screens/account.dart';
+import 'package:ecommerce/screens/auth/auth_service.dart';
+import 'package:ecommerce/screens/auth/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:ecommerce/screens/account.dart';
-import 'package:ecommerce/screens/auth/registration.dart';
-import 'package:ecommerce/screens/auth/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -15,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   bool _isLoading = false;
 
   Future<void> _login() async {
@@ -23,38 +23,55 @@ class _LoginScreenState extends State<LoginScreen> {
         _isLoading = true;
       });
 
-      final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/login/'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'email': _emailController.text,
-          'password': _passwordController.text,
-        }),
-      );
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      if (response.statusCode == 200) {
-        final responseData = jsonDecode(response.body);
-        final String authToken = responseData['token'];
-
-        // Save the auth token
-        await AuthService().saveAuthToken(authToken);
-
-        // Navigate to the profile screen
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => ProfileScreen()),
+      try {
+        final response = await http.post(
+          Uri.parse('http://10.0.2.2:8000/api/login/'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'email': _emailController.text,
+            'password': _passwordController.text,
+          }),
         );
 
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (response.statusCode == 200) {
+          final responseData = jsonDecode(response.body);
+          print('Response data: $responseData'); // Debug print
+
+          if (responseData != null && responseData['token'] != null) {
+            final String authToken = responseData['token'];
+
+            // Save the auth token
+            await AuthService().saveAuthToken(authToken);
+
+            // Navigate to the profile screen
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()),
+            );
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Login successful!')),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Invalid response from server')),
+            );
+          }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Login failed: ${response.body}')),
+          );
+        }
+      } catch (error) {
+        setState(() {
+          _isLoading = false;
+        });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login successful!')),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login failed: ${response.body}')),
+          SnackBar(content: Text('An error occurred: $error')),
         );
       }
     }
@@ -120,3 +137,5 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+
