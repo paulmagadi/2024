@@ -1,7 +1,8 @@
 // login_screen.dart
 import 'package:ecommerce/main.dart';
+import 'package:ecommerce/screens/account.dart';
 import 'package:ecommerce/screens/auth/registration.dart';
-import 'package:ecommerce/screens/home.dart';
+// import 'package:ecommerce/screens/home.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // Assuming login is successful, navigate to the home screen
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => ProfileScreen()),
         );
       });
     }
