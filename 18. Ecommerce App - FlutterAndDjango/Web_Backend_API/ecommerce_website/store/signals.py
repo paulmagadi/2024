@@ -6,9 +6,9 @@ from .models import Product
 
 @receiver(post_save, sender=Product)
 def update_is_new(sender, instance, **kwargs):
-    """
-    Signal handler function to update the 'is_new' field of the Product model after 7 days.
-    """
+  
+    # Signal handler function to update the 'is_new' field of the Product model after n period.
+    
     if instance.created_at >= timezone.now() - timezone.timedelta(minutes=1):
         instance.is_new =  False
     else:
