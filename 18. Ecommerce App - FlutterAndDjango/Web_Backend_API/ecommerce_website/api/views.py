@@ -33,11 +33,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-def login_view(request):
-    return render(request, 'login.html')
+def login(request):
+    return render(request, 'core/login.html')
 
-def register_view(request):
-    return render(request, 'register.html')
+def register(request):
+    return render(request, 'core/register.html')
 
 
 # @api_view(['POST'])

@@ -10,17 +10,30 @@
 {% block content %}
 <!-- Register form -->
 <div class="form-container">
-    <form action="{% url 'register' %}" method="post" class="register-form" id="register-form">
+    <form action="{% url 'register' %}" method="post" class="register-form">
         {% csrf_token %}
         <div class="img">
             <span id="close-signup-form" class="close"><a href="{% url 'home' %}">&times;</a></span>
             <img src="{% static 'images/avatar.png' %}" alt="avatar" class="avatar" width="20%"> 
         </div>
+        
         <div class="login-container">
-            {{ form }}
-
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+            <br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <br>
             <button type="submit">Register</button>
-            
         </div>
         <div class="login-container">
             <button type="button" class="cancelbtn" id="cancel-signup-button"><a href="{% url 'home' %}">Cancel</a></button>
@@ -58,6 +71,9 @@
             });
         });
     </script>
+
+
+    
 </div>
 {% endblock content %}
     
