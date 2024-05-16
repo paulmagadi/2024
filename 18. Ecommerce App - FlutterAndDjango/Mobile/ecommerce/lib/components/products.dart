@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 // import '../screens/products.dart';
 import '../models/product_model.dart';
 
-// Define a class to represent each product
-class AllProduct {
-  final String imageUrl;
-  final String title;
-  final double price;
-  final double salePrice;
-  final bool isSale;
+// // Define a class to represent each product
+// class AllProduct {
+//   final String imageUrl;
+//   final String title;
+//   final double price;
+//   final double salePrice;
+//   final bool isSale;
 
-  AllProduct(
-      {required this.imageUrl,
-      required this.title,
-      required this.price,
-      required this.salePrice,
-      required this.isSale});
-}
+//   AllProduct(
+//       {required this.imageUrl,
+//       required this.title,
+//       required this.price,
+//       required this.salePrice,
+//       required this.isSale});
+// }
 
 class ProductsSection extends StatelessWidget {
   final List<Product> products;
