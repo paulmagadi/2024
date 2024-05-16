@@ -170,7 +170,6 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False,
 }
 
-
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,

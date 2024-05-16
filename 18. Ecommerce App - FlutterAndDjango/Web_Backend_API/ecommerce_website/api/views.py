@@ -65,14 +65,17 @@ def login(request):
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.AllowAny] 
     # permission_classes = [permissions.IsAuthenticated]
 # @api_view(['GET'])
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [permissions.AllowAny] 
     # permission_classes = [permissions.IsAuthenticated]
     
     
 class MobileBannerListView(generics.ListAPIView):
     queryset = MobileBanner.objects.all()
     serializer_class = MobileBannerSerializer
+    permission_classes = [permissions.AllowAny] 
