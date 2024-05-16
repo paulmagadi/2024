@@ -63,7 +63,7 @@
                 }),
                 success: function(response) {
                     $('#message').text('Registration successful');
-                    window.location.href = '/login/'; // Redirect to login or another page
+                    window.location.href = '../login'; // Redirect to login or another page
                 },
                 error: function(response) {
                     $('#message').text('Registration failed: ' + response.responseText);
