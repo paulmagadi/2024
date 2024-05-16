@@ -21,7 +21,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
 # @api_view(['GET'])
 class GroupViewSet(viewsets.ModelViewSet):
@@ -30,35 +30,35 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all().order_by('name')
     serializer_class = GroupSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
     
 
 
-@api_view(['POST'])
-def register(request):
-    data = request.data
-    username = data.get('username')
-    email = data.get('email')
-    password = data.get('password')
-    if not username or not email or not password:
-        return JsonResponse({'error': 'Missing fields'}, status=status.HTTP_400_BAD_REQUEST)
-    if User.objects.filter(username=username).exists():
-        return JsonResponse({'error': 'Username already exists'}, status=status.HTTP_400_BAD_REQUEST)
-    if User.objects.filter(email=email).exists():
-        return JsonResponse({'error': 'Email already exists'}, status=status.HTTP_400_BAD_REQUEST)
-    user = User.objects.create_user(username=username, email=email, password=password)
-    return JsonResponse({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
+# @api_view(['POST'])
+# def register(request):
+#     data = request.data
+#     username = data.get('username')
+#     email = data.get('email')
+#     password = data.get('password')
+#     if not username or not email or not password:
+#         return JsonResponse({'error': 'Missing fields'}, status=status.HTTP_400_BAD_REQUEST)
+#     if User.objects.filter(username=username).exists():
+#         return JsonResponse({'error': 'Username already exists'}, status=status.HTTP_400_BAD_REQUEST)
+#     if User.objects.filter(email=email).exists():
+#         return JsonResponse({'error': 'Email already exists'}, status=status.HTTP_400_BAD_REQUEST)
+#     user = User.objects.create_user(username=username, email=email, password=password)
+#     return JsonResponse({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
 
-@api_view(['POST'])
-def login(request):
-    data = request.data
-    email = data.get('email')
-    password = data.get('password')
-    user = authenticate(username=email, password=password)
-    if user is not None:
-        return JsonResponse({'message': 'Login successful'}, status=status.HTTP_200_OK)
-    else:
-        return JsonResponse({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+# @api_view(['POST'])
+# def login(request):
+#     data = request.data
+#     email = data.get('email')
+#     password = data.get('password')
+#     user = authenticate(username=email, password=password)
+#     if user is not None:
+#         return JsonResponse({'message': 'Login successful'}, status=status.HTTP_200_OK)
+#     else:
+#         return JsonResponse({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
     
 
 # @api_view(['GET'])
