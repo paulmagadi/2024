@@ -10,17 +10,17 @@
     <!-- login form -->
 
     <div class="form-container">
-    <form action="" method="post" class="login-form">
+    <form action="" method="post" class="login-form" id="login-form">
         {% csrf_token %}
         <div class="img">
             <span id="close" class="close"><a href="{% url 'home' %}">&times;</a></span>
             <img src="{% static 'images/avatar.png' %}" alt="avatar" class="avatar" width="20%"> 
         </div>
         <div class="login-container">
-            <label for="email">Email</label>
+            <label for="email">Email:</label>
             <input type="text" placeholder="Enter Email" name="email" id="email" autocomplete="username" required>
             
-            <label for="password">Password</label>
+            <label for="password">Password:</label>
             <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
             <button type="submit">Login</button>
@@ -35,6 +35,32 @@
         </div>
         
     </form>
+
+    <div id="message"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#login-form').on('submit', function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: '/api/token/',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    email: $('#email').val(),
+                    password: $('#password').val(),
+                }),
+                success: function(response) {
+                    localStorage.setItem('access_token', response.access);
+                    localStorage.setItem('refresh_token', response.refresh);
+                    $('#message').text('Login successful');
+                    window.location.href = '/'; // Redirect to home or another page
+                },
+                error: function(response) {
+                    $('#message').text('Login failed: ' + response.responseText);
+                }
+            });
+        });
+    </script>
 </div>
 {% endblock content %}
     

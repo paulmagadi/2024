@@ -10,7 +10,7 @@
 {% block content %}
 <!-- Register form -->
 <div class="form-container">
-    <form action="{% url 'register' %}" method="post" class="register-form">
+    <form action="{% url 'register' %}" method="post" class="register-form" id="register-form">
         {% csrf_token %}
         <div class="img">
             <span id="close-signup-form" class="close"><a href="{% url 'home' %}">&times;</a></span>
@@ -27,6 +27,37 @@
             <span class="password">Already have accout? <a href="{% url 'login' %}">Login.</a></span>
         </div>
     </form>
+    <div id="message"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#register-form').on('submit', function(event) {
+            event.preventDefault();
+            var password = $('#password').val();
+            var confirm_password = $('#confirm_password').val();
+            if (password !== confirm_password) {
+                $('#message').text('Passwords do not match');
+                return;
+            }
+            $.ajax({
+                url: '/api/users/',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    first_name: $('#first_name').val(),
+                    last_name: $('#last_name').val(),
+                    email: $('#email').val(),
+                    password: password,
+                }),
+                success: function(response) {
+                    $('#message').text('Registration successful');
+                    window.location.href = '/login/'; // Redirect to login or another page
+                },
+                error: function(response) {
+                    $('#message').text('Registration failed: ' + response.responseText);
+                }
+            });
+        });
+    </script>
 </div>
 {% endblock content %}
     
