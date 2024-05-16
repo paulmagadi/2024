@@ -1,3 +1,4 @@
+import 'package:ecommerce/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -9,9 +10,10 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
 
   bool _isLoading = false;
 
@@ -22,10 +24,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
 
       final response = await http.post(
-        Uri.parse('https://your-django-backend.com/api/register/'),
+        Uri.parse('http://10.0.2.2:8000/api/register/'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'username': _usernameController.text,
+          'first_name': _firstNameController.text,
+          'last_name': _lastNameController.text,
           'email': _emailController.text,
           'password': _passwordController.text,
         }),
@@ -35,12 +38,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _isLoading = false;
       });
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         // Registration successful
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        );
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration successful!')),
         );
-        Navigator.pop(context); // Navigate back to the login screen or home screen
       } else {
         // Registration failed
         ScaffoldMessenger.of(context).showSnackBar(
@@ -63,11 +69,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             children: [
               TextFormField(
-                controller: _usernameController,
-                decoration: InputDecoration(labelText: 'Username'),
+                controller: _firstNameController,
+                decoration: InputDecoration(labelText: 'First Name'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a username';
+                    return 'Please enter your first name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _lastNameController,
+                decoration: InputDecoration(labelText: 'Last Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your last name';
                   }
                   return null;
                 },
@@ -78,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter an email';
+                    return 'Please enter your email';
                   }
                   return null;
                 },
@@ -89,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a password';
+                    return 'Please enter your password';
                   }
                   if (value.length < 6) {
                     return 'Password must be at least 6 characters long';

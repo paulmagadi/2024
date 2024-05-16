@@ -103,10 +103,7 @@ def login_user(request):
                 cart = Cart(request)
                 for key, value in converted_cart.items():
                     cart.db_add(product=key, quantity=value)
-                
-            
-            
-            
+
             messages.success(request, ('Login successful!'))
             return redirect('home')  # Redirect to home if cart is empty or doesn't exist
         else:
