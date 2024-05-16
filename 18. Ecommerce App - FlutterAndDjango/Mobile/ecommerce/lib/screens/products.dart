@@ -27,7 +27,7 @@ import '../screens/featured.dart';
 import '../screens/product_details.dart';
 import '../models/product_model.dart';
 
-// Define maximum length for product name
+// Define maximum length for product name 
 const int maxNameLength = 20;
 
 class ProductsScreen extends StatelessWidget {
