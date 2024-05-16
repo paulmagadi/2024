@@ -13,6 +13,7 @@ from drf_yasg import openapi
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
+
 schema_view = get_schema_view(
    openapi.Info(
       title="Bellamore Backend API",
@@ -43,3 +44,4 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
