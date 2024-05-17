@@ -19,6 +19,10 @@ class RegistrationForm(forms.Form):
         if password != confirm_password:
             raise forms.ValidationError("Passwords do not match")
         
+class LoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+        
 
 class UpdateUserForm(UserChangeForm):
     password = None

@@ -73,7 +73,7 @@ def register_user(request):
             user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
             user.save()
             
-            user = authenticate(username=email, password=password)
+            user = authenticate(email=email, password=password)
             login(request, user)
             messages.success(request, ('User created. Please fill in your Shipping info'))
             return redirect('update_info')
@@ -87,7 +87,7 @@ def login_user(request):
     if request.method == "POST":
         email = request.POST["email"]
         password = request.POST["password"]
-        user = authenticate(username=email, password=password)
+        user = authenticate(email=email, password=password)
         if user is not None:
             login(request, user)
             
