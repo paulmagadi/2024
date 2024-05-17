@@ -61,20 +61,18 @@ from rest_framework import status
 #         return JsonResponse({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
     
 
-# @api_view(['GET'])
+
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [permissions.AllowAny] 
-    # permission_classes = [permissions.IsAuthenticated]
-# @api_view(['GET'])
+
+
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny] 
-    # permission_classes = [permissions.IsAuthenticated]
-    
-    
+
 class MobileBannerListView(generics.ListAPIView):
     queryset = MobileBanner.objects.all()
     serializer_class = MobileBannerSerializer
