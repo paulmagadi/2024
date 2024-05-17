@@ -36,32 +36,7 @@
         
     </form>
 
-    <!-- <div id="message"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $('#login-form').on('submit', function(event) {
-            event.preventDefault();
-            $.ajax({
-                url: '/api/token/',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    email: $('#email').val(),
-                    password: $('#password').val(),
-                }),
-                success: function(response) {
-                    localStorage.setItem('access_token', response.access);
-                    localStorage.setItem('refresh_token', response.refresh);
-                    $('#message').text('Login successful');
-                    window.location.href = '/'; // Redirect to home or another page
-                },
-                error: function(response) {
-                    $('#message').text('Login failed: ' + response.responseText);
-                    window.location.href = '../login'; 
-                }
-            });
-        });
-    </script> -->
+  
 </div>
 {% endblock content %}
     
