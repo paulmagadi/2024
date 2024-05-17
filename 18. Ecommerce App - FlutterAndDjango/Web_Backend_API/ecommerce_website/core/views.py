@@ -115,10 +115,10 @@ def update_user(request):
 
 
 # User Logout  
-def logout_user(request):
-    logout(request)
-    messages.success(request, ('You have been logged out!!!'))
-    return redirect('home')
+# def logout_user(request):
+#     logout(request)
+#     messages.success(request, ('You have been logged out!!!'))
+#     return redirect('home')
 
 
 def user_profile(request):

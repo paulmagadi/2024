@@ -4,7 +4,7 @@ from rest_framework import permissions, viewsets, generics
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from .serializers import GroupSerializer, UserSerializer, ProductSerializer, SpecificationSerializer, CategorySerializer, MobileBannerSerializer
+from .serializers import ProductSerializer, SpecificationSerializer, CategorySerializer, MobileBannerSerializer
 
 from store.models import Product, Category
 from .models import MobileBanner
