@@ -2,18 +2,6 @@ from django.contrib.auth.models import Group, User
 from store.models import Product, Category, Specification
 from api.models import MobileBanner
 from rest_framework import serializers
-
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ['url', 'name']
         
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -31,7 +19,6 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = '__all__'
         depth = 1
-
 
 class MobileBannerSerializer(serializers.ModelSerializer):
     class Meta:
