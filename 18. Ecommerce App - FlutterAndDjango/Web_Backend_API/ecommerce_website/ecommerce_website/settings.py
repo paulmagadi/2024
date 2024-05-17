@@ -122,8 +122,6 @@ USE_TZ = True
 
 
 
-AUTH_USER_MODEL = 'core.CustomUser'
-
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,51 +1,11 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import LoginForm, RegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm, ShippingAddressForm
+from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm, ShippingAddressForm
 from django.contrib.auth.models import User
 from store.models import Profile, ShippingAddress
 import json
 from cart.cart import Cart
-
-from .models import CustomUser
-
-def register_user(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=password)
-            login(request, user)
-            messages.success(request, 'Registration successful.')
-            return redirect('home')
-    else:
-        form = RegistrationForm()
-    return render(request, 'core/register.html', {'form': form})
-
-def login_user(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-            user = authenticate(email=email, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, 'Login successful.')
-                return redirect('home')
-            else:
-                messages.error(request, 'Invalid email or password.')
-    else:
-        form = LoginForm()
-    return render(request, 'core/login.html', {'form': form})
-
-def logout_user(request):
-    logout(request)
-    messages.success(request, 'You have been logged out.')
-    return redirect('home')
-
 
 
 def update_info(request):
@@ -101,62 +61,64 @@ def update_user(request):
         messages.error(request, ("You must be logged in to update your details"))
         return redirect('home')
 
-# def register_user(request):
-#     if request.method == 'POST':
-#         form = RegistrationForm(request.POST)
-#         if form.is_valid():
-#             first_name = form.cleaned_data['first_name']
-#             last_name = form.cleaned_data['last_name']
-#             email = form.cleaned_data['email']
-#             password = form.cleaned_data['password']
+def register_user(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
 
-#             user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
-#             user.save()
+            user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+            user.save()
             
-#             user = authenticate(email=email, password=password)
-#             login(request, user)
-#             messages.success(request, ('User created. Please fill in your Shipping info'))
-#             return redirect('update_info')
-#             # messages.success(request, ('Registration sucessful. Login to continue'))
-#             # return redirect('login')
-#     else:
-#         form = RegistrationForm()
-#     return render(request, 'core/register.html', {'form': form})
+            user = authenticate(username=email, password=password)
+            login(request, user)
+            messages.success(request, ('User created. Please fill in your Shipping info'))
+            return redirect('update_info')
+            # messages.success(request, ('Registration sucessful. Login to continue'))
+            # return redirect('login')
+    else:
+        form = RegistrationForm()
+    return render(request, 'core/register.html', {'form': form})
 
-# def login_user(request):
-#     if request.method == "POST":
-#         email = request.POST["email"]
-#         password = request.POST["password"]
-#         user = authenticate(email=email, password=password)
-#         if user is not None:
-#             login(request, user)
+def login_user(request):
+    if request.method == "POST":
+        email = request.POST["email"]
+        password = request.POST["password"]
+        user = authenticate(username=email, password=password)
+        if user is not None:
+            login(request, user)
             
-#             #Shopping cart
-#             current_user = Profile.objects.get(user__id=request.user.id)
-#             # Get saved cart from the model
-#             saved_cart = current_user.old_cart
-#             if saved_cart:
-#                 #Convert the string back  to dictionary using JSON
-#                 converted_cart = json.loads(saved_cart)
-#                 #Add to session
-#                 cart = Cart(request)
-#                 for key, value in converted_cart.items():
-#                     cart.db_add(product=key, quantity=value)
-#             messages.success(request, ('Login successful!'))
-#             return redirect('home')  # Redirect to home if cart is empty or doesn't exist
-#         else:
-#             messages.error(request, ('Error logging in. Please try again.'))
-#             return redirect('login')
-#     else:
-#         return render(request, 'core/login.html')
+            #Shopping cart
+            current_user = Profile.objects.get(user__id=request.user.id)
+            # Get saved cart from the model
+            saved_cart = current_user.old_cart
+            if saved_cart:
+                #Convert the string back  to dictionary using JSON
+                converted_cart = json.loads(saved_cart)
+                
+                #Add to session
+                cart = Cart(request)
+                for key, value in converted_cart.items():
+                    cart.db_add(product=key, quantity=value)
+
+            messages.success(request, ('Login successful!'))
+            return redirect('home')  # Redirect to home if cart is empty or doesn't exist
+        else:
+            messages.error(request, ('Error logging in. Please try again.'))
+            return redirect('login')
+    else:
+        return render(request, 'core/login.html')
 
 
 
-# # User Logout  
-# def logout_user(request):
-#     logout(request)
-#     messages.success(request, ('You have been logged out!!!'))
-#     return redirect('home')
+# User Logout  
+def logout_user(request):
+    logout(request)
+    messages.success(request, ('You have been logged out!!!'))
+    return redirect('home')
 
 
 def user_profile(request):
