@@ -1,21 +1,8 @@
+import 'package:ecommerce/screens/auth/auth_services.dart';
 import 'package:ecommerce/screens/auth/registration.dart';
 import 'package:ecommerce/screens/home.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-
-Future<String?> fetchCsrfToken() async {
-  final response = await http.get(Uri.parse('http://10.0.2.2:8000/api/csrf/'));
-
-  if (response.statusCode == 200) {
-    final data = jsonDecode(response.body);
-    return data['csrfToken'];
-  } else {
-    // Handle error
-    return null;
-  }
-}
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -30,64 +17,54 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
 
   Future<void> _login() async {
-  if (_formKey.currentState!.validate()) {
-    setState(() {
-      _isLoading = true;
-    });
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
 
-    // Fetch CSRF token
-    final csrfToken = await fetchCsrfToken();
+      // Fetch CSRF token
+      final csrfToken = await AuthServices.fetchCsrfToken();
 
-    if (csrfToken == null) {
+      if (csrfToken == null) {
+        setState(() {
+          _isLoading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to fetch CSRF token')),
+        );
+        return;
+      }
+
+      final response = await AuthServices.login(
+        _emailController.text,
+        _passwordController.text,
+        csrfToken,
+      );
+
       setState(() {
         _isLoading = false;
       });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to fetch CSRF token')),
-      );
-      return;
-    }
 
-    final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/api/login/'),
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': csrfToken,
-      },
-      body: jsonEncode({
-        'email': _emailController.text,
-        'password': _passwordController.text,
-      }),
-    );
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        final String token = responseData['token'];
+        // Save the token using shared_preferences or other local storage
 
-    setState(() {
-      _isLoading = false;
-    });
-
-    if (response.statusCode == 200) {
-      // Save the token to local storage
-      final responseData = json.decode(response.body);
-      final String token = responseData['token'];
-      // Save the token using shared_preferences or other local storage
-
-      // Login successful
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login successful!')),
-      );
-    } else {
-      // Login failed
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login failed: ${response.body}')),
-      );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login successful!')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login failed: ${response.body}')),
+        );
+      }
     }
   }
-}
 
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
