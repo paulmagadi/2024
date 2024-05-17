@@ -5,6 +5,17 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 
+Future<String?> fetchCsrfToken() async {
+  final response = await http.get(Uri.parse('http://10.0.2.2:8000/api/csrf/'));
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    return data['csrfToken'];
+  } else {
+    // Handle error
+    return null;
+  }
+}
 
 class LoginScreen extends StatefulWidget {
   @override
