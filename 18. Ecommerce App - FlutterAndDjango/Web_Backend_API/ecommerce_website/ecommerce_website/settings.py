@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'django.contrib.sites',
     'djoser',
     'corsheaders',
     'drf_yasg',
@@ -142,12 +141,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
-}
-
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 DJOSER = {
@@ -161,12 +157,12 @@ DJOSER = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://10.0.2.2:8000',
-)
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:8000',
+#     'http://127.0.0.1:8000',
+#     'http://10.0.2.2:8000',
+# )
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://10.0.2.2:8000',
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://10.0.2.2:8000',
+# ]

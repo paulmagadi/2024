@@ -14,12 +14,12 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework import status
 
-from django.middleware.csrf import get_token
-from django.http import JsonResponse
+# from django.middleware.csrf import get_token
+# from django.http import JsonResponse
 
-def get_csrf_token(request):
-    token = get_token(request)
-    return JsonResponse({'csrfToken': token})
+# def get_csrf_token(request):
+#     token = get_token(request)
+#     return JsonResponse({'csrfToken': token})
 
 
 def login(request):

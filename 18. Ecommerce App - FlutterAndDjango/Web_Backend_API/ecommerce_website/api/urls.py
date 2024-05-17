@@ -2,7 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 
 from . import views
-from .views import get_csrf_token
+# from .views import get_csrf_token
 
 router = routers.DefaultRouter()
 
@@ -17,7 +17,7 @@ urlpatterns = [
     path('mobile_banner/', views.MobileBannerListView.as_view(), name='mobile-banner-list'),
     path('login/', views.login, name=('login')),
     path('register/', views.register, name=('register')),
-    path('api/csrf/', get_csrf_token, name='api-csrf-token'),
+#     path('api/csrf/', get_csrf_token, name='api-csrf-token'),
 ]
 
 
