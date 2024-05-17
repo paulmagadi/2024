@@ -98,12 +98,10 @@ def login_user(request):
             if saved_cart:
                 #Convert the string back  to dictionary using JSON
                 converted_cart = json.loads(saved_cart)
-                
                 #Add to session
                 cart = Cart(request)
                 for key, value in converted_cart.items():
                     cart.db_add(product=key, quantity=value)
-
             messages.success(request, ('Login successful!'))
             return redirect('home')  # Redirect to home if cart is empty or doesn't exist
         else:
