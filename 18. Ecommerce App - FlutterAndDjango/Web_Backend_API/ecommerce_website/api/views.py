@@ -16,8 +16,6 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 
 
-    
-
 
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
