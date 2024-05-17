@@ -1,5 +1,6 @@
+from pyexpat.errors import messages
 from django.contrib.auth.models import Group, User
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from rest_framework import permissions, viewsets, generics
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -27,6 +28,10 @@ def login(request):
 
 def register(request):
     return render(request, 'core/register.html')
+
+def logout_user(request):
+    messages.success(request, ('You have been logged out!!!'))
+    return redirect('home')
 
 
 # @api_view(['POST'])

@@ -17,6 +17,7 @@ urlpatterns = [
     path('mobile_banner/', views.MobileBannerListView.as_view(), name='mobile-banner-list'),
     path('login/', views.login, name=('login')),
     path('register/', views.register, name=('register')),
+    path('logout/', views.logout_user, name='logout'),
 #     path('api/csrf/', get_csrf_token, name='api-csrf-token'),
 ]
 
