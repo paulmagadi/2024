@@ -23,15 +23,15 @@ from rest_framework import status
 #     return JsonResponse({'csrfToken': token})
 
 
-def login(request):
-    return render(request, 'core/login.html')
+# def login(request):
+#     return render(request, 'core/login.html')
 
-def register(request):
-    return render(request, 'core/register.html')
+# def register(request):
+#     return render(request, 'core/register.html')
 
-def logout_user(request):
-    messages.success(request, ('You have been logged out!!!'))
-    return redirect('home')
+# def logout_user(request):
+#     messages.success(request, ('You have been logged out!!!'))
+#     return redirect('home')
 
 
 # @api_view(['POST'])
