@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'djoser',
+    # 'djoser',
     'corsheaders',
     'drf_yasg',
     'api',
@@ -146,14 +146,14 @@ REST_FRAMEWORK = {
     ),
 }
 
-DJOSER = {
-    'LOGIN_FIELD': 'email',
-    'USER_CREATE_PASSWORD_RETYPE': True,
-    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
-    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
-    'SEND_ACTIVATION_EMAIL': False,  # Set True if you configure email
-    'SERIALIZERS': {},
-}
+# DJOSER = {
+#     'LOGIN_FIELD': 'email',
+#     'USER_CREATE_PASSWORD_RETYPE': True,
+#     'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
+#     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+#     'SEND_ACTIVATION_EMAIL': False,  # Set True if you configure email
+#     'SERIALIZERS': {},
+# }
 
 CORS_ALLOW_ALL_ORIGINS = True
 
