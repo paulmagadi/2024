@@ -30,47 +30,64 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
 
   Future<void> _login() async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
+  if (_formKey.currentState!.validate()) {
+    setState(() {
+      _isLoading = true;
+    });
 
-      final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/login/'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'email': _emailController.text,
-          'password': _passwordController.text,
-        }),
-      );
+    // Fetch CSRF token
+    final csrfToken = await fetchCsrfToken();
 
+    if (csrfToken == null) {
       setState(() {
         _isLoading = false;
       });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to fetch CSRF token')),
+      );
+      return;
+    }
 
-      if (response.statusCode == 200) {
-        // Save the token to local storage
-        final responseData = json.decode(response.body);
-        final String token = responseData['token'];
-        // Save the token using shared_preferences or other local storage
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:8000/api/login/'),
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrfToken,
+      },
+      body: jsonEncode({
+        'email': _emailController.text,
+        'password': _passwordController.text,
+      }),
+    );
 
-        // Login successful
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login successful!')),
-        );
-      } else {
-        // Login failed
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login failed: ${response.body}')),
-        );
-      }
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (response.statusCode == 200) {
+      // Save the token to local storage
+      final responseData = json.decode(response.body);
+      final String token = responseData['token'];
+      // Save the token using shared_preferences or other local storage
+
+      // Login successful
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login successful!')),
+      );
+    } else {
+      // Login failed
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed: ${response.body}')),
+      );
     }
   }
+}
 
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
