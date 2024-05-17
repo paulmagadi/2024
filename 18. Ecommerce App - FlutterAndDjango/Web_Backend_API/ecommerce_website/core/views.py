@@ -22,7 +22,7 @@ def register_user(request):
             return redirect('home')
     else:
         form = RegistrationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'core/register.html', {'form': form})
 
 def login_user(request):
     if request.method == 'POST':
@@ -39,7 +39,7 @@ def login_user(request):
                 messages.error(request, 'Invalid email or password.')
     else:
         form = LoginForm()
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'core/login.html', {'form': form})
 
 def logout_user(request):
     logout(request)
