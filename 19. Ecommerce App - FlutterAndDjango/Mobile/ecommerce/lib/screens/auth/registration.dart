@@ -1,4 +1,3 @@
-import 'package:ecommerce/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -12,8 +11,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   bool _isLoading = false;
 
@@ -24,13 +22,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
 
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/register/'),
+        Uri.parse('http://10.0.2.2:8000/auth/users/'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'first_name': _firstNameController.text,
-          'last_name': _lastNameController.text,
           'email': _emailController.text,
           'password': _passwordController.text,
+          're_password': _confirmPasswordController.text,
         }),
       );
 
@@ -38,15 +35,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _isLoading = false;
       });
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         // Registration successful
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
-        );
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration successful!')),
         );
+        Navigator.pop(context);
       } else {
         // Registration failed
         ScaffoldMessenger.of(context).showSnackBar(
@@ -69,26 +63,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             children: [
               TextFormField(
-                controller: _firstNameController,
-                decoration: InputDecoration(labelText: 'First Name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your first name';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _lastNameController,
-                decoration: InputDecoration(labelText: 'Last Name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your last name';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(labelText: 'Email'),
                 keyboardType: TextInputType.emailAddress,
@@ -109,6 +83,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   }
                   if (value.length < 6) {
                     return 'Password must be at least 6 characters long';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _confirmPasswordController,
+                decoration: InputDecoration(labelText: 'Confirm Password'),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please confirm your password';
+                  }
+                  if (value != _passwordController.text) {
+                    return 'Passwords do not match';
                   }
                   return null;
                 },
