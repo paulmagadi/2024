@@ -9,11 +9,11 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
-  // final TextEditingController _firstNameController = TextEditingController();
-  // final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
 
   bool _isLoading = false;
 
@@ -30,6 +30,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           'email': _emailController.text,
           'password': _passwordController.text,
           're_password': _confirmPasswordController.text,
+          'first_name': _firstNameController.text,
+          'last_name': _lastNameController.text,
         }),
       );
 
@@ -64,6 +66,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
           key: _formKey,
           child: Column(
             children: [
+              TextFormField(
+                controller: _firstNameController,
+                decoration: InputDecoration(labelText: 'First Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your first name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _lastNameController,
+                decoration: InputDecoration(labelText: 'Last Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your last name';
+                  }
+                  return null;
+                },
+              ),
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(labelText: 'Email'),

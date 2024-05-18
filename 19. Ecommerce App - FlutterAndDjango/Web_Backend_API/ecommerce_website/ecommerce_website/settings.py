@@ -156,7 +156,9 @@ DJOSER = {
     'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'SEND_ACTIVATION_EMAIL': False,  # Set True if you configure email
-    'SERIALIZERS': {},
+    'SERIALIZERS': {
+        'user_create': 'api.serializers.CustomUserCreateSerializer',
+    },
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
