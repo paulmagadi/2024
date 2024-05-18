@@ -7,23 +7,34 @@ from djoser.serializers import UserCreateSerializer
 from rest_framework import serializers
 from store.models import UserProfile
 
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = ['first_name', 'last_name']
+# store/serializers.py
 
-class UserSerializer(serializers.ModelSerializer):
-    profile = UserProfileSerializer()
-    class Meta:
+from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer, UserSerializer as BaseUserSerializer
+
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class UserCreateSerializer(BaseUserCreateSerializer):
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+
+    class Meta(BaseUserCreateSerializer.Meta):
         model = User
-        fields = ['id', 'username', 'email', 'profile', 'password']
-        extra_kwargs = {'password': {'write_only': True}}
+        fields = ['id', 'username', 'email', 'password', 'first_name', 'last_name']
 
     def create(self, validated_data):
-        profile_data = validated_data.pop('profile')
-        user = User.objects.create_user(**validated_data)
-        UserProfile.objects.create(user=user, **profile_data)
+        user = super().create(validated_data)
+        user.first_name = validated_data['first_name']
+        user.last_name = validated_data['last_name']
+        user.save()
         return user
+
+class UserSerializer(BaseUserSerializer):
+    class Meta(BaseUserSerializer.Meta):
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
 
 
 class CategorySerializer(serializers.ModelSerializer):
