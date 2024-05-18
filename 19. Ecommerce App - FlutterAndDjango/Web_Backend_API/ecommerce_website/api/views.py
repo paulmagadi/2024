@@ -10,10 +10,8 @@ from .serializers import ProductSerializer, SpecificationSerializer, CategorySer
 from store.models import Product, Category
 from .models import MobileBanner
 
-from django.contrib.auth import authenticate
+
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
-from rest_framework import status
 from django.middleware.csrf import get_token
 
 def get_csrf_token(request):

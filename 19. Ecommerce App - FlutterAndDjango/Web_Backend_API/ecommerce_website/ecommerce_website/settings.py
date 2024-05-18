@@ -157,8 +157,6 @@ DJOSER = {
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'SEND_ACTIVATION_EMAIL': False,  # Set True if you configure email
     'SERIALIZERS': {
-        'user_create': 'api.serializers.UserCreateSerializer',
-        'user': 'api.serializers.UsersSerializer',
     },
 }
 
