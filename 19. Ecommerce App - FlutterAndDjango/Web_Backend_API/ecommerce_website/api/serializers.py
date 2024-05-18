@@ -24,7 +24,7 @@ class UserCreateSerializer(BaseUserCreateSerializer):
         user.save()
         return user
 
-class UserSerializer(BaseUserSerializer):
+class UsersSerializer(BaseUserSerializer):
     class Meta(BaseUserSerializer.Meta):
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name']

@@ -158,7 +158,7 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,  # Set True if you configure email
     'SERIALIZERS': {
         'user_create': 'api.serializers.UserCreateSerializer',
-        'user': 'api.serializers.UserSerializer',
+        'user': 'api.serializers.UsersSerializer',
     },
 }
 
