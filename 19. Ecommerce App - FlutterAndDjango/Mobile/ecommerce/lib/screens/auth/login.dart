@@ -1,8 +1,8 @@
-import 'package:ecommerce/screens/auth/auth_services.dart';
-import 'package:ecommerce/screens/auth/registration.dart';
-import 'package:ecommerce/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -22,23 +22,13 @@ class _LoginScreenState extends State<LoginScreen> {
         _isLoading = true;
       });
 
-      // Fetch CSRF token
-      final csrfToken = await AuthServices.fetchCsrfToken();
-
-      if (csrfToken == null) {
-        setState(() {
-          _isLoading = false;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to fetch CSRF token')),
-        );
-        return;
-      }
-
-      final response = await AuthServices.login(
-        _emailController.text,
-        _passwordController.text,
-        csrfToken,
+      final response = await http.post(
+        Uri.parse('http://10.0.2.2:8000/auth/token/login/'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'email': _emailController.text,
+          'password': _passwordController.text,
+        }),
       );
 
       setState(() {
@@ -46,10 +36,14 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       if (response.statusCode == 200) {
+        // Save the token to local storage
         final responseData = json.decode(response.body);
-        final String token = responseData['token'];
-        // Save the token using shared_preferences or other local storage
+        final String token = responseData['auth_token'];
 
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', token);
+
+        // Login successful
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -58,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
           SnackBar(content: Text('Login successful!')),
         );
       } else {
+        // Login failed
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login failed: ${response.body}')),
         );
