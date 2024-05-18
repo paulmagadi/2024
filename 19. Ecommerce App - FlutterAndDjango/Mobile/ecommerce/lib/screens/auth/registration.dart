@@ -9,11 +9,11 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
 
   bool _isLoading = false;
 
@@ -27,6 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Uri.parse('http://10.0.2.2:8000/auth/users/'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
+          'username': _emailController.text.split('@')[0],  // Username extracted from email
           'email': _emailController.text,
           'password': _passwordController.text,
           're_password': _confirmPasswordController.text,
@@ -42,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (response.statusCode == 201) {
         // Registration successful
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Registration successful!')),
+          SnackBar(content: Text('Registration successful! Please login.')),
         );
         Navigator.pop(context);
       } else {
@@ -132,6 +133,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onPressed: _register,
                       child: Text('Register'),
                     ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Already have an account? Login'),
+              ),
             ],
           ),
         ),

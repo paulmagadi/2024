@@ -1,13 +1,7 @@
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 from store.models import Product, Category, Specification
 from api.models import MobileBanner
 from rest_framework import serializers
-
-from djoser.serializers import UserCreateSerializer
-from rest_framework import serializers
-from store.models import UserProfile
-
-# store/serializers.py
 
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer, UserSerializer as BaseUserSerializer
 
