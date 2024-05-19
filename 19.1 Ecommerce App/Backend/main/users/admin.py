@@ -14,7 +14,6 @@ class CustomUserAdmin(UserAdmin):
         (None, {"fields": ("email", "password")}),
         ("Permissions", {"fields": ("is_staff", "is_active", "groups", "user_permissions")}),
         ('Personal Info', {'fields': ('first_name', 'last_name', 'user_type')}),
-        ("Important Dates", {"fields": ("last_login", "date_joined")}),
     )
     add_fieldsets = (
         (None, {
@@ -25,6 +24,7 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ("email",)
     ordering = ("email",)
     filter_horizontal = ("groups", "user_permissions",)
+    readonly_fields = ("last_login", "date_joined",)
 
 admin.site.register(CustomUser, CustomUserAdmin)
 
