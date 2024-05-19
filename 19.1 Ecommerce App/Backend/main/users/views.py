@@ -34,20 +34,20 @@ def login_user(request):
             if user is not None:
                 login(request, user)
                 
-                #Shopping cart
-            current_user = Profile.objects.get(user__id=request.user.id)
-            # Get saved cart from the model
-            saved_cart = current_user.old_cart
-            if saved_cart:
-                #Convert the string back  to dictionary using JSON
-                converted_cart = json.loads(saved_cart)
-                
-                #Add to session
-                cart = Cart(request)
-                for key, value in converted_cart.items():
-                    cart.db_add(product=key, quantity=value)
+                # Shopping cart
+                current_user = Profile.objects.get(user__id=request.user.id)
+                # Get saved cart from the model
+                saved_cart = current_user.old_cart
+                if saved_cart:
+                    # Convert the string back to dictionary using JSON
+                    converted_cart = json.loads(saved_cart)
+                    
+                    # Add to session
+                    cart = Cart(request)
+                    for key, value in converted_cart.items():
+                        cart.db_add(product=key, quantity=value)
 
-                messages.info(request, ('Login successful!'))
+                messages.info(request, 'Login successful!')
                 return redirect('home')  
             else:
                 messages.error(request, "Invalid username or password.")
@@ -56,6 +56,7 @@ def login_user(request):
     else:
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
+
 
 def logout_user(request):
     logout(request)
@@ -72,10 +73,10 @@ def update_info(request):
             form.save()
             messages.success(request, ("Your info has been updated"))
             return redirect('home')
-        return render(request, 'core/update_info.html', {'form': form})
+        return render(request, 'users/update_info.html', {'form': form})
     else:
         messages.error(request, ("You must be logged in to update your info"))
-    return render(request, 'core/update_info.html')
+    return render(request, 'users/update_info.html')
 
 
 def update_password(request):
@@ -95,7 +96,7 @@ def update_password(request):
                      
         else:
             form = UpdateUserPassword(current_user)
-            return render(request, 'core/update_password.html', {'form': form})
+            return render(request, 'users/update_password.html', {'form': form})
     else:
         messages.error(request, ("You must be logged in to update your password"))
         return redirect('home')
@@ -111,7 +112,7 @@ def update_user(request):
             login(request, current_user)
             messages.success(request, ("User Details updated"))
             return redirect('home')
-        return render(request, 'core/update_user.html', {'user_form': user_form})
+        return render(request, 'users/update_user.html', {'user_form': user_form})
     else:
         messages.error(request, ("You must be logged in to update your details"))
         return redirect('home')
@@ -121,7 +122,7 @@ def update_user(request):
 
 
 def user_profile(request):
-    return render(request, 'core/user_profile.html')
+    return render(request, 'users/user_profile.html')
 
 def shipping_info(request):
     if request.user.is_authenticated:
@@ -132,8 +133,8 @@ def shipping_info(request):
             form.save()
             messages.success(request, ("Your info has been updated"))
             return redirect('home')
-        return render(request, 'core/shipping_information.html', {'form': form})
+        return render(request, 'users/shipping_information.html', {'form': form})
     else:
         messages.error(request, ("You must be logged in to update your info"))
-    return render(request, 'core/shipping_information.html')
+    return render(request, 'users/shipping_information.html')
 
