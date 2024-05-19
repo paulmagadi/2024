@@ -2,6 +2,8 @@ from datetime import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+from users.managers import CustomUserManager
+
 # from .managers import CustomUserManager
 
 
