@@ -1,53 +1,54 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 import datetime
 from django.utils import timezone
 
+from users.models import CustomUser
 
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     date_modified = models.DateTimeField(User, auto_now=True)
-#     phone = models.CharField(max_length=20, blank=True)
-#     address1 = models.CharField(max_length=200, blank=True)
-#     address2 = models.CharField(max_length=200, blank=True)
-#     city = models.CharField(max_length=200, blank=True)
-#     state = models.CharField(max_length=200, blank=True)
-#     zipcode = models.CharField(max_length=200, blank=True)
-#     country = models.CharField(max_length=200, blank=True)
-#     old_cart = models.CharField(max_length=255, blank=True)
+
+class Profile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    date_modified = models.DateTimeField(CustomUser, auto_now=True)
+    phone = models.CharField(max_length=20, blank=True)
+    address1 = models.CharField(max_length=200, blank=True)
+    address2 = models.CharField(max_length=200, blank=True)
+    city = models.CharField(max_length=200, blank=True)
+    state = models.CharField(max_length=200, blank=True)
+    zipcode = models.CharField(max_length=200, blank=True)
+    country = models.CharField(max_length=200, blank=True)
+    old_cart = models.CharField(max_length=255, blank=True)
     
-#     def __str__(self):
-#         return self.user.username
+    def __str__(self):
+        return self.user.username
     
 
-# class ShippingAddress(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-#     full_name =  models.CharField(max_length=255)
-#     email =  models.CharField(max_length=255)
-#     address1 =  models.CharField(max_length=255)
-#     address2 =  models.CharField(max_length=255 , null=True, blank=True)
-#     city =  models.CharField(max_length=255)
-#     state = models.CharField(max_length=255, null=True, blank=True)
-#     country =  models.CharField(max_length=255)
+class ShippingAddress(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+    full_name =  models.CharField(max_length=255)
+    email =  models.CharField(max_length=255)
+    address1 =  models.CharField(max_length=255)
+    address2 =  models.CharField(max_length=255 , null=True, blank=True)
+    city =  models.CharField(max_length=255)
+    state = models.CharField(max_length=255, null=True, blank=True)
+    country =  models.CharField(max_length=255)
     
     
-    # class Meta:
-    #     verbose_name_plural = "Shipping Address"
+    class Meta:
+        verbose_name_plural = "Shipping Address"
         
     
-    # def __str__(self):
-    #     return f'Shipping Address - {str(self.id)}'    
+    def __str__(self):
+        return f'Shipping Address - {str(self.id)}'    
     
     
-# def create_profile(sender, instance, created, **kwargs):
-#     if created:
-#         user_profile = Profile(user=instance)
-#         user_profile.save()
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(user=instance)
+        user_profile.save()
         
 # automate
-# post_save.connect(create_profile, sender=User)
+post_save.connect(create_profile, sender=CustomUser)
 
         
 
@@ -83,7 +84,7 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
     is_listed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
-    specification = models.ManyToManyField(Specification, blank=True, default=1, null=True)
+    specification = models.ManyToManyField(Specification, blank=True, default=1)
     
 
     def save(self, *args, **kwargs):
