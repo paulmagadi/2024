@@ -36,11 +36,12 @@ def login_user(request):
             messages.error(request, "Invalid username or password.")
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'users/login.html', {'form': form})
 
 def logout_user(request):
     logout(request)
     messages.success(request, ('You have been logged out!!!'))
+    return redirect('home')
 
 
 
