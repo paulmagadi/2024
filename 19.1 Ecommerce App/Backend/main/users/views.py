@@ -15,4 +15,4 @@ def register(request):
             messages.error(request, "Unsuccessful registration. Invalid information.")
     else:
         form = CustomUserRegistrationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form})
