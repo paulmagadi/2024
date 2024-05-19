@@ -1,15 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-    <form method="post">
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+    Login
+{% endblock title %}
+    
+
+{% block content %}
+    <!-- login form -->
+
+    <div class="form-container">
+    <form action="{% url 'login' %}" method="post" class="login-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
+        <div class="img">
+            <span id="close" class="close"><a href="{% url 'home' %}">&times;</a></span>
+            <img src="{% static 'images/avatar.png' %}" alt="avatar" class="avatar" width="20%"> 
+        </div>
+        <div class="login-container">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+            <label>  
+                <input type="checkbox" checked="checked" name="remember">Remember me
+            </label>
+        </div>
+        <div class="login-container">
+            
+            <span class="">Have no account <a href="{% url 'register' %}">Register?</a></span> 
+            <span class="password">Forgot <a href="#">password?</a></span>
+        </div>
+        
     </form>
-    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-</body>
-</html>
+</div>
+{% endblock content %}
+    
+
