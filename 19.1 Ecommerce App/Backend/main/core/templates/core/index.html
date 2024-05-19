@@ -1,21 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Home page</h1>
+{% extends 'store/base.html' %}
+{% load static %}
 
+{% block title %}
+    Ecom
+{% endblock title %}
     
-    {% if user.is_authenticated %}
-    <p>You are logged in as {{ request.user.username }}</p>
-    <a href="{% url 'logout' %}">Logout</a>
-        
-    {% endif %}
-        
 
-    <button type="button"><a href="{% url 'register' %}">Register</a></button>
-</body>
-</html>
+{% block content %}
+    {% include 'core/include/hero.html' %}
+    <section>
+        <h3 class="section-title"><a href="{% url 'home' %}">Products</h3></a>
+        <div class= "product-container">
+            
+            {% for product in products %}
+            {% include 'store/include/product_card.html' %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <h3 class="section-title"><a href="{% url 'new' %}">New Products</h3></a>
+        <div class= "product-container">
+            {% for product in new_products %}
+            {% include 'store/include/product_card.html' %}
+            {% endfor %}
+        </div>
+    </section>
+    <section>
+        <h3 class="section-title"><a href="{% url 'sale' %}">Products on Sale</h3></a>
+        <div class= "product-container">
+            {% for product in sale_products %}
+            {% include 'store/include/product_card.html' %}
+            {% endfor %}
+        </div>
+    </section>
+    <section>
+        <h3 class="section-title"><a href="{% url 'featured' %}">Featured Products</h3></a>
+        <div class= "product-container">
+            {% for product in featured_products %}
+            {% include 'store/include/product_card.html' %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock content %}
+    
