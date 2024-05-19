@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import CustomUserRegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm, 
+from .forms import RegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm, ShippingAddressForm
 from django.contrib.auth.models import User
 from store.models import Profile, ShippingAddress
 import json
