@@ -1,22 +1,16 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-
-from .models import CustomUser
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm, SetPasswordForm
-
+from .models import CustomUser
 from store.models import Profile, ShippingAddress
 
 
 class CustomUserCreationForm(UserCreationForm):
-
     class Meta:
         model = CustomUser
         fields = ("email",)
 
 
 class CustomUserChangeForm(UserChangeForm):
-
     class Meta:
         model = CustomUser
         fields = ("email",)
@@ -30,22 +24,22 @@ class CustomUserRegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
-        
-        
+
+
 class UpdateUserForm(UserChangeForm):
     password = None
+
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['first_name', 'last_name', 'email']
-        
-        
-class UpdateUserPassword(SetPasswordForm):
-    password = None
+
+
+class UpdateUserPassword(PasswordChangeForm):
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['new_password1', 'new_password2']
-        
-        
+
+
 class UpdateInfoForm(forms.ModelForm):
     phone = forms.CharField()
     address1 = forms.CharField()
@@ -54,12 +48,12 @@ class UpdateInfoForm(forms.ModelForm):
     state = forms.CharField()
     zipcode = forms.CharField()
     country = forms.CharField()
-    
+
     class Meta:
         model = Profile
         fields = ["phone", "address1", "address2", "city", "state", "zipcode", "country"]
-        
-        
+
+
 class ShippingAddressForm(forms.ModelForm):
     phone = forms.CharField()
     address1 = forms.CharField()
@@ -68,7 +62,7 @@ class ShippingAddressForm(forms.ModelForm):
     state = forms.CharField()
     zipcode = forms.CharField()
     country = forms.CharField()
-    
+
     class Meta:
         model = ShippingAddress
         fields = ["phone", "address1", "address2", "city", "state", "zipcode", "country"]
