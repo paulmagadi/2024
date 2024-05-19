@@ -13,8 +13,8 @@ def register_user(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Registration successful.")
-            return redirect('home') 
+            messages.success(request, ('Registration successful. Please fill in your Shipping info'))
+            return redirect('update_info')
         else:
             messages.error(request, "Unsuccessful registration. Invalid information.")
     else:
