@@ -1,7 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django import forms
-from .models import CustomUser
-from store.models import Profile, ShippingAddress
+from .models import CustomUser, Profile, ShippingAddress
 
 
 class CustomUserCreationForm(UserCreationForm):

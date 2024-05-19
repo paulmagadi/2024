@@ -1,4 +1,5 @@
-from store.models import Product, Profile
+from store.models import Product
+from users.models import Profile
 from django.contrib import messages
 
 class Cart():

@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from .forms import CustomUserRegistrationForm
+from .forms import CustomUserRegistrationForm, UpdateUserForm, UpdateUserPassword, UpdateInfoForm, ShippingAddressForm
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import UpdateUserForm, UpdateUserPassword, UpdateInfoForm, ShippingAddressForm
-from django.contrib.auth.models import User
-from .models import CustomUser  
-from store.models import Profile, ShippingAddress
+from .models import CustomUser, Profile, ShippingAddress
 import json
 from cart.cart import Cart
 
