@@ -21,10 +21,10 @@ class CustomUserAdmin(UserAdmin):
             "fields": ("email", "password1", "password2"),
         }),
     )
-    search_fields = ("email",)
+    search_fields = ("email", "first_name", "last_name")
     ordering = ("email",)
     filter_horizontal = ("groups", "user_permissions",)
-    readonly_fields = ("last_login", "date_joined",)
+    readonly_fields = ("id", "last_login", "date_joined",)
 
 admin.site.register(CustomUser, CustomUserAdmin)
 
