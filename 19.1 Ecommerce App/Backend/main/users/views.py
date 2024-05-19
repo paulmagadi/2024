@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import CustomUserRegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
 
-def register(request):
+def register_user(request):
     if request.method == 'POST':
         form = CustomUserRegistrationForm(request.POST)
         if form.is_valid():
@@ -19,7 +19,7 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-def login_view(request):
+def login_user(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -37,4 +37,10 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, ('You have been logged out!!!'))
+
+
 
