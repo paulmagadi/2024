@@ -94,6 +94,8 @@ def checkout(request):
     else:
         form = ShippingAddressForm(instance=shipping_address)
 
+    user_profile = request.user.profile  # Assuming the profile is related to CustomUser as a OneToOneField
+
     context = {
         'cart_items': cart_items,
         'cart_quantities': cart_quantities,
@@ -101,5 +103,6 @@ def checkout(request):
         'order_total': order_total,
         'products': products,
         'form': form,
+        'user_profile': user_profile,
     }
     return render(request, 'cart/checkout.html', context)
