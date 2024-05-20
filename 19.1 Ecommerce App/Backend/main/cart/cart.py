@@ -12,8 +12,6 @@ class Cart():
         # Check if you have a session, if not create one
         if 'session_key' not in request.session:
             cart = request.session['session_key'] = {}
-        
-        # Ensure the session works across all pages 
         self.cart = cart
         
         
