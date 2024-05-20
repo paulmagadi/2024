@@ -37,12 +37,14 @@ class Profile(models.Model):
 
 class ShippingAddress(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
     full_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     address1 = models.CharField(max_length=255)
     address2 = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255, null=True, blank=True)
+    zipcode = models.CharField(max_length=200, blank=True)
     country = models.CharField(max_length=255)
 
     class Meta:
