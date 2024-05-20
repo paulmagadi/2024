@@ -2,7 +2,7 @@
     <nav>
         <div class="navbar">
             <div class="navbar-mobile">
-                <a href="{% url 'home' %}" class="logo">Bells</a>
+                <a href="{% url 'home' %}" class="logo">Bellamore</a>
                 {% if user.is_authenticated and user.is_staff %}
                 <a href="{% url 'admin_portal' %}">Dashboard</a>
                 {% endif %}

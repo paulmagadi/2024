@@ -23,7 +23,7 @@ class Specification(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(default=0, max_digits=9, decimal_places=2)
-    category = models.ManyToManyField(Category, default=1)
+    category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='uploads/products/')
     is_sale = models.BooleanField(default=False)
@@ -40,10 +40,10 @@ class Product(models.Model):
     
 
     def save(self, *args, **kwargs):
-        if self.created_at >= timezone.now() - timezone.timedelta(minutes=1):
-            self.is_new = False
-        else:
-            self.is_new = True
+        # if self.created_at >= timezone.now() - timezone.timedelta(minutes=1):
+        #     self.is_new = False
+        # else:
+        #     self.is_new = True
             
         
         if self.stock_quantity == 0:
