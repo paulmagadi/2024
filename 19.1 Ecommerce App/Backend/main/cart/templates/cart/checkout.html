@@ -55,13 +55,29 @@
             
             <h1>Shipping Information</h1>
             <form action="">
-                <input type="text" placeholder="Address">
-                <input type="text" placeholder="City">
-                <input type="text" placeholder="State">
-                <input type="text" placeholder="Phone Number">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <button type="submit">Save Shipping Address</button>
                 
+            </form>
+            <form action="">
                 <input type="submit" value="Continue" style="cursor: pointer;">
             </form>
+
+            <div>
+                {% if form.errors %}
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
         </div>
         
     </div>
