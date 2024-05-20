@@ -1,6 +1,5 @@
 import 'package:ecommerce/main.dart';
 import 'package:ecommerce/screens/auth/registration.dart';
-import 'package:ecommerce/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -25,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
       });
 
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/auth/token/login/'),
+        Uri.parse('http://10.0.2.2:8000/api/auth/token/login/'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': _emailController.text,

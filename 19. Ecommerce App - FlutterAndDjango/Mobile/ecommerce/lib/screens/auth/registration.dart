@@ -24,10 +24,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
 
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/auth/users/'),
+        Uri.parse('http://10.0.2.2:8000/api/auth/users/'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'username': _emailController.text.split('@')[0],  // Username extracted from email
           'email': _emailController.text,
           'password': _passwordController.text,
           're_password': _confirmPasswordController.text,
