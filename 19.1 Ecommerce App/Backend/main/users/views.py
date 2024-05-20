@@ -117,23 +117,49 @@ def update_password(request):
         return redirect('home')
 
 
-def shipping_info(request):
-    if request.user.is_authenticated:
-        current_user = ShippingAddress.objects.get(user__id=request.user.id)
-        form = ShippingAddressForm(request.POST or None, instance=current_user)
+# def shipping_info(request):
+#     if request.user.is_authenticated:
+#         current_user = ShippingAddress.objects.get(user__id=request.user.id)
+#         form = ShippingAddressForm(request.POST or None, instance=current_user)
         
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Your info has been updated")
-            return redirect('home')
-        return render(request, 'users/shipping_information.html', {'form': form})
-    else:
-        messages.error(request, "You must be logged in to update your info")
-    return render(request, 'users/shipping_information.html')
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "Your info has been updated")
+#             return redirect('home')
+#         return render(request, 'users/shipping_information.html', {'form': form})
+#     else:
+#         messages.error(request, "You must be logged in to update your info")
+#     return render(request, 'users/shipping_information.html')
 
 
 def user_profile(request):
     return render(request, 'users/user_profile.html')
+
+
+def shipping_info(request):
+    if request.user.is_authenticated:
+        try:
+            current_user = ShippingAddress.objects.get(user=request.user)
+        except ShippingAddress.DoesNotExist:
+            current_user = None
+
+        if request.method == 'POST':
+            form = ShippingAddressForm(request.POST, instance=current_user)
+            if form.is_valid():
+                shipping_address = form.save(commit=False)
+                shipping_address.user = request.user
+                shipping_address.save()
+                messages.success(request, "Your shipping information has been updated.")
+                return redirect('home')
+        else:
+            form = ShippingAddressForm(instance=current_user)
+        
+        return render(request, 'users/shipping_information.html', {'form': form})
+    else:
+        messages.error(request, "You must be logged in to update your info.")
+        return redirect('login')
+
+
 
 
 
