@@ -23,6 +23,7 @@ class UserCreateView(generics.ListCreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class=CustomUserCreateSerializer
     permission_classes=[IsAuthenticated]
+    
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
