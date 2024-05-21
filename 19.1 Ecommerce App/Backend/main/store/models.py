@@ -40,6 +40,7 @@ class Product(models.Model):
     is_listed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
     specification = models.ManyToManyField('Specification', blank=True, default=1)
+    
 
     def clean(self):
         super().clean()
@@ -78,8 +79,8 @@ class Product(models.Model):
         return url
  
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, default=1)
-    product_image = models.FileField(upload_to='uploads/products/', max_length=12, null=True)
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='uploads/product_images/')
     
     class Meta:
         verbose_name_plural = 'Product Images'
