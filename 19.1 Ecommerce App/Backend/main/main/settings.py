@@ -170,6 +170,8 @@ DJOSER = {
         'user_create': 'api.serializers.CustomUserCreateSerializer',
         'current_user': 'api.serializers.CustomUserSerializer',
     },
+    'LOGIN_VIEW': 'users.views.custom_login',  
+    'LOGOUT_VIEW': 'users.views.custom_logout',  
 }
 
 
