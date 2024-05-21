@@ -41,7 +41,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
 
       if (response.statusCode == 201) {
-        // Registration successful
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Registration successful! Please login.')),
         );
@@ -50,9 +49,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
           MaterialPageRoute(builder: (context) => LoginScreen()),
         );
       } else {
-        // Registration failed
+        final responseBody = json.decode(response.body);
+        String errorMessage = 'Registration failed';
+        if (responseBody.containsKey('email')) {
+          errorMessage = responseBody['email'].join(', ');
+        } else if (responseBody.containsKey('password')) {
+          errorMessage = responseBody['password'].join(', ');
+        }
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Registration failed: ${response.body}')),
+          SnackBar(content: Text(errorMessage)),
         );
       }
     }
@@ -68,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
+          child: ListView(
             children: [
               TextFormField(
                 controller: _firstNameController,
@@ -131,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(height: 20),
               _isLoading
-                  ? CircularProgressIndicator()
+                  ? Center(child: CircularProgressIndicator())
                   : ElevatedButton(
                       onPressed: _register,
                       child: Text('Register'),
