@@ -1,8 +1,9 @@
 from django.db import models
 from django.db.models.signals import post_save
 
-import datetime
+
 from django.utils import timezone      
+from django.core.exceptions import ValidationError
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -20,10 +21,12 @@ class Specification(models.Model):
     def __str__(self):
         return f"{self.name}: {self.value}"
 
+
+
 class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(default=0, max_digits=9, decimal_places=2)
-    category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', default=1, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='uploads/products/')
     is_sale = models.BooleanField(default=False)
@@ -36,38 +39,36 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
     is_listed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
-    specification = models.ManyToManyField(Specification, blank=True, default=1)
-    
-   
+    specification = models.ManyToManyField('Specification', blank=True, default=1)
+
+    def clean(self):
+        super().clean()
+        if self.stock_quantity < 0:
+            raise ValidationError({'stock_quantity': 'Stock quantity cannot be less than 0'})
+
     def save(self, *args, **kwargs):
-        # if self.created_at >= timezone.now() - timezone.timedelta(minutes=1):
-        #     self.is_new = False
-        # else:
-        #     self.is_new = True
-        min = 0
-        if self.in_stock:
-            self.stock_quantity >= min
-        else:
-            pass
-            
+        self.full_clean()  
+        
+        # if self.stock_quantity < 0:
+        #     self.stock_quantity = 0
         
         if self.stock_quantity == 0:
             self.in_stock = False
         else:
             self.in_stock = True
-            
-       
+
         if self.is_sale and self.sale_price < self.price:
             self.discount = round(self.price - self.sale_price, 2)
             self.percentage_discount = round((self.discount / self.price) * 100)
         else:
             self.discount = 0
             self.percentage_discount = 0
+
         super().save(*args, **kwargs)
-        
+
     def __str__(self):
         return self.name
-        
+
     @property
     def imageURL(self):
         try:
@@ -75,7 +76,6 @@ class Product(models.Model):
         except:
             url = ''
         return url
-    
  
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, default=1)
