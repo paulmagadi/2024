@@ -10,7 +10,7 @@
     <!-- login form -->
 
     <div class="form-container">
-    <form action="{% url 'login' %}" method="post" class="login-form">
+    <form action="{% url 'signin' %}" method="post" class="login-form">
         {% csrf_token %}
         <div class="img">
             <span id="close" class="close"><a href="{% url 'home' %}">&times;</a></span>
