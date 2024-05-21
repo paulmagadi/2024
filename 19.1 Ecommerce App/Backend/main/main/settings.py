@@ -171,3 +171,5 @@ DJOSER = {
         'current_user': 'api.serializers.CustomUserSerializer',
     },
 }
+
+
