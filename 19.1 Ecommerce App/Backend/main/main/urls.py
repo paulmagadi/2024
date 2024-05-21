@@ -33,8 +33,8 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken')),  
+   #  path('auth/', include('djoser.urls')),
+   #  path('auth/', include('djoser.urls.authtoken')),  
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
