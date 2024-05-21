@@ -1,4 +1,5 @@
-import 'package:ecommerce/main.dart';
+// import 'package:ecommerce/main.dart';
+import 'package:ecommerce/screens/account.dart';
 import 'package:ecommerce/screens/auth/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // Login successful
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => ProfileScreen()),
         );
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login successful!')),
