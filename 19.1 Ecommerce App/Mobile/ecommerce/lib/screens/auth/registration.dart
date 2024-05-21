@@ -24,7 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
 
       final response = await http.post(
-        Uri.parse('http://127.0.0.1:8000/api/register_users/'),
+        Uri.parse('http://127.0.0.1:8000/auth/users/'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': _emailController.text,

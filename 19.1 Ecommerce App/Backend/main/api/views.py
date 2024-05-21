@@ -18,11 +18,11 @@ from django.middleware.csrf import get_token
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
-@api_view(['POST'])
-class UserCreateView(generics.ListCreateAPIView):
-    queryset = CustomUser.objects.all()
-    serializer_class=CustomUserCreateSerializer
-    permission_classes=[IsAuthenticated]
+# @api_view(['POST'])
+# class UserCreateView(generics.ListCreateAPIView):
+#     queryset = CustomUser.objects.all()
+#     serializer_class=CustomUserCreateSerializer
+#     permission_classes=[IsAuthenticated]
     
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
