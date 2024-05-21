@@ -83,10 +83,9 @@ class ProductImage(models.Model):
     
     class Meta:
         verbose_name_plural = 'Product Images'
-    
-    
+
     def __str__(self):
-        return self.id
+        return f'{self.product.name} Image'
     
     @property
     def imageURL(self):
