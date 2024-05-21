@@ -38,12 +38,17 @@ class Product(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     specification = models.ManyToManyField(Specification, blank=True, default=1)
     
-
+   
     def save(self, *args, **kwargs):
         # if self.created_at >= timezone.now() - timezone.timedelta(minutes=1):
         #     self.is_new = False
         # else:
         #     self.is_new = True
+        min = 0
+        if self.in_stock:
+            self.stock_quantity >= min
+        else:
+            pass
             
         
         if self.stock_quantity == 0:

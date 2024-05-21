@@ -139,7 +139,7 @@ def user_profile(request):
 def shipping_info(request):
     if request.user.is_authenticated:
         try:
-            current_user = ShippingAddress.objects.get(user=request.user)
+            current_user = ShippingAddress.objects.get(user__id=request.user.id)
         except ShippingAddress.DoesNotExist:
             current_user = None
 
