@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from store.models import Product
+from store.models import Product, ProductImage
 from .forms import ProductModelForm, CategoryModelForm
 
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 from django.utils import timezone
+from users.decorators import group_required
 
 
 
 def admin_or_staff_required(view_func):
-    """
-    Decorator that checks if the user is an admin or staff member.
-    """
+    # Decorator that checks if the user is an admin or staff member
     def _wrapped_view(request, *args, **kwargs):
         if not request.user.is_authenticated or not (request.user.is_staff or request.user.is_superuser):
             return HttpResponse(status=401)  # Or redirect to login page or show a 401 error page
@@ -19,20 +18,23 @@ def admin_or_staff_required(view_func):
     return _wrapped_view
 
 
-@admin_or_staff_required
+@group_required('Admin')
 def admin_portal(request):
     products = Product.objects.all()
+    
     new_products = products.order_by('-created_at')[:10] 
 
     context = {
         'products':products,
-        'new_products': new_products
+        'new_products': new_products,
+        
     }
     return render(request, 'admin_portal/admin_portal.html', context)
 
-@admin_or_staff_required
+@group_required('Admin')
 def add_product(request):
     products = Product.objects.all()
+    images = ProductImage.objects.all()
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
     out_of_stock_count = products.filter(in_stock=False).count()
@@ -47,6 +49,7 @@ def add_product(request):
     context = {
         'form': form, 
         'products': products,
+        'images': images,
         'products_count': products_count,
         'new_products_count': new_products_count,
         'out_of_stock_count': out_of_stock_count,
@@ -54,7 +57,7 @@ def add_product(request):
     }
     return render(request, 'admin_portal/add_product.html', context)
 
-@admin_or_staff_required
+@group_required('Admin')
 def add_category(request):
     form = CategoryModelForm(request.POST)
     context = {
@@ -62,7 +65,8 @@ def add_category(request):
     }
     pass
 
-@admin_or_staff_required
+# @admin_or_staff_required
+@group_required('Admin')
 def inventory(request):
     products = Product.objects.all()
     products_count = products.count()
@@ -78,7 +82,7 @@ def inventory(request):
     }
     return render(request, 'admin_portal/inventory.html', context)
 
-@admin_or_staff_required
+@group_required('Admin')
 def product_inventory(request, pk):
     products = Product.objects.all()
     product = get_object_or_404(Product, id=pk)
