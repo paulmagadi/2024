@@ -13,8 +13,7 @@ urlpatterns = [
     path('categories/', views.CategoryListView.as_view(), name='category-list'),
     path('register_users/', views.UserCreateView, name='user-register' ),
     path('api/csrf/', get_csrf_token, name='api-csrf-token'),
-    path('auth/', include('djoser.urls')),
-    path('auth/token/', include('djoser.urls.authtoken')),  
+    
 ]
 
 
