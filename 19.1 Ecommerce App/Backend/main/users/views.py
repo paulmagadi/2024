@@ -7,7 +7,7 @@ from .models import CustomUser, Profile, ShippingAddress
 import json
 from cart.cart import Cart
 
-def register_user(request):
+def register(request):
     if request.method == 'POST':
         form = CustomUserRegistrationForm(request.POST)
         if form.is_valid():
@@ -22,7 +22,7 @@ def register_user(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-def login_user(request):
+def login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -56,7 +56,7 @@ def login_user(request):
     return render(request, 'users/login.html', {'form': form})
 
 
-def logout_user(request):
+def logout(request):
     logout(request)
     messages.success(request, ('You have been logged out!!!'))
     return redirect('home')
