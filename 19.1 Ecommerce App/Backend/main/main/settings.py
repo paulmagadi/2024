@@ -161,8 +161,8 @@ REST_FRAMEWORK = {
 }
 
 DJOSER = {
-    'LOGIN_VIEW': 'users.views.login',  
-    'LOGOUT_VIEW': 'users.views.logout', 
+    # 'LOGIN_VIEW': 'users.views.login',  
+    # 'LOGOUT_VIEW': 'users.views.logout', 
     'USER_ID_FIELD': 'id',
     'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,
