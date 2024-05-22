@@ -54,17 +54,15 @@ def add_product(request):
                     image = form['image']
                     ProductImage.objects.create(product=product, image=image)
             messages.success(request, "Product added successfully!")
-                            
-            
             return redirect('add_product')
     else:
-        form = ProductModelForm()
-        image_form = ProductImageForm()
+        product_form = ProductModelForm()
+        formset = ImageFormSet(queryset=ProductImage.objects.none())
     
     context = {
-        'form': form, 
+        'product_form': product_form,
+        'formset': formset,
         'products': products,
-        'image_form': image_form,
         'products_count': products_count,
         'new_products_count': new_products_count,
         'out_of_stock_count': out_of_stock_count,
@@ -73,32 +71,32 @@ def add_product(request):
     
     return render(request, 'admin_portal/add_product.html', context)
 
-def add_product(request):
-    ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm, extra=3)
+# def add_product(request):
+#     ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm, extra=3)
     
-    if request.method == 'POST':
-        product_form = ProductModelForm(request.POST, request.FILES)
-        formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
+#     if request.method == 'POST':
+#         product_form = ProductModelForm(request.POST, request.FILES)
+#         formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
         
-        if product_form.is_valid() and formset.is_valid():
-            product = product_form.save()
-            for form in formset.cleaned_data:
-                if form:
-                    image = form['image']
-                    ProductImage.objects.create(product=product, image=image)
-            messages.success(request, "Product added successfully!")
-            return redirect('add_product')
-        else:
-            print(product_form.errors, formset.errors)
-    else:
-        product_form = ProductModelForm()
-        formset = ImageFormSet(queryset=ProductImage.objects.none())
+#         if product_form.is_valid() and formset.is_valid():
+#             product = product_form.save()
+#             for form in formset.cleaned_data:
+#                 if form:
+#                     image = form['image']
+#                     ProductImage.objects.create(product=product, image=image)
+#             messages.success(request, "Product added successfully!")
+#             return redirect('add_product')
+#         else:
+#             print(product_form.errors, formset.errors)
+#     else:
+#         product_form = ProductModelForm()
+#         formset = ImageFormSet(queryset=ProductImage.objects.none())
 
-    context = {
-        'product_form': product_form,
-        'formset': formset,
-    }
-    return render(request, 'admin_portal/add_product.html', context)
+#     context = {
+#         'product_form': product_form,
+#         'formset': formset,
+#     }
+#     return render(request, 'admin_portal/add_product.html', context)
 
 
 @group_required('Admin')
