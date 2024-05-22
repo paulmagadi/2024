@@ -1,3 +1,5 @@
+from pyexpat.errors import messages
+from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product, ProductImage
 from .forms import ProductImageForm, ProductModelForm, CategoryModelForm
@@ -33,25 +35,27 @@ def admin_portal(request):
 
 def add_product(request):
     products = Product.objects.all()
-    images = ProductImage.objects.all()
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
     out_of_stock_count = products.filter(in_stock=False).count()
     is_listed_count = products.filter(is_listed=True).count()
+    
+    ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm, extra=3)
 
     if request.method == 'POST':
-        form = ProductModelForm(request.POST, request.FILES)
-        image_form = ProductImageForm(request.POST, request.FILES)
-        files = request.FILES.getlist('images')
+        product_form = ProductModelForm(request.POST, request.FILES)
+        formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
         
         
-        if form.is_valid() and image_form.is_valid():
-            # product = form.save()
-            product = form.save(commit=False)
-            product.save()
+        if product_form.is_valid() and formset.is_valid():
+            product = product_form.save()
+            for form in formset.cleaned_data:
+                if form:
+                    image = form['image']
+                    ProductImage.objects.create(product=product, image=image)
+            messages.success(request, "Product added successfully!")
                             
-            for file in files:
-                ProductImage.objects.create(product=product, image=file)
+            
             return redirect('add_product')
     else:
         form = ProductModelForm()
@@ -67,6 +71,33 @@ def add_product(request):
         'is_listed_count': is_listed_count,
     }
     
+    return render(request, 'admin_portal/add_product.html', context)
+
+def add_product(request):
+    ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm, extra=3)
+    
+    if request.method == 'POST':
+        product_form = ProductModelForm(request.POST, request.FILES)
+        formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
+        
+        if product_form.is_valid() and formset.is_valid():
+            product = product_form.save()
+            for form in formset.cleaned_data:
+                if form:
+                    image = form['image']
+                    ProductImage.objects.create(product=product, image=image)
+            messages.success(request, "Product added successfully!")
+            return redirect('add_product')
+        else:
+            print(product_form.errors, formset.errors)
+    else:
+        product_form = ProductModelForm()
+        formset = ImageFormSet(queryset=ProductImage.objects.none())
+
+    context = {
+        'product_form': product_form,
+        'formset': formset,
+    }
     return render(request, 'admin_portal/add_product.html', context)
 
 

@@ -1,9 +1,9 @@
 from django import forms
 from store.models import Product, Category, ProductImage
-# from django.forms.widgets import ClearableFileInput
+from django.forms.widgets import ClearableFileInput
 
-# class MultipleFileInput(ClearableFileInput):
-#     allow_multiple_selected = True
+class MultipleFileInput(ClearableFileInput):
+    allow_multiple_selected = True
 
 # class ProductModelForm(forms.ModelForm):
 #     product_images = forms.FileField(widget=MultipleFileInput(attrs={'multiple': True}), required=False)
@@ -30,7 +30,7 @@ class ProductModelForm(forms.ModelForm):
         fields = ['name', 'price', 'category', 'description', 'image', 'is_sale', 'sale_price', 'in_stock', 'stock_quantity', 'is_new', 'is_featured', 'is_listed']
 
 class ProductImageForm(forms.ModelForm):
-    images = forms.FileField(widget=forms.ClearableFileInput(), required=False)
+    images = forms.ImageField(widget=MultipleFileInput(attrs={'multiple': True}), required=False)
 
     class Meta:
         model = ProductImage
