@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.signals import post_save
+from django.utils.text import slugify
 
 
 from django.utils import timezone      
@@ -77,11 +78,16 @@ class Product(models.Model):
         except:
             url = ''
         return url
- 
-class ProductImage(models.Model):
-    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
-    product_images = models.ImageField(upload_to='uploads/product_images/')
     
+def get_image_filename(instance, filename):
+    name = instance.product.name
+    slug = slugify(name)
+    return "product_images/%s-%s" % (slug, filename)
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    product_images = models.ImageField(upload_to='uploads/products', verbose_name='Image', null=True)
+ 
     class Meta:
         verbose_name_plural = 'Product Images'
 

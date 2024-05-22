@@ -134,29 +134,16 @@ def product_inventory(request, pk):
     out_of_stock_count = products.filter(in_stock=False).count
     is_listed_count = products.filter(is_listed=True).count
     
-    
-    ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm)
-
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES, instance=product)
-        formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
-        
-        
-        if form.is_valid() and formset.is_valid():
-            product = form.save()
-            for form in formset.cleaned_data:
-                if form:
-                    product_images = form['product_images']
-                    ProductImage.objects.create(product=product, product_images=product_images)
-            # messages.success(request, "Product updated successfully!")
-            return redirect('inventory')
+        if form.is_valid():
+            form.save()
+            return redirect('inventory')  
     else:
-        form = ProductModelForm(instance=product)
-        formset = ImageFormSet(queryset=ProductImage.objects.none())
+        form = ProductModelForm(instance=product) 
         
     context = {
         'product': product,
-        'formset': formset,
         'form': form,
         'products_count': products_count,
         'new_products_count': new_products_count,
