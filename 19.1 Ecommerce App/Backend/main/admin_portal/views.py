@@ -41,10 +41,12 @@ def add_product(request):
 
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
-        files = request.Files.getlist('product_images')
+        files = request.FILES.getlist('product_images')
         
         if form.is_valid():
-            form.save()
+            product = form.save()
+            for file in files:
+                ProductImage.objects.create(product=product, image=file)
             return redirect('add_product')
     else:
         form = ProductModelForm()
@@ -60,7 +62,6 @@ def add_product(request):
     }
     
     return render(request, 'admin_portal/add_product.html', context)
-
 @group_required('Admin')
 def add_category(request):
     form = CategoryModelForm(request.POST)
