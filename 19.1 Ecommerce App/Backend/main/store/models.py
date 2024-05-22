@@ -80,7 +80,7 @@ class Product(models.Model):
  
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='uploads/product_images/')
+    thumnail = models.ImageField(upload_to='uploads/product_images/')
     
     class Meta:
         verbose_name_plural = 'Product Images'

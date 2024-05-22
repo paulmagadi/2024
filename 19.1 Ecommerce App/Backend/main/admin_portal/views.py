@@ -31,7 +31,6 @@ def admin_portal(request):
     }
     return render(request, 'admin_portal/admin_portal.html', context)
 
-@group_required('Admin')
 def add_product(request):
     products = Product.objects.all()
     images = ProductImage.objects.all()
@@ -39,13 +38,16 @@ def add_product(request):
     new_products_count = products.filter(is_new=True).count()
     out_of_stock_count = products.filter(in_stock=False).count()
     is_listed_count = products.filter(is_listed=True).count()
+
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
+        
         if form.is_valid():
             form.save()
             return redirect('add_product')
     else:
         form = ProductModelForm()
+    
     context = {
         'form': form, 
         'products': products,
@@ -55,6 +57,7 @@ def add_product(request):
         'out_of_stock_count': out_of_stock_count,
         'is_listed_count': is_listed_count,
     }
+    
     return render(request, 'admin_portal/add_product.html', context)
 
 @group_required('Admin')
