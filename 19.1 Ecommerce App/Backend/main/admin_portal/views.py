@@ -55,11 +55,12 @@ def add_product(request):
             return redirect('add_product')
     else:
         form = ProductModelForm()
+        image_form = ProductImageForm()
     
     context = {
         'form': form, 
         'products': products,
-        'images': images,
+        'image_form': image_form,
         'products_count': products_count,
         'new_products_count': new_products_count,
         'out_of_stock_count': out_of_stock_count,
