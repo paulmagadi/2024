@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product, ProductImage
-from .forms import ProductModelForm, CategoryModelForm
+from .forms import ProductImageForm, ProductModelForm, CategoryModelForm
 
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
@@ -41,10 +41,15 @@ def add_product(request):
 
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
-        files = request.FILES.getlist('product_images')
+        image_form = ProductImageForm(request.POST, request.FILES)
+        files = request.FILES.getlist('images')
         
-        if form.is_valid():
-            product = form.save()
+        
+        if form.is_valid() and image_form.is_valid():
+            # product = form.save()
+            product = form.save(commit=False)
+            product.save()
+                            
             for file in files:
                 ProductImage.objects.create(product=product, image=file)
             return redirect('add_product')
