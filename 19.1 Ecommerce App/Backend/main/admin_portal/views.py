@@ -62,6 +62,8 @@ def add_product(request):
     }
     
     return render(request, 'admin_portal/add_product.html', context)
+
+
 @group_required('Admin')
 def add_category(request):
     form = CategoryModelForm(request.POST)
