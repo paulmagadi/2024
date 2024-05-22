@@ -34,7 +34,7 @@ def admin_portal(request):
 @group_required('Admin')
 def add_product(request):
     products = Product.objects.all()
-    # images = ProductImage.objects.all()
+    images = ProductImage.objects.all()
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
     out_of_stock_count = products.filter(in_stock=False).count()
@@ -49,7 +49,7 @@ def add_product(request):
     context = {
         'form': form, 
         'products': products,
-        # 'images': images,
+        'images': images,
         'products_count': products_count,
         'new_products_count': new_products_count,
         'out_of_stock_count': out_of_stock_count,
