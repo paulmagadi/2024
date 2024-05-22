@@ -30,11 +30,11 @@ class ProductModelForm(forms.ModelForm):
         fields = ['name', 'price', 'category', 'description', 'image', 'is_sale', 'sale_price', 'in_stock', 'stock_quantity', 'is_new', 'is_featured', 'is_listed']
 
 class ProductImageForm(forms.ModelForm):
-    images = forms.ImageField(widget=MultipleFileInput(attrs={'multiple': True}), required=False)
+    product_images = forms.ImageField(widget=MultipleFileInput(attrs={'multiple': True}), required=False)
 
     class Meta:
         model = ProductImage
-        fields = ['images']
+        fields = ['product_images']
         
 class CategoryModelForm(forms.ModelForm):
     class Meta:

@@ -59,10 +59,10 @@
             <h1 class="add-product-headings">ADD NEW PRODUCT</h1>
             <div class="product_form">
                 
-                <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'add_product' %}">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    {{ image_form.as_p }}
+                    {{ formset.as_p }}
                     <input type="submit" value="Submit">
                   </form>
                   

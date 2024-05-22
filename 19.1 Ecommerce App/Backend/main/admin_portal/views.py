@@ -40,27 +40,27 @@ def add_product(request):
     out_of_stock_count = products.filter(in_stock=False).count()
     is_listed_count = products.filter(is_listed=True).count()
     
-    ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm, extra=3)
+    ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm)
 
     if request.method == 'POST':
-        product_form = ProductModelForm(request.POST, request.FILES)
+        form = ProductModelForm(request.POST, request.FILES)
         formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
         
         
-        if product_form.is_valid() and formset.is_valid():
-            product = product_form.save()
+        if form.is_valid() and formset.is_valid():
+            product = form.save()
             for form in formset.cleaned_data:
                 if form:
-                    image = form['image']
-                    ProductImage.objects.create(product=product, image=image)
+                    product_images = form['product_images']
+                    ProductImage.objects.create(product=product, product_images=product_images)
             messages.success(request, "Product added successfully!")
             return redirect('add_product')
     else:
-        product_form = ProductModelForm()
+        form = ProductModelForm()
         formset = ImageFormSet(queryset=ProductImage.objects.none())
     
     context = {
-        'product_form': product_form,
+        'form': form,
         'formset': formset,
         'products': products,
         'products_count': products_count,
@@ -124,6 +124,7 @@ def inventory(request):
     }
     return render(request, 'admin_portal/inventory.html', context)
 
+
 @group_required('Admin')
 def product_inventory(request, pk):
     products = Product.objects.all()
@@ -132,16 +133,30 @@ def product_inventory(request, pk):
     new_products_count = products.filter(is_new=True).count()
     out_of_stock_count = products.filter(in_stock=False).count
     is_listed_count = products.filter(is_listed=True).count
+    
+    
+    ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm)
+
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('inventory')  
+        formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
+        
+        
+        if form.is_valid() and formset.is_valid():
+            product = form.save()
+            for form in formset.cleaned_data:
+                if form:
+                    product_images = form['product_images']
+                    ProductImage.objects.create(product=product, product_images=product_images)
+            # messages.success(request, "Product updated successfully!")
+            return redirect('inventory')
     else:
-        form = ProductModelForm(instance=product) 
+        form = ProductModelForm(instance=product)
+        formset = ImageFormSet(queryset=ProductImage.objects.none())
         
     context = {
         'product': product,
+        'formset': formset,
         'form': form,
         'products_count': products_count,
         'new_products_count': new_products_count,
@@ -149,3 +164,31 @@ def product_inventory(request, pk):
         'is_listed_count': is_listed_count
     }
     return render(request, 'admin_portal/product_inventory.html', context)
+
+
+
+# @group_required('Admin')
+# def product_inventory(request, pk):
+#     products = Product.objects.all()
+#     product = get_object_or_404(Product, id=pk)
+#     products_count = products.count()
+#     new_products_count = products.filter(is_new=True).count()
+#     out_of_stock_count = products.filter(in_stock=False).count
+#     is_listed_count = products.filter(is_listed=True).count
+#     if request.method == 'POST':
+#         form = ProductModelForm(request.POST, request.FILES, instance=product)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('inventory')  
+#     else:
+#         form = ProductModelForm(instance=product) 
+        
+#     context = {
+#         'product': product,
+#         'form': form,
+#         'products_count': products_count,
+#         'new_products_count': new_products_count,
+#         'out_of_stock_count': out_of_stock_count,
+#         'is_listed_count': is_listed_count
+#     }
+#     return render(request, 'admin_portal/product_inventory.html', context)
