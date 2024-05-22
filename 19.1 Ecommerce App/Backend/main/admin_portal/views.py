@@ -41,6 +41,7 @@ def add_product(request):
 
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
+        files = request.Files.getlist('product_images')
         
         if form.is_valid():
             form.save()
