@@ -86,7 +86,7 @@ def update_info(request):
         
         if form.is_valid():
             form.save()
-            messages.success(request, "Your info has been updated")
+            messages.success(request, "Your Profile info has been updated")
             return redirect('home')
         return render(request, 'users/update_info.html', {'form': form})
     else:
@@ -151,6 +151,7 @@ def shipping_info(request):
                 shipping_address.save()
                 messages.success(request, "Your shipping information has been updated.")
                 return redirect('home')
+            # return render(request, 'users/shipping_information.html', {'form': form})
         else:
             form = ShippingAddressForm(instance=current_user)
         
