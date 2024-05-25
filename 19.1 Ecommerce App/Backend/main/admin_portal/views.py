@@ -103,7 +103,7 @@ def inventory(request):
 def product_inventory(request, pk):
     product = get_object_or_404(Product, id=pk)
     products = Product.objects.all()
-    product_images = ProductImage.objects.filter(product=product)  # Fetch images for this product
+    product_images = ProductImage.objects.filter(product=product)  
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
     out_of_stock_count = products.filter(in_stock=False).count()
