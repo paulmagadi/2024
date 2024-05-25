@@ -59,7 +59,7 @@
             <h1 class="product-inventory-headings">UPDATE PRODUCT DETAILS</h1>
             <div class="product_form">
                 <a href="{% url 'inventory' %}" style="color: white;">&larr; Back to List</a>
-                <form method="POST" action="{% url 'product_inventory' product.id %}">
+                <form method="POST" action="{% url 'product_inventory' product.id %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{product_form.as_p}}
                     {{ product_image_form.as_p }}
@@ -71,6 +71,20 @@
                 {% for image in product_images %}
                     <img src="{{ image.imageURL }}" alt="{{ product.name }}" width="50px">
                 {% endfor %}
+
+                <h2>Existing Images</h2>
+<ul>
+    {% for image in product_images %}
+        <li>
+            <img src="{{ image.imageURL }}" alt="{{ product.name }}" width="100">
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="image_id" value="{{ image.id }}">
+                <button type="submit" name="delete_image">Remove</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
                   
             </div>
 
