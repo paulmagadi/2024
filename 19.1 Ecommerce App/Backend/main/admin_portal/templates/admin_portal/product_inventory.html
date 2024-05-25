@@ -63,7 +63,7 @@
                     {% csrf_token %}
                     {{product_form.as_p}}
                     {{ product_image_form.as_p }}
-                    <input type="submit" value="submit">
+                    <input type="submit" name="product_form" value="submit">
                 </form>
                 <h2>Profile Image</h2>
                   <img src="{{product.imageURL }}" alt="{{product.name}}" width="50px">

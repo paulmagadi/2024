@@ -160,7 +160,7 @@ def product_inventory(request, pk):
                 for image in images:
                     ProductImage.objects.create(product=product, product_images=image)
                 messages.success(request, 'Product and images updated successfully!')
-                return redirect('inventory', pk=pk)  # Redirect to the same view
+                return redirect('inventory')  
             else:
                 messages.error(request, 'Please correct the errors below.')
         elif 'delete_image' in request.POST:
@@ -168,7 +168,7 @@ def product_inventory(request, pk):
             image_to_delete = get_object_or_404(ProductImage, id=image_id)
             image_to_delete.delete()
             messages.success(request, 'Image removed successfully!')
-            return redirect('product_inventory', pk=pk)  # Redirect to the same view after deleting image
+            return redirect('product_inventory', pk=pk)  
 
     else:
         product_form = ProductModelForm(instance=product)
