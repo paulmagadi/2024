@@ -9,6 +9,10 @@ from django.http import HttpResponse
 from django.utils import timezone
 from users.decorators import group_required
 
+from django.shortcuts import render, redirect
+from .models import Product, ProductImage
+from .forms import ProductForm, ProductImageForm
+from django.contrib import messages
 
 
 def admin_or_staff_required(view_func):
@@ -40,7 +44,7 @@ def add_product(request):
     out_of_stock_count = products.filter(in_stock=False).count()
     is_listed_count = products.filter(is_listed=True).count()
     
-    ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm)
+    # ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm)
 
     if request.method == 'POST':
         form = ProductModelForm(request.POST, request.FILES)
@@ -70,6 +74,36 @@ def add_product(request):
     }
     
     return render(request, 'admin_portal/add_product.html', context)
+
+
+
+
+
+
+def product_create_view(request):
+    if request.method == 'POST':
+        product_form = ProductForm(request.POST, request.FILES)
+        product_image_form = ProductImageForm(request.POST, request.FILES)
+        
+        if product_form.is_valid() and product_image_form.is_valid():
+            product = product_form.save()
+            images = request.FILES.getlist('images')
+            for image in images:
+                ProductImage.objects.create(product=product, image=image)
+            
+            messages.success(request, 'Product and images saved successfully!')
+            return redirect('home')  
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        product_form = ProductForm()
+        product_image_form = ProductImageForm()
+
+    return render(request, 'home.html', {
+        'product_form': product_form,
+        'product_image_form': product_image_form
+    })
+
 
 # def add_product(request):
 #     ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm, extra=3)
