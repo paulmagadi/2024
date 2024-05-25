@@ -9,11 +9,6 @@ from django.http import HttpResponse
 from django.utils import timezone
 from users.decorators import group_required
 
-from django.shortcuts import render, redirect
-from .models import Product, ProductImage
-from .forms import ProductForm, ProductImageForm
-from django.contrib import messages
-
 
 def admin_or_staff_required(view_func):
     # Decorator that checks if the user is an admin or staff member
@@ -44,12 +39,8 @@ def add_product(request):
     out_of_stock_count = products.filter(in_stock=False).count()
     is_listed_count = products.filter(is_listed=True).count()
     
-    # ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm)
-
     if request.method == 'POST':
-        # form = ProductModelForm(request.POST, request.FILES)
-        # formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
-        product_form = ProductForm(request.POST, request.FILES)
+        product_form = ProductModelForm(request.POST, request.FILES)
         product_image_form = ProductImageForm(request.POST, request.FILES)
         
         if product_form.is_valid() and product_image_form.is_valid():
@@ -61,9 +52,10 @@ def add_product(request):
             messages.success(request, 'Product and images saved successfully!')
             return redirect('add_product')  
         else:
-            messages.error(request, 'Please correct the errors below.')
+            messages.success(request, 'Please correct the errors below.')
+            return redirect('add_product') 
     else:
-        product_form = ProductForm()
+        product_form = ProductModelForm()
         product_image_form = ProductImageForm()
     
     context = {
@@ -78,62 +70,6 @@ def add_product(request):
     
     return render(request, 'admin_portal/add_product.html', context)
 
-
-
-
-
-
-# def product_create_view(request):
-#     if request.method == 'POST':
-#         product_form = ProductForm(request.POST, request.FILES)
-#         product_image_form = ProductImageForm(request.POST, request.FILES)
-        
-#         if product_form.is_valid() and product_image_form.is_valid():
-#             product = product_form.save()
-#             images = request.FILES.getlist('images')
-#             for image in images:
-#                 ProductImage.objects.create(product=product, image=image)
-            
-#             messages.success(request, 'Product and images saved successfully!')
-#             return redirect('home')  
-#         else:
-#             messages.error(request, 'Please correct the errors below.')
-#     else:
-#         product_form = ProductForm()
-#         product_image_form = ProductImageForm()
-
-#     return render(request, 'home.html', {
-#         'product_form': product_form,
-#         'product_image_form': product_image_form
-#     })
-
-
-# def add_product(request):
-#     ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm, extra=3)
-    
-#     if request.method == 'POST':
-#         product_form = ProductModelForm(request.POST, request.FILES)
-#         formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
-        
-#         if product_form.is_valid() and formset.is_valid():
-#             product = product_form.save()
-#             for form in formset.cleaned_data:
-#                 if form:
-#                     image = form['image']
-#                     ProductImage.objects.create(product=product, image=image)
-#             messages.success(request, "Product added successfully!")
-#             return redirect('add_product')
-#         else:
-#             print(product_form.errors, formset.errors)
-#     else:
-#         product_form = ProductModelForm()
-#         formset = ImageFormSet(queryset=ProductImage.objects.none())
-
-#     context = {
-#         'product_form': product_form,
-#         'formset': formset,
-#     }
-#     return render(request, 'admin_portal/add_product.html', context)
 
 
 @group_required('Admin')
@@ -190,29 +126,3 @@ def product_inventory(request, pk):
     return render(request, 'admin_portal/product_inventory.html', context)
 
 
-
-# @group_required('Admin')
-# def product_inventory(request, pk):
-#     products = Product.objects.all()
-#     product = get_object_or_404(Product, id=pk)
-#     products_count = products.count()
-#     new_products_count = products.filter(is_new=True).count()
-#     out_of_stock_count = products.filter(in_stock=False).count
-#     is_listed_count = products.filter(is_listed=True).count
-#     if request.method == 'POST':
-#         form = ProductModelForm(request.POST, request.FILES, instance=product)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('inventory')  
-#     else:
-#         form = ProductModelForm(instance=product) 
-        
-#     context = {
-#         'product': product,
-#         'form': form,
-#         'products_count': products_count,
-#         'new_products_count': new_products_count,
-#         'out_of_stock_count': out_of_stock_count,
-#         'is_listed_count': is_listed_count
-#     }
-#     return render(request, 'admin_portal/product_inventory.html', context)
