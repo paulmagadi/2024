@@ -47,25 +47,28 @@ def add_product(request):
     # ImageFormSet = modelformset_factory(ProductImage, form=ProductImageForm)
 
     if request.method == 'POST':
-        form = ProductModelForm(request.POST, request.FILES)
-        formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
+        # form = ProductModelForm(request.POST, request.FILES)
+        # formset = ImageFormSet(request.POST, request.FILES, queryset=ProductImage.objects.none())
+        product_form = ProductForm(request.POST, request.FILES)
+        product_image_form = ProductImageForm(request.POST, request.FILES)
         
-        
-        if form.is_valid() and formset.is_valid():
-            product = form.save()
-            for form in formset.cleaned_data:
-                if form:
-                    product_images = form['product_images']
-                    ProductImage.objects.create(product=product, product_images=product_images)
-            messages.success(request, "Product added successfully!")
-            return redirect('add_product')
+        if product_form.is_valid() and product_image_form.is_valid():
+            product = product_form.save()
+            images = request.FILES.getlist('images')
+            for image in images:
+                ProductImage.objects.create(product=product, image=image)
+            
+            messages.success(request, 'Product and images saved successfully!')
+            return redirect('add_product')  
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
-        form = ProductModelForm()
-        formset = ImageFormSet(queryset=ProductImage.objects.none())
+        product_form = ProductForm()
+        product_image_form = ProductImageForm()
     
     context = {
-        'form': form,
-        'formset': formset,
+        'product_form': product_form,
+        'product_image_form': product_image_form,
         'products': products,
         'products_count': products_count,
         'new_products_count': new_products_count,
@@ -80,29 +83,29 @@ def add_product(request):
 
 
 
-def product_create_view(request):
-    if request.method == 'POST':
-        product_form = ProductForm(request.POST, request.FILES)
-        product_image_form = ProductImageForm(request.POST, request.FILES)
+# def product_create_view(request):
+#     if request.method == 'POST':
+#         product_form = ProductForm(request.POST, request.FILES)
+#         product_image_form = ProductImageForm(request.POST, request.FILES)
         
-        if product_form.is_valid() and product_image_form.is_valid():
-            product = product_form.save()
-            images = request.FILES.getlist('images')
-            for image in images:
-                ProductImage.objects.create(product=product, image=image)
+#         if product_form.is_valid() and product_image_form.is_valid():
+#             product = product_form.save()
+#             images = request.FILES.getlist('images')
+#             for image in images:
+#                 ProductImage.objects.create(product=product, image=image)
             
-            messages.success(request, 'Product and images saved successfully!')
-            return redirect('home')  
-        else:
-            messages.error(request, 'Please correct the errors below.')
-    else:
-        product_form = ProductForm()
-        product_image_form = ProductImageForm()
+#             messages.success(request, 'Product and images saved successfully!')
+#             return redirect('home')  
+#         else:
+#             messages.error(request, 'Please correct the errors below.')
+#     else:
+#         product_form = ProductForm()
+#         product_image_form = ProductImageForm()
 
-    return render(request, 'home.html', {
-        'product_form': product_form,
-        'product_image_form': product_image_form
-    })
+#     return render(request, 'home.html', {
+#         'product_form': product_form,
+#         'product_image_form': product_image_form
+#     })
 
 
 # def add_product(request):
