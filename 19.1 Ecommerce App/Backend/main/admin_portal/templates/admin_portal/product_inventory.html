@@ -65,7 +65,13 @@
                     {{ product_image_form.as_p }}
                     <input type="submit" value="submit">
                 </form>
+                <h2>Profile Image</h2>
                   
+                <h2>Existing Images</h2>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" width="50px">
+                {% for image in product_images %}
+                    <img src="{{ image.product_images.url }}" alt="{{ product.name }}" width="50px">
+                {% endfor %}
                   
             </div>
 

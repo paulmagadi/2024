@@ -115,7 +115,7 @@ def product_inventory(request, pk):
         
         if product_form.is_valid() and product_image_form.is_valid():
             product_form.save()
-            images = product_image_form.cleaned_data['product_images']
+            images = request.FILES.getlist('product_images')
             for image in images:
                 ProductImage.objects.create(product=product, product_images=image)
                 
