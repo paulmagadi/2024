@@ -7,8 +7,6 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 
-
-
 class Category(models.Model):
     name = models.CharField(max_length=100)
     
@@ -24,8 +22,6 @@ class Specification(models.Model):
 
     def __str__(self):
         return f"{self.name}: {self.value}"
-
-
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -53,10 +49,7 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         self.full_clean()  
-        
-        # if self.stock_quantity < 0:
-        #     self.stock_quantity = 0
-        
+            
         if self.stock_quantity == 0:
             self.in_stock = False
         else:
@@ -82,10 +75,10 @@ class Product(models.Model):
             url = ''
         return url
     
-def get_image_filename(instance, filename):
-    name = instance.product.name
-    slug = slugify(name)
-    return "product_images/%s-%s" % (slug, filename)
+# def get_image_filename(instance, filename):
+#     name = instance.product.name
+#     slug = slugify(name)
+#     return "product_images/%s-%s" % (slug, filename)
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
