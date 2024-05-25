@@ -19,11 +19,26 @@ class MultipleFileField(forms.FileField):
         else:
             result = [single_file_clean(data, initial)]
         return result
+    
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
 
-class ProductModelForm(ModelForm):
+
+class ProductModelForm(forms.ModelForm):
+    new_category = forms.CharField(max_length=100, required=False, label="New Category")
+
     class Meta:
         model = Product
         fields = ['name', 'price', 'category', 'description', 'image', 'is_sale', 'sale_price', 'in_stock', 'stock_quantity', 'is_new', 'is_featured', 'is_listed']
+
+    def save(self, commit=True):
+        new_category_name = self.cleaned_data.get('new_category')
+        if new_category_name:
+            category, created = Category.objects.get_or_create(name=new_category_name)
+            self.instance.category = category
+        return super().save(commit=commit)
 
 class ProductImageForm(forms.Form):
     product_images = MultipleFileField()

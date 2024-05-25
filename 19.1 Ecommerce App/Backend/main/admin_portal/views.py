@@ -2,7 +2,7 @@ from pyexpat.errors import messages
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product, ProductImage
-from .forms import ProductImageForm, ProductModelForm, CategoryModelForm
+from .forms import CategoryForm, ProductImageForm, ProductModelForm, CategoryModelForm
 
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
@@ -35,23 +35,25 @@ def admin_portal(request):
     }
     return render(request, 'admin_portal/admin_portal.html', context)
 
+
 def add_product(request):
     products = Product.objects.all()
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
     out_of_stock_count = products.filter(in_stock=False).count()
     is_listed_count = products.filter(is_listed=True).count()
-    
+
     if request.method == 'POST':
         product_form = ProductModelForm(request.POST, request.FILES)
         product_image_form = ProductImageForm(request.POST, request.FILES)
-        
+        category_form = CategoryForm(request.POST)
+
         if product_form.is_valid() and product_image_form.is_valid():
             product = product_form.save()
             images = product_image_form.cleaned_data['product_images']
             for image in images:
                 ProductImage.objects.create(product=product, product_images=image)
-            
+
             messages.success(request, 'Product and images saved successfully!')
             return redirect('add_product')  # replace with your actual view name
         else:
@@ -59,18 +61,58 @@ def add_product(request):
     else:
         product_form = ProductModelForm()
         product_image_form = ProductImageForm()
-    
+        category_form = CategoryForm()
+
     context = {
         'product_form': product_form,
         'product_image_form': product_image_form,
+        'category_form': category_form,
         'products': products,
         'products_count': products_count,
         'new_products_count': new_products_count,
         'out_of_stock_count': out_of_stock_count,
         'is_listed_count': is_listed_count,
     }
-    
+
     return render(request, 'admin_portal/add_product.html', context)
+
+
+# def add_product(request):
+#     products = Product.objects.all()
+#     products_count = products.count()
+#     new_products_count = products.filter(is_new=True).count()
+#     out_of_stock_count = products.filter(in_stock=False).count()
+#     is_listed_count = products.filter(is_listed=True).count()
+    
+#     if request.method == 'POST':
+#         product_form = ProductModelForm(request.POST, request.FILES)
+#         product_image_form = ProductImageForm(request.POST, request.FILES)
+        
+#         if product_form.is_valid() and product_image_form.is_valid():
+#             product = product_form.save()
+#             images = product_image_form.cleaned_data['product_images']
+#             for image in images:
+#                 ProductImage.objects.create(product=product, product_images=image)
+            
+#             messages.success(request, 'Product and images saved successfully!')
+#             return redirect('add_product')  # replace with your actual view name
+#         else:
+#             messages.error(request, 'Please correct the errors below.')
+#     else:
+#         product_form = ProductModelForm()
+#         product_image_form = ProductImageForm()
+    
+#     context = {
+#         'product_form': product_form,
+#         'product_image_form': product_image_form,
+#         'products': products,
+#         'products_count': products_count,
+#         'new_products_count': new_products_count,
+#         'out_of_stock_count': out_of_stock_count,
+#         'is_listed_count': is_listed_count,
+#     }
+    
+#     return render(request, 'admin_portal/add_product.html', context)
 
 
 @group_required('Admin')
