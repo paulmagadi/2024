@@ -99,45 +99,7 @@ def inventory(request):
     return render(request, 'admin_portal/inventory.html', context)
 
 
-# @group_required('Admin')
-# def product_inventory(request, pk):
-#     product = get_object_or_404(Product, id=pk)
-#     products = Product.objects.all()
-#     product_images = ProductImage.objects.filter(product=product)  
-#     products_count = products.count()
-#     new_products_count = products.filter(is_new=True).count()
-#     out_of_stock_count = products.filter(in_stock=False).count()
-#     is_listed_count = products.filter(is_listed=True).count()
 
-#     if request.method == 'POST':
-#         product_form = ProductModelForm(request.POST, request.FILES, instance=product)
-#         product_image_form = ProductImageForm(request.POST, request.FILES)
-        
-#         if product_form.is_valid() and product_image_form.is_valid():
-#             product_form.save()
-#             images = request.FILES.getlist('product_images')
-#             for image in images:
-#                 ProductImage.objects.create(product=product, product_images=image)
-                
-#             messages.success(request, 'Product and images updated successfully!')
-#             return redirect('inventory')  # Replace 'inventory' with your actual inventory view name
-#         else:
-#             messages.error(request, 'Please correct the errors below.')
-#     else:
-#         product_form = ProductModelForm(instance=product)
-#         product_image_form = ProductImageForm()
-
-#     context = {
-#         'product': product,
-#         'product_images': product_images,
-#         'product_form': product_form,
-#         'product_image_form': product_image_form,
-#         'products_count': products_count,
-#         'new_products_count': new_products_count,
-#         'out_of_stock_count': out_of_stock_count,
-#         'is_listed_count': is_listed_count
-#     }
-#     return render(request, 'admin_portal/product_inventory.html', context)
 
 
 
@@ -185,3 +147,44 @@ def product_inventory(request, pk):
         'is_listed_count': is_listed_count
     }
     return render(request, 'admin_portal/product_inventory.html', context)
+
+
+# @group_required('Admin')
+# def product_inventory(request, pk):
+#     product = get_object_or_404(Product, id=pk)
+#     products = Product.objects.all()
+#     product_images = ProductImage.objects.filter(product=product)  
+#     products_count = products.count()
+#     new_products_count = products.filter(is_new=True).count()
+#     out_of_stock_count = products.filter(in_stock=False).count()
+#     is_listed_count = products.filter(is_listed=True).count()
+
+#     if request.method == 'POST':
+#         product_form = ProductModelForm(request.POST, request.FILES, instance=product)
+#         product_image_form = ProductImageForm(request.POST, request.FILES)
+        
+#         if product_form.is_valid() and product_image_form.is_valid():
+#             product_form.save()
+#             images = request.FILES.getlist('product_images')
+#             for image in images:
+#                 ProductImage.objects.create(product=product, product_images=image)
+                
+#             messages.success(request, 'Product and images updated successfully!')
+#             return redirect('inventory')  # Replace 'inventory' with your actual inventory view name
+#         else:
+#             messages.error(request, 'Please correct the errors below.')
+#     else:
+#         product_form = ProductModelForm(instance=product)
+#         product_image_form = ProductImageForm()
+
+#     context = {
+#         'product': product,
+#         'product_images': product_images,
+#         'product_form': product_form,
+#         'product_image_form': product_image_form,
+#         'products_count': products_count,
+#         'new_products_count': new_products_count,
+#         'out_of_stock_count': out_of_stock_count,
+#         'is_listed_count': is_listed_count
+#     }
+#     return render(request, 'admin_portal/product_inventory.html', context)
