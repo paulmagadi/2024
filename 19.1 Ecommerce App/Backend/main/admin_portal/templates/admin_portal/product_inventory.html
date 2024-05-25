@@ -68,9 +68,8 @@
                 <h2>Profile Image</h2>
                   <img src="{{product.imageURL }}" alt="{{product.name}}" width="50px">
                 <h2>Existing Images</h2>
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" width="50px">
                 {% for image in product_images %}
-                    <img src="{{ image.product_images.url }}" alt="{{ product.name }}" width="50px">
+                    <img src="{{ image.imageURL }}" alt="{{ product.name }}" width="50px">
                 {% endfor %}
                   
             </div>
