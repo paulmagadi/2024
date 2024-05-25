@@ -61,8 +61,8 @@
                 
                 <form method="POST" action="{% url 'add_product' %}">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    {{ formset.as_p }}
+                    {{ product_form.as_p }}
+                    {{ product_image_form.as_p }}
                     <input type="submit" value="Submit">
                   </form>
                   
