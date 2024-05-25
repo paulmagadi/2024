@@ -1,6 +1,8 @@
 from django import forms
-from store.models import Product, Category, ProductImage
-from django.forms.widgets import ClearableFileInput
+from django.forms import ModelForm
+
+from store.models import Category
+from store.models import Product, ProductImage
 
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
@@ -17,40 +19,21 @@ class MultipleFileField(forms.FileField):
         else:
             result = [single_file_clean(data, initial)]
         return result
-# class ProductModelForm(forms.ModelForm):
-#     product_images = forms.FileField(widget=MultipleFileInput(attrs={'multiple': True}), required=False)
 
-#     class Meta:
-#         model = Product
-#         fields = ['name', 'price', 'category', 'description', 'image', 'is_sale', 'sale_price', 'in_stock', 'stock_quantity', 'is_new', 'is_featured', 'is_listed']
-
-#     def save(self, commit=True):
-#         product = super().save(commit=False)
-#         if commit:
-#             product.save()
-
-#         if self.cleaned_data.get('product_images'):
-#             for image in self.files.getlist('product_images'):
-#                 ProductImage.objects.create(product=product, image=image)
-
-#         return product
-
-
-class ProductModelForm(forms.ModelForm):
+class ProductModelForm(ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'price', 'category', 'description', 'image', 'is_sale', 'sale_price', 'in_stock', 'stock_quantity', 'is_new', 'is_featured', 'is_listed']
 
-
-   
 class ProductImageForm(forms.Form):
     product_images = MultipleFileField()
 
-    def clean_images(self):
-        product_images = self.files.getlist('product_images')
-        if len(product_images) > 5:  
+    def clean_product_images(self):
+        images = self.files.getlist('product_images')
+        if len(images) > 5:
             raise forms.ValidationError('You can upload a maximum of 5 images.')
-        return product_images
+        return images
+
         
 class CategoryModelForm(forms.ModelForm):
     class Meta:

@@ -48,15 +48,14 @@ def add_product(request):
         
         if product_form.is_valid() and product_image_form.is_valid():
             product = product_form.save()
-            images = request.FILES.getlist('images')
+            images = product_image_form.cleaned_data['product_images']
             for image in images:
-                ProductImage.objects.create(product=product, image=image)
+                ProductImage.objects.create(product=product, product_images=image)
             
             messages.success(request, 'Product and images saved successfully!')
-            return redirect('add_product')  
+            return redirect('add_product')  # replace with your actual view name
         else:
-            messages.success(request, 'Please correct the errors below.')
-            return redirect('add_product') 
+            messages.error(request, 'Please correct the errors below.')
     else:
         product_form = ProductModelForm()
         product_image_form = ProductImageForm()
@@ -72,7 +71,6 @@ def add_product(request):
     }
     
     return render(request, 'admin_portal/add_product.html', context)
-
 
 
 @group_required('Admin')
@@ -103,24 +101,35 @@ def inventory(request):
 
 @group_required('Admin')
 def product_inventory(request, pk):
-    products = Product.objects.all()
     product = get_object_or_404(Product, id=pk)
+    products = Product.objects.all()
     products_count = products.count()
     new_products_count = products.filter(is_new=True).count()
-    out_of_stock_count = products.filter(in_stock=False).count
-    is_listed_count = products.filter(is_listed=True).count
-    
+    out_of_stock_count = products.filter(in_stock=False).count()
+    is_listed_count = products.filter(is_listed=True).count()
+
     if request.method == 'POST':
-        form = ProductModelForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('inventory')  
-    else:
-        form = ProductModelForm(instance=product) 
+        product_form = ProductModelForm(request.POST, request.FILES, instance=product)
+        product_image_form = ProductImageForm(request.POST, request.FILES)
         
+        if product_form.is_valid() and product_image_form.is_valid():
+            product_form.save()
+            images = product_image_form.cleaned_data['product_images']
+            for image in images:
+                ProductImage.objects.create(product=product, product_images=image)
+                
+            messages.success(request, 'Product and images updated successfully!')
+            return redirect('inventory')  # Replace 'inventory' with your actual inventory view name
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        product_form = ProductModelForm(instance=product)
+        product_image_form = ProductImageForm()
+
     context = {
         'product': product,
-        'form': form,
+        'product_form': product_form,
+        'product_image_form': product_image_form,
         'products_count': products_count,
         'new_products_count': new_products_count,
         'out_of_stock_count': out_of_stock_count,

@@ -75,20 +75,20 @@ class Product(models.Model):
             url = ''
         return url
     
-# def get_image_filename(instance, filename):
-#     name = instance.product.name
-#     slug = slugify(name)
-#     return "product_images/%s-%s" % (slug, filename)
+def get_image_filename(instance, filename):
+    name = instance.product.name
+    slug = slugify(name)
+    return "product_images/%s-%s" % (slug, filename)
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
-    product_images = models.ImageField(upload_to='uploads/products', verbose_name='Image', null=True)
+    product_images = models.ImageField(upload_to='uploads/products', null=True)
  
     class Meta:
         verbose_name_plural = 'Product Images'
 
     def __str__(self):
-        return f'{self.product.name} Image'
+        return self.product.name
     
     @property
     def imageURL(self):
