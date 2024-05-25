@@ -6,6 +6,9 @@ from django.utils.text import slugify
 from django.utils import timezone      
 from django.core.exceptions import ValidationError
 
+
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     
