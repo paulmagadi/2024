@@ -24,6 +24,25 @@ a {
 text-decoration: none;
 }
 
+.alert-message {
+  width: 100%;
+  background-color: bisque;
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1001;
+  padding: .5em 1em;
+}
+
+.alert-message .close-message {
+  float: right;
+  font-size: 2rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: red;
+}
+
 .admin-main-headings {
   text-align: center;
   background-color: rgb(0, 0, 0);
