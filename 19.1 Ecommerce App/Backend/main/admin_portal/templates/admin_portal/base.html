@@ -18,8 +18,6 @@
 <body>
     <div class="admin-dashboard">
         {% include 'admin_portal/navbar.html' %}
-
-        <div class="container">
         {% if messages %}
         
         {% for message in messages %}
@@ -31,7 +29,6 @@
         {% endfor %}
             
         {% endif %}
-    </div>
     {% block content %}
         
     {% endblock content %}
