@@ -59,7 +59,7 @@
             <h1 class="add-product-headings">ADD NEW PRODUCT</h1>
             <div class="product_form">
                 
-                <form method="POST" action="{% url 'add_product' %}">
+                <form method="POST" action="{% url 'add_product' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ product_form.as_p }}
                     {{ product_image_form.as_p }}

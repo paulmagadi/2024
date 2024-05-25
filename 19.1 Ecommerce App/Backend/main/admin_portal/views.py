@@ -10,6 +10,9 @@ from django.utils import timezone
 from users.decorators import group_required
 
 
+from django.contrib import messages
+
+
 def admin_or_staff_required(view_func):
     # Decorator that checks if the user is an admin or staff member
     def _wrapped_view(request, *args, **kwargs):
@@ -124,5 +127,4 @@ def product_inventory(request, pk):
         'is_listed_count': is_listed_count
     }
     return render(request, 'admin_portal/product_inventory.html', context)
-
 

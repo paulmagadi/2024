@@ -41,21 +41,16 @@ class ProductModelForm(forms.ModelForm):
         model = Product
         fields = ['name', 'price', 'category', 'description', 'image', 'is_sale', 'sale_price', 'in_stock', 'stock_quantity', 'is_new', 'is_featured', 'is_listed']
 
-# class ProductImageForm(forms.ModelForm):
-#     product_images = forms.ImageField(widget=MultipleFileInput(attrs={'multiple': True}), required=False)
 
-#     class Meta:
-#         model = ProductImage
-#         fields = ['product_images']
    
 class ProductImageForm(forms.Form):
-    images = MultipleFileField()
+    product_images = MultipleFileField()
 
     def clean_images(self):
-        images = self.files.getlist('images')
-        if len(images) > 5:  
+        product_images = self.files.getlist('product_images')
+        if len(product_images) > 5:  
             raise forms.ValidationError('You can upload a maximum of 5 images.')
-        return images
+        return product_images
         
 class CategoryModelForm(forms.ModelForm):
     class Meta:
