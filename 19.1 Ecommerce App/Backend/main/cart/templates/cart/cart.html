@@ -46,7 +46,7 @@
                 <div class="cart-item-quantity"> 
                     <button type="button" class="reduce-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;">&minus;</button>
                     <span class="item-quantity" data-index="{{ item.id }}">{{ item.quantity }}</span>
-                    <button type="button" class="add-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;" {% if item.quantity >= item.stock_quantity %}disabled{% endif %}>&plus;</button>
+                    <button type="button" class="add-quantity" data-index="{{ item.id }}" style="padding: .3em .5em;" {% if item.quantity >= item.stock_quantity %}disabled class="disabled-button"{% endif %}>&plus;</button>
                 </div>
                 {% if item.is_sale %}
                 <div class="cart-item-price">$ {{ item.sale_price }}</div>
@@ -71,7 +71,14 @@
 <script>
     $(document).on('click', '.add-quantity', function(e){
         e.preventDefault();
-        var productId = $(this).data('index');
+        var button = $(this);
+        
+        if (button.hasClass('disabled-button')) {
+            alert("You have reached the maximum quantity for this product.");
+            return;
+        }
+
+        var productId = button.data('index');
         var quantityElement = $('.item-quantity[data-index="' + productId + '"]');
         
         // Convert the quantity to a number and increment
