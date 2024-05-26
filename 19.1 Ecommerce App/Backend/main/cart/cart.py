@@ -5,21 +5,17 @@ from django.contrib import messages
 class Cart():
     def __init__(self, request):
         self.session = request.session
-        
         self.request = request
-        
         cart = self.session.get('session_key')
         # Check if you have a session, if not create one
         if 'session_key' not in request.session:
             cart = request.session['session_key'] = {}
         self.cart = cart
         
-        
     # Add product to session
     def add(self, request, product, quantity):
         product_id = str(product.id)
-        available_quantity = product.stock_quantity  # Assuming 'quantity' is the field representing available inventory in your Product model
-        
+        available_quantity = product.stock_quantity  
         # Check if the product with the product id is in the session
         if product_id in self.cart:
             # If the product is already in the cart, calculate the total quantity including the newly requested quantity
@@ -45,10 +41,8 @@ class Cart():
         
         #Logged in user
         if self.request.user.is_authenticated:
-            
             #Get current user profile
             current_user = Profile.objects.filter(user__id=self.request.user.id)
-            
             #convert '' to ""
             cart_dict = str(self.cart)
             cart_dict = cart_dict.replace("\'", "\"")
@@ -117,15 +111,12 @@ class Cart():
         # Delete from cart
         if product_id in self.cart:
             del self.cart[product_id]
-
+            messages.success(self.request, f"{product.name} removed from cart.")
         self.session.modified = True
-        
         #Logged in user
         if self.request.user.is_authenticated:
-            
             #Get current user profile
             current_user = Profile.objects.filter(user__id=self.request.user.id)
-            
             #convert '' to ""
             cart_dict = str(self.cart)
             cart_dict = cart_dict.replace("\'", "\"")
