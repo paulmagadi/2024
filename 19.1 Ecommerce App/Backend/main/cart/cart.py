@@ -80,10 +80,12 @@ class Cart():
         return self.cart
 
 
-        
     # Define the cart length(for updating cart count)
+    # def __len__(self):
+    #     return len(self.cart)
+    
     def __len__(self):
-        return len(self.cart)
+        return sum(self.cart.values())
     
     
     def get_prods(self):
@@ -100,7 +102,6 @@ class Cart():
         
         return products
 
-    
     
     def get_quants(self):
         return self.cart
@@ -123,7 +124,6 @@ class Cart():
             current_user.update(old_cart=str(cart_dict))
     
     
-    
     def order_total(self):
         total = 0
         for product_id, quantity in self.cart.items():
@@ -139,7 +139,6 @@ class Cart():
     def db_add(self, product, quantity):
         product_id = str(product)
         product_qty = str(quantity)
-        
         # Check if the product with the product id is in the session
         if product_id in self.cart:
             pass
@@ -147,13 +146,10 @@ class Cart():
             self.cart[product_id] = int(product_qty)
             
         self.session.modified = True
-        
         #Logged in user
         if self.request.user.is_authenticated:
-            
             #Get current user profile
             current_user = Profile.objects.filter(user__id=self.request.user.id)
-            
             #convert '' to ""
             cart_dict = str(self.cart)
             cart_dict = cart_dict.replace("\'", "\"")
