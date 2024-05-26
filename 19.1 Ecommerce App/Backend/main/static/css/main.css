@@ -36,7 +36,7 @@ cursor: pointer;
 
 .alert-message {
   width: 100%;
-  background-color: bisque;
+  background-color: var(--main-color);
   display: inline-block;
   position: fixed;
   top: 0;
