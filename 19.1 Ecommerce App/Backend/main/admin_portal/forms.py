@@ -4,15 +4,34 @@ from django.forms import ModelForm
 from store.models import Category
 from store.models import Product, ProductImage
 
+# class MultipleFileInput(forms.ClearableFileInput):
+#     allow_multiple_selected = True
+
+# class MultipleFileField(forms.FileField):
+#     def __init__(self, *args, **kwargs):
+#         kwargs.setdefault("widget", MultipleFileInput())
+#         super().__init__(*args, **kwargs)
+
+#     def clean(self, data, initial=None):
+#         single_file_clean = super().clean
+#         if isinstance(data, (list, tuple)):
+#             result = [single_file_clean(d, initial) for d in data]
+#         else:
+#             result = [single_file_clean(data, initial)]
+#         return result
+    
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
 
 class MultipleFileField(forms.FileField):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("widget", MultipleFileInput())
+        kwargs.setdefault("required", False) 
         super().__init__(*args, **kwargs)
 
     def clean(self, data, initial=None):
+        if not data and self.required:
+            raise forms.ValidationError('This field is required.')
         single_file_clean = super().clean
         if isinstance(data, (list, tuple)):
             result = [single_file_clean(d, initial) for d in data]
@@ -29,8 +48,6 @@ class CategoryForm(forms.ModelForm):
                 'placeholder': 'Enter category name'
             }),
         }
-
-
 
 class ProductModelForm(forms.ModelForm):
     new_category = forms.CharField(
