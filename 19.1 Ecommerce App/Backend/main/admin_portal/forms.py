@@ -24,14 +24,44 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'placeholder': 'Enter category name'
+            }),
+        }
+
 
 
 class ProductModelForm(forms.ModelForm):
-    new_category = forms.CharField(max_length=100, required=False, label="New Category")
+    new_category = forms.CharField(
+    max_length=100, 
+    required=False, 
+    label="New Category",
+    widget=forms.TextInput(attrs={'placeholder': 'Enter new category if not listed above. Leave blank if availlable.'})
+    )
 
     class Meta:
         model = Product
         fields = ['name', 'price', 'category', 'description', 'image', 'is_sale', 'sale_price', 'in_stock', 'stock_quantity', 'is_new', 'is_featured', 'is_listed']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'placeholder': 'Enter product name'
+            }),
+            'price': forms.NumberInput(attrs={
+                'placeholder': 'Enter product price'
+            }),
+            'description': forms.Textarea(attrs={
+                'placeholder': 'Enter product description',
+                'rows': 8,
+                'cols': 60
+            }),
+            'sale_price': forms.NumberInput(attrs={
+                'placeholder': 'Enter sale price if applicable'
+            }),
+            'stock_quantity': forms.NumberInput(attrs={
+                'placeholder': 'Enter stock quantity'
+            }),
+        }
 
     def save(self, commit=True):
         new_category_name = self.cleaned_data.get('new_category')
@@ -50,7 +80,7 @@ class ProductImageForm(forms.Form):
         return images
 
         
-class CategoryModelForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        fields = ['name']
+# class CategoryModelForm(forms.ModelForm):
+#     class Meta:
+#         model = Category
+#         fields = ['name']

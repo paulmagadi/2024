@@ -82,7 +82,7 @@ def get_image_filename(instance, filename):
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
-    product_images = models.ImageField(upload_to='uploads/products', null=True)
+    product_images = models.ImageField(upload_to='uploads/products', null=True, blank=True)
  
     class Meta:
         verbose_name_plural = 'Product Images'
