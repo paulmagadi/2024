@@ -42,8 +42,6 @@ class Cart():
             cart_dict = str(self.cart)
             cart_dict = cart_dict.replace("\'", "\"")
             current_user.update(old_cart=str(cart_dict))
-            
-    
         
         
     def update(self, request, product, quantity):
@@ -77,11 +75,11 @@ class Cart():
 
 
     # Define the cart length(for updating cart count)
-    # def __len__(self):
-    #     return len(self.cart)
-    
     def __len__(self):
-        return sum(self.cart.values())
+        return len(self.cart)
+    
+    # def __len__(self):
+    #     return sum(self.cart.values())
     
     
     def get_prods(self):
