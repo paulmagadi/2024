@@ -8,8 +8,6 @@ from users.forms import ShippingAddressForm
 from users.models import ShippingAddress
 
 
-
-# Create your views here.
 def cart(request):
     cart_instance = Cart(request)  
     cart_items = cart_instance.get_prods() 

@@ -16,12 +16,8 @@ class Cart():
     def add(self, request, product, quantity):
         product_id = str(product.id)
         available_quantity = product.stock_quantity  
-        # Check if the product with the product id is in the session
         if product_id in self.cart:
-            # If the product is already in the cart, calculate the total quantity including the newly requested quantity
             total_quantity = self.cart[product_id] + quantity
-            
-            # If the total quantity exceeds the available inventory, set the cart quantity to the available inventory and raise a message
             if total_quantity > available_quantity:
                 self.cart[product_id] = available_quantity
                 messages.warning(request, f"Quantity limit reached for {product.name}. Cart updated to maximum available quantity.")
@@ -29,7 +25,6 @@ class Cart():
                 self.cart[product_id] = total_quantity
                 messages.success(request, ('Product updated to cart.'))
         else:
-            # If the product is not in the cart, add it with the requested quantity, limiting it to the available inventory if necessary
             if quantity > available_quantity:
                 self.cart[product_id] = available_quantity
                 messages.warning(request, f"Quantity limit reached for {product.name}. Cart updated to maximum available quantity.")
@@ -47,6 +42,8 @@ class Cart():
             cart_dict = str(self.cart)
             cart_dict = cart_dict.replace("\'", "\"")
             current_user.update(old_cart=str(cart_dict))
+            
+    
         
         
     def update(self, request, product, quantity):
@@ -67,7 +64,6 @@ class Cart():
     
         #Logged in user
         if self.request.user.is_authenticated:
-            
             #Get current user profile
             current_user = Profile.objects.filter(user__id=self.request.user.id)
             
