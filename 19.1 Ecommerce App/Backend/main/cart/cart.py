@@ -112,7 +112,7 @@ class Cart():
         # Delete from cart
         if product_id in self.cart:
             del self.cart[product_id]
-            messages.success(self.request, f"{product.name} removed from cart.")
+            
         self.session.modified = True
         #Logged in user
         if self.request.user.is_authenticated:

@@ -54,18 +54,30 @@ def cart_update(request):
         # messages.success(request, 'Cart updated successfully')
         return response
 
+# def cart_delete(request):
+# 	cart = Cart(request)
+# 	if request.POST.get('action') == 'post':
+# 		# Get stuff
+# 		product_id = int(request.POST.get('product_id'))
+        
+# 		# Call delete Function in Cart
+# 		cart.delete(product=product_id)
+
+# 		response = JsonResponse({'product':product_id})
+# 		messages.info(request, ('Item removed from cart'))
+# 		return response
+
+
 def cart_delete(request):
-	cart = Cart(request)
-	if request.POST.get('action') == 'post':
-		# Get stuff
-		product_id = int(request.POST.get('product_id'))
-		# Call delete Function in Cart
-		cart.delete(product=product_id)
+    cart = Cart(request)
+    if request.POST.get('action') == 'post':
+        product_id = int(request.POST.get('product_id'))
+        product = get_object_or_404(Product, id=product_id)
+        cart.delete(product=product_id)
 
-		response = JsonResponse({'product':product_id})
-		# messages.info(request, ('Item removed from cart'))
-		return response
-
+        response = JsonResponse({'product': product_id})
+        messages.info(request, f'{product.name} removed from cart')
+        return response
 
 @login_required
 def checkout(request):
