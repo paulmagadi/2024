@@ -1,33 +1,10 @@
-// import 'package:flutter/material.dart';
-
-// class ProductsScreen extends StatefulWidget {
-//   const ProductsScreen({super.key});
-
-//   @override
-//   State<ProductsScreen> createState() => _ProductsScreenState();
-// }
-
-// class _ProductsScreenState extends State<ProductsScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Products'),
-//       ),
-//       body: const Center(
-//         // Customize the body with a list or grid of featured products
-//         child: Text('All products'),
-//       ),
-//     );
-//   }
-// }
 
 import 'package:flutter/material.dart';
 import '../screens/featured.dart';
 import '../screens/product_details.dart';
 import '../models/product_model.dart';
 
-// Define maximum length for product name 
+
 const int maxNameLength = 20;
 
 class ProductsScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:ecommerce/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar_with_label/curved_navigation_bar.dart';
-import 'package:easy_search_bar/easy_search_bar.dart';
+// import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/services.dart';
 
 // import 'package:badges/badges.dart' as badges;
@@ -43,18 +43,6 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-String searchValue = '';
-final List<String> _suggestions = [
-  'Shoes',
-  'Watch',
-  'Shirt',
-  'Belt',
-  'Dress',
-  'Skirt',
-  'Chains',
-  'Caps'
-];
-
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
@@ -75,23 +63,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: EasySearchBar(
-          systemOverlayStyle:
-              SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-          titleTextStyle: const TextStyle(fontSize: 40, color: blackColor),
-          backgroundColor: whiteColor,
-          foregroundColor: blackColor,
-          appBarHeight: 58,
-          animationDuration: const Duration(milliseconds: 500),
-          isFloating: true,
-          searchHintText: "Search Product...",
-          // leading: const Image(
-          //   image: AssetImage("assets/images/bellamore.png"),
-          //   height: 40,
-          // ),
-          title: const Text('Bellamore'),
-          onSearch: (value) => setState(() => searchValue = value),
-          suggestions: _suggestions),
+      appBar: AppBar(
+        systemOverlayStyle:
+            SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+        titleTextStyle: const TextStyle(fontSize: 40, color: blackColor),
+        backgroundColor: whiteColor,
+        foregroundColor: blackColor,
+        // leading: const Image(
+        //   image: AssetImage("assets/images/bellamore.png"),
+        //   height: 40,
+        // ),
+        title: const Text('Bellamore'),
+      ),
       body: _pages[_selectedIndex],
       // backgroundColor: bgColor,
       bottomNavigationBar: CurvedNavigationBar(
